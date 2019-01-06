@@ -1,13 +1,9 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%**************************************************************************************
 % License:
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%**************************************************************************************
 
-%---------------------------------------------------
-%	PACKAGES AND THEMES
-%---------------------------------------------------
-
-\documentclass[beamer]{beamer}
+\documentclass[handout]{beamer}
 
 \mode<presentation> {
 
@@ -32,7 +28,7 @@
 %\setbeamertemplate{navigation symbols}{}
 }
 
-
+\usepackage{amsmath}
 \usepackage{graphicx} % for figures
 \usepackage{subcaption} % for subplots 
 \usepackage[labelsep=space,tableposition=top]{caption}
@@ -83,10 +79,10 @@ University of Texas at Austin \\
 \begin{frame}
 \frametitle{Geotechnical modeling of the complex world}
 \begin{figure}
-	\mode<handout>{
+	\mode<beamer>{
 		\includegraphics[width=0.85\textwidth]{figs/lbs.png}
 	}
-	\mode<beamer>{
+	\mode<handout>{
 		\includegraphics[width=0.85\textwidth]{figs/lbs-overview.jpg}
 	}
 	\caption{London Bridge Station, London, UK}
@@ -106,10 +102,10 @@ University of Texas at Austin \\
 \begin{frame}
 \frametitle{Geotechnical modeling}
 \begin{figure}
-  \mode<handout>{
-	\includegraphics[width=0.85\textwidth]{figs/geotechnical-modeling-final.png}
-  }
   \mode<beamer>{
+	\includegraphics[width=0.95\textwidth]{figs/geotechnical-modeling-final.png}
+  }
+  \mode<handout>{
 	\includegraphics[width=0.95\textwidth]{figs/geotechnical-modeling.png}
   }
 \end{figure}
@@ -131,7 +127,8 @@ University of Texas at Austin \\
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Geotechnical modeling}
+\frametitle{Geotechnical modeling: What should be modeled?}
+\mode<beamer>{
 \begin{itemize}
 	\item Self weight effect of soils (This is why soil moves)
 	\item Construction sequence (Complex geometry)
@@ -139,9 +136,109 @@ University of Texas at Austin \\
 	\item Insitu stresses (stiffness/strength depends on current stresses and stress history)
 	\item Predict the ability of a design to withstand extreme loading conditions (you only have one chance)
 \end{itemize}
+}
+\mode<handout>{
+\vspace{4cm}
+}
 \begin{figure}
 	\includegraphics[width=0.95\textwidth]{figs/geotechnical-modeling-examples.png}
 \end{figure}
+\end{frame}
+
+\section{Numerical methods for differential equations}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Analysis of engineering problems}
+\mode<beamer>{
+	\begin{itemize}
+		\item Conceptualize the system
+		\begin{itemize}
+			\item Geometry
+			\item Properties
+			\item Processes
+		\end{itemize}
+		
+		\item Describe it mathematically
+		\begin{itemize}
+			\item Select the relevant differential equations
+		\end{itemize}
+		
+		\item Solve the equations (numerically)
+		\begin{itemize}
+			\item Discretise the system
+		\end{itemize}
+	
+		\item Settle for approximation (numerical techniques)
+		\begin{itemize}
+			\item Interpret the results
+		\end{itemize}
+	\end{itemize}
+}
+\end{frame}
+
+\subsection{Direct method}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/matrix-analysis-structures-final.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/matrix-analysis-structures.png}
+	\end{figure}
+}
+
+\begin{itemize}
+	\item What are the known variables? \mode<beamer>{$\delta_1=0, P_2=0, P_3=P$(constant)}
+	\item What are the unknowns? \mode<beamer>{$P_1, \delta_2, \delta_3$}
+	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Equilibrium}
+\mode<handout>{\vspace{1cm}}
+\mode<beamer>{A structure is considered to be in equilibrium if, initially at rest, it remains 
+	at rest when subjected to a system of forces and couples. If a structure is in equilibrium, 
+	then all of its members and joints must also be in equilibrium.}
+\begin{itemize}
+	\item $P_1 = $\mode<beamer>{$-S_1 -S_2$}
+	\item What are the unknowns? \mode<beamer>{$P_1, \delta_2, \delta_3$}
+	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
+\end{itemize}
+
+\mode<beamer>{
+\begin{equation*}
+\begin{bmatrix}
+P_1 \\
+P_2 \\
+P_3 \\
+\end{bmatrix} = 
+\begin{bmatrix}
+-1 & -1 &  0 &  0 \\
+ 0 &  1 & -1 & -1 \\
+ 1 &  0 &  1 &  1 \\
+\end{bmatrix} + 
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3 \\
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\mathbf{P} = \mathbf{A^T} \mathbf{S}
+\end{equation*}
+}
+
+\mode<handout>{
+	\vspace{2cm}
+}
 \end{frame}
 
 \end{document} 
