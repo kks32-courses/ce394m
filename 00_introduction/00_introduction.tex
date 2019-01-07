@@ -193,8 +193,8 @@ University of Texas at Austin \\
 }
 
 \begin{itemize}
-	\item What are the known variables? \mode<beamer>{$\delta_1=0, P_2=0, P_3=P$(constant)}
-	\item What are the unknowns? \mode<beamer>{$P_1, \delta_2, \delta_3$}
+	\item What are the known variables? \mode<beamer>{$d_1=0, P_2=0, P_3=F$(constant)}
+	\item What are the unknowns? \mode<beamer>{$P_1, d_2, d_3$}
 	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
 \end{itemize}
 \end{frame}
@@ -208,7 +208,7 @@ University of Texas at Austin \\
 	then all of its members and joints must also be in equilibrium.}
 \begin{itemize}
 	\item $P_1 = $\mode<beamer>{$-S_1 -S_2$}
-	\item What are the unknowns? \mode<beamer>{$P_1, \delta_2, \delta_3$}
+	\item What are the unknowns? \mode<beamer>{$P_1, d_2, d_3$}
 	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
 \end{itemize}
 
@@ -228,6 +228,7 @@ P_3 \\
 S_1 \\
 S_2 \\
 S_3 \\
+s_4 \\
 \end{bmatrix}
 \end{equation*}
 
@@ -238,6 +239,175 @@ S_3 \\
 
 \mode<handout>{
 	\vspace{2cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Compatibility}
+\mode<handout>{\vspace{4cm}}
+\mode<beamer>{
+\begin{itemize}
+	\item compatibility relates the deformations of a structure so that its
+	various parts (members, joints, and supports) fit together without any gaps or
+	overlaps. 
+	\item ensure that the deformed shape of the structure is continuous (except at the 
+	locations of any internal hinges or rollers), and is consistent with the support
+	conditions.
+\end{itemize}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Compatibility}
+$v$ = internal spring distortion
+$\delta$ = nodal displacement
+\begin{itemize}
+	\item $v_1 = $\mode<beamer>{$d_3 - d_1$}
+	\item $v_2 = $\mode<beamer>{$d_2 - d_1$}
+	\item $v_3 = $\mode<beamer>{$d_3 - d_2$}
+	\item $v_4 = $\mode<beamer>{$d_3 - d_2$}
+\end{itemize}
+
+
+\mode<beamer>{
+	\begin{equation*}
+	\begin{bmatrix}
+	v_1 \\
+	v_2 \\
+	v_3 \\
+	v_4 \\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+	-1 &  0 &  1 \\
+ 	-1 &  1 &  0 \\
+	 0 & -1 &  1 \\
+	 0 & -1 &  1 \\
+	\end{bmatrix} + 
+	\begin{bmatrix}
+	d_1 \\
+	d_2 \\
+	d_3 \\
+	\end{bmatrix}
+	\end{equation*}
+	
+	\begin{equation*}
+	\mathbf{v} = \mathbf{A} \mathbf{d}
+	\end{equation*}
+}
+
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Physical condition}
+Force-distance relationship: spring constant
+
+\begin{center}
+	\begin{tabular}{l l l l l}
+		\toprule
+		\textbf{spring \#} & 1 & 2 & 3 & 4 \\
+		\textbf{stiffness ($F.L^{-1}$)} & 3 & 2 & 1 & 2 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\mode<beamer>{
+	\begin{equation*}
+	\begin{bmatrix}
+	S_1 \\
+	S_2 \\
+	S_3 \\
+	S_4 \\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+	3 & 0 & 0 & 0 \\
+	0 & 2 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
+	0 & 0 & 0 & 2 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+	v_1 \\
+	v_2 \\
+	v_3 \\
+	v_4 \\
+	\end{bmatrix}
+	\end{equation*}
+	
+	\begin{equation*}
+	\mathbf{s} = \mathbf{D} \mathbf{v}
+	\end{equation*}
+}
+
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Direct Method}
+Combine all the equations:
+$\mathbf{P}$ = \mode<beamer>{$\mathbf{A^TS = A^TDv = A^TDAd = Kd}$}
+
+where $\mathbf{K}$ = \mode<beamer>{$A^T D A $ (Global stiffness matrix)}
+\mode<beamer>{
+\begin{align*} 	
+K & = 
+\begin{bmatrix}
+-1 & -1 &  0 &  0 \\
+0 &  1 & -1 & -1 \\
+1 &  0 &  1 &  1 \\
+\end{bmatrix}
+\begin{bmatrix}
+3 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 2 \\
+\end{bmatrix}
+\begin{bmatrix}
+-1 &  0 &  1 \\
+-1 &  1 &  0 \\
+0 & -1 &  1 \\
+0 & -1 &  1 \\
+\end{bmatrix} \notag \\%
+%
+%
+ &= 
+ \begin{bmatrix}
+  5 & -2 & -3 \\
+ -2 &  5 & -3 \\
+ -3 & -3 &  6 \\
+ \end{bmatrix} \\%
+%
+%
+\begin{bmatrix}
+P_1 \\
+P_2 \\
+P_3 \\
+\end{bmatrix}
+& =
+\begin{bmatrix}
+5 & -2 & -3 \\
+-2 &  5 & -3 \\
+-3 & -3 &  6 \\
+\end{bmatrix}
+\begin{bmatrix}
+d_1 \\
+d_2 \\
+d_3 \\
+\end{bmatrix}
+\end{align*}
+Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ and $d_3$
+}
+
+\mode<handout>{
+	\vspace{6cm}
 }
 \end{frame}
 
