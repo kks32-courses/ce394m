@@ -424,4 +424,58 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 \end{figure}
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{Numerical analysis of geotechnical problems}
+\mode<beamer>{
+\begin{itemize}
+	\item Conceptualize the system
+	\begin{itemize}
+		\item Geometry
+		\item Properties
+		\item Processes
+	\end{itemize}
+	\item Describe it mathematically
+	\begin{itemize}
+		\item Select the relevant differential equations
+	\end{itemize}
+	\item Solve the equations (numerically)
+	\begin{itemize}
+		\item Discretize the system
+		\item Settle for approximations (numerical techniques)
+	\end{itemize}
+	\item Interpret the results
+\end{itemize}	
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Numerical methods for differential equations}
+Based on principle of discretisation to solve complex boundary problems
+\mode<beamer>{
+	\begin{itemize}
+		\item Steady state (time-independent)
+		\begin{itemize}
+			\item Steady seepage state
+			\item Static load-deformation problems
+		\end{itemize}
+		\item Transient (time-dependent)
+		\begin{itemize}
+			\item Consolidation/pore-fluid migration/multiphase flows
+			\item Dynamic loading (earthquakes, wave actions)
+			\item Contaminant transport processes
+		\end{itemize}
+	\end{itemize}	
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\includegraphics[width=\textwidth]{figs/numerical-pde-workflow.png}
+\end{frame}
+
 \end{document} 

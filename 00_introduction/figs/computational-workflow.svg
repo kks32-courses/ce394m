@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="computation-workflow.svg"
+   sodipodi:docname="computational-workflow.svg"
    inkscape:export-filename="/home/krishna/bitmap.png"
    inkscape:export-xdpi="97.860001"
    inkscape:export-ydpi="97.860001">
@@ -75,7 +75,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.0064715"
-     inkscape:cx="189.75733"
+     inkscape:cx="83.81919"
      inkscape:cy="200.78115"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -219,7 +219,7 @@
          id="tspan139"
          x="63.66547"
          y="190.69682"
-         style="stroke-width:0.26458332px"></tspan></text>
+         style="stroke-width:0.26458332px" /></text>
     <path
        style="fill:#ff6600;stroke:#ff6600;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
        d="m 103.79941,112.45247 v 13.08009"
