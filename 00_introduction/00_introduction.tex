@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[beamer]{beamer}
+\documentclass[handout]{beamer}
 
 \mode<presentation> {
 
@@ -145,6 +145,69 @@ University of Texas at Austin \\
 \end{figure}
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{Advanced analysis in geotechnical engineering}
+Geotechnical design:
+\mode<beamer>{
+	\begin{itemize}
+		\item Assess applied forces
+		\item evaluate ``performance" (stability \& movements) under working and ultimate loads
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+Analysis:
+\mode<beamer>{
+	\begin{itemize}
+		\item Mathematical framework to perform calculations for these quantities
+		\item Requires idealization of: geometry, soil properties, and loading conditions
+		\item Analysis is a tool in design, but design involves more: acceptable movements, constraints, site characterization, etc.
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Classical vs advanced analysis}
+Classical approach:
+\mode<beamer>{
+	\begin{itemize}
+		\item Failure estimates
+		\begin{itemize}
+			\item rigid perfectly-plastic stress-strain assumptions
+			\item calculate factor of safety (What value do you pick?)
+		\end{itemize}
+		\item Deformation estimates
+		\begin{itemize}
+			\item Elastic analysis
+			\item Use average elastic properties (like what??)
+		\end{itemize}
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+Advanced analysis:
+\mode<beamer>{
+	\begin{itemize}
+		\item Failure and deformation are obtained from the same analysis
+		\item Handle complex geometry
+		\item More difficult to perform, more computational requirements and more info on soil behavior $\sigma - \epsilon$
+		\item Need to know how to do it right!
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
 \section{Numerical methods for differential equations}
 \subsection{Direct method}
 %------------------------------------------------
@@ -452,7 +515,25 @@ Differential equations coupled with boundary conditions
 \mode<handout>{
 \vspace{2cm}
 }
-	\end{itemize}	
+\end{itemize}	
 \end{frame}
 
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Numerical solutions to differential equations}
+\mode<beamer>{
+	\begin{itemize}
+		\item Finite differences: Approximate derivatives with expansion into a Taylor series
+		\item Finite elements
+		\item Boundary element method (BEM)
+		\item Meshless methods
+		\item Discrete/discontinuous element methods
+		\item Others...
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
 \end{document} 
