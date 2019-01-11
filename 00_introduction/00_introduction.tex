@@ -146,38 +146,7 @@ University of Texas at Austin \\
 \end{frame}
 
 \section{Numerical methods for differential equations}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Analysis of engineering problems}
-\mode<beamer>{
-	\begin{itemize}
-		\item Conceptualize the system
-		\begin{itemize}
-			\item Geometry
-			\item Properties
-			\item Processes
-		\end{itemize}
-		
-		\item Describe it mathematically
-		\begin{itemize}
-			\item Select the relevant differential equations
-		\end{itemize}
-		
-		\item Solve the equations (numerically)
-		\begin{itemize}
-			\item Discretise the system
-		\end{itemize}
-	
-		\item Settle for approximation (numerical techniques)
-		\begin{itemize}
-			\item Interpret the results
-		\end{itemize}
-	\end{itemize}
-}
-\end{frame}
-
 \subsection{Direct method}
-
 %------------------------------------------------
 \begin{frame}
 \frametitle{Matrix analysis of structures}
@@ -426,7 +395,7 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Numerical analysis of geotechnical problems}
+\frametitle{Numerical analysis of engineering problems}
 \mode<beamer>{
 \begin{itemize}
 	\item Conceptualize the system
@@ -450,32 +419,40 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 \mode<handout>{
 	\vspace{5cm}
 }
+\includegraphics[width=\textwidth]{figs/numerical-pde-workflow.png}
 \end{frame}
-
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Numerical methods for differential equations}
-Based on principle of discretisation to solve complex boundary problems
+\frametitle{Boundary value problems}
+
+Differential equations coupled with boundary conditions
+
+\begin{itemize}
+	\item Steady state (time-independent)
 \mode<beamer>{
 	\begin{itemize}
-		\item Steady state (time-independent)
-		\begin{itemize}
-			\item Steady seepage state
-			\item Static load-deformation problems
-		\end{itemize}
-		\item Transient (time-dependent)
-		\begin{itemize}
-			\item Consolidation/pore-fluid migration/multiphase flows
-			\item Dynamic loading (earthquakes, wave actions)
-			\item Contaminant transport processes
-		\end{itemize}
-	\end{itemize}	
+		\item Static load-deformation problems: 
+		$\partial \sigma / \partial x = 0$ (force + disp. B.C)
+		\item Steady seepage state, flow problems: 
+		$\partial q / \partial x = 0$ (head + flow B.C)
+	\end{itemize}
 }
 \mode<handout>{
-	\vspace{4cm}
+\vspace{2cm}
 }
-\includegraphics[width=\textwidth]{figs/numerical-pde-workflow.png}
+	\item Transient (time-dependent)
+\mode<beamer>{
+	\begin{itemize}
+		\item Consolidation/pore-fluid migration/multiphase flows
+		\item Dynamic loading (earthquakes, wave actions)
+		\item Contaminant transport processes
+	\end{itemize}
+}
+\mode<handout>{
+\vspace{2cm}
+}
+	\end{itemize}	
 \end{frame}
 
 \end{document} 
