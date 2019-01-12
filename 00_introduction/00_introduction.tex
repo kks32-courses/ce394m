@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[handout]{beamer}
+\documentclass[beamer]{beamer}
 
 \mode<presentation> {
 
@@ -29,6 +29,8 @@
 }
 
 \usepackage{amsmath}
+\usepackage{bm}
+\usepackage{breqn}
 \usepackage{graphicx} % for figures
 \usepackage{subcaption} % for subplots 
 \usepackage[labelsep=space,tableposition=top]{caption}
@@ -583,7 +585,7 @@ In stress-deformation analysis, we need to consider:
 %------------------------------------------------
 \begin{frame}
 \frametitle{Governing equations in stress-deformation analysis}
-The governing differential equation for equilibrium expresses: \mode<beamer>{$\sum F = m a $}
+The governing differential equation for equilibrium expresses: \mode<beamer>{$\sum \mathbf{F} = m \mathbf{a} $}
 \mode<beamer>{
  \noindent
  \fboxsep=0pt
@@ -593,9 +595,9 @@ The governing differential equation for equilibrium expresses: \mode<beamer>{$\s
 		\item $\sigma_{xx}$ acting on face $dy$ in the $-x$ direction
 		\item $\tau_{xy}$ acting on face $dx$ in the $-x$ direction
 		
-		\item $\sigma_{xx} + {\partial \sigma_{xx} \over \partial x} dx$ acting on face $dy$ in the $+x$ direction
+		\item $\sigma_{xx} + \frac{\partial \sigma_{xx}}{\partial x} dx$ acting on face $dy$ in the $+x$ direction
 		
-		\item $\tau_{xy} + {\partial \tau_{xy} \over \partial y} dy$ acting on face $dx$ in the $+x$ direction
+		\item $\tau_{xy} + \frac{\partial \tau_{xy}}{\partial y} dy$ acting on face $dx$ in the $+x$ direction
 		
 		\item Plus ``body forces'' due to gravity: $\rho f_x dx dy$ where $f_x$ is body force per unit mass
 	\end{itemize}
@@ -609,8 +611,130 @@ The governing differential equation for equilibrium expresses: \mode<beamer>{$\s
 }
 \mode<handout>{
  	\begin{figure}
-		\includegraphics[width=0.7\linewidth]{figs/equilibrium.pdf}
+		\includegraphics[width=0.6\linewidth]{figs/equilibrium.pdf}
 	\end{figure}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium equations}
+Summing all this in the x-direction gives:
+\mode<beamer>{
+	\begin{multline*}
+	-\sigma_{xx}dy - \tau_{xy}dx + %
+	\left( \sigma_{xx} + \frac{\partial \sigma_{xx}}{\partial x} dx \right) dy \\%
+	+ \left( \tau_{xy} + \frac{\partial \tau_{xy}}{\partial y} dy \right) dx + \rho f_x dx dy = %
+	\rho dx dy a_x	
+	\end{multline*}
+}	
+\mode<handout>{
+	\vspace{2.5cm}
+}
+
+Cleaning up terms that cancel, and dividing through by \(dx dy\) gives
+\mode<beamer>{
+	\begin{equation*}
+	\frac{\partial \sigma_{xx}}{\partial x} + %
+	\frac{\partial \tau_{xy}}{\partial y}   + \rho f_x = %
+	\rho a_x
+	\end{equation*}
+}	
+\mode<handout>{
+	\vspace{2cm}
+}
+	And summing forces in the y-direction leads to:
+\mode<beamer>{
+	\begin{equation*}	
+	\frac{\partial \sigma_{yy}}{\partial y} + %
+	\frac{\partial \tau_{xy}}{\partial x}   + \rho f_y = %
+	\rho a_y
+	\end{equation*}
+}	
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium in 3D}
+ 	\begin{figure}
+		\includegraphics[width=0.8\linewidth]{figs/stress-equilibrium.png}
+	\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium in 3D}
+\mode<beamer>{
+	\begin{align*}
+	\frac{\partial \sigma_{xx}}{\partial x} +%
+	\frac{\partial \sigma_{xy}}{\partial y} +%
+	\frac{\partial \sigma_{xz}}{\partial z} + \rho f_x &= \rho a_x \\
+	%
+	\frac{\partial \sigma_{yx}}{\partial x} +%
+	\frac{\partial \sigma_{yy}}{\partial y} +%
+	\frac{\partial \sigma_{yz}}{\partial z} + \rho f_y &= \rho a_y \\
+	%
+	\frac{\partial \sigma_{zx}}{\partial x} +%
+	\frac{\partial \sigma_{zy}}{\partial y} +%
+	\frac{\partial \sigma_{zz}}{\partial z} + \rho f_z &= \rho a_z \\
+	\end{align*}
+}	
+\mode<handout>{
+\vspace{2.5cm}
+}
+The governing differential equation for equilibrium expresses $\sum \mathbf{F}=m\mathbf{a}$ in terms of derivatives of the stress tensor as:
+\mode<beamer>{
+$\nabla \bm{\sigma} + \rho \mathbf{f} = \rho \mathbf{a}$
+
+$\bm{\sigma}$ is the stress tensor, \\
+$\rho$ is density, \\
+$\mathbf{f}$ is the body force vector per unit mass and \\
+$\mathbf{a}$ is the acceleration vector.
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Stress equilibrium}
+
+If the object is in equilibrium, then \mode<beamer>{$\mathbf{a}=0$ and $\sum \mathbf{F}=0$.} 
+
+\mode<beamer>{
+	\begin{align*}
+	\frac{\partial \sigma_{xx}}{\partial x} +%
+	\frac{\partial \sigma_{xy}}{\partial y} +%
+	\frac{\partial \sigma_{xz}}{\partial z} + b_x &= 0\\
+	%
+	\frac{\partial \sigma_{yx}}{\partial x} +%
+	\frac{\partial \sigma_{yy}}{\partial y} +%
+	\frac{\partial \sigma_{yz}}{\partial z} + b_y &= 0\\
+	%
+	\frac{\partial \sigma_{zx}}{\partial x} +%
+	\frac{\partial \sigma_{zy}}{\partial y} +%
+	\frac{\partial \sigma_{zz}}{\partial z} + b_z &= 0\\
+	\end{align*}
+}	
+\mode<handout>{
+	\vspace{2.5cm}
+}
+Stresses in Voigt notation: \mode<beamer>{$\left[\sigma_{xx}, \sigma_{yy}, \sigma_{zz}, \sigma_{xy}, \sigma_{xz}, \sigma_{yz}\right]^T$.}
+
+Equilibrium equation: \mode<beamer>{$\nabla^T \bm{\sigma} + \mathbf{b} = 0$}
+
+Then: \mode<beamer>{
+	\begin{equation*}
+	\nabla^T = %
+	\begin{bmatrix}
+	\frac{\partial}{\partial x} & 0 & 0 & \frac{\partial}{\partial y} & 0 & \frac{\partial}{\partial z} \\
+	0 & \frac{\partial}{\partial y} & 0 & \frac{\partial}{\partial x} & \frac{\partial}{\partial z} & 0 \\
+	0 & 0 & \frac{\partial}{\partial z} & 0 & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}
+	\end{bmatrix}
+	\end{equation*}
 }
 \end{frame}
 
