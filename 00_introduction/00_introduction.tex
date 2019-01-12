@@ -572,5 +572,39 @@ In stress-deformation analysis, we need to consider:
 
 %------------------------------------------------
 \subsection{Equilibrium}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations in stress-deformation analysis}
+The governing differential equation for equilibrium expresses: \mode<beamer>{$\sum F = m a $}
+\mode<beamer>{
+ \noindent
+ \fboxsep=0pt
+ \noindent
+ \begin{minipage}[t]{0.48\linewidth}
+	 \begin{itemize}
+		\item $\sigma_{xx}$ acting on face $dy$ in the $-x$ direction
+		\item $\tau_{xy}$ acting on face $dx$ in the $-x$ direction
+		
+		\item $\sigma_{xx} + {\partial \sigma_{xx} \over \partial x} dx$ acting on face $dy$ in the $+x$ direction
+		
+		\item $\tau_{xy} + {\partial \tau_{xy} \over \partial y} dy$ acting on face $dx$ in the $+x$ direction
+		
+		\item Plus ``body forces'' due to gravity: $\rho f_x dx dy$ where $f_x$ is body force per unit mass
+	\end{itemize}
+ \end{minipage}%
+ \hfill%
+ \begin{minipage}[t]{0.48\linewidth}
+ 	\begin{figure}
+ 		\includegraphics[width=\linewidth]{figs/equilibrium-finished.pdf}
+ 	\end{figure}
+ \end{minipage}
+}
+\mode<handout>{
+ 	\begin{figure}
+		\includegraphics[width=0.7\linewidth]{figs/equilibrium.pdf}
+	\end{figure}
+}
+\end{frame}
+
 
 \end{document} 
