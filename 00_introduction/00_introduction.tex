@@ -40,8 +40,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 % The short title appears at the bottom of every slide, the full title is only on the title page
-\title[CE394M: Geotechnical modeling]{CE394M: Advanced Analysis in Geotechnical Engineering} 
-
+\title[CE394M: Geotechnical modeling]{CE394M Advanced Analysis in Geotechnical Engineering: Introduction} 
 \author{Krishna Kumar} % name
 \institute[UT Austin] % institution 
 {
@@ -171,6 +170,7 @@ Analysis:
 }
 \end{frame}
 
+\subsection{Classical vs advanced analysis}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Classical vs advanced analysis}
@@ -209,7 +209,7 @@ Advanced analysis:
 
 %------------------------------------------------
 \section{Numerical methods for differential equations}
-\subsection{Direct method}
+\subsection{Direct method: Matrix analysis of structures}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Matrix analysis of structures}
@@ -457,6 +457,8 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 \end{frame}
 
 %------------------------------------------------
+\subsection{Numerical analysis of engineering problems}
+%------------------------------------------------
 \begin{frame}
 \frametitle{Numerical analysis of engineering problems}
 \mode<beamer>{
@@ -536,4 +538,39 @@ Differential equations coupled with boundary conditions
 	\vspace{6cm}
 }
 \end{frame}
+
+%------------------------------------------------
+\section{Governing equations in stress-deformation analysis}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations in stress-deformation analysis}
+In stress-deformation analysis, we need to consider:
+\mode<beamer>{
+	\begin{itemize}
+		\item \textbf{Equilibrium - static conditions}
+		\begin{itemize}
+			\item forces and stress must agree across the region of interest. 
+			(geometric problem)
+		\end{itemize}
+		\item \textbf{Compatibility-kinematic conditions}
+		\begin{itemize}
+			\item geometry, displacement and strains must agree across the
+			      region of interest. (geometric problem)
+      	\end{itemize}
+		\item \textbf{Stress-strain relationship on physical conditions}
+		\begin{itemize}
+			\item material dependent relationship between stress and strain
+			must be specified. (element level)
+		\end{itemize}
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\subsection{Equilibrium}
+
 \end{document} 
