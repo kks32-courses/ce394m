@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[beamer]{beamer}
+\documentclass[handout]{beamer}
 
 \mode<presentation> {
 
@@ -581,7 +581,7 @@ In stress-deformation analysis, we need to consider:
 
 
 %------------------------------------------------
-\subsection{Equilibrium}
+\subsection{Stress equilibrium}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Governing equations in stress-deformation analysis}
@@ -701,7 +701,6 @@ $\mathbf{a}$ is the acceleration vector.
 %------------------------------------------------
 \begin{frame}
 \frametitle{Stress equilibrium}
-
 If the object is in equilibrium, then \mode<beamer>{$\mathbf{a}=0$ and $\sum \mathbf{F}=0$.} 
 
 \mode<beamer>{
@@ -736,6 +735,48 @@ Then: \mode<beamer>{
 	\end{bmatrix}
 	\end{equation*}
 }
+\end{frame}
+
+%------------------------------------------------
+\subsection{Displacement - strain relationship}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations: Displacement - strain relationship}
+Displacement - strain relationship: \mode<beamer>{$\bm\varepsilon = \nabla \mathbf{u}$}
+ \noindent
+ \fboxsep=0pt
+ \noindent
+\begin{minipage}[t]{0.48\linewidth}
+\mode<beamer>{
+	Where,
+	\begin{align*}
+		\varepsilon_{xx} & = \frac{\partial u_x}{\partial x}	\\
+		\varepsilon_{yy} & = \frac{\partial u_y}{\partial y}	\\
+		\varepsilon_{zz} & = \frac{\partial u_z}{\partial z}	\\
+		\gamma_{xy} & = \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}	\\
+		\gamma_{yz} & = \frac{\partial u_y}{\partial z} + \frac{\partial u_z}{\partial y}	\\
+		\gamma_{zx} & = \frac{\partial u_z}{\partial x} + \frac{\partial u_x}{\partial z}	\\
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+ 	\begin{figure}
+		\includegraphics[width=\linewidth]{figs/geometric-strain.pdf}
+	\end{figure}
+\mode<beamer>{
+	\begin{equation*}
+	\varepsilon_{xy} = \frac{\gamma_{xy}}{2} = \frac{1}{2} \left( \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x} \right)
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{minipage}%
+
 \end{frame}
 
 \end{document} 
