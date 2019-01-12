@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[handout]{beamer}
+\documentclass[beamer]{beamer}
 
 \mode<presentation> {
 
@@ -42,7 +42,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 % The short title appears at the bottom of every slide, the full title is only on the title page
-\title[CE394M: Geotechnical modeling]{CE394M Advanced Analysis in Geotechnical Engineering: Introduction} 
+\title[CE394M: Intro to geotech analysis]{CE394M Advanced Analysis in Geotechnical Engineering: Introduction} 
 \author{Krishna Kumar} % name
 \institute[UT Austin] % institution 
 {
@@ -738,45 +738,67 @@ Then: \mode<beamer>{
 \end{frame}
 
 %------------------------------------------------
-\subsection{Displacement - strain relationship}
+\subsection{Stress-strain relationship}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Governing equations: Displacement - strain relationship}
-Displacement - strain relationship: \mode<beamer>{$\bm\varepsilon = \nabla \mathbf{u}$}
- \noindent
- \fboxsep=0pt
- \noindent
-\begin{minipage}[t]{0.48\linewidth}
-\mode<beamer>{
-	Where,
-	\begin{align*}
-		\varepsilon_{xx} & = \frac{\partial u_x}{\partial x}	\\
-		\varepsilon_{yy} & = \frac{\partial u_y}{\partial y}	\\
-		\varepsilon_{zz} & = \frac{\partial u_z}{\partial z}	\\
-		\gamma_{xy} & = \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}	\\
-		\gamma_{yz} & = \frac{\partial u_y}{\partial z} + \frac{\partial u_z}{\partial y}	\\
-		\gamma_{zx} & = \frac{\partial u_z}{\partial x} + \frac{\partial u_x}{\partial z}	\\
-	\end{align*}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
-\end{minipage}%
-\hfill%
-\begin{minipage}[t]{0.48\linewidth}
- 	\begin{figure}
-		\includegraphics[width=\linewidth]{figs/geometric-strain.pdf}
-	\end{figure}
-\mode<beamer>{
-	\begin{equation*}
-	\varepsilon_{xy} = \frac{\gamma_{xy}}{2} = \frac{1}{2} \left( \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x} \right)
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{2cm}
-}
-\end{minipage}%
+\frametitle{Governing equations: Stress-strain relationship}
+Stress - strain relationship: \mode<beamer>{$\bm \sigma = \mathbf{D} \bm\varepsilon$}
 
+\begin{equation*}
+	\begin{bmatrix}
+	\sigma_{xx} \\
+	\sigma_{yy} \\
+	\sigma_{zz} \\
+	\sigma_{xy} \\
+	\sigma_{yz} \\
+	\sigma_{zx} \\
+	\end{bmatrix} %
+	= %
+	\begin{bmatrix}
+	D_{xxxx} & D_{xxyy} & D_{xxzz} & D_{xxxy} &   D_{xxyz} & D_{xxzx}\\
+	D_{yyxx} & D_{yyyy} & D_{yyzz} & D_{yyxy} & D_{yyyz} & D_{yyzx}\\
+	D_{zzxx} & D_{zzyy} & D_{zzzz} & D_{zzxy} & D_{zzyz} & D_{zzzx}\\
+	D_{xyxx} & D_{xyyy} & D_{xyzz} & D_{xyxy} &   D_{xyyz} & D_{xyzx}\\
+	D_{yzxx} & D_{yzyy} & D_{yzzz} & D_{yzxy} & D_{yzyz} & D_{yzzx}\\
+	D_{zxxx} & D_{zxyy} & D_{zxzz} & D_{zxxy} & D_{zxyz} & D_{zxzx}\\
+	\end{bmatrix} %
+	\begin{bmatrix}
+	\varepsilon_{xx} \\
+	\varepsilon_{yy} \\
+	\varepsilon_{zz} \\
+	\varepsilon_{xy} \\
+	\varepsilon_{yz} \\
+	\varepsilon_{zx} \\
+	\end{bmatrix}
+\end{equation*}
 \end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations in stress-deformation analysis}
+What are the variables used in the governing equations?
+\mode<beamer>{
+	\begin{enumerate}
+		\item displacements $\mathbf{u}$ in the body
+		\item strains $\bm\varepsilon$ in the body or within the elements
+		\item stresses $\bm\sigma$ in the body or within the elements
+	\end{enumerate}
+}	
+\mode<handout>{
+\vspace{2.5cm}
+}
+Advanced analysis involves:
+\mode<beamer>{
+	\begin{enumerate}
+		\item Equilibrium: External forces + internal stresses agree
+		\item Compatibility: Displacements fields agree (no gaps) + strains (derivatives)
+		\item Stress-strain relationship (constitutive behaviour)
+	\end{enumerate}
+}	
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\end{frame}
+
 
 \end{document} 
