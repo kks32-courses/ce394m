@@ -738,8 +738,70 @@ Then: \mode<beamer>{
 \end{frame}
 
 %------------------------------------------------
+\subsection{Compatibility condition}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations: Compatibility}
+ 	\begin{figure}
+	\includegraphics[width=\linewidth]{figs/compatibility.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Governing equations: Displacement - strain relationship}
+Displacement - strain relationship: \mode<beamer>{$\bm\varepsilon = \nabla \mathbf{u}$}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+	\mode<beamer>{
+		Where,
+		\begin{align*}
+		\varepsilon_{xx} & = \frac{\partial u_x}{\partial x}	\\
+		\varepsilon_{yy} & = \frac{\partial u_y}{\partial y}	\\
+		\varepsilon_{zz} & = \frac{\partial u_z}{\partial z}	\\
+		\gamma_{xy} & = \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}	\\
+		\gamma_{yz} & = \frac{\partial u_y}{\partial z} + \frac{\partial u_z}{\partial y}	\\
+		\gamma_{zx} & = \frac{\partial u_z}{\partial x} + \frac{\partial u_x}{\partial z}	\\
+		\end{align*}
+	}
+	\mode<handout>{
+		\vspace{5cm}
+	}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+	\begin{figure}
+		\includegraphics[width=\linewidth]{figs/geometric-strain.pdf}
+	\end{figure}
+	\mode<beamer>{
+		\begin{equation*}
+		\varepsilon_{xy} = \frac{\gamma_{xy}}{2} = \frac{1}{2} \left( \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x} \right)
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+\end{minipage}%
+\end{frame}
+
+%------------------------------------------------
 \subsection{Stress-strain relationship}
 %------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium and compatibility conditions}
+Combining the Equilibrium and Compatibility conditions gives:
+\begin{itemize}
+	\item Unknowns: \mode<beamer>{6 stresses + 6 strains + 3 displacements = 15}
+	\item Equations:  \mode<beamer>{3 equilibrium + 6 compatibility = 9}
+\end{itemize}
+\mode<beamer>{To obtain a solution therefore requires 6 more equations. These come from the
+constitutive relationships}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
 \begin{frame}
 \frametitle{Governing equations: Stress-strain relationship}
 Stress - strain relationship: \mode<beamer>{$\bm \sigma = \mathbf{D} \bm\varepsilon$}
