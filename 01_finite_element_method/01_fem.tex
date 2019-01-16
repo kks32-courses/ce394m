@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[handout]{beamer}
+\documentclass[beamer]{beamer}
 
 \mode<presentation> {
 
@@ -72,7 +72,7 @@ University of Texas at Austin \\
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{Introduction to FEA}
+\section{Introduction to the Finite Element Analysis}
 %------------------------------------------------
 %------------------------------------------------
 \begin{frame}
@@ -94,7 +94,31 @@ University of Texas at Austin \\
 	\end{figure}
 \end{minipage}
 \centering
-Nicoll Highway excavation, Singapore
+Singapore Nicoll highway excavation FE analysis
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Finite Element Approximations}
+\mode<beamer>{
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/discretisation2.png}
+	\end{figure}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/discretisation1.png}
+	\end{figure}
+\end{minipage}
+\centering
+FE basis functions
+}
 \end{frame}
 
 \end{document} 
