@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[handout]{beamer}
+\documentclass[notes]{beamer}
 
 \mode<presentation> {
 
@@ -43,7 +43,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 % The short title appears at the bottom of every slide, the full title is only on the title page
-\title[CE394M: Intro to FEM]{CE394M Advanced Analysis in Geotechnical Engineering: FEM} 
+\title[CE394M: Intro to FEM]{CE394M: Introduction to the Finite Element Method} 
 \author{Krishna Kumar} % name
 \institute[UT Austin] % institution 
 {
@@ -71,13 +71,10 @@ University of Texas at Austin \\
 %----------------------------------------------------------------------------------------
 % slides
 %----------------------------------------------------------------------------------------
-
-%------------------------------------------------
-\section{Introduction to the Finite Element Analysis}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Finite Element Analysis}
- \noindent
+\noindent
 \fboxsep=0pt
 \noindent
 \begin{minipage}[t]{0.42\linewidth}
@@ -96,14 +93,18 @@ University of Texas at Austin \\
 \centering
 Singapore Nicoll highway excavation FE analysis
 \end{frame}
-
+%------------------------------------------------
+\section{Galerkin methods}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Galerkin:Ritz method}
 \mode<beamer>{
 	\begin{enumerate}
 		\item Define the functional $u$ for which you wish to find stationary points.
-		\item Choose a combination of linearly independent functions that will be used to approximate the solution. These will be called `basis functions'. The amplitudes of these functions will be the unknowns that you will determine. The basis functions must satisfy the Dirichlet (`fixed') boundary conditions.
+		\item Choose a combination of linearly independent functions that will be used to 
+		approximate the solution. These will be called `basis functions'. The amplitudes of 
+		these functions will be the unknowns that you will determine. The basis functions 
+		must satisfy the Dirichlet (`fixed') boundary conditions.
 		\item Insert the approximate solution into the functional that is now denoted by $u_h$.
 		\item Take the directional derivative of $u_h$ with respect to the unknown amplitudes of the
 		basis functions.
@@ -116,12 +117,12 @@ Singapore Nicoll highway excavation FE analysis
 \end{frame}
 
 \note{Numerical methods for partial differential equations are tools for finding approximate
-solutions and are normally used with the aid of a computer. A number of numerical
-methods are closely linked to a variational form of the differential equation. A group
-of such methods are known as Galerkin methods. The Ritz method is an example of a
-Galerkin method, and the finite element method is another. If a numerical method is
-properly formulated (and the equation is stable), the more effort (read computer time)
-that is expended, the closer one gets to the exact solution.}
+	solutions and are normally used with the aid of a computer. A number of numerical methods 
+	are closely linked to a variational form of the differential equation. A group of such methods 
+	are known as Galerkin methods. The Ritz method is an example of a Galerkin method, and the 
+	finite element method is another. If a numerical method is properly formulated (and the equation 
+	is stable), the more effort (read computer time) that is expended, the closer one gets to the 
+	exact solution.}
 
 %------------------------------------------------
 \begin{frame}
@@ -195,7 +196,6 @@ u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
 	
 	\url{https://www.comsol.com/multiphysics/finite-element-method}}
 
-
 \section{Strong form}
 
 %------------------------------------------------
@@ -251,25 +251,76 @@ We now have a well-defined boundary value problem that can be solved.
 	\vspace{1cm}
 }
 
-
 \end{frame}
 \note{To formulate a boundary value problem, we need to assume a constitutive model which
 	defines the relationship between stress and deformation, and we need to supply boundary
 	conditions.}
 
+\section{Weak form}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Weak form of the equilibrium equations of a 1D bar}
+The general derivation of the weak form of any equation from the strong form
+follows a standard procedure:
+
+\begin{enumerate}
+	\item Multiply the strong equation by a weight function $v$ which is equal to zero where
+	Dirichlet (displacement) boundary conditions are applied, but is otherwise arbitrary 
+	(Another condition is that it must be sufficiently continuous. The degree of continuity 
+	required depends on the properties of the equation being considered.)
+	\item Use integration by parts to `shift' derivatives to the weight function
+	\item Insert the Neumann (force) boundary conditions
+\end{enumerate}
+
+We then want to find a solution $u$ to the weak form that holds for all $v$ . The weight
+function is also known as the `\textit{test}' function.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Weak form of the equilibrium equations of a 1D bar}
+Multiplying equilibrium equation by an arbitrary weight function v and
+integrating along the bar:
+\begin{equation*}
+-\int_0^L v \frac{dN}{dx}\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x.
+\end{equation*}
+we require that $v(0) = 0$ because of the displacement boundary condition at $x = 0$.
+\begin{equation*}
+-\int_0^L \frac{dv}{dx} N\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x + v N |_{x=0}^{x=L}.
+\end{equation*}
+Since $v(0) = 0$, inserting the constitutive relationship and taking into account the force
+boundary condition at $x = L$.
+\begin{equation*}
+-\int_0^L \frac{dv}{dx} EA \frac{du}{dx}\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x + v(L)h.
+\end{equation*}
+The task is to find $u$ with $u(0) = 0$ such that this equation is satisfied for all $v$.
+\end{frame}
+
 % Strong vs Weak form
-\note{Strong form is the conventional PDE. Weak form is an alternate representation of 
-	the differential equation. The strong form imposes continuity and differentiability 
-	requirements on the potential solutions to the equation. The weak form relaxes these 
+\note{Strong form is the conventional PDE. The strong form imposes continuity and differentiability 
+	requirements on the potential solutions to the equation. Weak form is an alternate representation of 
+	the differential equation. The weak form relaxes these 
 	requirements on solutions to a certain extent. This means that a larger set of 
 	functions are solutions of the weak form. By construction all solutions of the strong 
 	form satisfy the weak form but not vice-versa. \\
 
-	Weak formulations are often referred to as `variational formulations', but they they 
-	can still be formulated for problems that cannot be phrased as a minimisation problem. 
+	Weak formulations are often referred to as `variational formulations'. In fact, the weak form 
+	is more general than the strong form. 
 	The weak form of an equation does not generally make an equation easier to solve 
 	analytically (it may make it harder), but is usually a more suitable form for 
 	mathematical analysis (allowing us to say things about the properties of the equation 
 	without knowing the solution) and for numerical solution methods.}
 
+\note{An important observation
+	is that the weak form for the bar contains at most first-order derivatives, whereas the
+	strong form for this problem contained second-order derivatives. We have transferred
+	one derivative from the displacement field $u$ to weight function $v$ using integration by
+	parts. This is a key feature of the weak form and is crucial for finite element methods.
+	If the symbol $v$ in the weak form was replaced by the symbol $\delta \varepsilon$, 
+	the weak form in the case of the bar resembles the virtual work equation. It is in fact 
+	equivalent. However, the process that we have followed is general and does not require 
+	any knowledge of virtual work, and can be applied to any differential equation.}
+
 \end{document} 
+
+
