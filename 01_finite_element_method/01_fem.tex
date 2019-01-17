@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[notes]{beamer}
+\documentclass[beamer]{beamer}
 
 \mode<presentation> {
 
@@ -97,6 +97,31 @@ University of Texas at Austin \\
 Singapore Nicoll highway excavation FE analysis
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{Galerkin:Ritz method}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Define the functional $u$ for which you wish to find stationary points.
+		\item Choose a combination of linearly independent functions that will be used to approximate the solution. These will be called `basis functions'. The amplitudes of these functions will be the unknowns that you will determine. The basis functions must satisfy the Dirichlet (`fixed') boundary conditions.
+		\item Insert the approximate solution into the functional that is now denoted by $u_h$.
+		\item Take the directional derivative of $u_h$ with respect to the unknown amplitudes of the
+		basis functions.
+		\item Determine the amplitudes of the basis functions which yield a stationary point of $u_h$.
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+\note{Numerical methods for partial differential equations are tools for finding approximate
+solutions and are normally used with the aid of a computer. A number of numerical
+methods are closely linked to a variational form of the differential equation. A group
+of such methods are known as Galerkin methods. The Ritz method is an example of a
+Galerkin method, and the finite element method is another. If a numerical method is
+properly formulated (and the equation is stable), the more effort (read computer time)
+that is expended, the closer one gets to the exact solution.}
 
 %------------------------------------------------
 \begin{frame}
@@ -127,21 +152,64 @@ u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
 }
 \end{frame}
 
-\note{Geotechnical problems are usually expressed in terms of partial differential equations (PDEs), and for most problems, these PDEs cannot be solved with analytical methods. Instead, an approximation of the equations needs to be constructed, typically based upon different types of discretizations. These discretization methods approximate the PDEs with numerical model equations, which can be solved using numerical methods. The solution to the numerical model equations are, in turn, an approximation of the real solution to the PDEs. The finite element method (FEM) is used to compute such approximations.}
+
+
+\note{The reality of partial differential equations is that in most cases it is 
+	not possible to find an analytical solution. This is particularly so for 
+	equations on complicated geometries (as is common in engineering), nonlinear 
+	equations and equations with complicated source terms and boundary conditions.
 	
-\note{Take, for example, a function $u$ that may be the dependent variable in a PDE (i.e., temperature, electric potential, pressure, etc.) The function u can be approximated by a function uh using linear combinations of basis functions according to the following expressions: 
+	Instead, an approximation of the equations needs to be constructed, typically 
+	based upon different types of discretizations. These discretization methods 
+	approximate the PDEs with numerical model equations, which can be solved using 
+	numerical methods. The solution to the numerical model equations are, in turn, 
+	an approximation of the real solution to the PDEs. The finite element method 
+	(FEM) is used to compute such approximations.}
 
-\begin{equation*}
-u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
-\end{equation*}
+\note{Take, for example, a function $u$ that may be the dependent variable in a PDE 
+	(i.e., temperature, electric potential, pressure, etc.) The function $u$ can be 
+	approximated by a function uh using linear combinations of basis functions 
+	according to the following expressions: 
+	
+	\begin{equation*}
+	u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
+	\end{equation*}
+	
+	Here, $\psi_i$ denotes the basis functions and $u_i$ denotes the coefficients of 
+	the functions that approximate u with uh. The figure below illustrates this 
+	principle for a 1D problem. $u$ could, for instance, represent the temperature 
+	along the length ($x$) of a rod that is nonuniformly heated. Here, the linear basis 
+	functions have a value of 1 at their respective nodes and 0 at other nodes. In 
+	this case, there are seven elements along the portion of the x-axis, where the 
+	function $u$ is defined (i.e., the length of the rod).}
 
-Here, $\psi_i$ denotes the basis functions and $u_i$ denotes the coefficients of the functions that approximate u with uh. The figure below illustrates this principle for a 1D problem. $u$ could, for instance, represent the temperature along the length ($x$) of a rod that is nonuniformly heated. Here, the linear basis functions have a value of 1 at their respective nodes and 0 at other nodes. In this case, there are seven elements along the portion of the x-axis, where the function u is defined (i.e., the length of the rod).}
+\note{One of the benefits of using the finite element method is that it offers great 
+	freedom in the selection of discretization, both in the elements that may be used to 
+	discretize space and the basis functions. In the figure above, for example, the elements 
+	are uniformly distributed over the x-axis, although this does not have to be the case. 
+	Smaller elements in a region where the gradient of u is large could also have been applied.\\
+	
+	Both of these figures show that the selected linear basis functions include very limited 
+	support (nonzero only over a narrow interval) and overlap along the x-axis. Depending on 
+	the problem at hand, other functions may be chosen instead of linear functions.\\
+	
+	\url{https://www.comsol.com/multiphysics/finite-element-method}}
 
-\note{One of the benefits of using the finite element method is that it offers great freedom in the selection of discretization, both in the elements that may be used to discretize space and the basis functions. In the figure above, for example, the elements are uniformly distributed over the x-axis, although this does not have to be the case. Smaller elements in a region where the gradient of u is large could also have been applied.\\
 
-Both of these figures show that the selected linear basis functions include very limited support (nonzero only over a narrow interval) and overlap along the x-axis. Depending on the problem at hand, other functions may be chosen instead of linear functions.\\
 
-\url{https://www.comsol.com/multiphysics/finite-element-method}
-}
+% Strong vs Weak form
+\note{Strong form is the conventional PDE. Weak form is an alternate representation of 
+	the differential equation. The strong form imposes continuity and differentiability 
+	requirements on the potential solutions to the equation. The weak form relaxes these 
+	requirements on solutions to a certain extent. This means that a larger set of 
+	functions are solutions of the weak form. By construction all solutions of the strong 
+	form satisfy the weak form but not vice-versa. \\
+
+	Weak formulations are often referred to as `variational formulations', but they they 
+	can still be formulated for problems that cannot be phrased as a minimisation problem. 
+	The weak form of an equation does not generally make an equation easier to solve 
+	analytically (it may make it harder), but is usually a more suitable form for 
+	mathematical analysis (allowing us to say things about the properties of the equation 
+	without knowing the solution) and for numerical solution methods.}
 
 \end{document} 
