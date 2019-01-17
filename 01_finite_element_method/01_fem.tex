@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[beamer]{beamer}
+\documentclass[notes]{beamer}
 
 \mode<presentation> {
 
@@ -36,6 +36,7 @@
 \usepackage[labelsep=space,tableposition=top]{caption}
 \renewcommand{\figurename}{Fig.} 
 \usepackage{cleveref}
+\usepackage{caption,subcaption}% http://ctan.org/pkg/{caption,subcaption}
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 
 %----------------------------------------------------------------------------------------
@@ -74,7 +75,6 @@ University of Texas at Austin \\
 %------------------------------------------------
 \section{Introduction to the Finite Element Analysis}
 %------------------------------------------------
-%------------------------------------------------
 \begin{frame}
 \frametitle{Finite Element Analysis}
  \noindent
@@ -102,23 +102,46 @@ Singapore Nicoll highway excavation FE analysis
 \begin{frame}
 \frametitle{Finite Element Approximations}
 \mode<beamer>{
-\noindent
-\fboxsep=0pt
-\noindent
-\begin{minipage}[t]{0.48\linewidth}
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/discretisation2.png}
-	\end{figure}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.48\linewidth}
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/discretisation1.png}
-	\end{figure}
-\end{minipage}
-\centering
-FE basis functions
+FE approximation of	$u$, which is a dependent variable in a PDE. 
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{figs/discretisation2.png}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{figs/discretisation1.png}
+	\end{subfigure}
+	\caption*{FE basis functions}
+\end{figure}
+The function $u$ can be approximated by a function $u_h$ using linear combinations 
+of basis functions according to the following expressions:
+\begin{equation*}
+u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
+\end{equation*}
+}
+\mode<handout>{
+\vspace{5cm}
 }
 \end{frame}
+
+\note{Geotechnical problems are usually expressed in terms of partial differential equations (PDEs), and for most problems, these PDEs cannot be solved with analytical methods. Instead, an approximation of the equations needs to be constructed, typically based upon different types of discretizations. These discretization methods approximate the PDEs with numerical model equations, which can be solved using numerical methods. The solution to the numerical model equations are, in turn, an approximation of the real solution to the PDEs. The finite element method (FEM) is used to compute such approximations.}
+	
+\note{Take, for example, a function $u$ that may be the dependent variable in a PDE (i.e., temperature, electric potential, pressure, etc.) The function u can be approximated by a function uh using linear combinations of basis functions according to the following expressions: 
+
+\begin{equation*}
+u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
+\end{equation*}
+
+Here, $\psi_i$ denotes the basis functions and $u_i$ denotes the coefficients of the functions that approximate u with uh. The figure below illustrates this principle for a 1D problem. $u$ could, for instance, represent the temperature along the length ($x$) of a rod that is nonuniformly heated. Here, the linear basis functions have a value of 1 at their respective nodes and 0 at other nodes. In this case, there are seven elements along the portion of the x-axis, where the function u is defined (i.e., the length of the rod).}
+
+\note{One of the benefits of using the finite element method is that it offers great freedom in the selection of discretization, both in the elements that may be used to discretize space and the basis functions. In the figure above, for example, the elements are uniformly distributed over the x-axis, although this does not have to be the case. Smaller elements in a region where the gradient of u is large could also have been applied.\\
+
+Both of these figures show that the selected linear basis functions include very limited support (nonzero only over a narrow interval) and overlap along the x-axis. Depending on the problem at hand, other functions may be chosen instead of linear functions.\\
+
+\url{https://www.comsol.com/multiphysics/finite-element-method}
+}
 
 \end{document} 
