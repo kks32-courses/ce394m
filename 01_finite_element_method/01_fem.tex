@@ -622,7 +622,7 @@ where the matrix $\mathbf{B}$ is the derivatives of the shape functions:
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{FE linear shape functions}
+\frametitle{Continuity of finite element functions}
 For a bar divided into three elements, the displacement and strain fields could have the
 form:
 \begin{figure}[ht]
@@ -640,7 +640,23 @@ form:
 \end{figure}
 \end{frame}
 
-
+\note{
+	An important point is the continuity of the approximate displacement field $u_h$. For the
+	shape functions that we have introduced, the field $u_h$ is continuous, but its first derivative
+	is discontinuous irrespective of the polynomial order of the basis functions. This is easy
+	to see by considering two elements and computing the displacement and strain fields on
+	either side of the node shared by the two elements.\\
+	
+	It does not matter how high the polynomial order of the shape functions is, the strain
+	will be discontinuous at element boundaries.\\
+	
+	We can use these simple to construct shape functions that have discontinuous first
+	derivatives in FEA of a bar because the weak form of the equation
+	contains at most first-order derivatives. These shape functions are known as Lagrange
+	polynomials. In the FEM, function with discontinuous derivatives are referred to as $C^0$ continuous functions. It turns out that these
+	functions are not suitable for thin beam bending problems, and we will need to construct
+	a different type of shape function for beams.
+}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Quadratic element: shape functions}
