@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[beamer]{beamer}
+\documentclass[notes]{beamer}
 
 \mode<presentation> {
 
@@ -618,6 +618,27 @@ where the matrix $\mathbf{B}$ is the derivatives of the shape functions:
 	linear function and we use a limited number of elements, the result will not be very
 	accurate. There are two ways to improve the accuracy; the obvious method is to use
 	smaller elements, and the other is to use higher order polynomials within each element.}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE linear shape functions}
+For a bar divided into three elements, the displacement and strain fields could have the
+form:
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figs/beam-disp.png}
+		\caption{displacement field}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figs/beam-strains.png}
+		\caption{strain field}
+	\end{subfigure}
+\end{figure}
+\end{frame}
 
 
 %------------------------------------------------
