@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[handout]{beamer}
+\documentclass[beamer]{beamer}
 
 \mode<presentation> {
 
@@ -492,6 +492,30 @@ right-hand side vector:
 }
 \end{frame}
 
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Finite Element Method: Formulation}
+	\begin{align*}
+		\left[\mathbf{K}\right]{\textbf{u}} & = {F} \\
+		{\textbf{u}} & = \left[\mathbf{K}\right]^{-1} {F}
+	\end{align*}
+	
+\begin{table}[]
+	\begin{tabular}{llll}
+		\toprule
+		& \multicolumn{1}{l}{\textbf{Property {[}K{]}}} & \multicolumn{1}{l}{\textbf{Behavior \{u\}}} & \multicolumn{1}{l}{\textbf{Action \{F\}}} \\
+		\midrule
+		\textbf{Elastic} & stiffness                                     & displacement                                 & force                                     \\
+		\textbf{Thermal} & conductivity                                  & temperature                                  & heat source                               \\
+		\textbf{Fluid}   & viscosity                                     & velocity                                     & body force       						 \\
+		\bottomrule                        
+	\end{tabular}
+\end{table}
+\end{frame}
+
+
+%------------------------------------------------
 \section{Shape functions}
 %------------------------------------------------
 \begin{frame}
@@ -599,9 +623,14 @@ where the matrix $\mathbf{B}$ is the derivatives of the shape functions:
 %------------------------------------------------
 \begin{frame}
 \frametitle{Quadratic element: shape functions}
+\mode<beamer>{
 \begin{figure}
 	\includegraphics[width=0.5\textwidth]{figs/quadratic-shape-functions.png}
 \end{figure}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
 \noindent
 \fboxsep=0pt
 \noindent
