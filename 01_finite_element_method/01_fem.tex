@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[notes]{beamer}
+\documentclass[handout]{beamer}
 
 \mode<presentation> {
 
@@ -282,12 +282,12 @@ integrating along the bar:
 \end{equation*}
 we require that $v(0) = 0$ because of the displacement boundary condition at $x = 0$.
 \begin{equation*}
--\int_0^L \frac{dv}{dx} N\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x + v N |_{x=0}^{x=L}.
+\int_0^L \frac{dv}{dx} N\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x + v N |_{x=0}^{x=L}.
 \end{equation*}
 Since $v(0) = 0$, inserting the constitutive relationship and taking into account the force
 boundary condition at $x = L$.
 \begin{equation*}
--\int_0^L \frac{dv}{dx} EA \frac{du}{dx}\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x + v(L)h.
+\int_0^L \frac{dv}{dx} EA \frac{du}{dx}\, \mathrm{d}x. = \int_0^L v f\, \mathrm{d}x + v(L)h.
 \end{equation*}
 The task is to find $u$ with $u(0) = 0$ such that this equation is satisfied for all $v$.
 \end{frame}
@@ -321,13 +321,13 @@ The task is to find $u$ with $u(0) = 0$ such that this equation is satisfied for
 \section{Finite Element formulation}
 %------------------------------------------------
 \begin{frame}
-\frametitle{FE formulation of the 1-D bar}
+\frametitle{FE formulation of a 1-D bar}
 \mode<beamer>{
 Approximates the PDE by replacing the unknown function (the displacement $u$ 
 of the elastic bar) and the weight function ($v$) by approximate fields $u_h$ and $v_h$. Inserting these fields into the weak equilibrium equation for a bar:
 
 	\begin{equation*}
-	-\int_0^L \frac{dv_h}{dx} EA \frac{du_h}{dx}\, \mathrm{d}x. = \int_0^L v_h f\, \mathrm{d}x + v_h(L)h.
+	\int_0^L \frac{dv_h}{dx} EA \frac{du_h}{dx}\, \mathrm{d}x. = \int_0^L v_h f\, \mathrm{d}x + v_h(L)h.
 	\end{equation*}
 	
 We now allow only a limited number of possibilities for $v_h$ and $u_h$. 
@@ -364,6 +364,128 @@ The approximate strain field:
 		\varepsilon_h = \frac{du_h}{dx} = \sum_i^n \frac{dN_i(x)}{dx} a_i
 	\end{equation*}
 The task of the FE formulation will be to find the coefficients $a_i$, which will the approximate solution $u_h$ and $\varepsilon_h$.
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE shape functions}
+The simplest finite element basis functions in 1D hat-like continuous, piece-wise linear polynomials.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/shape-functions.png}
+\end{figure}
+
+\mode<beamer>{
+Each node $i$ has its own shape function and its own degree of freedom. A
+shape function is equal to one at its own node, and zero at all others.	
+
+\begin{equation*}
+N_i(x) = \begin{cases}
+\frac{x - x_{i-1}}{x_i - x_{i-1}}\quad x_{i-1} < x \le x_i \,,\\
+\frac{x_{i+1} - x}{x_{i+1} - x_i}\quad x_{i} < x < x_{i+1} \,,\\
+0 \qquad \quad \mathrm{otherwise.}
+\end{cases}
+\end{equation*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE shape functions}
+For a bar divided into three elements, the displacement and strain fields could have the
+form
+\mode<beamer>{
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figs/beam-disp.png}
+		\caption{displacement field}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figs/beam-strains.png}
+		\caption{strain field}
+	\end{subfigure}
+\end{figure}
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE formulation of a 1-D bar}
+Weak form:
+\begin{equation*}
+\int_0^L EA \frac{dv_h}{dx} \frac{du_h}{dx}\, \mathrm{d}x. = \int_0^L v_h f\, \mathrm{d}x + v_h(L)h.
+\end{equation*}
+Using basis functions for $u_h$ and $v_h$:
+\mode<beamer>{
+\begin{multline*}
+\int_0^L EA \left(\sum_i^n\frac{dN_i}{dx}\,a_i^*\right) \left(\sum_j^n\frac{dN_j}{dx}\,a_j\right) \, \mathrm{d}x = \int_0^L \left(\sum_i^n N_i a_i^*\right)\,f\,\mathrm{d}x + \\ \left(\sum_i^n N_i(L) a_i^*\right)\,h
+\end{multline*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+since $a_i^*$  and $a_j$ are not a function of $x$, we take it out.
+\begin{equation*}
+	\sum_i^n a_i^* \left(\sum_j^n a_j \int_0^L EA \frac{dN_i}{dx}\frac{dN_j}{dx}\, \mathrm{d}x \right)  = \sum_i^n a_i^* \int_0^L N_i \,f\,\mathrm{d}x + \sum_i^n N_i(L) a_i^*\,h
+\end{equation*}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE formulation of a 1-D bar}
+Since $a_i^*$ is arbitrary for each $i$ we set $a_{k=i}^*=1$ and $a_{k \ne i}^*=1$. Then for each $i$ we have an equation with $n$ unknowns (the values of $a_j$):
+\begin{align*}
+i = 1: \quad & \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_1}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_1 f dx + N_i(L)h, \\
+i = 2: \quad & \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_2}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_2 f dx + N_i(L)h, \\
+\quad & \vdots \\
+i = n: \quad & \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_n}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_n f dx + N_i(L)h,
+\end{align*}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE formulation of a 1-D bar}
+A system of linear equations is most conveniently expressed as a matrix:
+
+\mode<beamer>{
+	\begin{equation*}
+		\mathbf{K a} = \mathbf{b}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+Stiffness matrix: 
+\mode<beamer>{
+	\begin{equation*}
+	K_{ij} = \int_{0}^{L}EA \frac{dN_i}{dx}\frac{dN_j}{dx} dx
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+right-hand side vector:
+\mode<beamer>{
+	\begin{equation*}
+		b_i = \int_{0}^{L}N_i f dx + N_i(L)h.
+	\end{equation*}
 }
 \mode<handout>{
 	\vspace{2cm}
