@@ -491,6 +491,148 @@ right-hand side vector:
 	\vspace{2cm}
 }
 \end{frame}
+
+\section{Shape functions}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Linear shape functions}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{figs/1d-shape-function.png}
+\end{figure}
+
+\mode<beamer>{A polynomial shape function is equal to one at its own node, and zero at all other nodes of the element}
+\mode<handout>{
+	\vspace{1cm}
+}
+The displacement field inside the element is given by
+\mode<beamer>{
+	\begin{align*}
+	u_h(x) &= N_1(x)a_1 + N_2(x)a_2\\
+	       &= \left(-\frac{x}{l}+1\right) a_1 + \left(-\frac{x}{l}\right) a_2
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Linear shape functions: displacements}
+Writing displacement field using matrices and vectors:
+
+\mode<beamer>{
+\begin{equation*}
+	u_h = \mathbf{N a_e}
+\end{equation*}
+
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+where the matrix $\mathbf{N}$ has the shape functions:
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{N} = \left[N_1(x) \quad N_2(x)\right]
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+Matrix $\mathbf{a_e}$ contains the degrees of freedom for an element:
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{a_e} = 
+	\begin{bmatrix}
+	a_1 \\
+	a_2 \\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Linear shape functions: strains}
+The strain field is written as:
+\mode<beamer>{
+	\begin{align*}
+		\varepsilon_h(x) &= \frac{dN_1(x)}{dx}a_1 + \frac{dN_2(x)}{dx}a_2\\
+			   &= \left(-\frac{1}{l}\right) a_1 + \left(-\frac{1}{l}\right) a_2
+\end{align*}}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+
+Strain inside an element:
+\mode<beamer>{
+	\begin{equation*}
+	\varepsilon_h = \mathbf{B a_e}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+where the matrix $\mathbf{B}$ is the derivatives of the shape functions:
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{B} = \left[\frac{dN_1(x)}{dx} \quad \frac{dN_2(x)}{dx}\right]
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\end{frame}
+
+\note{Using linear shape functions means that we are trying represent the exact solution
+	using a collection of linear functions. Obviously, if the solution does not resemble a
+	linear function and we use a limited number of elements, the result will not be very
+	accurate. There are two ways to improve the accuracy; the obvious method is to use
+	smaller elements, and the other is to use higher order polynomials within each element.}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Quadratic element: shape functions}
+\begin{figure}
+	\includegraphics[width=0.5\textwidth]{figs/quadratic-shape-functions.png}
+\end{figure}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+	The shape functions:
+	\mode<beamer>{
+		\begin{align*}
+			N_1 & = a_1 + b_1 x + c_1 x^2 \,, \\
+			N_2 & = a_2 + b_2 x + c_2 x^2 \,, \\
+			N_3 & = a_3 + b_3 x + c_3 x^2
+		\end{align*}
+	}
+	\mode<handout>{
+		\vspace{1.5cm}
+	}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+	$x_1 = -1$, $x_2 = 1$ and $x_3 = 0$:
+	\mode<beamer>{
+		\begin{align*}
+			N_1 & = \frac{x^2}{2} - \frac{x}{2} \,, \\
+			N_2 & = \frac{x^2}{2} + \frac{x}{2} \,, \\
+			N_3 & = -x^2 + 1
+		\end{align*}
+	}
+	\mode<handout>{
+		\vspace{1.5cm}
+	}
+\end{minipage}
+\end{frame}
 \end{document} 
 
 
