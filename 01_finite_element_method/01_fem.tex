@@ -74,24 +74,20 @@ University of Texas at Austin \\
 %------------------------------------------------
 \begin{frame}
 \frametitle{Finite Element Analysis}
-\noindent
-\fboxsep=0pt
-\noindent
-\begin{minipage}[t]{0.42\linewidth}
-	\begin{figure}
-		\includegraphics[width=0.95\textwidth]{figs/fea-geotech-mesh.png}
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.4\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figs/fea-geotech-mesh.png}
 		\caption{FE Mesh}
-	\end{figure}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.56\linewidth}
-	\begin{figure}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.6\linewidth}
+		\centering
 		\includegraphics[width=\textwidth]{figs/fea-geotech.png}
 		\caption{Displacement profile}
-	\end{figure}
-\end{minipage}
-\centering
-Singapore Nicoll highway excavation FE analysis
+	\end{subfigure}
+	\caption*{Singapore Nicoll highway excavation FE analysis}
+\end{figure}
 \end{frame}
 %------------------------------------------------
 \section{Galerkin methods}
@@ -321,6 +317,58 @@ The task is to find $u$ with $u(0) = 0$ such that this equation is satisfied for
 	equivalent. However, the process that we have followed is general and does not require 
 	any knowledge of virtual work, and can be applied to any differential equation.}
 
+%------------------------------------------------
+\section{Finite Element formulation}
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE formulation of the 1-D bar}
+\mode<beamer>{
+Approximates the PDE by replacing the unknown function (the displacement $u$ 
+of the elastic bar) and the weight function ($v$) by approximate fields $u_h$ and $v_h$. Inserting these fields into the weak equilibrium equation for a bar:
+
+	\begin{equation*}
+	-\int_0^L \frac{dv_h}{dx} EA \frac{du_h}{dx}\, \mathrm{d}x. = \int_0^L v_h f\, \mathrm{d}x + v_h(L)h.
+	\end{equation*}
+	
+We now allow only a limited number of possibilities for $v_h$ and $u_h$. 
+
+Therefore, it is now unlikely that $u_h$ will be equal to the exact solution.
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Basis functions}
+	The approximate displacement field $u_h$ is represented by a set of `\textit{basis
+	functions}' $N_i(x)$:
+
+\mode<beamer>{
+	
+	\begin{equation*}
+		u_h(x) = \sum_i^n N_i(x) a_i
+	\end{equation*}
+
+	$x_i$: discrete number of points (known as nodes)\\ 
+    $a_i$: degrees of freedom\\
+    $n$: number of nodes
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+The approximate strain field:
+\mode<beamer>{
+	\begin{equation*}
+		\varepsilon_h = \frac{du_h}{dx} = \sum_i^n \frac{dN_i(x)}{dx} a_i
+	\end{equation*}
+The task of the FE formulation will be to find the coefficients $a_i$, which will the approximate solution $u_h$ and $\varepsilon_h$.
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
 \end{document} 
 
 
