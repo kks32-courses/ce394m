@@ -100,7 +100,7 @@ FEM is a systematic procedure for approximating differential equations. For any 
 }
 \end{frame}
 
-%----------------------------------------------------------------------------------------
+%---------------------------------------------------
 \section{1D FEM}
 %------------------------------------------------
 \begin{frame}
@@ -110,6 +110,92 @@ FEM is a systematic procedure for approximating differential equations. For any 
 	\includegraphics[width=\textwidth]{figs/cantilever.png}
 	\caption*{1D cantilever beam}
 \end{figure}
+Assume $L$ as unit length $L = 1$. Unit force $f = 1$.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{1D Finite Element Analysis of a cantilever beam}
+What element should be used?
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/fem-cantilever-linear-quad.png}
+	\caption*{1D discretization of a cantilever beam}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{1D FEM: Shape functions and derivatives}
+Shape function $\mathbf{N}$:
+\mode<beamer>{
+	\begin{align*}
+		N_1(x) & = -\frac{x}{L} + 1 \\
+		N_2(x) & = \frac{x}{L}
+	\end{align*}
+	\begin{align*}
+		N_1(x) & = -x + 1 \\
+		N_2(x) & = x
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+$\mathbf{B}$ is the derivatives of the shape functions:
+\mode<beamer>{
+	\begin{equation*}
+		\mathbf{B} = \left[\frac{dN_1(x)}{dx} \quad \frac{dN_2(x)}{dx}\right]
+	\end{equation*}
+	
+	\begin{equation*}
+		\mathbf{B} = \left[\frac{-1}{L} \quad \frac{1}{L}\right]  = \left[-1 \quad 1\right]
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{1D FEM: Stiffness and force}
+Element stiffness $k_e$:
+\mode<beamer>{
+	\begin{equation*}
+		k_e = \int \textbf{B}^T EA \, B\, \mathrm{d}x
+	\end{equation*}
+	\begin{equation*}
+		k_e = 
+		\begin{bmatrix}
+		 1 & -1 \\
+		-1 &  1 \\
+		\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+Right-hand side vector $b_e$ is:
+\mode<beamer>{
+	\begin{equation*}
+	b_e = \int N^T \, f\, \mathrm{d}x = \int_0^L 	\begin{bmatrix}
+	-\frac{x}{L} + 1\\
+	\frac{x}{L}\\
+	\end{bmatrix}
+	\end{equation*}
+	
+	\begin{equation*}
+		b_e =
+		\begin{bmatrix}
+			-\frac{1}{2}\\
+			\frac{1}{2}\\
+		\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
 \end{frame}
 
 \end{document} 
