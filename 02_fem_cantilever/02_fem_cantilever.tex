@@ -129,14 +129,17 @@ What element should be used?
 \frametitle{1D FEM: Shape functions and derivatives}
 Shape function $\mathbf{N}$:
 \mode<beamer>{
-	\begin{align*}
-		N_1(x) & = -\frac{x}{L} + 1 \\
-		N_2(x) & = \frac{x}{L}
-	\end{align*}
-	\begin{align*}
-		N_1(x) & = -x + 1 \\
-		N_2(x) & = x
-	\end{align*}
+	\begin{equation*}
+		\mathbf{N} = \left[
+			1-\frac{x}{L} \qquad
+			 \frac{x}{L} 
+		\right]
+	\end{equation*}
+	\begin{equation*}
+		\mathbf{N} = \left[
+			1-x \qquad
+			x \right]
+	\end{equation*}
 }
 \mode<handout>{
 	\vspace{2.5cm}
@@ -144,16 +147,17 @@ Shape function $\mathbf{N}$:
 $\mathbf{B}$ is the derivatives of the shape functions:
 \mode<beamer>{
 	\begin{equation*}
-		\mathbf{B} = \left[\frac{dN_1(x)}{dx} \quad \frac{dN_2(x)}{dx}\right]
+		\mathbf{B} = \left[\frac{dN_1(x)}{dx} \qquad \frac{dN_2(x)}{dx}\right]
 	\end{equation*}
 	
 	\begin{equation*}
-		\mathbf{B} = \left[\frac{-1}{L} \quad \frac{1}{L}\right]  = \left[-1 \quad 1\right]
+		\mathbf{B} = \left[\frac{-1}{L} \qquad \frac{1}{L}\right]  = \left[-1 \quad 1\right]
 	\end{equation*}
 }
 \mode<handout>{
 	\vspace{2.5cm}
 }
+In matrix format: \mode<beamer>{$ u_h = \mathbf{Na_e} $ and $\epsilon_h = \mathbf{Ba_e}$.}
 \end{frame}
 
 
@@ -163,10 +167,13 @@ $\mathbf{B}$ is the derivatives of the shape functions:
 Element stiffness $k_e$:
 \mode<beamer>{
 	\begin{equation*}
-		k_e = \int \textbf{B}^T EA \, B\, \mathrm{d}x
+		k_e = \int \textbf{B}^T EA \, B\, \mathrm{d}x = \int_0^L
+		\left[ \begin{matrix} \frac{dN_1}{dx} \\ \frac{dN_2}{dx} \end{matrix} \right] EA
+		\left[ \begin{matrix} \frac{dN_1}{dx} & \frac{dN_2}{dx}  \end{matrix} \right] dx
 	\end{equation*}
+	
 	\begin{equation*}
-		k_e = 
+		k_e = EA
 		\begin{bmatrix}
 		 1 & -1 \\
 		-1 &  1 \\
@@ -197,6 +204,14 @@ Right-hand side vector $b_e$ is:
 	\vspace{2.5cm}
 }
 \end{frame}
+
+%-------------------------------------------------
+\section{Assembly}
+
+
+\note{
+To perform a FE analysis, the element matrices and vectors are computed for each element and inserted into the global stiffness matrix \textbf{K} and global right-hand side vector \textbf{b}. The system $\mathrm{Ka} = \mathrm{b}$ is then solved to yield a. The process of inserting the element matrices and vectors into their global counterparts is known as assembly. A local (element) degree of freedom corresponds to a global degree of freedom, and an entry in a local matrix or vector is copied to its corresponding position in the global matrix.
+}
 
 \end{document} 
 
