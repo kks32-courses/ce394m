@@ -608,6 +608,36 @@ Differential equations coupled with boundary conditions
 }
 \end{frame}
 
+\note{Differential equation is a continous problem, a computer can only solve a finite problem, 
+	a discrete problem. So the goal is to take this continous differential equation, like the 
+	stresses in the soil during an excavation, and solve it as a finite problem. One way is to 
+	take derivatives and replace by finite differences. So the derivative, the slope of a 
+	function, in calculus is the exact slope at a point, while the finite differences uses 
+	the slope between one point and the next point.}
+
+\note{Galerkin is a different one, a different starting point, he took some trial functions, 
+	functions that he hoped whose combinations could be close the right answer and the problem 
+	then is to find how much of each function goes into the good answer. We are talking about 
+	approximations, not exact solutions, geotechnical engineering involves approximations, and 
+	is quite OK. 100 years later because of the computers it was possible to work with a hundred 
+	thousand functions. Galerkin worked with 2 or 3 trial functions, so he had to make a very 
+	close guess of the solution, but if we have a hundred thousand functions they can be just 
+	maybe litlle hat functions, just up and down again simple functions and their combinations, 
+	if we have many many can give us close to the correct answer.}
+	
+\note{ The whole idea of the FEM is 
+	a combination of the Galerkin idea of test functions with the idea of simple functions, where 
+	the physics is imple and the equations stay simple, but many many functions and that's what a 
+	computer is happy with. So instead of a differential equation, we have a big system to solve.\\
+
+	Our unknowns are how much of each hat function goes into the final solution, it's the 
+	coefficients we want, the number that multiplies each of the hat functions, when we add 
+	them together that we get a big system of equations for those numbers to multiply the 
+	hat functions and the system is very well organized for mathematics, so the question is 
+	how close is the approximation let's say if I approximate a function like $e^x$ by a 
+	thousand hat functions and take a combination of the thousand hat functions to be close 
+	to e$^x$, if I take two-thousand hat functions how much closer do I get?}
+
 %------------------------------------------------
 \section{Governing equations in stress-deformation analysis}
 %------------------------------------------------
