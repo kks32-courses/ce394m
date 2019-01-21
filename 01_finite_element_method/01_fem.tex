@@ -699,6 +699,66 @@ form:
 	}
 \end{minipage}
 \end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Quadratic element: shape functions}
+	The shape functions must satisfy three conditions and will be cubic polynomials of the form $N_i = a_i + b_i\, x + c_i\, x^2$. The SF must be equal to one at their node and zero at all others:
+	\begin{equation*}
+		\begin{bmatrix}
+			1 & x_1 & x_1^2 \\
+			1 & x_2 & x_2^2 \\
+			1 & x_3 & x_3^2 \\
+		\end{bmatrix}
+		\begin{bmatrix}
+			a_i \\
+			b_i \\
+			c_i \\
+		\end{bmatrix}
+		= %
+		\begin{bmatrix}
+			1 & -1 & 1 \\
+			1 &  0 & 0\\
+			1 &  1 & 1 \\
+		\end{bmatrix}
+		\begin{bmatrix}
+			a \\
+			b \\
+			c \\
+		\end{bmatrix}
+		= 
+		\begin{bmatrix}
+			N_i(x_1) \\
+			N_i(x_2) \\
+			N_i(x_3) \\
+		\end{bmatrix}
+	\end{equation*}
+Inverting,	
+	\begin{equation*}
+	\begin{bmatrix}
+		 0   &  1 & 0   \\
+        -0.5 &  0 & 0.5 \\
+		 0.5 & -1 & 0.5 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		N_i(x_1) \\
+		N_i(x_2) \\
+		N_i(x_3) \\
+	\end{bmatrix} =
+	\begin{bmatrix}
+		a_i \\
+		b_i \\
+		c_i \\
+	\end{bmatrix}
+	\end{equation*}
+For node one, $\left[N_i(x_1) \quad N_i(x_2) \quad N_i(x_3)\right]^T = \left[1 \quad 0 \quad 0 \right]^T$, and for node two $\left[0 \quad 0 \quad 1 \right]^T$, for node three $\left[0 \quad 1 \quad 0 \right]^T$. This leads to
+	\begin{equation*}
+		N_1 = \frac{x^2}{2} - \frac{x}{2} \,, \quad %
+		N_2 = \frac{x^2}{2} + \frac{x}{2} \,, \quad %
+		N_3 = -x^2 + 1
+	\end{equation*}
+
+\end{frame}
 \end{document} 
 
 
