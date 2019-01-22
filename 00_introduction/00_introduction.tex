@@ -525,6 +525,44 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 \end{figure}
 \end{frame}
 
+\note{\textbf{Stiffness method} Force $F = K * a$. Where, $K$ represents force at DOF given unit displacement at DOF. 
+	\begin{equation*}
+	\begin{bmatrix}
+		F_1 \\
+		F_2 \\
+	\end{bmatrix} = %
+	\begin{bmatrix}
+		k_{11} & k_{12} \\
+		k_{21} & k_{22} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		a_1 \\
+		a_2 \\
+	\end{bmatrix}	
+	\end{equation*}
+	
+	$K_{ij}$ is force at DOF $i$ given unit displacement at DOF $j$ with all other dof held constant.
+	
+	 \noindent
+	\fboxsep=0pt
+	\noindent
+	\begin{minipage}[t]{0.68\linewidth}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{figs/stiffness-method.png}
+		\end{figure}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}[t]{0.28\linewidth}
+		\begin{equation*}
+			K = %
+			\begin{bmatrix}
+				k_a + k_b & -k_b \\
+				-k_b & k_b \\
+			\end{bmatrix}
+		\end{equation*}
+	\end{minipage}
+
+}
 %------------------------------------------------
 \subsection{Numerical analysis of engineering problems}
 %------------------------------------------------
