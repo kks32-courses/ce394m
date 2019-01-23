@@ -309,8 +309,8 @@ Advanced analysis:
 	then all of its members and joints must also be in equilibrium.}
 \begin{itemize}
 	\item $P_1 = $\mode<beamer>{$-S_1 -S_2$}
-	\item What are the unknowns? \mode<beamer>{$P_1, d_2, d_3$}
-	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
+	\item $P_2 = $\mode<beamer>{$S_2 -S_3 - S_4$}
+	\item $P_3 = $\mode<beamer>{$S_1 + S_3 +  S_4$}
 \end{itemize}
 
 \mode<beamer>{
@@ -324,7 +324,7 @@ P_3 \\
 -1 & -1 &  0 &  0 \\
  0 &  1 & -1 & -1 \\
  1 &  0 &  1 &  1 \\
-\end{bmatrix} + 
+\end{bmatrix}
 \begin{bmatrix}
 S_1 \\
 S_2 \\
@@ -364,7 +364,7 @@ s_4 \\
 \begin{frame}
 \frametitle{Matrix analysis of structures: Compatibility}
 $v$ = internal spring distortion
-$\delta$ = nodal displacement
+$d$ = nodal displacement
 \begin{itemize}
 	\item $v_1 = $\mode<beamer>{$d_3 - d_1$}
 	\item $v_2 = $\mode<beamer>{$d_2 - d_1$}
@@ -532,8 +532,8 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 		F_2 \\
 	\end{bmatrix} = %
 	\begin{bmatrix}
-		k_{11} & k_{12} \\
-		k_{21} & k_{22} \\
+		K_{11} & K_{12} \\
+		K_{21} & K_{22} \\
 	\end{bmatrix}
 	\begin{bmatrix}
 		a_1 \\
