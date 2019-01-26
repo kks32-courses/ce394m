@@ -934,11 +934,12 @@ Displacement - strain relationship: \mode<beamer>{$\bm\varepsilon = \nabla \math
 		\begin{align*}
 		\varepsilon_{xx} & = \frac{\partial u_x}{\partial x}	\\
 		\varepsilon_{yy} & = \frac{\partial u_y}{\partial y}	\\
-		\varepsilon_{zz} & = \frac{\partial u_z}{\partial z}	\\
 		\gamma_{xy} & = \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}	\\
-		\gamma_{yz} & = \frac{\partial u_y}{\partial z} + \frac{\partial u_z}{\partial y}	\\
-		\gamma_{zx} & = \frac{\partial u_z}{\partial x} + \frac{\partial u_x}{\partial z}	\\
 		\end{align*}
+		
+		\begin{equation*}
+			\frac{\partial^2\varepsilon_{xx}}{\partial y^2} + \frac{\partial^2 \varepsilon_{yy}}{\partial x^2} = \frac{\partial^2 \gamma_{xy}}{\partial x \partial y}
+		\end{equation*}
 	}
 	\mode<handout>{
 		\vspace{5cm}
