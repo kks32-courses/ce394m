@@ -538,47 +538,8 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 \end{figure}
 \end{frame}
 
-\note{\textbf{Stiffness method} Force $F = K * a$. Where, $K$ represents force at DOF given unit displacement at DOF. 
-	\begin{equation*}
-	\begin{bmatrix}
-		F_1 \\
-		F_2 \\
-	\end{bmatrix} = %
-	\begin{bmatrix}
-		K_{11} & K_{12} \\
-		K_{21} & K_{22} \\
-	\end{bmatrix}
-	\begin{bmatrix}
-		a_1 \\
-		a_2 \\
-	\end{bmatrix}	
-	\end{equation*}
-	
-	$K_{ij}$ is force at DOF $i$ given unit displacement at DOF $j$ with all other dof held constant.
-	
-	 \noindent
-	\fboxsep=0pt
-	\noindent
-	\begin{minipage}[t]{0.68\linewidth}
-		\begin{figure}
-			\includegraphics[width=\textwidth]{figs/stiffness-method.png}
-		\end{figure}
-	\end{minipage}%
-	\hfill%
-	\begin{minipage}[t]{0.28\linewidth}
-		\begin{equation*}
-			K = %
-			\begin{bmatrix}
-				k_a + k_b & -k_b \\
-				-k_b & k_b \\
-			\end{bmatrix}
-		\end{equation*}
-	\end{minipage}
-
-}
-
-\note{Tensile forces produce a total elongation 	
-	(deformation) $\delta$ of the spring. For linear springs, the force $T$ and the displacement $u$ are related by Hooke’s law. where deformation of the spring $\delta$ is given as: $\delta = u(L) - u(0) = u_2 - u_1$. Forces $f_{1x} = -T$ and $f_{2x} = T$.
+\note{\textbf{Stiffness method}: Tensile forces 	
+	produce a total elongation 	(deformation) $\delta$ of the spring. For linear springs, the force $T$ and the displacement $u$ are related by Hooke’s law. where deformation of the spring $\delta$ is given as: $\delta = u(L) - u(0) = u_2 - u_1$. Forces $f_{1x} = -T$ and $f_{2x} = T$.
 	\begin{figure}
 		\includegraphics[width=\textwidth]{figs/spring-stiffness.png}
 	\end{figure}
@@ -610,6 +571,45 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 		u_{2}\\
 	\end{bmatrix}	
 	\end{equation*}
+}
+
+
+\note{\textbf{Stiffness method} Force $F = K * a$. Where, $K$ represents force at DOF given unit displacement at DOF. 
+	\begin{equation*}
+	\begin{bmatrix}
+	F_1 \\
+	F_2 \\
+	\end{bmatrix} = %
+	\begin{bmatrix}
+	K_{11} & K_{12} \\
+	K_{21} & K_{22} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+	a_1 \\
+	a_2 \\
+	\end{bmatrix}	
+	\end{equation*}
+	
+	$K_{ij}$ is force at DOF $i$ given unit displacement at DOF $j$ with all other dof held constant.
+	
+	\noindent
+	\fboxsep=0pt
+	\noindent
+	\begin{minipage}[t]{0.68\linewidth}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{figs/stiffness-method.png}
+		\end{figure}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}[t]{0.28\linewidth}
+		\begin{equation*}
+		K = %
+		\begin{bmatrix}
+		k_a + k_b & -k_b \\
+		-k_b & k_b \\
+		\end{bmatrix}
+		\end{equation*}
+	\end{minipage}	
 }
 %------------------------------------------------
 \subsection{Numerical analysis of engineering problems}
