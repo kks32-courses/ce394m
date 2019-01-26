@@ -576,6 +576,41 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 	\end{minipage}
 
 }
+
+\note{Tensile forces produce a total elongation 	
+	(deformation) $\delta$ of the spring. For linear springs, the force $T$ and the displacement $u$ are related by Hooke’s law. where deformation of the spring $\delta$ is given as: $\delta = u(L) - u(0) = u_2 - u_1$. Forces $f_{1x} = -T$ and $f_{2x} = T$.
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/spring-stiffness.png}
+	\end{figure}
+}
+
+\note{
+	We can now derive the spring element
+	stiffness matrix as follows. Rewrite the forces in terms of the nodal displacements:
+	\begin{equation*}
+		T = -f_{1x} = k(u_2 - u_1) \rightarrow f_{1x} = k(u_1 - u_2)
+	\end{equation*}
+	
+	\begin{equation*}
+		T = f_{2x} = k(u_2 - u_1) \rightarrow f_{2x} = k(- u_1 + u_2)
+	\end{equation*}
+	
+	We can write the last two force-displacement relationships in matrix form as:
+	\begin{equation*}
+	\begin{bmatrix}
+		f_{1x}\\
+		f_{2x}\\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+		k & -k \\
+		-k & k\\
+	\end{bmatrix} 
+	\begin{bmatrix}
+		u_{1}\\
+		u_{2}\\
+	\end{bmatrix}	
+	\end{equation*}
+}
 %------------------------------------------------
 \subsection{Numerical analysis of engineering problems}
 %------------------------------------------------
