@@ -37,6 +37,18 @@
 \renewcommand{\figurename}{Fig.} 
 \usepackage{cleveref}
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{adjustbox}
+\usepackage{array}
+
+\newcolumntype{R}[2]{%
+	>{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+	l%
+	<{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}% no optional argument here, please!
+
+
 % To print 2 slides on a page
 %\usepackage{handoutWithNotes}
 %\pgfpagesuselayout{2 on 1}[border shrink=2mm]
@@ -1075,4 +1087,24 @@ Advanced analysis involves:
 	\textbf{Relax equilibrium}
 }
 
+\note{
+	\begin{table}[]
+		\begin{tabular}{llllll}
+			\toprule
+			\textbf{Method of analysis} & \multicolumn{5}{c}{\textbf{Solution requirements}} \\
+			\midrule
+			& \rot{\textbf{Equilibrium}} & \rot{\textbf{Compatibility}} &
+			\textbf{Constitutive law} &
+			\rot{\textbf{Force}} & \rot{\textbf{Disp}} \\
+			\midrule
+			\textbf{Closed form} & $\checkmark$ & $\checkmark$ & Linear elastic & $\checkmark$ & $\checkmark$ \\
+			\textbf{Limit equilibrium} & $\checkmark$ &
+			$\times$ & Rigid with a failure criterion & $\checkmark$ & $\times$ \\
+			\textbf{Lower bound} & $\checkmark$ & $\times$ & Plasticity + flow-rule & $\checkmark$ & $\times$ \\
+			\textbf{Upper bound} & $\times$ & $\checkmark$ & Platicity + flow-rule & $\times$ & $\checkmark$ \\
+			\textbf{Numerical analysis} & $\checkmark$ & $\checkmark$ & Any & $\checkmark$ & $\checkmark$ \\
+			\bottomrule                        
+		\end{tabular}
+	\end{table}
+}
 \end{document} 
