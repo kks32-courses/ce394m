@@ -537,6 +537,15 @@ Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ an
 }
 \end{frame}
 
+\note{
+	Transpose of a linear mapping of two vectors of the same field (system), makes both 
+	$\mathbf{A}$ and $\mathbf{A}^T$ for forces and displacement relationships to have the 
+	same $\mathbf{A}$ matrix. 
+	$\mathbf{A}$ is used when relating nodal to internal variables, and 
+	$\mathbf{A}^T$ is used for the inverse relation. Note: $\mathbf{A}$ is a non-square matrix 
+	and is not invertible. $\mathbf{A}^T \ne $
+}
+
 %------------------------------------------------
 \begin{frame}
 \frametitle{Matrix analysis of structures}
@@ -691,7 +700,11 @@ The governing differential equation for equilibrium expresses: \mode<beamer>{$\s
 }
 \end{frame}
 
-
+\note{
+	$\sigma_{xy}$, the term $x$ denotes the direction of the stress component acts on a cut normal to the x-axis (denotes the plane). The $y$ denotes the direction of the stress component.\\
+	
+	Frequently in the literature the axes are labelled 1, 2 \& 3 rather than x, y \& z.
+}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Equilibrium equations}
@@ -812,6 +825,12 @@ Then: \mode<beamer>{
 }
 \end{frame}
 
+\note{
+	Divergence is a vector operator that produces a scalar field, giving the quantity of a vector 
+	field's source at each point. In physical terms, the extent to which there is more of some 
+	quantity exiting an infinitesimal region of space than entering it. If the divergence is nonzero 
+	at some point then there is compression or expansion at that point. 
+}
 %------------------------------------------------
 \subsection{Compatibility condition}
 %------------------------------------------------
