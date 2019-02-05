@@ -200,6 +200,50 @@ the slope between one point and the next point.}
 
 %------------------------------------------------
 \begin{frame}
+\frametitle{FDM: Groundwater flow}
+Darcy's law
+\mode<beamer>{
+	\begin{equation*}
+		q_x = -K \frac{\partial h}{\partial x}, \quad
+		q_y = -K \frac{\partial h}{\partial y}
+	\end{equation*}%
+
+Continuity equation:
+	\begin{equation*}
+		 \frac{\partial q_x}{\partial x} + \frac{\partial q_y}{\partial y} = 0
+	\end{equation*}%
+	
+	\begin{equation*}
+		\frac{\partial^2 h}{\partial x^2} + \frac{\partial^2 h}{\partial y^2} = 0
+	\end{equation*}%
+
+Consider a regularly spaced grid of nodes represented by \textit{i} columns and \textit{j} rows and horizontally and vertically spaced by distances $\delta x$ and $\delta y$. The head at node \textit{i}, \textit{j} is $h_{i,j}$:
+	
+\begin{align*}
+\frac{\partial^2 h}{\partial x^2} & \approxeq \frac{h_{i-1, j} -2 h_{i, j} + h_{i+1, j}}{(\Delta x)^2} \\
+\frac{\partial^2 h}{\partial y^2} & \approxeq\frac{h_{i, j-1} -2 h_{i, j} + h_{i, j+1}}{(\Delta y)^2}
+\end{align*}%
+
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note{
+	Adding these two terms according to Laplace’s
+	equation and considering \textit{x} and	\textit{y} for a square grid we have:
+	\begin{equation*}
+		h_{i-1, j} + h_{i+1, j} + h_{i, j-1} + h_{i, j+1} - 4h_{i, j} = 0
+	\end{equation*}
+	
+	\begin{equation*}
+	 h_{i, j} = (h_{i-1, j} + h_{i+1, j} + h_{i, j-1} + h_{i, j+1})/4
+	\end{equation*}
+}
+
+%------------------------------------------------
+\begin{frame}
 \frametitle{Finite Element Analysis}
 \begin{figure}[ht]
 	\centering
