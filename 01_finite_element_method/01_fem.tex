@@ -442,9 +442,20 @@ We now have a well-defined boundary value problem that can be solved.
 }
 
 \end{frame}
-\note{To formulate a boundary value problem, we need to assume a constitutive model which
+\note{
+	To formulate a boundary value problem, we need to assume a constitutive model which
 	defines the relationship between stress and deformation, and we need to supply boundary
-	conditions.}
+	conditions.
+
+	\textbf{Dirichlet (or first-type) boundary condition} is a type of boundary condition, 
+	when imposed on an ordinary or a partial differential equation, it specifies the values 
+	that a \textbf{solution needs to take on along the boundary of the domain}.
+	
+	 \textbf{Neumann (or second-type) boundary condition} is a type of boundary condition, 
+	 when imposed on an ordinary or a partial differential equation, the condition specifies 
+	 the values in which \textbf{the derivative of a solution is applied within the boundary 
+	 	of the domain}. 
+}
 
 \section{Weak form}
 %------------------------------------------------
@@ -500,6 +511,11 @@ The task is to find $u$ with $u(0) = 0$ such that this equation is satisfied for
 	analytically (it may make it harder), but is usually a more suitable form for 
 	mathematical analysis (allowing us to say things about the properties of the equation 
 	without knowing the solution) and for numerical solution methods.}
+
+\note{Weak form asks that the average value of $EA\frac{du}{dx}$ in the entire domain to be 
+	equal to the average value of force $f$. Indeed, it seems ``too weak'' as compared to the original 
+	differential equation, which asks that at every point $EA\frac{du}{dx}$ should be $f$. 
+}
 
 \note{An important observation
 	is that the weak form for the bar contains at most first-order derivatives, whereas the
