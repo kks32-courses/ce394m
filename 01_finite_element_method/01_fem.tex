@@ -660,7 +660,7 @@ since $a_i^*$  and $a_j$ are not a function of $x$, we take it out.
 %------------------------------------------------
 \begin{frame}
 \frametitle{FE formulation of a 1-D bar}
-Since $a_i^*$ is arbitrary for each $i$ we set $a_{k=i}^*=1$ and $a_{k \ne i}^*=1$. Then for each $i$ we have an equation with $n$ unknowns (the values of $a_j$):
+Since $a_i^*$ is arbitrary for each $i$ we set $a_{k=i}^*=1$ and $a_{k \ne i}^*=0$. Then for each $i$ we have an equation with $n$ unknowns (the values of $a_j$):
 \begin{align*}
 i = 1: \quad & \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_1}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_1 f dx + N_i(L)h, \\
 i = 2: \quad & \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_2}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_2 f dx + N_i(L)h, \\
