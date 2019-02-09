@@ -233,7 +233,7 @@ The coordinate $\xi$ fulfills the relationships:
 	\vspace{1cm}
 }
 
-``stretch transformation`` of $x(\xi)$: 
+``stretch transformation'' of $x(\xi)$: 
 
 \mode<beamer>{
 	\begin{align*}
@@ -422,6 +422,264 @@ The displacement will be approximated as:
 \mode<handout>{
 	\vspace{3cm}
 }
-
 \end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Derivatives isoparametric shape functions}
+The gradient of the temperature for the four-node (isoparametric) quadrilateral element is:
+
+\mode<beamer>{
+	\begin{equation*}
+	\nabla T = \mathbf{B}^{e}\mathbf{a}^e
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+with
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{B}^e = %
+	\begin{bmatrix}
+	\frac{\partial N_1^{4Q}}{\partial x} &
+	\frac{\partial N_2^{4Q}}{\partial x} &
+	\frac{\partial N_3^{4Q}}{\partial x} &
+	\frac{\partial N_4^{4Q}}{\partial x} \\
+	\frac{\partial N_1^{4Q}}{\partial y} &
+	\frac{\partial N_2^{4Q}}{\partial y} &
+	\frac{\partial N_3^{4Q}}{\partial y} &
+	\frac{\partial N_4^{4Q}}{\partial y} \\	
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Derivatives isoparametric shape functions}
+To compute shape function derivatives the chain rule will be used:
+
+\mode<beamer>{
+	\begin{align*}
+		\frac{\partial N_I^{4Q}}{\partial \xi} & = \frac{\partial N_I^{4Q}}{\partial x} \frac{\partial x}{\partial \xi} + %
+		\frac{\partial N_I^{4Q}}{\partial y} \frac{\partial y}{\partial \xi} \\
+	%
+		\frac{\partial N_I^{4Q}}{\partial \eta} & = \frac{\partial N_I^{4Q}}{\partial x} \frac{\partial x}{\partial \eta} + %
+		\frac{\partial N_I^{4Q}}{\partial y} \frac{\partial y}{\partial \eta} \\
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+written as matrices and vectors this becomes:
+\mode<beamer>{
+	\begin{equation*}
+	\begin{bmatrix}
+		\frac{\partial N_I^{4Q}}{\partial \xi} \\
+		\frac{\partial N_I^{4Q}}{\partial \eta} \\
+	\end{bmatrix}
+	=% 
+	\begin{bmatrix}
+		\frac{\partial x}{\partial \xi} & \frac{\partial y}{\partial \xi} \\
+		\frac{\partial x}{\partial \eta} & \frac{\partial y}{\partial \eta} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\frac{\partial N_I^{4Q}}{\partial x} \\
+		\frac{\partial N_I^{4Q}}{\partial y} \\
+	\end{bmatrix}
+	\end{equation*}
+}
+$\mathbf{J}^e$ is the Jacobian which contains the derivatives of the physical coordinates with respect
+to the natural coordinates.
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Derivatives isoparametric shape functions}
+The derivatives required for the weak form are computed by
+inverting the above expression:
+\mode<beamer>{
+	\begin{equation*}
+	\begin{bmatrix}
+		\frac{\partial N_I^{4Q}}{\partial x} \\
+		\frac{\partial N_I^{4Q}}{\partial y} \\
+	\end{bmatrix}
+	= %
+	(\mathbf{J}^e)^{-1}
+	\begin{bmatrix}
+	\frac{\partial N_I^{4Q}}{\partial \xi} \\
+	\frac{\partial N_I^{4Q}}{\partial \eta} \\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+The inverse of $\mathbf{J}^e$ is:
+\mode<beamer>{
+	\begin{equation*}
+	{\mathbf{J}^e}^{-1}
+	= \frac{1}{\left| \mathbf{J}^e\right|}
+	\begin{bmatrix}
+		\frac{\partial y}{\partial \eta} & -\frac{\partial y}{\partial \xi} \\
+		-\frac{\partial x}{\partial \eta} & \frac{\partial y}{\partial \xi} \\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+Where $\left|\mathbf{J}^e\right|$ is the determinant of the Jacobian, which represents the ratio of an area element in the physical domain to the corresponding area element in the parent domain.
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Derivatives isoparametric shape functions}
+The isoparametric mapping is used to compute the Jacobian:
+\mode<beamer>{
+	\begin{equation*}
+	x(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)\mathbf{x}^e \quad
+	y(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)\mathbf{y}^e \quad
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+which leads to:
+\begin{equation*}
+	\mathbf{J}^e = %
+	\begin{bmatrix}
+		\frac{\partial N_1^{4Q}}{\partial \xi} &
+		\frac{\partial N_2^{4Q}}{\partial \xi} &
+		\frac{\partial N_3^{4Q}}{\partial \xi} &
+		\frac{\partial N_4^{4Q}}{\partial \xi} \\
+		\frac{\partial N_1^{4Q}}{\partial \eta} &
+		\frac{\partial N_2^{4Q}}{\partial \eta} &
+		\frac{\partial N_3^{4Q}}{\partial \eta} &
+		\frac{\partial N_4^{4Q}}{\partial \eta} \\	
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1^e & y_1^e\\
+		x_2^e & y_2^e\\
+		x_3^e & y_3^e\\
+		x_4^e & y_4^e\\
+	\end{bmatrix}
+\end{equation*}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Higher order quadrilateral element}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/9noded-quadrilateral.png}
+	\caption*{Nine-node ispoarametric quadrilateral in parameter (left) and physical space (right).}
+\end{figure}
+\end{frame}
+\note{
+	Higher order quadrilateral elements provide the ability to model curved edges. The advantage of curved edges is that fewer elements can be used around holes and other curved surfaces than with straight-sided elements. \\
+	
+	The nine-node isoparametric element is constructed as a tensor product of the one-dimensional quadratic shape functions. The $\mathbf{B}_e$ matrix for the nine noded element is computed with the same approach as discussed in the previous section.
+}
+
+\section{Effect of element shape}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Effect of element shape on isoparametric mapping}
+Consider the following isoparametric mapping for a four-node quadrilateral element:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/2d-isoparametric-example.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Effect of element shape on isoparametric mapping}
+The Jacobian of this mapping:
+\begin{equation*}
+	\mathbf{J}^e%
+	=% 
+	\begin{bmatrix}
+		\frac{\partial x}{\partial \xi} & \frac{\partial y}{\partial \xi} \\
+		\frac{\partial x}{\partial \eta} & \frac{\partial y}{\partial \eta} \\
+	\end{bmatrix}
+\end{equation*}
+is computed from
+\mode<beamer>{
+	\begin{align*}
+		x & = 0.0 N_1^{4Q} + 5.0  N_2^{4Q} + 3.0  N_3^{4Q} + 0.0  N_4^{4Q} \\
+		% 
+		& = 2 \xi - \frac{1}{2}\eta - \frac{1}{2}\xi \eta + 2 \\
+		%
+		\vspace{1em}
+		%
+		x & = 0.0 N_1^{4Q} + 0.0  N_2^{4Q} + 3.0  N_3^{4Q} + 5.0  N_4^{4Q} \\
+		% 
+		& = - \frac{1}{2} \xi + 2 \eta - \frac{1}{2}\xi \eta + 2 \\
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Effect of element shape on isoparametric mapping}
+After some algebra we obtain:
+\begin{equation*}
+\mathbf{J}^e%
+=% 
+\begin{bmatrix}
+2 - \frac{\eta}{2} & -\frac{1}{2} -\frac{1}{2}\eta \\
+ -\frac{1}{2} -\frac{1}{2}\xi & 2 - \frac{1}{2}\xi \\
+\end{bmatrix}
+\end{equation*}
+
+The Jacobian has to be invertible for computing the derivatives of the shape functions with
+respect to the physical coordinates.
+
+For the mapping to be invertible, the determinant of the Jacobian has to be larger than zero over the entire element:
+
+\mode<beamer>{
+	\begin{equation*}
+		det \mathbf{J}^e = \frac{5}{4}(3 - \xi - eta) > 0
+	\end{equation*}
+}
+\mode<handout>{
+	\begin{equation*}
+	det \mathbf{J}^e = \frac{5}{4}(3 - \xi - eta)
+	\end{equation*}
+}
+which is the case for this mapping.
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Effect of element shape on isoparametric mapping}
+In contrast to the previous mapping, it can be for the following mapping shown:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/2d-isoparametric-example-negative-jacobian.png}
+\end{figure}
+that the determinant of the Jacobian is zero or negative close to the non-convex corner.
+\end{frame}
+
+\note{
+	Notice that some region of the parent element close to node 3 is mapped outside the
+	physical domain. If such non-convex elements are present in the finite element mesh, the
+	results of the finite element computation will be useless.
+}
 \end{document}
