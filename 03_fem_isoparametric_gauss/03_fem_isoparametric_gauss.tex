@@ -78,7 +78,7 @@ University of Texas at Austin \\
 \section{Rectangular elements}
 %------------------------------------------------
 \begin{frame}
-\frametitle{4-noded rectangulr element}
+\frametitle{4-noded rectangular element}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.85\textwidth]{figs/four-noded-quadrilateral.png}
@@ -213,20 +213,112 @@ If the sf equations are used for interpolating the temperature field over arbitr
 	\vspace{5cm}
 }
 \end{frame}
+\note{Although isoparametric mapping is not particularly useful in one dimension, it is very	helpful for understanding the general approach.
+}
 
 %------------------------------------------------
 \begin{frame}
 \frametitle{Isoparametric mapping in 1D}
+consider a coordinate transformation which transforms (maps) the coordinate $x$ into a local (element specific) coordinate $\xi$:	
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/1d-isoparametric-shapefn.png}
+\end{figure}
+The coordinate $\xi$ fulfills the relationships:
+
 \mode<beamer>{
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=0.85\textwidth]{figs/1d-isoparametric-shapefn.png}
-	\end{figure}
+	$x = x^e_1$ at $\xi = -1$ and $x = x^e_2$ at $\xi=1$
 }
 \mode<handout>{
-	\vspace{5cm}
+	\vspace{1cm}
+}
+
+``stretch transformation`` of $x(\xi)$: 
+
+\mode<beamer>{
+	\begin{align*}
+		x(\xi) & = x_1^e + \frac{1}{2}(x_2^e - x_1^e)(1+\xi) \\
+			& = \frac{x_1^e + x_2^e}{2} + \frac{x_2^e - x_1^e}{2}\xi
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{1cm}
 }
 \end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Isoparametric mapping in 1D}
+The shape functions $N_1^e = (1 - x/l)$ and $N_2^e = (x/l)$ can also be expressed using $\xi$:
+\mode<beamer>{
+	\begin{equation*}
+		N_1^e(\xi) = \frac{1}{2}(1-\xi) \qquad N_2^e(\xi) = \frac{1}{2}(1+\xi)
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+
+The key idea of the isoparametric concept is to use these shape functions for writing the
+coordinate transformation between $x$ and $\xi$ 
+
+\mode<beamer>{
+	\begin{align*}
+	x(\xi) & = N_1^e(\xi)x_1^e + N_2^e(\xi)x_2^e  \\
+		   & = \frac{1}{2}(1-\xi) x_1^e + %
+		    \frac{1}{2}(1+\xi) x_2^e \\
+		   & = \frac{x_1^e + x_2^e}{2} + \frac{x_2^e - x_1^e}{2}\xi
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.65\textwidth]{figs/1d-isoparametric-shapefn.png}
+\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Isoparametric mapping in 1D}
+
+\begin{itemize}
+	\item The coordinate $\xi$ is usually called the \textbf{natural coordinate} and always lies by definition between -1 and +1.
+	
+	\item The parent element is solely for numerical purposes. 
+	
+	\item The finite element analysis is still performed over the physical domain.
+\end{itemize}
+
+
+In an isoparametric element the field variable, like displacement, is approximated with the
+same set of shape functions as those used for the coordinate transformation:
+
+\mode<beamer>{
+	\begin{equation*}
+	u(\xi) = N_1^e(\xi)a_1^e + N_2^e(\xi)a_2^e  
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+
+To compute the derivatives which appear in the weak form the chain rule is used:
+
+\mode<beamer>{
+	\begin{equation*}
+		\frac{du}{dx} = \frac{du}{d\xi}\frac{d\xi}{dx}
+	\end{equation*}
+	The derivative $d\xi/dx$ is determined from the mapping between $\xi$ and $x$
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\end{frame}
+
 \end{document} 
 
 
