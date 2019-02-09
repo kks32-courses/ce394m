@@ -75,6 +75,129 @@ University of Texas at Austin \\
 %----------------------------------------------------------------------------------------
 % slides
 %----------------------------------------------------------------------------------------
+\section{Rectangular elements}
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangulr element}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/four-noded-quadrilateral.png}
+	\caption*{Four-node rectangular element. The nodes are by definition numbered counter-clockwise.}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangular element}
+As the element has four nodes, it is necessary to start with a polynomial that has four
+parameters.
+\mode<beamer>{
+	\begin{equation*}
+			T e = \alpha_0^e + \alpha_1^e x + \alpha_2^e y + \alpha_3^e xy
+	\end{equation*}
+	It is possible to express ($\alpha_0^e, \alpha_1^e, \alpha_2^e, \alpha_3^e$) in terms of the nodal values ($T_1^e, T_2^e, T_3^e , T_4^e$). A derivation shape functions is tedious as it is necessary to invert a 4 x 4 matrix.
+	
+	The Shape Functions should be 1 at each node, and 0 otherwise can be used to determine the 4 coefficients.
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangular element}
+An alternative and more elegant approach is to construct the shape functions by the \textbf{tensor
+product method.} This is based on taking products of one-dimensional shape functions.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/4noded-quad-tensor-product.png}
+	\caption*{Construction of two dimensional shape functions.}
+\end{figure}
+
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangular element}
+For example, $N_2^e$, which has to have the value one at node 2 and zero at the other nodes,
+is obtained by taking the product of the one-dimensional shape functions $N_2^{e,1d}(x)$ and 
+$N_1^{e,1d}(y)$.
+
+\mode<beamer>{
+	\begin{equation*}
+	N_2^e = N_2^{e,1d}(x) \times N_1^{e,1d}(y)
+	\end{equation*}
+	
+	As visible in the figure above the product $ N_2^{e,1d}(x) \times N_1^{e,1d}(y)$ has the 
+	value one at node 2 and is zero at nodes 1, 3 and 4.
+	
+	\begin{equation*}
+	N_2^e (x, y) = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_4^e}{y_1^e - y_4^e} = -\frac{1}{A^e}(x - x_1^e)(y - y_4^e)
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangular element}
+
+The four shape functions, also called \textbf{bilinear shape functions}, for the quadrilateral element are:
+\begin{align*}
+	N_1^e (x, y) & = \frac{x - x_2^e}{x_1^e - x_2^e}\frac{y - y_4^e}{y_1^e - y_4^e} = -\frac{1}{A^e}(x - x_2^e)(y - y_4^e) \\
+	%
+	N_2^e (x, y) & = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_4^e}{y_1^e - y_4^e} = -\frac{1}{A^e}(x - x_1^e)(y - y_4^e) \\
+	%
+	N_3^e (x, y) & = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_1^e}{y_4^e - y_1^e} = -\frac{1}{A^e}(x - x_1^e)(y - y_1^e) \\
+	%
+	N_4^e (x, y) & = \frac{x - x_2^e}{x_1^e - x_2^e}\frac{y - y_1^e}{y_4^e - y_1^e} = -\frac{1}{A^e}(x - x_2^e)(y - y_1^e)\\
+\end{align*}
+
+where $A^e$ is the area of the element.
+
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangular element}
+The four shape functions are plotted in the following
+figure:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/4noded-sf.png}
+	\caption*{Four shape functions of the rectangular element (on $[0, 2] \times [0, 2]$).}
+\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{4-noded rectangular element}
+If the sf equations are used for interpolating the temperature field over arbitrary quadrilaterals, the scalar field (e.g., temperature) across the element boundaries will be not continuous.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/discontinous-rectangle.png}
+	\caption*{Two element mesh with rectangle shape functions. Although the two nodal values on the
+		edge agree, the temperature distribution is still discontinuous.}
+\end{figure}
+\end{frame}
+
+\note{
+	The computed shape functions are suitable for rectangles and could be used with meshes consisting only of rectangles, but they are not suitable for arbitrary quadrilaterals.
+	
+	Therefore, these shape functions are of limited use for practical applications. To obtain
+	the shape functions for arbitrary quadrilaterals we need to visit the idea of isoparametric
+	mapping.
+}
+
 %------------------------------------------------
 \section{Isoparametric elements}
 %------------------------------------------------
