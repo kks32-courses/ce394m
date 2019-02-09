@@ -319,6 +319,109 @@ To compute the derivatives which appear in the weak form the chain rule is used:
 }
 \end{frame}
 
-\end{document} 
+
+%------------------------------------------------
+\section{Isoparametric quadrilateral elements}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Isoparametric mapping of a quadrilateral element}
+The idea of isoparametric mapping is used for deriving shape functions for arbitrary quadrilateral elements:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/2d-isoparametric-shapefn.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Isoparametric mapping of a quadrilateral element}
+The bi-unit square is the parent domain and $\xi$ and $\eta$ are its natural coordinates. 
+
+To map points from the parent domain onto the quadrilateral in the physical domain the four nodal
+shape functions are used:
+
+\mode<beamer>{
+	\begin{equation*}
+	x(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)x^e \quad
+	y(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)y^e
+	\end{equation*}
+	where $N^{4Q}(\xi, \eta)$ are the four-node element shape functions in the natural coordinates and $x^e$ and $y^e$ are the vectors of the element coordinates:
+	\begin{equation*}
+	\mathbf{x}^e = 
+	\begin{bmatrix} 
+	x_1^e \\
+	x_2^e \\
+	x_3^e \\
+	x_4^e \\
+	\end{bmatrix}
+	\quad
+	\mathbf{y}^e = 
+	\begin{bmatrix} 
+	y_1^e \\
+	y_2^e \\
+	y_3^e \\
+	y_4^e \\
+	\end{bmatrix}
+	\end{equation*}
+	
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Isoparametric mapping of a quadrilateral element}
+As the parent element is a bi-unit square its shape functions are identical to those of the
+rectangular element expressed in $\xi$ and $\eta$ coordinates.
+\begin{align*}
+	N_1^{4Q}(\xi, \eta) & = \frac{1}{4}(1-\xi)(1-\eta)\\
+	N_2^{4Q}(\xi, \eta) & = \frac{1}{4}(1+\xi)(1-\eta)\\
+	N_3^{4Q}(\xi, \eta) & = \frac{1}{4}(1+\xi)(1+\eta)\\
+	N_4^{4Q}(\xi, \eta) & = \frac{1}{4}(1-\xi)(1+\eta)\\
+\end{align*}
+\end{frame}
 
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{Isoparametric shape functions}
+The temperature will be approximated with the same shape functions:
+
+\mode<beamer>{
+	\begin{equation*}
+		T^e = \mathbf{N}^{4Q}(\xi, \eta) \mathbf{a}^e
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+The element is called \textit{isoparametric} because the temperature approximation and the mapping of the geometry is accomplished with the same shape functions.
+
+The displacement will be approximated as:
+\mode<beamer>{
+	\begin{align*}
+	\mathbf{u}^e & = \mathbf{N}^{4Q}(\xi, \eta) \mathbf{a}^e \\
+	& = \begin{bmatrix}
+	N_1^{4Q} & 0 & N_2^{4Q} & 0 & N_3^{4Q} & 0 & N_4^{4Q} & 0 \\
+	0 & N_1^{4Q} & 0 & N_2^{4Q} & 0 & N_3^{4Q} & 0 & N_4^{4Q} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		a_{1x}^e \\
+		a_{1y}^e \\
+		a_{2x}^e \\
+		a_{2y}^e \\
+		a_{3x}^e \\
+		a_{3y}^e \\
+		a_{4x}^e \\
+		a_{4y}^e \\
+	\end{bmatrix}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+
+\end{frame}
+\end{document}
