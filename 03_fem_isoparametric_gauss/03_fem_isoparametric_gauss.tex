@@ -999,4 +999,106 @@ This is a set of four nonlinear equations for determining the values of $w_1$, $
 	\vspace{2.5cm}
 }
 \end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Integration over quadrilateral elements}
+For the integration over the bi-unit parent
+element we have:
+\begin{align*}
+	\int_{-1}^{+1}	\int_{-1}^{+1} f(\xi, \eta) d\xi d\eta & = 	\int_{-1}^{+1}\left(		\int_{-1}^{+1}f(\xi, \eta) d\xi \right) d\eta\\
+	& = \sum_{J=1}^M \left(\sum_{I=1}^N f(\xi_I, \eta_J) w_I\right) w_K
+\end{align*}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figs/gauss-integration-quadrilateral.png}
+	\caption*{Four-point (left) and nine-point (right) integration over bi-unit square.}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Evaluation of FE integrals}
+The integration domain for finite element matrices and vectors is the physical element domain. Therefore, we need to consider the isoparametric mapping from the the parent domain $([-1, +1] \times [-1, +1])$ to the physical element domain $\Omega_e$:
+\begin{align*}
+\mathbf{K}^e & = \int_{\Omega_e} \mathbf{B}^{e^T}(x, y) \mathbf{D}\mathbf{B}^e(x, y) d \Omega \\
+& = \int_{\Omega_e} \mathbf{B}^{e^T}(x, y) \mathbf{D}\mathbf{B}^e(x, y) dx dy \\
+& = \int_{-1}^{+1} \int_{-1}^{+1} \mathbf{B}^{e^T}(\xi, \eta) \mathbf{D}\mathbf{B}^e(\xi, \eta) \left| \mathbf{J}^e(\xi, \eta)\right| d\xi d\eta\\
+\end{align*}
+where $\left|\mathbf{J}^e \right|$ is the Jacobian of the isoparametric mapping and takes care of the mapping of infinitesimal area elements from parent to the physical domain.
+\begin{equation*}
+dx dy = \left|\mathbf{J}^e \right| d\xi d\eta
+\end{equation*}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Number of integration points to use}
+\mode<beamer>{
+	\begin{enumerate}
+		\item If a high number of integration points is used, finite element integrals are evaluated very
+		accurately. 
+		
+		\item On the other hand with too few integration points the finite element integrals
+		may be evaluated poorly.
+		
+		\item In particular the stiffness matrix integrated with too few points can cause rank-
+		deficiency and can render the problem unsolvable.
+		
+		\item As a rule, the number of integration points is chosen so that the matrices and vectors are accurately computed for an undistorted isoparametric element (with constant Jacobian).
+		
+		\item For the stiffness matrix of the quadrilateral element - number of integratio points:
+		\begin{enumerate}		
+			\item Four-noded: $2 \times 2$ 
+			
+			\item Nine-noded: $3 \times 3$ 
+		\end{enumerate}
+
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Modeling considerations: Element geometries}
+\mode<beamer>{
+	\begin{enumerate}
+		\item if $det(\mathbf{J}^e)$ is zero, an area element in the parent element is mapped into a zero area in the physical element, which is not acceptable.
+		\item Similarly, if elements are excessively distorted, an area element in the parent element is 	mapped into a nearly zero area.
+		
+		\item To ensure that $det(\mathbf{J}^e)$ is safely larger than zero, certain severely distorted element shapes must be avoided.
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figs/illformed-quadrilaterals.png}
+	\caption*{Quadrilateral element geometries to be avoided.}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Modeling considerations: Higher-order element}
+Notice for higher order elements, like the nine-noded one, the position of the mid-nodes
+contribute to the element distortion. Therefore, they must lie at a certain distance from
+the corner nodes.
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figs/acceptable-nodal-locations-quadrilateral.png}
+		\caption*{Range of acceptable positions for the midnodes of a nine-node quadrilateral element.}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+
+\end{frame}
 \end{document}
