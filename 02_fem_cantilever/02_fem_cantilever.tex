@@ -720,6 +720,124 @@ This nodal `\textit{exactness}' means that looking at error in the displacement 
 \end{figure}
 \end{frame}
 
+\section{2D truss analysis}
+%-----------------------------------------------------------------
+\begin{frame}
+\frametitle{2D truss analysis}
+Consider the following structural system consisting of a three-noded triangle and a cable
+element (i.e. two-noded one-dimensional element):
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/2d-truss.png}
+\end{figure}
+\end{frame}
+
+
+%-----------------------------------------------------------------
+\begin{frame}
+\frametitle{2D truss analysis}
+
+The triangle element is fixed at the (local) nodes 1 and 3 and its stiffness matrix for the
+unconstrained degrees of freedom at node 2 is
+
+\begin{equation*}
+\mathbf{K} = 10^9 %
+\begin{bmatrix}
+1.97	& 0 \\ 
+0 & 0.66 \\
+\end{bmatrix}
+%
+\begin{matrix}
+u_{x2}^e\\ 
+u_{y2}^e \\
+\end{matrix}	
+\end{equation*}
+
+For the cable, the product of the Young’s modulus and cross-sectional area is $EA = 1.0\cdot 10^9$.
+Further, the system is loaded with a nodal force of $f_{y2} = -10000$.
+
+Inserting $EA$ and the length $h = 1.0$ gives the stiffness matrix for a two-noded one-dimensional element as:
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{K}^e = \frac{EA}{h} %
+	\begin{bmatrix}
+	1 & -1 \\
+	-1 & 1 \\
+	\end{bmatrix} = 10^9 %
+	\begin{bmatrix}
+	1 & -1 \\
+	-1 & 1 \\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%-----------------------------------------------------------------
+\begin{frame}
+\frametitle{2D truss analysis}
+To compose the global stiffness matrix we consider the correspondence between the
+element specific (local) degrees of freedom of the triangle and the cable
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\textwidth]{figs/2d-truss-solution.png}
+\end{figure}
+
+In the global stiffness matrix, the element stiffness matrix components corresponding
+to $u^e_{y2}$ of the triangle and $u^e_{y1}$ of the cable are add up:
+
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{K}^e = 10^9 %
+	\begin{bmatrix}
+		1.97 &  0 \\
+		0 & 1 + 0.66\\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%-----------------------------------------------------------------
+\begin{frame}
+\frametitle{2D truss analysis}
+Hence, the final equation system for determining the nodal displacements is:
+\mode<beamer>{
+	\begin{align*}
+	10^9 %
+	\begin{bmatrix}
+	1.97 &  0 \\
+	0 & 1.66\\
+	\end{bmatrix} %
+	\begin{bmatrix}
+		u_x\\
+		u_y\\
+	\end{bmatrix} & = %
+	\begin{bmatrix}
+		0 \\
+		-1000\\
+	\end{bmatrix} \qquad (\mathbf{K a = f})\\
+	%
+	\begin{bmatrix}
+		u_x\\
+		u_y\\
+	\end{bmatrix} & = %
+	\begin{bmatrix}
+		0 \\
+		6.02 \times 10^{-06}\\
+	\end{bmatrix}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
 \end{document} 
 
 
