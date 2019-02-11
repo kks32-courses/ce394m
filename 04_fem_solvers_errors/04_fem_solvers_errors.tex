@@ -224,18 +224,34 @@ The integration has to be carried over the current volume and surface (of the fi
 }
 \end{frame}
 
-\note{
-	\textbf{Newton's Method}
-	In Newton's method, the incremental loading is expressed as follows. The external load vector $F_{\mathrm{ext}}$ is gradually increased from 0 in order to reach a desired value $\mathbf{F}^*$. Assuming that  $\mathbf{F}^*$ itself remains constant during the analysis in terms of its 'direction' and only its magnitude is changing, we can write $F_{\mathrm{ext}} = q$ known just to simplify our expression for the system of equations. Then we can control how the external
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson method}
+The incremental loading is expressed as follows. The external load vector $F_{\mathrm{ext}}$ is gradually increased from 0 in order to reach a desired value $\mathbf{F}^*$. Assuming that  $\mathbf{F}^*$ itself remains constant during the analysis in terms of its 'direction' and only its magnitude is changing, we can write $F_{\mathrm{ext}} = q$ known just to simplify our expression for the system of equations. Then we can control how the external load vector increases or decreases by introducing a scalar quantity $\lambda$ and express the system as follows:
 
-	load vector increases or decreases by introducing a scalar quantity $\lambda$ and express the system as follows:
-	
+\mode<beamer>{
 	\begin{equation*}
-	R(u) = F_{\mathrm{int}} - F_{\mathrm{ext}} -> R(u) = F_{\mathrm{int}} - \lambda F_{\mathrm{ext}} == 0
+		R(u) = F_{\mathrm{int}} - F_{\mathrm{ext}} \rightarrow R(u) = F_{\mathrm{int}} - \lambda F_{\mathrm{ext}} = 0
 	\end{equation*}
-	Thus by increasing or decreasing $\lambda$ we can control our load incrementation.
-	
 }
+\mode<handout>{
+\vspace{6cm}
+}
+	
+Thus by increasing or decreasing $\lambda$ we can control our load. We are interested in 
+$u$ and $\lambda$. At every increment, we change slightly the value of $\lambda$ and try 
+to determine $u$ satisfying $R(u)= 0$.
+	
+\mode<beamer>{
+	\begin{equation*}
+		\Delta u = [K_T]^{-1}_{u0} - (\Delta \lambda q)
+	\end{equation*}
+}
+\mode<handout>{
+\vspace{6cm}
+}
+	
+\end{frame}
 
 %------------------------------------------------
 \begin{frame}
@@ -295,4 +311,45 @@ The integration has to be carried over the current volume and surface (of the fi
 	\end{itemize}
 \end{itemize}
 \end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson: Drawbacks}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=\textwidth]{figs/newton-snap-through.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note{
+	Newton's method fails to accurately follow the ‘equilibrium’ path once the tangent
+	stiffness reaches zero. That happens due to the formulation of Newton’s method, and in particular that it
+	restricts the parameter $\lambda$ to change monotonically every increment 3 . The definition of a limit point then (saddle points excluded), suggests that in order to remain on the equilibrium path you need to change your
+	loading pattern depending on whether the limit point is a local maximum or maximum in the $u - \lambda$ space.
+	This problem can be better conceptualized in Figure 2.2.
+}
+
+\note{
+	In terms of mechanical systems then, this method is able to solve any non-linear system of equations
+	very efficiently but only up to the critical point (if any). In the case shown in Figure 2.2,Newton’s method
+	fails in load–control. Now in many cases, one way to circumvent problems like these is to use displacement
+	control, where you can continuously increase the displacements u and still remain on the equilibrium curve.
+	In general however, apart from Snap–Through behaviors under load control, a problem may exhibit Snap–
+	Back behaviors under displacement control or even both as shown in Figure 2.3. The main problem is, that in
+	most actual applications, the structural response, and therefore the equilibrium path, for the structure under
+	consideration is unknown, and therefore one does not know what type of behavior to expect.
+}
+\note{
+	 As a general
+	rule, if the problem under consideration requires information after its critical/failure points then Newton’s
+	method is not a good choice. Buckling analysis and non-linear materials that exhibit work softening are
+	just two example problems that cannot be solved using Newton’s method. Furthermore, very often, strong
+	nonlinearities that arise in finite deformation problems may eventually lead to such behaviors and thus it is
+	necessary to introduce a numerical technique to solve such problem with strongly nonlinear behaviors.
+}
 \end{document}
