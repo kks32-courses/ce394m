@@ -244,7 +244,7 @@ to determine $u$ satisfying $R(u)= 0$.
 	
 \mode<beamer>{
 	\begin{equation*}
-		\Delta u = [K_T]^{-1}_{u0} - (\Delta \lambda q)
+		\Delta u = [K_T]^{-1}_{u0} \cdot (\Delta \lambda q)
 	\end{equation*}
 }
 \mode<handout>{
@@ -252,6 +252,14 @@ to determine $u$ satisfying $R(u)= 0$.
 }
 	
 \end{frame}
+
+\note {
+	where $\left[K^T\right] = [\partial F(u)/ \partial u]$ is the ``Jacobian'' matrix of the system of equations and is commonly referred to as the Stiffness Matrix.
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.65\textwidth]{figs/newton-raphson-fe.png}
+	\end{figure}
+}
 
 %------------------------------------------------
 \begin{frame}
@@ -331,16 +339,15 @@ to determine $u$ satisfying $R(u)= 0$.
 	stiffness reaches zero. That happens due to the formulation of Newton’s method, and in particular that it
 	restricts the parameter $\lambda$ to change monotonically every increment 3 . The definition of a limit point then (saddle points excluded), suggests that in order to remain on the equilibrium path you need to change your
 	loading pattern depending on whether the limit point is a local maximum or maximum in the $u - \lambda$ space.
-	This problem can be better conceptualized in Figure 2.2.
 }
 
 \note{
 	In terms of mechanical systems then, this method is able to solve any non-linear system of equations
-	very efficiently but only up to the critical point (if any). In the case shown in Figure 2.2,Newton’s method
+	very efficiently but only up to the critical point (if any). In the case shown in figure, Newton’s method
 	fails in load–control. Now in many cases, one way to circumvent problems like these is to use displacement
 	control, where you can continuously increase the displacements u and still remain on the equilibrium curve.
 	In general however, apart from Snap–Through behaviors under load control, a problem may exhibit Snap–
-	Back behaviors under displacement control or even both as shown in Figure 2.3. The main problem is, that in
+	Back behaviors under displacement control or even both. The main problem is, that in
 	most actual applications, the structural response, and therefore the equilibrium path, for the structure under
 	consideration is unknown, and therefore one does not know what type of behavior to expect.
 }
@@ -352,4 +359,129 @@ to determine $u$ satisfying $R(u)= 0$.
 	nonlinearities that arise in finite deformation problems may eventually lead to such behaviors and thus it is
 	necessary to introduce a numerical technique to solve such problem with strongly nonlinear behaviors.
 }
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson: Drawbacks}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.65\textwidth]{figs/newton-failures.png}
+		\caption*{(a) A system that is unstable under load control (Snap–Through instability), (b) A system that is unstable under displacement control (Snap–Back Instability), (c) A system that is unstable under both displacement and load control}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\section{Arc length method}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Arc length method}
+System of the non-linear (in general) equations to solve:
+\begin{equation*}
+	F_{\mathrm{int}} - F_{\mathrm{ext}} = 0 \rightarrow F_{\mathrm{int}} - \lambda q = 0
+\end{equation*}
+
+Suppose ($u_0, \lambda_0$) satisfy the system of equations and thus belongs to the `equilibrium path'. Arc Length postulates a simultaneous variation in both the displacements $\Delta u$ and the load vector coefficient $\Delta \lambda$.
+
+\mode<beamer>{
+\begin{equation*}
+	R(u^\prime, \lambda^\prime) = F_{\mathrm{int}}(u_0 + \Delta u) - (\lambda_0 + \Delta \lambda)q = 0
+\end{equation*}
+
+
+If the above is satisfied for $(u_0 + \Delta u, \lambda_0 + \Delta \lambda)$ then this point also belongs to the ‘equilibrium path’ and we can successfully update the solution. However, immediate satisfaction is not possible, so we need to provide the necessary corrections $(\delta u, \delta \lambda)$, aiming that the new point $(u_0 + \Delta u + \delta u, \lambda_0 + \Delta \lambda + \delta \lambda)$ will satisfy. 
+
+
+	\begin{equation*}
+		R(u^{\prime \prime}, \lambda^{\prime \prime}) = F_{\mathrm{int}}(u_0 + \Delta u + \delta u) - (\lambda_0 + \Delta \lambda+ \delta \lambda)q = 0
+	\end{equation*}
+	
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+
+\note{
+	Arc length is a very efficient method in solving non-linear systems of equations when the problem under consideration exhibits one or more critical points. In terms of a simple mechanical
+	loading-unloading problem, a critical point could be interpreted as the point at which the loaded body
+	cannot support an increase of the external forces and an instability occurs.\\
+	
+	Unlike the Newton-Method, the Arc Length method postulates a
+	simultaneous variation in both the displacements $\Delta u$ and the load vector coefficient $\Delta lambda$. The main difference is that both $\Delta u$ and $\Delta \lambda$ are unknowns in contrast to Newton’s method where  $\Delta lambda$ was given and we had to iteratively solve for $\Delta u$.
+}
+
+\note {
+	The system of equations takes the form:
+	\begin{equation*}
+		\left[K^T \right]_{u_0 + \Delta u} \cdot \delta u - \delta \lambda q = - \left[F_{\mathrm{int}}(u_0 + \Delta u) - (\lambda_0 + \Delta \lambda) q \right] = - R (u^\prime, \lambda^\prime)		
+	\end{equation*}
+	$\delta u$ and $\delta lambda$ are the unknowns for whom we need to solve. If the $u$ vector however, has dimensions 	$N \times 1$ then we have a total of $N$ equations that we need to solve for $N+1$ unknowns ($N$ unknowns $\delta u$ and 1 unknown $\delta \lambda$). Equations then are not sufficient to determine $\delta u, \delta \lambda$. The supplementary equation that completes the system is called the Arc Length Equation.
+	
+
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Arc length method}
+The Arc length equation:
+	\begin{equation*}
+		(\Delta \mathbf{u} + \delta \mathbf{u})^T \cdot (\Delta \mathbf{u} + \delta \mathbf{u}) + \psi^2 (\Delta \lambda + \delta \lambda)^2 (\mathbf{q}^T \cdot \mathbf{q}) = \Delta l^2
+	\end{equation*}
+
+where $\psi$ and $\Delta l$ are user defined parameters. In a sense $\Delta l$ defines how far to search for the next equilibrium point and it is analogous (but not directly equivalent) to the load increment $\Delta \lambda$ we used in Newton’s method.
+
+\end{frame}
+
+\note {The system of equations is solved for $\delta u, \delta \lambda$ and updates the previous corrections $\Delta u, \Delta \lambda$ to be $\Delta u^\prime = \Delta u + \delta u$ and $\Delta \lambda^\prime = \Delta \lambda + \delta \lambda$ respectively. The method continues to provide such incremental corrections $\delta u, \delta \lambda$ until convergence is achieved. When $\psi = 1$, the method is also called the \textbf{Spherical Arc-Length Method } because the points $\Delta u^\prime, \Delta \lambda^\prime$ belong to a circle with radius $\Delta l$. In its most general form for arbitrary $\psi$ can be geometrically interpreted as a hyper-ellipse in the multidimensional displacement-load space ($u - \lambda$).}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Arc length method}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.65\textwidth]{figs/arc-length-visualized.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figs/arc-length.png}
+	\end{figure}
+}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Arc length method: Drawbacks}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=\textwidth]{figs/arc-length-failure.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note {
+Crisfield’s [1983] implementation of Arc-length however, leads to one of the method’s most important drawbacks. The quadratic equation would in general lead to two distinct solutions for $\delta \lambda$ which will in turn lead to two distinct solutions for $\delta u$. Thus, every iteration, the solver determined two sets of solutions, namely $(\delta u_1, \delta \lambda_1)$ and $(\delta u_1, \delta \lambda_1)$. This is no surprise since a circle (or a hyperellipse) would always intersect a curve in two points if its center is located on the curve.
+}
+
+\note {
+The issue that arises then, is to develop a robust algorithm that would be able to accurately determine
+the correct set of $(\delta u, \delta \lambda)$  to update the solution. In general, we would like to choose the set, so that the solution ‘evolves forwards’. This term ‘forward evolution’ is commonly used in the context of this method since choosing the wrong set would make the solution move back towards a previously converged point, and not in the desired (forward) direction. It is interesting to note, that an effective solution to this problem that works for all applications is yet to be found and as a result, many times programs like ABAQUS fail to converge to the correct solution or fail to ‘evolve forwards’.}
 \end{document}
