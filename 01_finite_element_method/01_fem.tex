@@ -860,12 +860,37 @@ form:
 	It does not matter how high the polynomial order of the shape functions is, the strain
 	will be discontinuous at element boundaries.\\
 	
-	We can use these simple to construct shape functions that have discontinuous first
+	We can use these simple equations to construct shape functions that have discontinuous first
 	derivatives in FEA of a bar because the weak form of the equation
 	contains at most first-order derivatives. These shape functions are known as Lagrange
 	polynomials. In the FEM, function with discontinuous derivatives are referred to as $C^0$ continuous functions. It turns out that these
 	functions are not suitable for thin beam bending problems, and we will need to construct
 	a different type of shape function for beams.
+}
+
+\note {
+	For the two elements:
+	the displacement at node 2 from the left-hand side is given by:
+	\begin{equation*}
+		u_h(x_2^-) = N_1(x_2)a_1 + N_2(x_2)a_2 = a_2
+	\end{equation*}
+	since $N_2 = 1$ at $x_2$ and all other shape functions are equal to zero. Similarly from the
+	right-hand side of the node,
+	\begin{equation*}
+		u_h(x_2^+) = N_2(x_2)a_2 + N_3(x_2)a_3 = a_2
+	\end{equation*}
+	
+	Now for the strain:
+	\begin{equation*}
+		\epsilon_h(x_2^-) = \frac{dN_1(x_2)}{dx}a_1 + \frac{dN_2(x_2)}{dx}a_2
+	\end{equation*}
+	and 
+	\begin{equation*}
+		\epsilon_h(x_2^+) = \frac{dN_2(x_2)}{dx}a_1 + \frac{dN_3(x_2)}{dx}a_2
+	\end{equation*}
+	Clearly the strain is not continuous.
+	
+
 }
 %------------------------------------------------
 \begin{frame}
