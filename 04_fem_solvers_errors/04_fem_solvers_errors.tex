@@ -162,6 +162,24 @@ methods of solvers that can be used: direct and iterative.
 	\vspace{6cm}
 }
 \end{frame}
+\subsection{Iterative solvers}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Iterative solvers}
+The system of equations that we derived from the finite element approximation of the BVP:
+\mode<beamer>{
+		\begin{equation*}
+			F_{\mathrm{int}}(u) - F_{\mathrm{ext}} = 0
+		\end{equation*}
+
+At this point we remind ourselves that in the case of finite deformations, both $F_{\mathrm{int}}$ and $F_{\mathrm{ext}}$ are in general very nonlinear terms. 
+
+The integration has to be carried over the current volume and surface (of the finite element under consideration) that may in general depend on $u$ in a highly non-linear fashion.
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
 
 \subsection{Tangent stiffness}
 %------------------------------------------------
@@ -205,6 +223,19 @@ methods of solvers that can be used: direct and iterative.
 	\vspace{6cm}
 }
 \end{frame}
+
+\note{
+	\textbf{Newton's Method}
+	In Newton's method, the incremental loading is expressed as follows. The external load vector $F_{\mathrm{ext}}$ is gradually increased from 0 in order to reach a desired value $\mathbf{F}^*$. Assuming that  $\mathbf{F}^*$ itself remains constant during the analysis in terms of its 'direction' and only its magnitude is changing, we can write $F_{\mathrm{ext}} = q$ known just to simplify our expression for the system of equations. Then we can control how the external
+
+	load vector increases or decreases by introducing a scalar quantity $\lambda$ and express the system as follows:
+	
+	\begin{equation*}
+	R(u) = F_{\mathrm{int}} - F_{\mathrm{ext}} -> R(u) = F_{\mathrm{int}} - \lambda F_{\mathrm{ext}} == 0
+	\end{equation*}
+	Thus by increasing or decreasing $\lambda$ we can control our load incrementation.
+	
+}
 
 %------------------------------------------------
 \begin{frame}
