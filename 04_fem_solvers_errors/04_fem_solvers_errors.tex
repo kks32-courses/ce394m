@@ -652,4 +652,170 @@ Therefore, for $k \ge 1$,
 }
 \end{frame}
 
+\section{Time-dependent problems}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Time-dependent problems}
+
+We wish to develop schemes to deal with semi-discrete finite element equations in a
+step-by-step fashion. Starting at time $t = 0$, we want to solve a problem up to time
+$t = t_{final}$. The time interval $(0, t_{final})$ will be `chopped' into increments $\Delta t$:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.65\textwidth]{figs/time-steps.png}
+\end{figure}
+\mode<beamer>{
+	Time increment: $\Delta t = t_{n+1} - t_n$
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+
+What is needed is a strategy to advance the solution from $t_n$ to $t_{n+1}$. There are many
+different techniques for this. We will consider some simple examples and the most commonly used methods.
+
+\end{frame}
+
+\subsection{Explicit schemes}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Forward Euler}
+Given an equation of the form:
+\begin{equation*}
+	\dot{y}  = f(y, t)
+\end{equation*}
+
+for which we know everything at time $t_n(y_n\mathrm{ and } f(y_n, t_n))$,
+we want to advance to time $t_{n+1}$ and find $y_{n+1}$. The simplest
+approach is the forward Euler method. It involves:
+\mode<beamer>{
+	\begin{equation*}
+		y_{n+1} = y_n + \Delta t f(y_n, t_n)
+	\end{equation*}
+	
+Re-arranging,
+	\begin{equation*}
+		\frac{y_{n+1} - y_n }{\Delta t} = f(y_n, t_n)
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Forward Euler}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=\textwidth]{figs/forward-euler.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Forward Euler}
+We can apply the forward Euler scheme to the nodal degrees of freedom a by replacing
+$y$ with $\mathbf{a}$ and $f$ with $\dot{\mathbf{a}}$,
+\mode<beamer>{
+	\begin{equation*}
+	\frac{\mathbf{a}_{n+1} - \mathbf{a}_n }{\Delta t} = \dot{\mathbf{a}}_n
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+We would like to eliminate the time derivative term $\dot{\mathbf{a}}$ from the semi-discrete heat equation, $\mathbf{M} \dot{\mathbf{a}} + \mathbf{Ka = b}$, so that we are left with only $\mathbf{a}$. In the forward Euler expression, we have $\dot{\mathbf{a}}_n$, therefore we consider the heat equation at time step $t_n$,
+\mode<beamer>{
+	\begin{equation*}
+		\mathbf{M} \dot{\mathbf{a}}_n + \mathbf{K} \mathbf{a}_n = \mathbf{b}_n
+	\end{equation*}
+
+Inserting the forward Euler expression for $\dot{\mathbf{a}}$, we have
+
+	\begin{equation*}
+		\mathbf{M} \frac{\mathbf{a}_{n+1} - \mathbf{a}_n }{\Delta t} + \mathbf{K} \mathbf{a}_n = \mathbf{b}_n
+	\end{equation*}
+Taking all the known terms (those at $t_n$) to the right-hand side,
+
+	\begin{equation*}
+		\mathbf{M} \mathbf{a}_{n+1} = \mathbf{M} \mathbf{a}_n + \Delta t(\mathbf{b}_n - \mathbf{K} \mathbf{a}_n)
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Forward Euler}
+We have a system on linear equation that we can solve to find $\mathbf{a}_{n+1}$.
+Now the benefit of a lumped mass matrix can be seen. If $\mathbf{M}$ is lumped, there is no
+need to solve a system of equations and finding $\mathbf{a}_{n+1}$. is trivial.
+
+System of equations for a lumped mass matrix:
+
+\mode<beamer>{
+	\begin{equation*}
+		\begin{bmatrix}
+			M_{11} & 0 & 0 \\
+			0 & M_{22} & 0 \\
+			0 & 0 & M_{33} \\
+ 		\end{bmatrix}
+		\begin{bmatrix}
+	 		a_{1, n+1} \\
+	 		a_{2, n+1} \\
+	 		a_{3, n+1} \\
+ 		\end{bmatrix}
+		\begin{bmatrix}
+	 		\hat{b}_{1, n} \\
+	 		\hat{b}_{2, n} \\
+	 		\hat{b}_{3, n} \\
+ 		\end{bmatrix}
+	\end{equation*}
+
+Solution:
+	\begin{equation*}
+		a_{i, n+1} = \hat{b}_{i, n} / M_{ii}
+	\end{equation*}
+This is the key to the efficient simulation of some large scale time-dependent finite
+element problems. We can start at $t =  0$ and advance in time. The process is simply repeated until the
+desired final time is reached.
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+\note{
+	The forward Euler scheme is an example of an explicit scheme since $f$ depends only
+	on data at $t_n$ (or possibly earlier steps). The forward Euler scheme is very simple, but
+	unfortunately not very useful for the heat equation. Firstly, it is not particularly accurate
+	(only $O(\Delta t)$), although this is not the biggest issue. The problem is stability. If 
+	$\Delta t$ is too large, the solution a will grow rapidly and uncontrollably. The forward Euler method
+	is notoriously unstable.
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Forward Euler}
+The time step at which a method becomes unstable is known at the \textit{critical time
+step}. Conditionally stable methods are stable for: \mode<beamer>{$\Delta t \le \Delta t_{\mathrm{crit}}$}
+
+\begin{itemize}
+	\item The critical time step often scales with eigenvalues of the finite element system, which in turn depend on the element type and size. 
+	\item As the element size is reduced, the critical time step reduces.
+	\item The heat equation is a so-called stiff equation. This means that the restriction on the
+	time step for explicit schemes is particularly severe. It scales according to \mode<beamer>{$\Delta t \propto h^2$}
+\end{itemize}
+where $h$ is a measure of the size of an element. This is a very strong restriction, and
+means that explicit schemes are not usually practical for the heat equation.
+\end{frame}
+
 \end{document}
