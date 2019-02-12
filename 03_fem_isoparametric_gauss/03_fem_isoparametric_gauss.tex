@@ -458,6 +458,45 @@ with
 }
 \end{frame}
 
+\note{
+	Strain:	$\epsilon = \mathbf{B}^{e}\mathbf{a}^e$
+	
+	\begin{equation*}
+	\begin{bmatrix}
+		\epsilon_{xx}^e \\
+		\epsilon_{yy}^e \\
+		2\epsilon_{xy}^e \\
+	\end{bmatrix}	 = %
+	\begin{bmatrix}
+		\frac{\partial N_1^{4Q}}{\partial x} & 0 &
+		\frac{\partial N_2^{4Q}}{\partial x} & 0 &
+		\frac{\partial N_3^{4Q}}{\partial x} & 0 &
+		\frac{\partial N_4^{4Q}}{\partial x} & 0 \\
+		0 &	\frac{\partial N_1^{4Q}}{\partial y} & 
+		0 &	\frac{\partial N_2^{4Q}}{\partial y} &
+		0 &\frac{\partial N_3^{4Q}}{\partial y} &
+		0 & \frac{\partial N_4^{4Q}}{\partial y} \\	
+		\frac{\partial N_1^{4Q}}{\partial y} & \frac{\partial N_1^{4Q}}{\partial x} &  
+		\frac{\partial N_2^{4Q}}{\partial y} &
+		\frac{\partial N_2^{4Q}}{\partial x} &
+		\frac{\partial N_3^{4Q}}{\partial y} &
+		\frac{\partial N_3^{4Q}}{\partial x} & 
+		\frac{\partial N_4^{4Q}}{\partial y} &
+		\frac{\partial N_4^{4Q}}{\partial x} & \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		u_{1x}^e \\
+		u_{1y}^e \\
+		u_{2x}^e \\
+		u_{2y}^e \\
+		u_{3x}^e \\
+		u_{3y}^e \\
+		u_{4x}^e \\
+		u_{4y}^e \\
+	\end{bmatrix}
+	\end{equation*}
+	
+}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Derivatives isoparametric shape functions}
