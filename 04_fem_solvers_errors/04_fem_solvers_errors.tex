@@ -620,7 +620,36 @@ by a factor of eight.
 }
 \end{frame}
 
+\subsection{Posterior error estimation}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Posterior error estimation and adaptivity}
+A \textit{posterior error} estimation involves quantification of the error after a simulation has
+been preformed.\\
 
+If we have an a posterior error estimator for a particular problem, a simulation can
+been performed, the error estimated in various part of the domain and the mesh and
+finite element type can be adjusted in order to reduce the error to a prescribed value.
+This is known as \textit{adaptivity}. \\
+
+The two obvious strategies are known as:
+\mode<beamer>{
+	\begin{itemize}
+		\item \textit{h-adaptivity}: this involves modify the mesh.
+		\item \textit{p-adaptivity}: this involves changing the finite element type.
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+\note{
+A \textit{posterior error} estimation involves quantification of the error after a simulation has
+been preformed. With an estimate of the error, a judgement can be made as to the 
+reliability of the result. It is then also possible to adapt the finite element mesh to reduce the error. 
+The goal of adaptivity is minimise the error for a given computational effort.
+It is a rich area of activity in applied and computational mathematics.
+}
 
 %------------------------------------------------
 \begin{frame}
