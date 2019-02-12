@@ -818,4 +818,109 @@ where $h$ is a measure of the size of an element. This is a very strong restrict
 means that explicit schemes are not usually practical for the heat equation.
 \end{frame}
 
+\subsection{Implicit method}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Backward Euler}
+\mode<beamer>{
+	\begin{equation*}
+	y_{n+1} = y_n + \Delta t f(y_{n+1}, t_{n+1})
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+Note now that $f$ is evaluated at $y_{n+1}$ and not at $y_n$. However, we do not know $y_{n+1}$; it
+is what we want to find.
+\mode<beamer>{
+	\begin{align*}
+	\mathbf{a}_{n+1} & =  \mathbf{a}_n + \Delta t \dot{\mathbf{a}}_{n+1} \\
+	\frac{\mathbf{a}_{n+1} - \mathbf{a}_n }{\Delta t} & = \dot{\mathbf{a}}_n
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+Since the time derivative term is evaluated at $t_{n+1}$, we pose the semi-discrete heat
+equation at $t_{n+1}$,
+\mode<beamer>{
+	\begin{equation*}
+	\mathbf{M} \dot{\mathbf{a}}_{n+1} + \mathbf{K} \mathbf{a}_{n+1} = \mathbf{b}_{n+1}
+	\end{equation*}
+	
+	Inserting the backward Euler expression for $\dot{\mathbf{a}}$, we have
+	
+	\begin{equation*}
+	\mathbf{M} \frac{\mathbf{a}_{n+1} - \mathbf{a}_n }{\Delta t} + \mathbf{K} \mathbf{a}_{n+1} = \mathbf{b}_{n+1}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Backward Euler}
+Collecting the unknown terms on the left-hand side and the known terms on the right-
+hand side:
+\mode<beamer>{
+	\begin{equation*}
+	\left(\mathbf{M} + \Delta t \mathbf{K}\right) \mathbf{a}_{n+1}  = \Delta t \mathbf{b}_{n+1} + \mathbf{M} \mathbf{a}_n
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\begin{itemize}
+	\item Now, even if $\mathbf{M}$ is a diagonal matrix, we still need to solve a system of equations to find
+	$\mathbf{a}_{n+1}$ because $\mathbf{K}$ is not diagonal. 
+	
+	\item A system must be solved because the backward Euler method is an \textit{implicit method}. 
+	
+	\item In stepping from $t_n$ to $t_{n+1}$, it relies on data at $t_{n+1}$ which is what characterises 
+	implicit methods. 
+	
+	\item The consequence is that a system of equations must be solved.
+\end{itemize}
+
+\end{frame}
+
+\note{
+	The backward Euler method requires far more computational effort at each time step
+	compared to the forward Euler method, yet it has the same order of accuracy $(O(\Delta t))$.
+	However it is unconditionally stable. That is, there is no critical time step and the solution
+	will remain bounded for any $\Delta t$. While each step is more expensive relative to an explicit
+	method, it is possible that far fewer total steps will be required.
+}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Summary of time-stepping schemes}
+
+\mode<beamer>{
+\begin{itemize}
+	\item Explicit schemes are characterised by conditional stability.
+	
+	\item Explicit schemes can sometimes be very efficient as there is no need to solve systems
+	of equations.
+	
+	\item Implicit schemes can be unconditionally stable (although not all implicit schemes
+	are unconditionally stable).
+	
+	\item Implicit schemes require the solution of a system of equations, which can be expensive.
+	
+	\item Whether a scheme is explicit or implicit does not infer anything regarding accuracy.
+\end{itemize}
+
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+
+\end{frame}
+
 \end{document}
