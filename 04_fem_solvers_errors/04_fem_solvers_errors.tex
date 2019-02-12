@@ -847,6 +847,29 @@ where $h$ is a measure of the size of an element. This is a very strong restrict
 means that explicit schemes are not usually practical for the heat equation.
 \end{frame}
 
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Second-order Central difference method}
+\begin{align*}
+	\dot{\mathbf{a}}_n & = \frac{\mathbf{a}_{n+1} - \mathbf{a}_{n-1} }{2\Delta t} \\
+	\ddot{\mathbf{a}}_n & = \frac{\mathbf{a}_{n-1} -2 \mathbf{a}_n + \mathbf{a}_{n+1} }{\Delta t^2}
+\end{align*}
+	
+This algorithm is explicit – it is possible	to express $\mathbf{a}_{n+1}$ in terms of quantities at $n$ and earlier times. This scheme is $O(\Delta t^2)$ 	accurate and it is conditionally stable. It is stable for:
+	\begin{equation*}
+	\Delta t \le \frac{2}{\omega_{h, max}}
+	\end{equation*}
+	
+	where $\omega_{h, max}$ is the highest natural frequency. Therefore:
+	
+	\begin{equation*}
+	\Delta t \le \frac{h}{c}
+	\end{equation*}
+
+where $c$ is the dilatation wave speed ($c = E/\rho$) and $h$ is the length of an element, which is the Courant, Friedrichs and Lewy (CFL) stability condition required for a wave to travel through an element.
+\end{frame}
+
 \subsection{Implicit method}
 %------------------------------------------------
 \begin{frame}
