@@ -1,0 +1,1037 @@
+%**************************************************************************************
+% License:
+% CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%**************************************************************************************
+
+\documentclass[notes]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+
+% Burnt orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\colorlet{beamer@blendedblue}{burntorange}
+% Pale yellow
+\definecolor{paleyellow}{rgb}{1.0, 1.0, 0.953}
+\setbeamercolor{background canvas}{bg=paleyellow}
+% Secondary and tertiary palett
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=burntorange!80!black}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=burntorange!60!black}
+
+% To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}
+% To replace the footer line in all slides with a simple slide count uncomment this line
+%\setbeamertemplate{footline}[page number]
+
+% To remove the navigation symbols from the bottom of all slides uncomment this line
+%\setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{breqn}
+\usepackage{graphicx} % for figures
+\usepackage{subcaption} % for subplots 
+\usepackage[labelsep=space,tableposition=top]{caption}
+\renewcommand{\figurename}{Fig.} 
+\usepackage{cleveref}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{adjustbox}
+\usepackage{array}
+
+\newcolumntype{R}[2]{%
+	>{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+	l%
+	<{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}% no optional argument here, please!
+
+
+% To print 2 slides on a page
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{2 on 1}[border shrink=2mm]
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+% The short title appears at the bottom of every slide, the full title is only on the title page
+\title[CE394M: Intro to geotech analysis]{CE394M Advanced Analysis in Geotechnical Engineering: Introduction} 
+\author{Krishna Kumar} % name
+\institute[UT Austin] % institution 
+{
+University of Texas at Austin \\
+\medskip
+\textit{
+  \url{krishnak@utexas.edu}} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % title page as the first slide
+\end{frame}
+
+\begin{frame}
+ % Table of contents slide, comment this block out to remove it
+ \frametitle{Overview}
+ % Throughout your presentation, if you choose to use \section{} and \subsection{} 
+ % commands, these %will automatically be printed on this slide as an overview 
+ \tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% slides
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{Geotechnical modeling}
+%------------------------------------------------
+
+\subsection{Complexity in Geotechnical modeling}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geotechnical modeling of the complex world}
+\begin{figure}
+	\mode<beamer>{
+		\includegraphics[width=0.85\textwidth]{figs/lbs.png}
+	}
+	\mode<handout>{
+		\includegraphics[width=0.85\textwidth]{figs/lbs-overview.jpg}
+	}
+	\caption{London Bridge Station, London, UK}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geotechnical modeling of the complex world}
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/victoria-station.png}
+	\caption{London Victoria station upgrade, London, UK}
+\end{figure}
+\end{frame}
+
+\note{Movements must be estimated, both of the structure and of the ground. 
+	This is particularly important if there are adjacent buildings and for 
+	sensitive services. For example, if an excavation is to be made in an 
+	urban area close to existing services and buildings, one of the key 
+	design constraints is the effect that the excavation has on the adjacent 
+	structures and services. It may be necessary to predict any structural 
+	forces induced in these existing structures and/or services.}
+
+\note{When designing any geotechnical structure, the engineer must ensure that it is
+	stable. Stability can take several forms. Firstly, the structure and support 
+	system must be stable as a whole. There must be no danger of rotational, 
+	vertical or translational failure (\textbf{\textit{local stability}}). 
+	Secondly, \textbf{\textit{overall stability}} must be established. For example, 
+	if a retaining 	structure supports sloping ground, the possibility of the 
+	construction promoting an overall slope failure should be investigated.
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/stability.png}
+	\end{figure}
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geotechnical modeling}
+\begin{figure}
+  \mode<beamer>{
+	\includegraphics[width=0.95\textwidth]{figs/geotechnical-modeling-final.png}
+  }
+  \mode<handout>{
+	\includegraphics[width=0.95\textwidth]{figs/geotechnical-modeling.png}
+  }
+\end{figure}
+\end{frame}
+
+\note{\textbf{Design requirements:} Before the design process can begin, a considerable 
+	amount of information must
+	be assembled. The basic geometry and loading conditions must be established.
+	These are usually defined by the nature of the engineering project.\\
+	
+	A geotechnical site investigation is then required to establish the ground
+	conditions. Both the soil stratigraphy and soil properties should be determined. In
+	this respect it will be necessary to determine the strength of the soil and, if ground
+	movements are important, to evaluate its stiffness too. The position of the ground
+	water table and whether or not there is underdrainage or artesian conditions must
+	also be established. The possibility of any changes to these water conditions should
+	be investigated. For example, in many major cities around the world the ground
+	water level is rising.}
+
+\note{The site investigation should also establish the location of any services (gas,
+	water, electricity, telecommunications, sewers andlor tunnels) that are in the
+	vicinity of the proposed construction. The type (strip, raft andlor piled) and depth
+	of the foundations of any adjacent buildings should also be determined. The
+	allowable movements of these services and foundations should then be established.\\
+	Any restrictions on the performance of the new geotechnical structure must be
+	identified. Such restrictions can take many different forms. For example, due to the
+	close proximity of adjacent services and structures there may be restrictions
+	imposed on ground movements.}
+
+\note{Once the above information has been collected, the design constraints on the
+	geotechnical structure can be established. These should cover the construction
+	period and the design life of the structure. This process also implicitly identifies
+	which types of structure are and are not appropriate. For example, when designing
+	an excavation, if there is a restriction on the movement of the retained ground,
+	propped or anchored embedded retaining walls are likely to be more appropriate
+	than gravity or reinforced earth walls. The design constraints also determine the
+	type of design analysis that needs to be undertaken.}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geotechnical modeling: What should be modeled?}
+\mode<beamer>{
+\begin{itemize}
+	\item Self weight effect of soils (This is why soil moves)
+	\item Construction sequence (Complex geometry)
+	\item Water movement (undrained, consolidation, drained)
+	\item Insitu stresses (stiffness/strength depends on current stresses and stress history)
+	\item Predict the ability of a design to withstand extreme loading conditions (you only have one chance)
+\end{itemize}
+}
+\mode<handout>{
+\vspace{4cm}
+}
+\begin{figure}
+	\includegraphics[width=0.95\textwidth]{figs/geotechnical-modeling-examples.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Scales of modeling in geotechnical engineering}
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/soil-scale.png}
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Soil behavior}
+\mode<beamer>{
+\begin{itemize}
+	\item nonhomogeneous,
+	\item anisotropic, 
+	\item non-linear, 
+	\item initial stress conditions, 
+	\item stress history
+	\item Geometry - very complex
+\end{itemize}
+\textbf{Soil Mechanics in practice - largely empirical}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Advanced analysis in geotechnical engineering}
+Geotechnical design:
+\mode<beamer>{
+	\begin{itemize}
+		\item Assess applied forces
+		\item evaluate ``performance" (stability \& movements) under working and ultimate loads
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+Analysis:
+\mode<beamer>{
+	\begin{itemize}
+		\item Mathematical framework to perform calculations for these quantities
+		\item Requires idealization of: geometry, soil properties, and loading conditions
+		\item Analysis is a tool in design, but design involves more: acceptable movements, constraints, site characterization, etc.
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+\note{As part of the design process, it is necessary for an engineer to perform 
+	calculations to provide estimates of the above quantities. Analysis provides 
+	the mathematical framework for such calculations. A good analysis, which 
+	simulates real behaviour, allows the engineer to understand problems better. While an
+	important part of the design process, analysis only provides the engineer with a
+	tool to quantify effects once material properties and loading conditions have been
+	set. The design process involves considerably more than analysis.}
+
+\subsection{Classical vs advanced analysis}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Classical vs advanced analysis}
+Classical approach:
+\mode<beamer>{
+	\begin{itemize}
+		\item Failure estimates
+		\begin{itemize}
+			\item rigid perfectly-plastic stress-strain assumptions
+			\item calculate factor of safety (What value do you pick?)
+		\end{itemize}
+		\item Deformation estimates
+		\begin{itemize}
+			\item Elastic analysis
+			\item Use average elastic properties (like what??)
+		\end{itemize}
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+Advanced analysis:
+\mode<beamer>{
+	\begin{itemize}
+		\item Failure and deformation are obtained from the same analysis
+		\item Handle complex geometry
+		\item More difficult to perform, more computational requirements and more info on soil behavior $\sigma - \epsilon$
+		\item Need to know how to do it right!
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\section{Numerical methods for differential equations}
+\subsection{Direct method: Matrix analysis of structures}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/matrix-analysis-structures-final.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/matrix-analysis-structures.png}
+	\end{figure}
+}
+
+\begin{itemize}
+	\item What are the known variables? \mode<beamer>{$d_1=0, P_2=0, P_3=F$(constant)}
+	\item What are the unknowns? \mode<beamer>{$P_1, d_2, d_3$}
+	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Equilibrium}
+\mode<handout>{\vspace{1cm}}
+\mode<beamer>{A structure is considered to be in equilibrium if, initially at rest, it remains 
+	at rest when subjected to a system of forces and couples. If a structure is in equilibrium, 
+	then all of its members and joints must also be in equilibrium.}
+\begin{itemize}
+	\item $P_1 = $\mode<beamer>{$-S_1 -S_2$}
+	\item $P_2 = $\mode<beamer>{$S_2 -S_3 - S_4$}
+	\item $P_3 = $\mode<beamer>{$S_1 + S_3 +  S_4$}
+\end{itemize}
+
+\mode<beamer>{
+\begin{equation*}
+\begin{bmatrix}
+P_1 \\
+P_2 \\
+P_3 \\
+\end{bmatrix} = 
+\begin{bmatrix}
+-1 & -1 &  0 &  0 \\
+ 0 &  1 & -1 & -1 \\
+ 1 &  0 &  1 &  1 \\
+\end{bmatrix}
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3 \\
+s_4 \\
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\mathbf{P} = \mathbf{A^T} \mathbf{S}
+\end{equation*}
+}
+
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Compatibility}
+\mode<handout>{\vspace{4cm}}
+\mode<beamer>{
+\begin{itemize}
+	\item compatibility relates the deformations of a structure so that its
+	various parts (members, joints, and supports) fit together without any gaps or
+	overlaps. 
+	\item ensure that the deformed shape of the structure is continuous (except at the 
+	locations of any internal hinges or rollers), and is consistent with the support
+	conditions.
+\end{itemize}
+}
+\end{frame}
+
+\note{
+	Deflection profile shown for a hinge is incompatible, because it can't be differentiated 
+	(the slope cannot be evaluated) at the hinge. Hence incompatible.
+	\begin{figure}
+		\includegraphics[width=0.55\textwidth]{figs/incompatible-deflection-profile-hinge.png}
+	\end{figure}
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Compatibility}
+$v$ = internal spring distortion
+$d$ = nodal displacement
+\begin{itemize}
+	\item $v_1 = $\mode<beamer>{$d_3 - d_1$}
+	\item $v_2 = $\mode<beamer>{$d_2 - d_1$}
+	\item $v_3 = $\mode<beamer>{$d_3 - d_2$}
+	\item $v_4 = $\mode<beamer>{$d_3 - d_2$}
+\end{itemize}
+
+
+\mode<beamer>{
+	\begin{equation*}
+	\begin{bmatrix}
+	v_1 \\
+	v_2 \\
+	v_3 \\
+	v_4 \\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+	-1 &  0 &  1 \\
+ 	-1 &  1 &  0 \\
+	 0 & -1 &  1 \\
+	 0 & -1 &  1 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+	d_1 \\
+	d_2 \\
+	d_3 \\
+	\end{bmatrix}
+	\end{equation*}
+	
+	\begin{equation*}
+	\mathbf{v} = \mathbf{A} \mathbf{d}
+	\end{equation*}
+}
+
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Physical condition}
+Force-distance relationship: spring constant
+
+\begin{center}
+	\begin{tabular}{l l l l l}
+		\toprule
+		\textbf{spring \#} & 1 & 2 & 3 & 4 \\
+		\textbf{stiffness ($F.L^{-1}$)} & 3 & 2 & 1 & 2 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\mode<beamer>{
+	\begin{equation*}
+	\begin{bmatrix}
+	S_1 \\
+	S_2 \\
+	S_3 \\
+	S_4 \\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+	3 & 0 & 0 & 0 \\
+	0 & 2 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
+	0 & 0 & 0 & 2 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+	v_1 \\
+	v_2 \\
+	v_3 \\
+	v_4 \\
+	\end{bmatrix}
+	\end{equation*}
+	
+	\begin{equation*}
+	\mathbf{s} = \mathbf{D} \mathbf{v}
+	\end{equation*}
+}
+
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures: Direct Method}
+Combine all the equations:
+$\mathbf{P}$ = \mode<beamer>{$\mathbf{A^TS = A^TDv = A^TDAd = Kd}$}
+
+where $\mathbf{K}$ = \mode<beamer>{$A^T D A $ (Global stiffness matrix)}
+\mode<beamer>{
+\begin{align*} 	
+K & = 
+\begin{bmatrix}
+-1 & -1 &  0 &  0 \\
+0 &  1 & -1 & -1 \\
+1 &  0 &  1 &  1 \\
+\end{bmatrix}
+\begin{bmatrix}
+3 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 2 \\
+\end{bmatrix}
+\begin{bmatrix}
+-1 &  0 &  1 \\
+-1 &  1 &  0 \\
+0 & -1 &  1 \\
+0 & -1 &  1 \\
+\end{bmatrix} \notag \\%
+%
+%
+ &= 
+ \begin{bmatrix}
+  5 & -2 & -3 \\
+ -2 &  5 & -3 \\
+ -3 & -3 &  6 \\
+ \end{bmatrix} \\%
+%
+%
+\begin{bmatrix}
+P_1 \\
+P_2 \\
+P_3 \\
+\end{bmatrix}
+& =
+\begin{bmatrix}
+5 & -2 & -3 \\
+-2 &  5 & -3 \\
+-3 & -3 &  6 \\
+\end{bmatrix}
+\begin{bmatrix}
+d_1 \\
+d_2 \\
+d_3 \\
+\end{bmatrix}
+\end{align*}
+Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ and $d_3$
+}
+
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note{
+	Transpose of a linear mapping of two vectors of the same field (system), makes both 
+	$\mathbf{A}$ and $\mathbf{A}^T$ for forces and displacement relationships to have the 
+	same $\mathbf{A}$ matrix. 
+	$\mathbf{A}$ is used when relating nodal to internal variables, and 
+	$\mathbf{A}^T$ is used for the inverse relation. Note: $\mathbf{A}$ is a non-square matrix 
+	and is not invertible. $\mathbf{A}^T \ne \mathbf{A}^{-1} $
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Matrix analysis of structures}
+\begin{figure}
+	\mode<beamer>{
+		\includegraphics[width=0.6\textwidth]{figs/computational-workflow.pdf}
+	}
+	\mode<handout>{
+		\vspace{5cm}
+	}
+\end{figure}
+\end{frame}
+
+\note{\textbf{Stiffness method}: Tensile forces 	
+	produce a total elongation 	(deformation) $\delta$ of the spring. For linear springs, the force $T$ and the displacement $u$ are related by Hooke’s law. where deformation of the spring $\delta$ is given as: $\delta = u(L) - u(0) = u_2 - u_1$. Forces $f_{1x} = -T$ and $f_{2x} = T$.
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/spring-stiffness.png}
+	\end{figure}
+}
+
+\note{
+	We can now derive the spring element
+	stiffness matrix as follows. Rewrite the forces in terms of the nodal displacements:
+	\begin{equation*}
+		T = -f_{1x} = k(u_2 - u_1) \rightarrow f_{1x} = k(u_1 - u_2)
+	\end{equation*}
+	
+	\begin{equation*}
+		T = f_{2x} = k(u_2 - u_1) \rightarrow f_{2x} = k(- u_1 + u_2)
+	\end{equation*}
+	
+	We can write the last two force-displacement relationships in matrix form as:
+	\begin{equation*}
+	\begin{bmatrix}
+		f_{1x}\\
+		f_{2x}\\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+		k & -k \\
+		-k & k\\
+	\end{bmatrix} 
+	\begin{bmatrix}
+		u_{1}\\
+		u_{2}\\
+	\end{bmatrix}	
+	\end{equation*}
+}
+
+
+\note{\textbf{Stiffness method} Force $F = K * a$. Where, $K$ represents force at DOF given unit displacement at DOF. 
+	\begin{equation*}
+	\begin{bmatrix}
+	F_1 \\
+	F_2 \\
+	\end{bmatrix} = %
+	\begin{bmatrix}
+	K_{11} & K_{12} \\
+	K_{21} & K_{22} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+	a_1 \\
+	a_2 \\
+	\end{bmatrix}	
+	\end{equation*}
+	
+	$K_{ij}$ is force at DOF $i$ given unit displacement at DOF $j$ with all other dof held constant.
+	
+	\noindent
+	\fboxsep=0pt
+	\noindent
+	\begin{minipage}[t]{0.68\linewidth}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{figs/stiffness-method.png}
+		\end{figure}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}[t]{0.28\linewidth}
+		\begin{equation*}
+		K = %
+		\begin{bmatrix}
+		k_a + k_b & -k_b \\
+		-k_b & k_b \\
+		\end{bmatrix}
+		\end{equation*}
+	\end{minipage}	
+}
+
+%------------------------------------------------
+\section{Governing equations in stress-deformation analysis}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations in stress-deformation analysis}
+In stress-deformation analysis, we need to consider:
+\mode<beamer>{
+	\begin{itemize}
+		\item \textbf{Equilibrium - static conditions}
+		\begin{itemize}
+			\item forces and stress must agree across the region of interest. 
+			(geometric problem)
+		\end{itemize}
+		\item \textbf{Compatibility-kinematic conditions}
+		\begin{itemize}
+			\item geometry, displacement and strains must agree across the
+			      region of interest. (geometric problem)
+      	\end{itemize}
+		\item \textbf{Stress-strain relationship on physical conditions}
+		\begin{itemize}
+			\item material dependent relationship between stress and strain
+			must be specified. (element level)
+		\end{itemize}
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+
+%------------------------------------------------
+\subsection{Stress equilibrium}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations in stress-deformation analysis}
+The governing differential equation for equilibrium expresses: \mode<beamer>{$\sum \mathbf{F} = m \mathbf{a} $}
+\mode<beamer>{
+ \noindent
+ \fboxsep=0pt
+ \noindent
+ \begin{minipage}[t]{0.48\linewidth}
+	 \begin{itemize}
+		\item $\sigma_{xx}$ acting on face $dy$ in the $-x$ direction
+		\item $\tau_{xy}$ acting on face $dx$ in the $-x$ direction
+		
+		\item $\sigma_{xx} + \frac{\partial \sigma_{xx}}{\partial x} dx$ acting on face $dy$ in the $+x$ direction
+		
+		\item $\tau_{xy} + \frac{\partial \tau_{xy}}{\partial y} dy$ acting on face $dx$ in the $+x$ direction
+		
+		\item Plus ``body forces'' due to gravity: $\rho f_x dx dy$ where $f_x$ is body force per unit mass
+	\end{itemize}
+ \end{minipage}%
+ \hfill%
+ \begin{minipage}[t]{0.48\linewidth}
+ 	\begin{figure}
+ 		\includegraphics[width=\linewidth]{figs/equilibrium-finished.pdf}
+ 	\end{figure}
+ \end{minipage}
+}
+\mode<handout>{
+ 	\begin{figure}
+		\includegraphics[width=0.6\linewidth]{figs/equilibrium.pdf}
+	\end{figure}
+}
+\end{frame}
+
+\note{
+	$\sigma_{xy}$, the term $x$ denotes the direction of the stress component acts on a cut normal to the x-axis (denotes the plane). The $y$ denotes the direction of the stress component.\\
+	
+	Frequently in the literature the axes are labelled 1, 2 \& 3 rather than x, y \& z.
+}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium equations}
+Summing all this in the x-direction gives:
+\mode<beamer>{
+	\begin{multline*}
+	-\sigma_{xx}dy - \tau_{xy}dx + %
+	\left( \sigma_{xx} + \frac{\partial \sigma_{xx}}{\partial x} dx \right) dy \\%
+	+ \left( \tau_{xy} + \frac{\partial \tau_{xy}}{\partial y} dy \right) dx + \rho f_x dx dy = %
+	\rho dx dy a_x	
+	\end{multline*}
+}	
+\mode<handout>{
+	\vspace{2.5cm}
+}
+
+Cleaning up terms that cancel, and dividing through by \(dx dy\) gives
+\mode<beamer>{
+	\begin{equation*}
+	\frac{\partial \sigma_{xx}}{\partial x} + %
+	\frac{\partial \tau_{xy}}{\partial y}   + \rho f_x = %
+	\rho a_x
+	\end{equation*}
+}	
+\mode<handout>{
+	\vspace{2cm}
+}
+	And summing forces in the y-direction leads to:
+\mode<beamer>{
+	\begin{equation*}	
+	\frac{\partial \sigma_{yy}}{\partial y} + %
+	\frac{\partial \tau_{xy}}{\partial x}   + \rho f_y = %
+	\rho a_y
+	\end{equation*}
+}	
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium in 3D}
+ 	\begin{figure}
+		\includegraphics[width=0.8\linewidth]{figs/stress-equilibrium.png}
+	\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium in 3D}
+\mode<beamer>{
+	\begin{align*}
+	\frac{\partial \sigma_{xx}}{\partial x} +%
+	\frac{\partial \sigma_{xy}}{\partial y} +%
+	\frac{\partial \sigma_{xz}}{\partial z} + \rho f_x &= \rho a_x \\
+	%
+	\frac{\partial \sigma_{yx}}{\partial x} +%
+	\frac{\partial \sigma_{yy}}{\partial y} +%
+	\frac{\partial \sigma_{yz}}{\partial z} + \rho f_y &= \rho a_y \\
+	%
+	\frac{\partial \sigma_{zx}}{\partial x} +%
+	\frac{\partial \sigma_{zy}}{\partial y} +%
+	\frac{\partial \sigma_{zz}}{\partial z} + \rho f_z &= \rho a_z \\
+	\end{align*}
+}	
+\mode<handout>{
+\vspace{2.5cm}
+}
+The governing differential equation for equilibrium expresses $\sum \mathbf{F}=m\mathbf{a}$ in terms of derivatives of the stress tensor as:
+\mode<beamer>{
+$\nabla \cdot \bm{\sigma} + \rho \mathbf{f} = \rho \mathbf{a}$
+
+$\bm{\sigma}$ is the stress tensor, \\
+$\rho$ is density, \\
+$\mathbf{f}$ is the body force vector per unit mass and \\
+$\mathbf{a}$ is the acceleration vector.
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Stress equilibrium}
+If the object is in equilibrium, then \mode<beamer>{$\mathbf{a}=0$ and $\sum \mathbf{F}=0$.} 
+
+\mode<beamer>{
+	\begin{align*}
+	\frac{\partial \sigma_{xx}}{\partial x} +%
+	\frac{\partial \sigma_{xy}}{\partial y} +%
+	\frac{\partial \sigma_{xz}}{\partial z} + b_x &= 0\\
+	%
+	\frac{\partial \sigma_{yx}}{\partial x} +%
+	\frac{\partial \sigma_{yy}}{\partial y} +%
+	\frac{\partial \sigma_{yz}}{\partial z} + b_y &= 0\\
+	%
+	\frac{\partial \sigma_{zx}}{\partial x} +%
+	\frac{\partial \sigma_{zy}}{\partial y} +%
+	\frac{\partial \sigma_{zz}}{\partial z} + b_z &= 0\\
+	\end{align*}
+}	
+\mode<handout>{
+	\vspace{2.5cm}
+}
+Stresses: \mode<beamer>{$\left[\sigma_{xx}, \sigma_{yy}, \sigma_{zz}, \sigma_{xy}, \sigma_{yz}, \sigma_{zx}\right]^T$.}
+
+Equilibrium equation: \mode<beamer>{$\nabla^T \bm{\sigma} + \mathbf{b} = 0$}
+
+Then: \mode<beamer>{
+	\begin{equation*}
+	\nabla^T = %
+	\begin{bmatrix}
+	\frac{\partial}{\partial x} & 0 & 0 & \frac{\partial}{\partial y} & 0 & \frac{\partial}{\partial z} \\
+	0 & \frac{\partial}{\partial y} & 0 & \frac{\partial}{\partial x} & \frac{\partial}{\partial z} & 0 \\
+	0 & 0 & \frac{\partial}{\partial z} & 0 & \frac{\partial}{\partial y} & \frac{\partial}{\partial x}
+	\end{bmatrix}
+	\end{equation*}
+}
+\end{frame}
+
+\note{
+	Divergence is a vector operator that produces a scalar field, giving the quantity of a vector 
+	field's source at each point. In physical terms, the extent to which there is more of some 
+	quantity exiting an infinitesimal region of space than entering it. If the divergence is nonzero 
+	at some point then there is compression or expansion at that point. 
+}
+%------------------------------------------------
+\subsection{Compatibility condition}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations: Compatibility}
+ 	\begin{figure}
+	\includegraphics[width=\linewidth]{figs/compatibility.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Governing equations: Displacement - strain relationship}
+Displacement - strain relationship: \mode<beamer>{$\bm\varepsilon = \nabla \mathbf{u}$}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+	\mode<beamer>{
+		Where,
+		\begin{align*}
+		\varepsilon_{xx} & = \frac{\partial u_x}{\partial x}	\\
+		\varepsilon_{yy} & = \frac{\partial u_y}{\partial y}	\\
+		\gamma_{xy} & = \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x}	\\
+		\end{align*}
+		
+		\begin{equation*}
+			\frac{\partial^2\varepsilon_{xx}}{\partial y^2} + \frac{\partial^2 \varepsilon_{yy}}{\partial x^2} = \frac{\partial^2 \gamma_{xy}}{\partial x \partial y}
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{5cm}
+	}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+	\begin{figure}
+		\includegraphics[width=\linewidth]{figs/geometric-strain.pdf}
+	\end{figure}
+	\mode<beamer>{
+		\begin{equation*}
+		\varepsilon_{xy} = \frac{\gamma_{xy}}{2} = \frac{1}{2} \left( \frac{\partial u_x}{\partial y} + \frac{\partial u_y}{\partial x} \right)
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+\end{minipage}%
+\end{frame}
+
+\note{
+	\textbf{Compatibility in 3D}
+	\begin{figure}
+		\includegraphics[width=0.85\textwidth]{figs/compatibility-3d.png}
+	\end{figure}
+}
+
+%------------------------------------------------
+\subsection{Stress-strain relationship}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equilibrium and compatibility conditions}
+Combining the Equilibrium and Compatibility conditions gives:
+\begin{itemize}
+	\item Unknowns: \mode<beamer>{6 stresses + 6 strains + 3 displacements = 15}
+	\item Equations:  \mode<beamer>{3 equilibrium + 6 compatibility = 9}
+\end{itemize}
+\mode<beamer>{To obtain a solution therefore requires 6 more equations. These come from the
+constitutive relationships}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Governing equations: Stress-strain relationship}
+Stress - strain relationship: \mode<beamer>{$\bm \sigma = \mathbf{D} \bm\varepsilon$}
+
+\begin{equation*}
+	\begin{bmatrix}
+	\sigma_{xx} \\
+	\sigma_{yy} \\
+	\sigma_{zz} \\
+	\sigma_{xy} \\
+	\sigma_{yz} \\
+	\sigma_{zx} \\
+	\end{bmatrix} %
+	= %
+	\begin{bmatrix}
+	D_{xxxx} & D_{xxyy} & D_{xxzz} & D_{xxxy} &   D_{xxyz} & D_{xxzx}\\
+	D_{yyxx} & D_{yyyy} & D_{yyzz} & D_{yyxy} & D_{yyyz} & D_{yyzx}\\
+	D_{zzxx} & D_{zzyy} & D_{zzzz} & D_{zzxy} & D_{zzyz} & D_{zzzx}\\
+	D_{xyxx} & D_{xyyy} & D_{xyzz} & D_{xyxy} &   D_{xyyz} & D_{xyzx}\\
+	D_{yzxx} & D_{yzyy} & D_{yzzz} & D_{yzxy} & D_{yzyz} & D_{yzzx}\\
+	D_{zxxx} & D_{zxyy} & D_{zxzz} & D_{zxxy} & D_{zxyz} & D_{zxzx}\\
+	\end{bmatrix} %
+	\begin{bmatrix}
+	\varepsilon_{xx} \\
+	\varepsilon_{yy} \\
+	\varepsilon_{zz} \\
+	\varepsilon_{xy} \\
+	\varepsilon_{yz} \\
+	\varepsilon_{zx} \\
+	\end{bmatrix}
+\end{equation*}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Governing equations in stress-deformation analysis}
+What are the variables used in the governing equations?
+\mode<beamer>{
+	\begin{enumerate}
+		\item displacements $\mathbf{u}$ in the body
+		\item strains $\bm\varepsilon$ in the body or within the elements
+		\item stresses $\bm\sigma$ in the body or within the elements
+	\end{enumerate}
+}	
+\mode<handout>{
+\vspace{2.5cm}
+}
+Advanced analysis involves:
+\mode<beamer>{
+	\begin{enumerate}
+		\item Equilibrium: External forces + internal stresses agree
+		\item Compatibility: Displacements fields agree (no gaps) + strains (derivatives)
+		\item Stress-strain relationship (constitutive behaviour)
+	\end{enumerate}
+}	
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\end{frame}
+
+\note{
+	\textbf{Lower and upper bound theorems:} The exact determination of loads involved in the plastic deformation requires simultaneous solution of three sets of conditions:
+	\begin{enumerate}
+		\item equations of equilibrium
+		\item equations of compatibility
+		\item appropriate consitutive criteria (yield condition and flow rule)
+	\end{enumerate}
+
+	Exact dertermination is often not easy, may be appropriate for simple shapes, but other cases we may have to use \textit{numerical method}.
+}
+
+\note{
+	\textbf{Lower bound theorem}: Any applied load is less than the actual limiting load, i.e., they will not cause collapse. \\
+	
+	In rigid-plastic continua ther can be no plastic deformation under loads for which a stress distribution can be found that:
+	\begin{enumerate}
+		\item satisfies equilibrium everywhere
+		\item balances the externally applied loads, and
+		\item is everywhere within the yield locus.
+	\end{enumerate}
+
+	\textbf{Relax compatibility.}
+}
+
+
+\note{
+	\textbf{Upper bound theorem}: Apply enough load to acheive the desired change in component shape, e.g., process machinery \\
+	
+	In rigid-plastic continua, plastic deformation must occur for any system of load calculated by equating the external work done by loads to the internal plastic work calcuated from a distribution of strain increments that: 
+	\begin{enumerate}
+		\item satisfies the boundary displacement conditions, and
+		\item do not infringe incompressibility.
+	\end{enumerate}
+	
+	\textbf{Relax equilibrium}
+}
+
+\note {Limit equilibrium
+	In this method of analysis an 'arbitrary' failure surface is adopted (assumed) and
+	equilibrium conditions are considered for the failing soil mass, assuming that the
+	failure criterion holds everywhere along the failure surface. The failure surface
+	may be planar, curved or some combination of these. Only the global equilibrium
+	of the `blocks' of soil between the failure surfaces and the boundaries of the
+	problem are considered. The internal stress distribution within the blocks of soil is
+	not considered. Coulomb's wedge analysis and the method of slices are examples
+	of limit equilibrium calculations. \\
+	
+	Only a global equilibrium, rather than the local equilibirium of every point in the soil, 
+	is satisified.
+}
+\note{
+	\begin{table}[]
+		\begin{tabular}{llllll}
+			\toprule
+			\textbf{Method of analysis} & \multicolumn{5}{c}{\textbf{Solution requirements}} \\
+			\midrule
+			& \rot{\textbf{Equilibrium}} & \rot{\textbf{Compatibility}} &
+			\textbf{Constitutive law} &
+			\rot{\textbf{Force}} & \rot{\textbf{Disp}} \\
+			\midrule
+			\textbf{Closed form} & $\checkmark$ & $\checkmark$ & Linear elastic & $\checkmark$ & $\checkmark$ \\
+			\textbf{Limit equilibrium} & $\checkmark$ &
+			$\times$ & Rigid with a failure criterion & $\checkmark$ & $\times$ \\
+			\textbf{Lower bound} & $\checkmark$ & $\times$ & Plasticity + flow-rule & $\checkmark$ & $\times$ \\
+			\textbf{Upper bound} & $\times$ & $\checkmark$ & Platicity + flow-rule & $\times$ & $\checkmark$ \\
+			\textbf{Numerical analysis} & $\checkmark$ & $\checkmark$ & Any & $\checkmark$ & $\checkmark$ \\
+			\bottomrule                        
+		\end{tabular}
+	\end{table}
+}
+\end{document} 
