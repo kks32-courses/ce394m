@@ -3,6 +3,12 @@
 
 [![License](https://img.shields.io/badge/license-CC--By--SA--4.0-brightgreen.svg)](https://raw.githubusercontent.com/kks32-courses/ce394m/master/license.md)
 
+# Jupyter Notebook
+
+Jupyter notebooks in support of the lecture course CE 394M 'Advanced analysis in geotechnical engineering'.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/kks32-courses/ce394m/master)
+
 ## Course outline
 
     1. Introduction to numerical modeling in geomechanics (2 lectures)
