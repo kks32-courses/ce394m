@@ -662,7 +662,7 @@ is computed from
 		%
 		\vspace{1em}
 		%
-		x & = 0.0 N_1^{4Q} + 0.0  N_2^{4Q} + 3.0  N_3^{4Q} + 5.0  N_4^{4Q} \\
+		y & = 0.0 N_1^{4Q} + 0.0  N_2^{4Q} + 3.0  N_3^{4Q} + 5.0  N_4^{4Q} \\
 		% 
 		& = - \frac{1}{2} \xi + 2 \eta - \frac{1}{2}\xi \eta + 2 \\
 	\end{align*}
@@ -728,7 +728,7 @@ that the determinant of the Jacobian is zero or negative close to the non-convex
 \begin{frame}
 \frametitle{Numerical integration (Quadrature)}
 \begin{itemize}
-	\item During the finite element solution procedure, it is necessary to integrate various quantities,	for instance the conductance matrix or source vectors. 
+	\item During the finite element solution procedure, it is necessary to integrate various quantities,	for instance the stiffness matrix or force vectors. 
 	\item For isoparametric elements these
 	quantities must in general be integrated numerically due to the presence of the Jacobian.
 	\item Although there are many different numerical integration techniques, in finite elements
@@ -1005,7 +1005,7 @@ Alternatively, the integration can be performed analytically:
 
 \begin{align*}
 	\int_{-1}^{+1}f(\xi) d\xi & = \int_{-1}^{+1}(\alpha_1 + \alpha_2 \xi + \alpha_3 \xi^2 + \alpha_4 \xi^3) dx \\
-	& = \left[ \alpha_1 \xi + \alpha_2 \frac{\xi^2}{2}\xi + \alpha_3 \frac{\xi^3}{3} + \alpha_4 \frac{\xi^4}{4} \right]_{-1}^{+1} \\
+	& = \left[ \alpha_1 \xi + \alpha_2 \frac{\xi^2}{2} + \alpha_3 \frac{\xi^3}{3} + \alpha_4 \frac{\xi^4}{4} \right]_{-1}^{+1} \\
 	& = 2 \alpha_1 + 0 + \frac{2}{3} \alpha_3 + 0
 \end{align*}
 \end{frame}
