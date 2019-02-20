@@ -578,6 +578,15 @@ The inverse of $\mathbf{J}^e$ is:
 Where $\left|\mathbf{J}^e\right|$ is the determinant of the Jacobian, which represents the ratio of an area element in the physical domain to the corresponding area element in the parent domain.
 \end{frame}
 
+\note{
+	The Jacobian can also be thought of as describing the amount of ``stretching'', ``rotating'' or ``transforming'' that a transformation imposes locally. For example, if $(x^\prime, y^\prime) = f(x, y)$ is used to transform an image, the Jacobian $\mathbf{J} f(x, y)$, describes how the image in the neighborhood of $(x, y)$ is transformed.
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.6\textwidth]{figs/jacobian.png}
+		\caption*{The Jacobian at a point gives the best linear approximation of the distorted parallelogram near that point (in translucent white on the right-side), and the Jacobian determinant gives the ratio of the area of the approximating parallelogram to that of the original square.}
+	\end{figure}
+}
 
 %------------------------------------------------
 \begin{frame}
