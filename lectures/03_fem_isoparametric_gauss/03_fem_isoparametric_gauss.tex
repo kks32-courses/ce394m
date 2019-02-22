@@ -1123,6 +1123,31 @@ dx dy = \left|\mathbf{J}^e \right| d\xi d\eta
 }
 
 \note{
+	The neutral axis is the line $y = 0$, and cross-sections, which are initially perpendicular to the neutral axis, are deìned by lines of constant $x$. If the element is subjected to applied moments on the left and right edges, the resulting deformation is bilinear. As shown, it is symmetric about $x = 0$:
+	
+	\begin{align*}
+		u & = \delta \frac{x}{b}\frac{y}{h} \\
+		v & = 0
+	\end{align*}
+	
+	Differentiating, the strain, as a function of $x$ and $y$:
+	
+	\begin{align*}
+		\epsilon_{11} &= \frac{\delta y}{bh} \\
+		\epsilon_{2} &= 0 \\
+		\epsilon_{11} &= \frac{\delta x}{2bh}
+	\end{align*}
+}
+
+\note{
+	\textbf{Volume Locking}
+	The volume strain is $\epsilon_{11} + \epsilon_{22} + \epsilon_{33}$. In plane strain , $\epsilon_{33}$ is always zero. An incompressible material in plane strain therefore requires $\epsilon_{22} = -\epsilon_{11}$. Looking at strain equation, $\epsilon_{22}$ must be linear in $y$ just like $\epsilon_{33}$ to satisfy the incompressibility constraint.
+}
+
+\note{
+	This demonstrates that a quadrilateral element with linear shape functions can't satisfy the incompressibility constraint exactly in bending. Even if we ignore the impossibility of satisfying the incompressibility constraint pointwise throughout the element, it's also clear that the constraint can't be satisfied at the Gauss points for 2 x 2 integration because the sign of $\epsilon_{22}$ must change sign between the upper and lower rows of integration points. The sign change implies that $\epsilon_{22}$ must be at least linear in $y$, which therefore implies that $v$ must be at least quadratic in $y$. There is one point where the incompressibility constraint is satisfied for the bending mode, namely the element centroid. The incompressibility constraint is, therefore, usually imposed at the element centroid in 4-node quadrilateral and 8-node brick elements.
+}
+\note{
 	Use reduced integration method to ``soften'' the element.
 	\begin{itemize}
 		\item 4 node isoparametric element uses 4 integration points, but one point in the middle in reduced integration. 
