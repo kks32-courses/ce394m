@@ -201,6 +201,24 @@ The integration has to be carried over the current volume and surface (of the fi
 	\vspace{6cm}
 }
 \end{frame}
+
+\note {
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.65\textwidth]{figs/tangent-stiffness-explained.png}
+	\end{figure}	
+}
+\note {
+The analysis starts with the application of $\Delta R$. The incremental global stiffness matrix $\left[\mathbf{K}_G\right]^1$ for this increment is evaluated based on the unstressed state of the bar
+corresponding to point `\textit{a}'. For an elasto-plastic material this might be constructed
+using the elastic constitutive matrix $[\mathbf{D}]$. Equation is then solved to determine the nodal displacements ${\Delta d}^1$. As the material stiffness is assumed to remain constant, the load displacement curve follows the straight line $ab^\prime$. In reality, the stiffness of the material does not remain constant during this loading
+increment and the true solution is represented by the curved path `\textit{ab}'. There is therefore an error in the predicted displacement equal to the distance `$b^\prime b$', however in the tangent stiffness
+Load approach this error is neglected. The
+second increment of load, $\Delta R^2$, is then
+applied, with the incremental global 
+stiffness matrix $\left[\mathbf{K}_G\right]^2$ evaluated using the stresses and strains appropriate to
+the end of increment 1, i.e. point 'b.'
+}
 \note{
 	In the incremental solution we divide the load into increments $\Delta P = \lambda P$, where $\lambda$ is also known as a load factor and apply a repeated solution of $\Delta u = K^{-1} \Delta P$. \\
 	

@@ -1113,6 +1113,30 @@ dx dy = \left|\mathbf{J}^e \right| d\xi d\eta
 }
 \end{frame}
 
+\note{
+ %https://www.dynasupport.com/tutorial/element-locking/locking-in-a-quadrilateral-element
+ \textbf{Volume mesh locking} Conventional FE formulations produce very stiff behavior of an element when modeling nearly incompressible materials. The volume at each integration point is fixed and this condition puts sever constraints on the kinetmatically admissible displacement fields at the nodes. The stiff behaviour is called ``\textbf{mesh locking}''. For soils, incompressible conditions (no volume change) occurs when it is in undrained condition. 
+ \begin{figure}[ht]
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{figs/mesh-locking.png}
+ \end{figure}
+}
+
+\note{
+	Use reduced integration method to ``soften'' the element.
+	\begin{itemize}
+		\item 4 node isoparametric element uses 4 integration points, but one point in the middle in reduced integration. 
+		\item The solution may be affected by the mesh size and mesh instability. Need to investigate there are no problmes before the analysis. 
+		\item This problem is because of lower order FEs.
+	\end{itemize}
+
+	Use selectively reduced integration method
+	\begin{itemize}
+		\item Volumetirc and deviatoric strains are decomposed and different integration schemes are used.
+		\item Some commercial programs have this capability
+	\end{itemize}
+}
+
 %------------------------------------------------
 \begin{frame}
 \frametitle{Modeling considerations: Element geometries}
