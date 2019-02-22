@@ -1114,6 +1114,10 @@ dx dy = \left|\mathbf{J}^e \right| d\xi d\eta
 \end{frame}
 
 \note{
+	Under some circumstances the displacements calculated by the finite element method are orders of magnitude smaller than they should be, and when this happens, the elements are said to be locking. The two most common types of locking are shear and pressure locking. Locking occurs in lower order elements because an elementes kinematics arenet rich enough to represent the correct solution. Shear locking occurs when elements are subjected to bending, and pressure locking occurs when the material is incompressible. Most of the research on reducing locking is devoted to elements with linear shape functions, with the remainder devoted to quadratic elements.
+}
+
+\note{
  %https://www.dynasupport.com/tutorial/element-locking/locking-in-a-quadrilateral-element
  \textbf{Volume mesh locking} Conventional FE formulations produce very stiff behavior of an element when modeling nearly incompressible materials. The volume at each integration point is fixed and this condition puts sever constraints on the kinetmatically admissible displacement fields at the nodes. The stiff behaviour is called ``\textbf{mesh locking}''. For soils, incompressible conditions (no volume change) occurs when it is in undrained condition. 
  \begin{figure}[ht]
