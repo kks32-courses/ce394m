@@ -59,14 +59,14 @@
 			\item $\int_{0}^{3} (3x^2 + x) dx$
 		\end{enumerate}
 		
-	\item Consider the following quadrilateral mesh, sketch (1D is fine) the temperature distribution across the mesh assuming a hear source on the left boundary of the mesh and comment on the suitability of the mesh for finite element computation and the need for the transition element (element \#2)?
+	\item Consider the following quadrilateral mesh, sketch (1D is fine) the temperature and its gradient distribution across the mesh assuming a hear source on the left boundary of the mesh and comment on the suitability of the mesh for finite element computation and the need for the transition element (element \#2)?
 				
 		\begin{figure}[!h]
 			\centering
 			\includegraphics[width=0.7\textwidth]{figs/transition-elements.png}
 		\end{figure}
 
-	\item Develop a Python script for the Newton Raphson method to solve non-linear force-displacement relationships. Test and comment on the accuracy and efficiency of the NR to solve: $f = - 2 u^2 + 2 u$, where $u$ denotes the displacement and $f$ refers to the internal force. For the analytical solution plot the displacement $u$ between 0 and 1.
+	\item Develop a Python script for the Newton Raphson method to solve non-linear force-displacement relationships. Test and comment on the accuracy and efficiency of the NR to solve: $F = - 2 u^2 + 2 u$, where $u$ denotes the displacement and $F$ refers to the internal force. For the analytical solution plot the displacement $u$ between 0 and 1.
 	
 	
 	\item Two FE simulations of a 3D foundation settlement are performed using a structured mesh of tri-linear (8-noded) hexahedral elements. Assume the geometry of the mesh is cubic and all the elements are hexahedron and of the same size. Case A uses $n$ elements and Case B uses $2n$ elements, where $n$ is large.
