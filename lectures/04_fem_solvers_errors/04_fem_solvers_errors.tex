@@ -358,6 +358,163 @@ to determine $u$ satisfying $R(u)= 0$.
 
 %------------------------------------------------
 \begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+In Newton's method:
+\mode<beamer>{
+	\begin{equation*}
+		{R} \equiv [K]{u} -{F} = 0
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+
+where ${\mathbf{R}}$ is the residual vector, we expand ${\mathbf{R}}$ in Taylor's series:
+	\begin{equation*}
+		{\mathbf{R({u^{r+1}})}} = {\mathbf{R({u^{r}})}} + \left(\frac{\partial \mathbf{R}}{\partial\mathbf{u}}\right)^{(r)}\cdot {\delta \mathbf{u}} + \dots
+	\end{equation*}
+	Omitting higher order terms (2):
+	\begin{align*}
+		\left(\frac{\partial \mathbf{R}}{\partial\mathbf{u}}\right)^{(r)}\cdot {\delta \mathbf{u}} & = -{\mathbf{R({u^{r}})}} \\
+		\left[\mathbf{T({u})^r}\right]{\delta \mathbf{u}} & = -{\mathbf{R({u^{r}})}} \\
+	\end{align*}
+
+where $[T]$ is called the \textit{tangent matrix}
+
+\mode<beamer>{
+	\begin{equation*}
+	\left[\mathbf{T({u})^r}\right] \equiv \left(\frac{\partial \mathbf{R}}{\partial\mathbf{u}}\right)^{(r)}
+	\end{equation*}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/tangent-matrix.png}
+\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+The component definition of the tangent matrix at the element level is:
+	\begin{equation*}
+		\left[\mathbf{T({u})^r}\right] = K + \frac{\partial K}{\partial u} \rightarrow 
+		\quad T_{ij} = K_{ij} + \sum_{m = 1}^n \frac{\partial K_{im}}{\partial u_j}u_m
+	\end{equation*}
+
+The residual vector after $r$ iteration is:
+\mode<beamer>{
+	\begin{equation*}
+		{R({u}^{(r)})} = [K({u^r})]{u}^r - F
+	\end{equation*}
+The solution at $r+1$:
+	\begin{equation*}
+		{{u}^{(r+1)}} = {u}^r + {\delta u}	
+	\end{equation*}
+	\begin{equation*}
+		{\delta \mathbf{u}}  = \left[\mathbf{T({u})^r}\right]^{-1} * {\mathbf{R({u^{r}})}}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figs/strong-form-nonlinear.png}
+\end{figure}
+The constitutive equation for this problem: $\sigma = E_0 (1 - \varepsilon)\varepsilon$
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+For the axial loading of a nonlinear bar:
+\mode<beamer>{
+	\begin{align*}
+		-\frac{dN}{dx} & = f \\
+		N & = g(\frac{du}{dx}) \\
+		N & = AE\left(1 + \frac{du}{dx}\right)\frac{du}{dx}\\
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+The weakform:
+\mode<beamer>{
+	\begin{equation*}
+	-\frac{d}{dx}\left(AE\left(1 + \frac{du}{dx}\right)\frac{du}{dx}\right) = f
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+Multiplying the weak form by a weight function:
+	\begin{equation*}
+		-\int_0^L w \frac{d}{dx}\left(AE\left(1 + \frac{du}{dx}\right)\frac{du}{dx}\right) dx = \int_0^L wf dx
+	\end{equation*}
+Applying boundary condition (Dirichlet condition of $u(0) = 0$) and doing integration by parts:	
+	\begin{equation*}
+		-\int_0^L AE\left(1 + \frac{du}{dx}\right)\frac{du}{dx} \frac{dw}{dx} dx = \int_0^L wf dx
+	\end{equation*}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figs/nonlinear-stiffness-matrix.png}
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figs/nr-nonlinear.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.65\textwidth]{figs/nr-linear.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Newton Raphson iterative procedure: FE example}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{figs/nr-linear-100.png}
+\caption{FEM displacement solution for nonlinear bar under distributed axial load. We have used 100 linear elements in these calculations.}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
 \frametitle{Newton Raphson: Drawbacks}
 \mode<beamer>{
 	\begin{figure}[ht]
