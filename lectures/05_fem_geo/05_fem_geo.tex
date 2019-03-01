@@ -47,7 +47,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 % The short title appears at the bottom of every slide, the full title is only on the title page
-\title[CE394M: FEM Geo - case-study]{CE394M: Nicoll Highway Collapse: A case-study} 
+\title[CE394M: FEM Geo - case-study]{CE394M: Finite Element Analysis in Geotechnical Engineering} 
 \author{Krishna Kumar} % name
 \institute[UT Austin] % institution 
 {
@@ -109,14 +109,6 @@ University of Texas at Austin \\
 }
 \end{frame}
 
-\note{
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=0.85\textwidth]{figs/geogrids.png}
-		\caption*{Take advantage of symmetry}
-	\end{figure}
-}
-
 \subsection{Element types}
 %------------------------------------------------
 \begin{frame}
@@ -134,7 +126,7 @@ resistance).\mode<beamer>{Examples of this type of structure are cables, reinfor
 
 \note{
 	\begin{enumerate}
-		\item Node to Node: are sprints that are used to model ties between two points. 
+		\item Node to Node: are springs that are used to model ties between two points. 
 		\item It’s not recommended to draw geometry line at position where node-to-node anchor is to be placed. 
 		\item It’s a 2 node elastic spring element with normal stiffness (Spring constant)
 		\item Element can sustain both tensile forces (anchors) as well as compressive forces (struts).
@@ -150,8 +142,7 @@ resistance).\mode<beamer>{Examples of this type of structure are cables, reinfor
 	\end{enumerate}
 	\begin{figure}[ht]
 		\centering
-		\includegraphics[width=0.85\textwidth]{figs/planestrain-axisymmetric.png}
-		\caption{Take advantage of symmetry}
+		\includegraphics[width=0.85\textwidth]{figs/geogrids.png}
 	\end{figure}
 }
 
@@ -160,7 +151,7 @@ resistance).\mode<beamer>{Examples of this type of structure are cables, reinfor
 \frametitle{1D Finite Elements: Beam element}
 two node structure element with axial and bending stiffness (no
 transverse shear deformation). Three degrees of freedom for 2D beam element (1, 2
-displacements and a moment)\mode<beamer>{Examples are sheet pile walls, structural foundation
+displacements and a moment). \mode<beamer>{Examples are sheet pile walls, structural foundation
 	beams, structural facing for reinforced soil walls.}
 \begin{figure}[h]
 	\centering
@@ -206,7 +197,7 @@ displacements and a moment)\mode<beamer>{Examples are sheet pile walls, structur
 
 \note{This element allows relative displacement between
 elements. It is capable to model soil/structure interface conditions, shear planes
-with in a soil mass. The element is ‘fictitious’ four node element made up of two
+within a soil mass. The element is ‘fictitious’ four node element made up of two
 independent nodal links. Each link consists of two nodes connected by a normal
 and shear spring as shown below. The stiffness of the springs can be non-linear,
 modelling frictional slip behaviour. The thickness of the element is assumed to be
@@ -227,7 +218,7 @@ negligibles}
 \frametitle{FE discretization}
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figs/discretization.png}
+	\includegraphics[width=\textwidth]{figs/discretization.png}
 \end{figure}
 \end{frame}
 
@@ -256,7 +247,7 @@ negligibles}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figs/refined-mesh.png}
-	\caption*{Avoid large jumps in element size: size jump should be < 3}
+	\caption*{Avoid large jumps in element size: size jump should be $< 3$}
 \end{figure}
 \end{frame}
 
@@ -354,6 +345,16 @@ negligibles}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.85\textwidth]{figs/profile.png}
+\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Soil profile}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/cpt.png}
 \end{figure}
 \end{frame}
 
@@ -696,6 +697,14 @@ The entire process of tunnel construction was monitored by thousands of geotechn
 \end{figure}
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{Quality of jet grouting}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/jet-grout-thickness.png}
+\end{figure}
+\end{frame}
 
 %------------------------------------------------
 \begin{frame}
@@ -791,7 +800,7 @@ One of the major incidents that happened prior to the collapse was in the tunnel
 
 \note{A back analysis was performed for the diaphragm walls based on effective stress approach and it was determined that the walls were not capable of withstanding the load if the excavation had proceeded. So the contractor constructed a jet grout pile layer and temporary walls to support the deflected wall and added additional struts to support the excavation before the excavation was resumed.
 
-The critical error of using the effective stress approach in place of total stress approach overestimates the undrained shear strength of the marine clays which results in underestimation of the deflection, bending moment in the walls. This explanation was pointed out by the engineering advisory panel of the owners. They strongly suggested the contractors to reanalyze using the total stress approach. The contractor declined to reanalyze claiming that their design was sound and the fact that the excavation in other areas based on the effective stress approach behaved as designed. They eventually agreed to do a back analysis based on the TSA.}
+The critical error of using the effective stress approach in place of total stress approach overestimates the undrained shear strength of the marine clays which results in underestimation of the deflection, bending moment in the walls. This explanation was pointed out by the engineering advisory panel of the owners. They strongly suggested the contractors to reanalyze using the total stress approach. \textbf{The contractor declined to reanalyze claiming that their design was sound and the fact that the excavation in other areas based on the effective stress approach behaved as designed.} They eventually agreed to do a back analysis based on the TSA.}
 
 \note{The contractors were reluctant to use the total stress approach for back analysis as they felt that the method gave large wall deflections, which would result in thicker walls. They also justified the use of effective stress approach based on the fact that the analysis provided similar results as the actual deflection of the walls. However this was partially true as for smaller depths the effective stress method would give close displacement results but as the excavation in the marine clay progresses the deflections calculated become highly un-conservative and wouldn’t match the actual deflection and so was still a very unsafe basis for design. Although this was not very clear at that point of time so the owners agreed to the further excavation of the various tunnel sections. }
 
