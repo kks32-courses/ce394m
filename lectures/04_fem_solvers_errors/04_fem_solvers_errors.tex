@@ -732,7 +732,7 @@ It is only possible that $\left\lVert u - v \right\rVert_0  = 0$ if $u = v$.
 %------------------------------------------------
 \begin{frame}
 \frametitle{Functional norms}
-The $L^2$ norm measures the `magnitude' of a function, but does reflect any details of
+The $L^2$ norm measures the `magnitude' of a function, but does not reflect any details of
 the derivatives. Other norms are the $H^1$ norm:
 \mode<beamer>{
 	\begin{equation*}
@@ -873,6 +873,37 @@ been preformed. With an estimate of the error, a judgement can be made as to the
 reliability of the result. It is then also possible to adapt the finite element mesh to reduce the error. 
 The goal of adaptivity is minimise the error for a given computational effort.
 It is a rich area of activity in applied and computational mathematics.
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Errors, compute-time, and memory}
+An elasticity problem is solved on a square domain using a uniform structured mesh
+of linear triangular elements with $n_1$ vertices in each direction ($n_1$ is very large).
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/fe-mesh-errors.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Errors, compute-time, and memory}
+\begin{enumerate}
+	\item Based on a priori estimates, what reduction in the error could you expect?
+	If the total number of elements is doubled and the element order is raised to quadratic,
+	\item Provide an estimate of the increase in the required computational time if using
+	LU decomposition.
+	\item How much more computer memory is required to store the stiffness matrix?
+	(Give the factor increase.)
+\end{enumerate}
+\end{frame}
+
+\note{
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/errors-mesh.png}
+\end{figure}
 }
 
 \section{Time-dependent problems}
