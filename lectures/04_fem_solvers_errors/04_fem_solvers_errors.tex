@@ -899,27 +899,61 @@ of linear triangular elements with $n_1$ vertices in each direction ($n_1$ is ve
 \end{enumerate}
 \end{frame}
 
-\note{
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.72\textwidth]{figs/errors-mesh.png}
-\end{figure}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Decrease in error}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.72\textwidth]{figs/errors-mesh.png}
+	\end{figure}
 }
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
 
-\note{
+%------------------------------------------------
+\begin{frame}
+\frametitle{Computational time}
+\mode<beamer>{
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figs/computational-time.png}
 	\end{figure}
 }
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
 
-
-\note{
+%------------------------------------------------
+\begin{frame}
+\frametitle{Non-zero elements in the sparse stiffness matrix}
+\mode<beamer>{
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figs/sparse-matrix-size.png}
 	\end{figure}
 }
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Memory increase}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.72\textwidth]{figs/memory-increase.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
 
 \section{Time-dependent problems}
 %------------------------------------------------
@@ -1107,7 +1141,7 @@ This algorithm is explicit – it is possible	to express $\mathbf{a}_{n+1}$ in t
 	\Delta t \le \frac{h}{c}
 	\end{equation*}
 
-where $c$ is the dilatation wave speed ($c = E/\rho$) and $h$ is the length of an element, which is the Courant, Friedrichs and Lewy (CFL) stability condition required for a wave to travel through an element.
+where $c$ is the dilatation wave speed ($c = \sqrt(E/\rho)$) and $h$ is the length of an element, which is the Courant, Friedrichs and Lewy (CFL) stability condition required for a wave to travel through an element.
 \end{frame}
 
 \subsection{Implicit method}
