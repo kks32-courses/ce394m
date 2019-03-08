@@ -309,6 +309,37 @@ negligibles}
 \end{figure}
 \end{frame}
 
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE mesh compatibility}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/mesh-incompatibility.png}
+	\caption*{Incompatible mesh}
+\end{figure}
+
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.75\textwidth]{figs/mesh-compatibility.png}
+		\caption*{compatible mesh}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\end{frame}
+
+\note{A mesh is said to be ‘compatible’ if the unknown variables are continuous along all edges
+	between all the elements in the mesh. The use of different types of elements in the same
+	mesh or improper connection of elements can result in an incompatible mesh. The examples
+	of this problem are given in Fig. 1. Solutions of this problem are (i) use the same type of
+	elements throughout the entire domain (Fig. 2(a)) or (ii) use transitional elements whose
+	shape functions have different orders on different edges (Fig. 2(b)).}
+
+
 \subsection{Boundary conditions}
 %------------------------------------------------
 \begin{frame}
@@ -328,6 +359,225 @@ negligibles}
 \end{figure}
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE boundary conditions}
+\mode<beamer>{
+	\begin{enumerate}
+		\item \textbf{Body force}: apply unit weight
+		
+		\item \textbf{Force}: node is free
+		
+		\item \textbf{Displacement}: node is fixed
+		
+		\item \textbf{Pore pressure}: node fixed to apply external pore pressures
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/construction-sequence.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE loading conditions}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/external-forces.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE loading conditions}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/load-distribution.png}
+\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE stress singularity}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/stress-singularity.png}
+\end{figure}
+\end{frame}
+
+\note{
+	If a concentrated force is applied on a continuum, it results in unbounded stresses, which is called stress
+	singularities. The values of stresses become a function of mesh density. The denser the mesh is, the better
+	the result becomes. It is often better to replace a concentrated load by a load distributed over a small region
+	to avoid the effect of stress singularities.
+	
+	A sharp re-entrant corner as shown in the figure (a) also produces singularity (i.e. solution is mesh
+	dependent and the zones close to the singularity is becomes polluted). The nature of the singularity
+	depends on the elastic properties of the two bodies. It may be possible to weaken or eliminate the
+	singularity by changing the rectangular object to a tapered one as shown in the figure (b).
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geostatic stresses}
+Before conducting your analysis, you need to make sure that the stresses in the
+ground are the correct values, as the soil behavior depends on the current
+in-situ stresses.
+
+\begin{enumerate}
+	\item \textbf{list your estimated stresses in the input file}: hopefully the system is in equilibrium
+	-- difficult to find the in-situ stresses in the sloping ground.
+\end{enumerate}	
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/geostatic-stresses-initial-guess.png}
+\end{figure}
+\end{frame}
+
+\note{
+	\begin{enumerate}
+		\item Vertical effective stress $\sigma_v^\prime$ from the unit weight of the soil
+		\item Horizontal effective stress $\sigma_h^\prime = K_0 \sigma_v^\prime$ 
+		\item Estimation of in-situ stresses becomes difficult - depends on soil model used.
+		\item \textbf{Total stress analysis – need to give initial total stresses}
+	\end{enumerate}
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geostatic stresses}
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item \textbf{Zero displacement approach} - ask the program to compute the in-situ stresses
+		from the equilibrium condition (very few programs allow you to do this)
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.75\textwidth]{figs/geostatic-stresses-zero-disp.png}
+		\end{figure}
+	\item \textbf{Intermediate approach} - Guess the insitu stress distribution, apply gravity and
+	perform the equilibrium check (hopefully the displacements are zero) - ABAQUS
+	GEOSTATIC approach
+\end{enumerate}	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Geostatic stresses}
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item \textbf{Zero displacement approach} - ask the program to compute the in-situ stresses
+	from the equilibrium condition (very few programs allow you to do this)
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.75\textwidth]{figs/geostatic-stresses-zero-disp.png}
+	\end{figure}
+	\item \textbf{Intermediate approach} - Guess the insitu stress distribution, apply gravity and
+	perform the equilibrium check (hopefully the displacements are zero) - ABAQUS
+	GEOSTATIC approach
+\end{enumerate}	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{The coefficient of earth pressure at rest $K_0$}
+	\begin{itemize}
+		\item \textbf{Normally consolidated soils}
+	\mode<beamer>{
+		\begin{itemize}
+			\item 	Cam-clay predictions (Wood, 1990).
+			$K_0$ (Modified CC) $< K_0$ (Original CC)
+			\item 	$K_0 = K_{\mathrm{nc}} = 1 - \sin \phi^\prime$ (Jaky, 1944) ($\phi^\prime$ is the friction angle of the soil).
+		\end{itemize}
+	
+	}
+	\mode<handout>{
+		\vspace{3cm}
+	}
+	\item \textbf{Over consolidated soils}
+		\begin{itemize}
+			\item \textbf{Cam-clay predictions}
+			$K_{\mathrm{oc}} = (1 - \sin \phi^\prime) \times \mathrm{(OCR)}$  (Mayne et al., 1982)
+			up to $K_p = (1 + \sin  \phi^\prime)/(1 - \sin  \phi^\prime)$
+			
+			\item \textbf{Wroth's method (1975)}
+			$K_{\mathrm{oc}} = \mathrm{(OCR)} K_{\mathrm{nc}} - \left(\frac{\nu^\prime}{1 - \nu^\prime}\right) (\mathrm{OCR} -1)$ for OCR $< 5$ and $\nu^\prime$ is the poisson’s ratio = 0.254 - 0.371.
+		\end{itemize} 
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Soil models}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figs/soil-models.png}
+\end{figure}
+\mode<beamer>{
+	\begin{enumerate}
+		\item \textbf{Sand} - Linear elastic model, Non-liner elastic model, Drucker-Prager elasto-plastic model,
+		Mohr-coulomb elasto-plastic model or Advanced models ?
+		\item \textbf{Clay} - Linear elastic model, Non-linear elastic model, Cam-clay model, or Advanced models ?
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Verification of Design Parameters (Atkinson., 1995)}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Are the soil models and analyses being used appropriate for the
+		soils and for the structure?
+		\item Are the design parameters being measured appropriate for the
+		soil models being used?
+		\item Are the tests being carried out the appropriate ones to determine
+		the required design parameters?
+		\item Is the laboratory where the tests are being done capable of doing
+		the required tests? Ideally, the engineer should inspect the
+		laboratory and equipment, observe tests and check the
+		procedures being used to analyse and interpret the results.
+		\item Are the correct samples being used? Are the appropriate methods
+		of sample preparation being used? Do you need high quality
+		samples or reconstituted samples?
+	\end{enumerate}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Verification of Design Parameters (Atkinson., 1995)}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Have any tests been done which investigate whether the soils
+		reasonably follow the critical state theories or the elasto-plastic
+		theories being used in the analyses?
+		\item Have tests being carried out at stress levels corresponding to
+		the range of stresses in the ground? Is it necessary to follow
+		special stress paths representing the previous stress history and
+		the current loading?
+		\item Have linear parameters been fitted to non-linear test results over
+		appropriate ranges?
+		\item Are the design parameters internally self consistent? Do
+		parameters determined from triaxial or other loading tests
+		correspond to parameters estimated form the grading and
+		nature of the grains? How the values compare to the values
+		obtained from empirical equations?
+	\end{enumerate}
+}
+\end{frame}
+
+
 \subsection{Errors in FEA}
 %------------------------------------------------
 \begin{frame}
@@ -345,14 +595,67 @@ negligibles}
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Undrained analysis}
+\frametitle{Check! Check! Check!}
 \mode<beamer>{
 	\begin{itemize}
-		\item Method A and Method B refers to 2 alternatives modeling of undrained behaviour in Plaxis. 
-		\item \textbf{Method A is an effective stress analysis} of an undrained problem it assumes an isotropic elastic behavior and a Mohr-Coulomb failure criterion. 
-		\item As a result mean effective stress $p^\prime$ is constant until yield.
-		\item Method A was being applied to marine clays which were of low over-consolidation or even under-consolidated because of recent reclamation.
+		\item Use well documented field study or model study
+		\item Do hand calculations or use chart solution
+		\item Check orientations of the maximum principal stress directions - tells
+		how loads flowing through the system
+		\item Check failure parameters-how close to failure line, look to see whether
+		reasonable
+		\item check the vertical stress $\sigma_v$ and $\sigma_h$.
 	\end{itemize}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.3\textwidth]{figs/vertical-stresses.png}
+	\caption*{Beware : $\sigma_v$ here lower than $\gamma h$ due to stress transfer to stiff material - hanging up}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Pore-pressure analysis in geotechnical engineering}
+\mode<beamer>{
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=\textwidth]{figs/geotechnical-analysis.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Pore-pressure analysis in geotechnical engineering}
+\mode<beamer>{
+	\begin{enumerate}
+		\item \textbf{Drained analysis}
+		\begin{itemize}
+			\item No excess pore pressure - high permeable soils
+			\item All the loads will be transferred to the soil skeleton
+			\item Long-term condition - mostly interested in displacements
+		\end{itemize}
+		\item \textbf{Undrained analysis} - low permeable soil
+		\begin{itemize}
+			\item Loads will be carried by both soil skeleton and pore pressure
+			\item No volume change
+			\item Short-term condition - mostly interested in stresses- undrained failure
+		\end{itemize}
+		\item \textbf{Consolidation analysis}
+		\begin{itemize}
+			\item Transition from undrained condition to drained condition.
+			\item Check the movement of the system with time.
+			\item Time consuming - but correct stress paths and this can be important when the
+			soil behaves plastically (stress path dependent)
+			\item Undrained analysis can be performed by making the time step small.
+		\end{itemize}
+	\end{enumerate}
 }
 \mode<handout>{
 	\vspace{6cm}
@@ -373,32 +676,38 @@ negligibles}
 }
 \end{frame}
 
-\note{
-\textbf{Discuss the effect of depth on the increase in shear strength}
-	\begin{figure}
-		\includegraphics[width=0.6\textwidth]{figs/cu-method-a-b.png}
-	\end{figure}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Steps to perform Finite Element Analysis}
+\mode<beamer>{
+	\begin{enumerate}
+	\item \textbf{Define the problem}
+	\begin{itemize}
+		\item Total stress analysis, effective stress analysis or consolidation
+		analysis?
+		\item What are the unknowns?
+		\item Spatial dimension (plane strain, axisymmetric, 3D)
+		\item Element types
+	\end{itemize}	
+	\item \textbf{Create finite element mesh}
+	\item Proper discretization and avoid bad elements
+	\item \textbf{Define analysis (or construction sequence) steps}
+	\begin{itemize}
+		\item apply loading and boundary conditions
+	\end{itemize}
+	\item \textbf{Define materials}
+	\begin{itemize}
+		\item determine material properties
+	\end{itemize}
+	\item \textbf{Assign materials and element types to elements} 
+	\item \textbf{Define in-situ stress conditions}
+	\item \textbf{Run the analysis}
+	\item \textbf{Check! Check! Check!}
+	\end{enumerate}
 }
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Wall displacements: Effective stress vs Undrained strength}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=\textwidth]{figs/wall-disp.png}
-	\caption*{Nicoll Highway Collapse: Method A vs Method B}
-\end{figure}
+\mode<handout>{
+	\vspace{6cm}
+}
 \end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Bending moments: Effective stress vs Undrained strength}
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=\textwidth]{figs/bending-moments.png}
-		\caption*{Nicoll Highway Collapse: Method A vs Method B}
-	\end{figure}
-\end{frame}
-
 
 \end{document}
