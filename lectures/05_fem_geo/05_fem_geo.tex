@@ -470,23 +470,6 @@ in-situ stresses.
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Geostatic stresses}
-\begin{enumerate}
-	\setcounter{enumi}{1}
-	\item \textbf{Zero displacement approach} - ask the program to compute the in-situ stresses
-	from the equilibrium condition (very few programs allow you to do this)
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=0.75\textwidth]{figs/geostatic-stresses-zero-disp.png}
-	\end{figure}
-	\item \textbf{Intermediate approach} - Guess the insitu stress distribution, apply gravity and
-	perform the equilibrium check (hopefully the displacements are zero) - ABAQUS
-	GEOSTATIC approach
-\end{enumerate}	
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
 \frametitle{The coefficient of earth pressure at rest $K_0$}
 	\begin{itemize}
 		\item \textbf{Normally consolidated soils}
@@ -845,7 +828,7 @@ Soil fails when (submerged): \mode<beamer>{$ \beta = \phi_{\mathrm{mob}}$}
 	\centering
 	\includegraphics[width=0.85\textwidth]{figs/undrained-infinite-slope.png}
 \end{figure}
-But also the shear stress: \mode<beamer>{$ T =  s_u l$. The slope failure is governed by s u profile (with depth).}
+But also the shear stress: \mode<beamer>{$ T =  s_u l$. The slope failure is governed by $s_u$ profile (with depth).}
 \end{frame}
 
 
