@@ -401,7 +401,23 @@ negligibles}
 \end{figure}
 \end{frame}
 
+%------------------------------------------------
+\begin{frame}
+\frametitle{FE stress singularity}
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/stress-singularity-load.png}
+	\caption*{2D uniaxial bar model. A single point load leads to stress singularities whereas an edge pressure results in a uniform stress field. (Gonzalez., 2015)}
+\end{figure}
+\end{frame}
+\note {
+	A stress singularity is a point of the mesh where the stress does not convergence towards a specific value. As we keep refinement the mesh, the stress at this point keeps increasing, and increasing, and increasing... Theoretically, the stress at the singularity is infinite.
+	
+	Although stress at these singularities is infinite, this does not mean that the model results are incorrect overall. First of all, the displacements are correct even at the singularity point. On the contrary, the stress at the singularity will pollute the stress results near the singularity, however some distance away from the singularity the stress results will be fine! 
+	
+	As you can see, far away from the point load singularity the stress field is uniform despite of the local singularity. Note that pressure load do not cause point singularities, this is because the pressure attribute is converted by the solver into a set of point loads along the nodes of the edge in a consistent fashion that do not cause a singularity.
+}
 %------------------------------------------------
 \begin{frame}
 \frametitle{FE stress singularity}
