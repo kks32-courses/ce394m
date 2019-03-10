@@ -47,7 +47,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 % The short title appears at the bottom of every slide, the full title is only on the title page
-\title[CE394M: Constitutive modeling]{CE394M: An introduction to constitutive modeling} 
+\title[CE394M: Continuum mechanics]{CE394M: An introduction to continuum mechanics} 
 \author{Krishna Kumar} % name
 \institute[UT Austin] % institution 
 {
@@ -75,10 +75,6 @@ University of Texas at Austin \\
 %----------------------------------------------------------------------------------------
 % slides
 %----------------------------------------------------------------------------------------
-\note{
-	The objective of constitutive modelling is the determination of stiffness tensor $\mathbf{C}$, a relation between stress and strain tensors.
-
-}
 \section{Review of vector calculus}
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -444,7 +440,7 @@ Assuming a basis of a real vector space, e.g., a coordinate frame in the ambient
 \end{figure}
 \begin{itemize}
 	\item Stress state at a point is defined by $\sigma_{ij}$ in a frame of reference. 
-	\item Equilibrium of moments require $sigma_{xz} = \sigma_{zx}, \dots$ etc.,
+	\item Equilibrium of moments require $\sigma_{xz} = \sigma_{zx}, \dots$ etc.,
 \end{itemize}
 }
 \mode<handout>{
@@ -688,13 +684,13 @@ If $u_1$ is displacement in $x_1$ direction. Then:
 \left(\frac{\partial u_2}{\partial x_1}\frac{\partial u_2}{\partial x_2}\right) + \left(\frac{\partial u_3}{\partial x_1}\frac{\partial u_3}{\partial x_2}\right)\right]\right\}
 \end{equation*}
 
-Engineering shear strain: \mode<beamer>{$\gamma_{12} = 2 \varepsilon{12}$}.
+Engineering shear strain: \mode<beamer>{$\gamma_{12} = 2 \varepsilon_{12}$}.
 
 Typically, we assume small displacements + small strains. Therefore the quadratic terms (higher order) can be ignored. Pile driving or progression of slope failure cannot be modeled as a small strain problem!
 \mode<beamer>{	
 	\begin{align*}
 	\varepsilon_{11} &  = \frac{\partial u_1}{\partial x_1} \quad 	\varepsilon_{22} = \frac{\partial u_2}{\partial x_2} \quad \varepsilon_{33} = \frac{\partial u_3}{\partial x_3} \\
-	\varepsilon_{12} = \frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1}  
+	\varepsilon_{12} & = \frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1}  
 	\end{align*}
 }
 \mode<handout>{
@@ -702,6 +698,20 @@ Typically, we assume small displacements + small strains. Therefore the quadrati
 }
 \end{frame}
 
+\note{
+The mechanical notation for infinitesimal strains:
+\begin{equation*}
+	\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right) = \frac{1}{2}(u_{i,j} + u_{j,i})
+\end{equation*}
+$i$ and $j$ refers to directions. 
+
+Resulting strain definitions
+\begin{align*}
+	\varepsilon_{11} & = \frac{1}{2}\left(\frac{\partial u_1}{\partial x_1} + \frac{\partial u_1}{\partial x_1} \right) = \frac{\partial u_1}{\partial x_1} \\
+	\varepsilon_{22} & = \frac{1}{2}\left(\frac{\partial u_2}{\partial x_2} + \frac{\partial u_2}{\partial x_2} \right) = \frac{\partial u_2}{\partial x_2} \\
+	\varepsilon_{12} & = \frac{1}{2}\left(\frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1} \right)
+\end{align*}
+}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
