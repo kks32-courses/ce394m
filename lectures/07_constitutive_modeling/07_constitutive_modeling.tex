@@ -47,7 +47,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 % The short title appears at the bottom of every slide, the full title is only on the title page
-\title[CE394M: Constitutive Modeling]{CE394M: Constitutive Modeling} 
+\title[CE394M: Constitutive modeling]{CE394M: An introduction to constitutive modeling} 
 \author{Krishna Kumar} % name
 \institute[UT Austin] % institution 
 {
@@ -79,6 +79,84 @@ University of Texas at Austin \\
 	The objective of constitutive modelling is the determination of stiffness tensor $\mathbf{C}$, a relation between stress and strain tensors.
 
 }
+\section{Review of vector calculus}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Vector calculus}
+A vector is expressed in terms of its components and the unit vectors in the $x-$ and $y-$ directions.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.25\textwidth]{figs/vector-q.png}
+\end{figure}
+\begin{equation*}
+	\mathbf{q} = q_x \mathbf{i} + q_y \mathbf{j}
+\end{equation*}
+where $q_x$ is the $x-$component and $q_y$ is the $y-$component and $i$ and $j$ are basis vectors (are unit length).
+
+\textbf{Scalar product:}
+\begin{equation*}
+\mathbf{q} \cdot \mathbf{r} = \mathbf{q}^T \mathbf{r} = \begin{bmatrix} q_x & q_y \end{bmatrix} \begin{bmatrix} r_x \\ r_y \end{bmatrix} = q_x r_x + q_y r_y
+\end{equation*}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Vector calculus}
+
+
+\textbf{Grad:} If the del operator acts on a scalar field, say temperature $T(x, y)$, it produces a vector
+that points in the direction of the steepest slope.
+
+\begin{equation*}
+	\nabla \mathbf{T} =  
+	\begin{bmatrix} 
+		\frac{\partial T}{\partial x} \\
+		\frac{\partial T}{\partial y}
+	\end{bmatrix}
+\end{equation*}
+
+\textbf{Divergence:} The scalar product of the del operator with a vector field q gives the divergence
+\begin{equation*}
+	div \mathbf{q} = \nabla \cdot \mathbf{q} = \frac{\partial q_x}{\partial x} + \frac{\partial q_y}{\partial y}
+\end{equation*}
+Notice the divergence of a vector field is a scalar.
+
+\textbf{Divergence theorem}
+\begin{equation*}
+	\int_\Omega div \mathbf{q} d\Omega = \oint_\Gamma \mathbf{q}\cdot \mathbf{n} d\Gamma
+\end{equation*}
+\end{frame}
+
+\note{ Gauss's theorem or Divergence theorem is a result that relates the flow (that is, flux) of a vector field through a surface to the behavior of the tensor field inside the surface.}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Vector calculus}
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figs/grad-vector.png}
+	\caption*{Contour map for a terrain (left) and the associated three-dimensional model (right). If $T$
+	is interpreted as the height, the vector $\Delta T$ points in the direction of the steepest slope.}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Differention and Integration}
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.49\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figs/differentiation-integration.png}
+	\end{subfigure}	
+	\begin{subfigure}[b]{0.49\linewidth}
+		\centering
+		\includegraphics[width=0.85\textwidth]{figs/integration-parts.png}
+	\end{subfigure}%
+	\caption*{XKCD - Randall Munroe}
+\end{figure}
+\end{frame}
+
 \section{Definition of stress and strain tensors}
 %----------------------------------------------------------------------------------------
 \begin{frame}
