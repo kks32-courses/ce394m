@@ -157,6 +157,274 @@ Notice the divergence of a vector field is a scalar.
 \end{figure}
 \end{frame}
 
+%----------------------------------------------------------------------------------------
+\section{Index notation}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{The summation convention}
+Suppose $\mathbf{x}$ and $\mathbf{y}$ are vectors, and \textbf{A} and \textbf{B} are matrices. Write a few common combinations in terms of their components:
+
+\begin{itemize}
+	\item \textbf{Dot product: }
+		\mode<beamer>{
+			\begin{equation*}
+				\mathbf{x}\cdot\mathbf{y} = \sum_{i = 1}^{n =3} x_i y_i
+			\end{equation*}
+		}  
+		\mode<handout>{
+			\vspace{1.5cm}
+		} 
+	\item \textbf{Matrix-vector product:} 
+		\mode<beamer>{
+			\begin{equation*}
+				\left[\mathbf{Ax}\right]_i= \sum_{j = 1}^{n} A_{ij}x_j
+			\end{equation*}
+		}  
+		\mode<handout>{
+			\vspace{1.5cm}
+		}
+	\item \textbf{Matrix-vector product:} 	
+		\mode<beamer>{
+			\begin{equation*}
+			\left[\mathbf{AB}\right]_{ij}= \sum_{k = 1}^{n} A_{ik}B_{kj}
+			\end{equation*}
+		}  
+		\mode<handout>{
+			\vspace{1.5cm}
+		} 
+\end{itemize}
+
+\mode<beamer>{
+Every sum goes with an index which is repeated twice. Non-repeated indices are not summed.
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+} 
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{The summation convention}
+We can use a simplified notation by adopting the summation convention (due to Einstein),
+Do not write the summation symbol $\sum$. A repeated index implies summation. (An index may not appear more than twice on one side of an
+equality.) Using the summation convention
+\begin{itemize}
+	\item \textbf{Dot product: }
+	\mode<beamer>{
+		\begin{equation*}
+		\mathbf{x}\cdot\mathbf{y} = x_i y_i
+		\end{equation*}
+	}  
+	\mode<handout>{
+		\vspace{1cm}
+	} 
+	\item \textbf{Matrix-vector product:} 
+	\mode<beamer>{
+		\begin{equation*}
+		\left[\mathbf{Ax}\right]_i= A_{ij}x_j
+		\end{equation*}
+	}  
+	\mode<handout>{
+		\vspace{1cm}
+	}
+	\item \textbf{Matrix-vector product:} 	
+	\mode<beamer>{
+		\begin{equation*}
+		\left[\mathbf{AB}\right]_{ij}= A_{ik}B_{kj}
+		\end{equation*}
+	}  
+	\mode<handout>{
+		\vspace{1cm}
+	} 
+\end{itemize}
+This may seem a very peculiar trick, with no obvious benefit. However, it will turn out
+to be surprisingly powerful, and make many calculations involving vector identities and
+vector differential identities much simpler.
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{The Kronecker delta $\delta_{ij}$}
+The identity matrix:
+\begin{equation*}
+	\mathbf{I} = 
+	\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1 \\
+	\end{bmatrix}
+\end{equation*}
+
+We define the `\textit{Kronecker delta}' as:
+\mode<beamer>{
+	\begin{equation*}
+		\delta_{ij} = 
+		\begin{cases}
+			1 \quad i = j,\\
+			0 \quad i \ne j
+		\end{cases}
+	\end{equation*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+} 
+
+We know that: $\mathbf{Iy} = \mathbf{y}$
+
+\mode<beamer>{
+	\begin{equation*}
+		\delta_{ij}y_j = y_i
+	\end{equation*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+}
+In other words ‘if one index of $\delta_{ij}$ is summed, the effect is to swap this to the other
+index’.
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{The permutation symbol $\varepsilon_{ijk}$}
+Cross product of two vectors:
+\begin{equation*}
+\mathbf{x \times y} = 
+\begin{vmatrix}
+\mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_1 \\
+x_1 & x_2 & x_3 \\
+y_1 & y_2 & y_3 \\
+\end{vmatrix} = 
+\begin{bmatrix}
+x_2 y_3 - x_3 y_2, & x_3 y_1 - x_1 y_3, &
+x_1 y_2 - x_2 y_1
+\end{bmatrix}
+\end{equation*}
+
+where $e_i$ are the basis for the vectors. We have assumed that $e_i$ are the unit vectors for
+Cartesian coordinates (you may have seen the basis vectors written as \textit{i}, \textit{j} and \textit{k}). To express the cross product in index notation, we will use the permutation symbol $\varepsilon_{ijk}$. The permutation symbol $\varepsilon_{ijk}$ is defined as:
+\mode<beamer>{
+	\begin{equation*}
+	\varepsilon_{ijk} = 
+	\begin{cases}
+	1 \quad \text{if (\textit{ijk}) is an even permutation of (1, 2, 3)},\\
+	-1 \quad \text{if (\textit{ijk}) is an odd permutation of (1, 2, 3)},\\
+	0 \quad \text{otherwise}
+	\end{cases}
+	\end{equation*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+} 
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{The permutation symbol $\varepsilon_{ijk}$}
+For example:
+\mode<beamer>{
+	\begin{align*}
+		\varepsilon_{112} = 0 \\
+		\varepsilon_{312} = 1 \\
+		\varepsilon_{132} = -1 \\		
+	\end{align*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+} 
+The permutation symbol is also known as the ‘alternating symbol’ or the ‘Levi-Civita
+symbol’. Using the permutation symbol, we can write the cross product of two vectors as:
+\mode<beamer>{
+	\begin{equation*}
+		\left[\mathbf{x \times y}\right] = \varepsilon_{ijk} x_j y_k
+	\end{equation*}
+	To prove this, for each \textit{i} sum over \textit{j} and \textit{k}. The permutation symbol possesses a number of ‘symmetries’,
+	\begin{align*}
+		&\varepsilon_{ijk} = \varepsilon_{kij} = \varepsilon_{jki} \text{ (cyclic permutation)}\\
+		&= -\varepsilon_{jik} = -\varepsilon_{ikj} = -\varepsilon_{kji} \text{ (switch pair \textit{ij}, switch pair \textit{ki}, switch pair \textit{jk})}\\
+	\end{align*}
+}  
+\mode<handout>{
+	\vspace{3.5cm}
+} 
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Vector derivatives}
+The real power of index notation is revealed when we look at vector differential identities.
+The vector derivatives known as the gradient, the divergence and the curl can all be
+written in terms of the operator $\nabla$
+\begin{equation*}
+	\nabla = \begin{bmatrix}
+		\frac{\partial}{\partial x_1}, &
+		\frac{\partial}{\partial x_2}, &
+		\frac{\partial}{\partial x_3}
+	\end{bmatrix}
+\end{equation*}
+where $\left[x_1, x_2, x_3 \right]$ are the components of the position vector $\mathbf{x}$.
+\begin{itemize}
+	\item \textbf{Gradient:}
+	\mode<beamer>{
+		\begin{equation*}
+		grad \phi: [\nabla \phi]_i = \frac{\partial \phi}{\partial x_i} = \begin{bmatrix}
+		\frac{\partial \phi}{\partial x_1}, &
+		\frac{\partial \phi}{\partial x_2}, &
+		\frac{\partial \phi}{\partial x_3}
+		\end{bmatrix}
+		\end{equation*}
+	}  
+	\mode<handout>{
+		\vspace{1cm}
+	} 
+	\item \textbf{Divergence:} 
+	\mode<beamer>{
+		\begin{equation*}
+			div \mathbf{u}: \nabla \cdot \mathbf{u}  = \frac{\partial u}{\partial x_i} = 
+			\frac{\partial u_1}{\partial x_1} +
+			\frac{\partial u_2}{\partial x_2} +
+			\frac{\partial u_3}{\partial x_3}	
+		\end{equation*}
+	}  
+	\mode<handout>{
+		\vspace{1cm}
+	}
+	\item \textbf{Curl: $[\mathbf{a \times b}]_i = \varepsilon_{ijk} a_j b_k$} 	
+	\mode<beamer>{
+		\begin{equation*}
+			curl \mathbf{u}: \left[\nabla \times \mathbf{u}\right]_i = \varepsilon_{ijk}\frac{\partial u_k}{\partial x_j}
+		\end{equation*}
+	}  
+	\mode<handout>{
+		\vspace{1cm}
+	} 
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Tensors}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{What is a Tensor?}
+\mode<beamer>{
+	\begin{itemize}
+		\item A tensor is a geometric object that maps in a multi-linear manner geometric vectors, scalars, and other tensors to a resulting tensor. Vectors and scalars which are often used in elementary physics and engineering applications, are considered as the simplest tensors.
+		\item Tensors, defined mathematically, are simply arrays of numbers, or functions, that transform according to certain rules under a change of coordinates. Tensors characterize the properties of a physical system.
+		\item An elementary example of mapping, describable as a tensor, is the dot product, which maps two vectors to a scalar. 
+		\item A tensor may consist of a single number, in which case it is referred to as a tensor of order zero, or simply a scalar. An example of a scalar field would be the density of a fluid as a function of position.
+		\item A second-order tensor is a vector.
+	\end{itemize}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\note{
+Assuming a basis of a real vector space, e.g., a coordinate frame in the ambient space, a tensor can be represented as an organized multidimensional array of numerical values with respect to this specific basis. Changing the basis transforms the values in the array in a characteristic way that allows to define tensors as objects adhering to this transformational behavior. For example, there are invariants of tensors that must be preserved under any change of the basis, thereby making only certain multidimensional arrays of numbers a tensor. Compare this to the array representing $\varepsilon _{ijk}$ not being a tensor, for the sign change under transformations changing the orientation.
+}
+
 \section{Definition of stress and strain tensors}
 %----------------------------------------------------------------------------------------
 \begin{frame}
