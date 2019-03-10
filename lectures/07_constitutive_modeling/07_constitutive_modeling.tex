@@ -286,7 +286,7 @@ index’.
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{The permutation symbol $\varepsilon_{ijk}$}
+\frametitle{The permutation symbol $\epsilon_{ijk}$}
 Cross product of two vectors:
 \begin{equation*}
 \mathbf{x \times y} = 
@@ -302,10 +302,10 @@ x_1 y_2 - x_2 y_1
 \end{equation*}
 
 where $e_i$ are the basis for the vectors. We have assumed that $e_i$ are the unit vectors for
-Cartesian coordinates (you may have seen the basis vectors written as \textit{i}, \textit{j} and \textit{k}). To express the cross product in index notation, we will use the permutation symbol $\varepsilon_{ijk}$. The permutation symbol $\varepsilon_{ijk}$ is defined as:
+Cartesian coordinates (you may have seen the basis vectors written as \textit{i}, \textit{j} and \textit{k}). To express the cross product in index notation, we will use the permutation symbol $\epsilon_{ijk}$. The permutation symbol $\epsilon_{ijk}$ is defined as:
 \mode<beamer>{
 	\begin{equation*}
-	\varepsilon_{ijk} = 
+	\epsilon_{ijk} = 
 	\begin{cases}
 	1 \quad \text{if (\textit{ijk}) is an even permutation of (1, 2, 3)},\\
 	-1 \quad \text{if (\textit{ijk}) is an odd permutation of (1, 2, 3)},\\
@@ -321,32 +321,32 @@ Cartesian coordinates (you may have seen the basis vectors written as \textit{i}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{The permutation symbol $\varepsilon_{ijk}$}
+\frametitle{The permutation symbol $\epsilon_{ijk}$}
 For example:
 \mode<beamer>{
-	\begin{align*}
-		\varepsilon_{112} = 0 \\
-		\varepsilon_{312} = 1 \\
-		\varepsilon_{132} = -1 \\		
-	\end{align*}
+\begin{align*}
+\epsilon_{112} = 0 \\
+\epsilon_{312} = 1 \\
+\epsilon_{132} = -1 \\		
+\end{align*}
 }  
 \mode<handout>{
-	\vspace{1.5cm}
+\vspace{1.5cm}
 } 
 The permutation symbol is also known as the ‘alternating symbol’ or the ‘Levi-Civita
 symbol’. Using the permutation symbol, we can write the cross product of two vectors as:
 \mode<beamer>{
-	\begin{equation*}
-		\left[\mathbf{x \times y}\right] = \varepsilon_{ijk} x_j y_k
-	\end{equation*}
-	To prove this, for each \textit{i} sum over \textit{j} and \textit{k}. The permutation symbol possesses a number of ‘symmetries’,
-	\begin{align*}
-		&\varepsilon_{ijk} = \varepsilon_{kij} = \varepsilon_{jki} \text{ (cyclic permutation)}\\
-		&= -\varepsilon_{jik} = -\varepsilon_{ikj} = -\varepsilon_{kji} \text{ (switch pair \textit{ij}, switch pair \textit{ki}, switch pair \textit{jk})}\\
-	\end{align*}
+\begin{equation*}
+\left[\mathbf{x \times y}\right] = \epsilon_{ijk} x_j y_k
+\end{equation*}
+To prove this, for each \textit{i} sum over \textit{j} and \textit{k}. The permutation symbol possesses a number of ‘symmetries’,
+\begin{align*}
+&\epsilon_{ijk} = \epsilon_{kij} = \epsilon_{jki} \text{ (cyclic permutation)}\\
+&= -\epsilon_{jik} = -\epsilon_{ikj} = -\epsilon_{kji} \text{ (switch pair \textit{ij}, switch pair \textit{ki}, switch pair \textit{jk})}\\
+\end{align*}
 }  
 \mode<handout>{
-	\vspace{3.5cm}
+\vspace{3.5cm}
 } 
 \end{frame}
 
@@ -358,50 +358,51 @@ The real power of index notation is revealed when we look at vector differential
 The vector derivatives known as the gradient, the divergence and the curl can all be
 written in terms of the operator $\nabla$
 \begin{equation*}
-	\nabla = \begin{bmatrix}
-		\frac{\partial}{\partial x_1}, &
-		\frac{\partial}{\partial x_2}, &
-		\frac{\partial}{\partial x_3}
-	\end{bmatrix}
+\nabla = \begin{bmatrix}
+\frac{\partial}{\partial x_1}, &
+\frac{\partial}{\partial x_2}, &
+\frac{\partial}{\partial x_3}
+\end{bmatrix}
 \end{equation*}
 where $\left[x_1, x_2, x_3 \right]$ are the components of the position vector $\mathbf{x}$.
 \begin{itemize}
-	\item \textbf{Gradient:}
-	\mode<beamer>{
-		\begin{equation*}
-		grad \phi: [\nabla \phi]_i = \frac{\partial \phi}{\partial x_i} = \begin{bmatrix}
-		\frac{\partial \phi}{\partial x_1}, &
-		\frac{\partial \phi}{\partial x_2}, &
-		\frac{\partial \phi}{\partial x_3}
-		\end{bmatrix}
-		\end{equation*}
-	}  
-	\mode<handout>{
-		\vspace{1cm}
-	} 
-	\item \textbf{Divergence:} 
-	\mode<beamer>{
-		\begin{equation*}
-			div \mathbf{u}: \nabla \cdot \mathbf{u}  = \frac{\partial u}{\partial x_i} = 
-			\frac{\partial u_1}{\partial x_1} +
-			\frac{\partial u_2}{\partial x_2} +
-			\frac{\partial u_3}{\partial x_3}	
-		\end{equation*}
-	}  
-	\mode<handout>{
-		\vspace{1cm}
-	}
-	\item \textbf{Curl: $[\mathbf{a \times b}]_i = \varepsilon_{ijk} a_j b_k$} 	
-	\mode<beamer>{
-		\begin{equation*}
-			curl \mathbf{u}: \left[\nabla \times \mathbf{u}\right]_i = \varepsilon_{ijk}\frac{\partial u_k}{\partial x_j}
-		\end{equation*}
-	}  
-	\mode<handout>{
-		\vspace{1cm}
-	} 
+\item \textbf{Gradient:}
+\mode<beamer>{
+\begin{equation*}
+grad \phi: [\nabla \phi]_i = \frac{\partial \phi}{\partial x_i} = \begin{bmatrix}
+\frac{\partial \phi}{\partial x_1}, &
+\frac{\partial \phi}{\partial x_2}, &
+\frac{\partial \phi}{\partial x_3}
+\end{bmatrix}
+\end{equation*}
+}  
+\mode<handout>{
+\vspace{1cm}
+} 
+\item \textbf{Divergence:} 
+\mode<beamer>{
+\begin{equation*}
+div \mathbf{u}: \nabla \cdot \mathbf{u}  = \frac{\partial u}{\partial x_i} = 
+\frac{\partial u_1}{\partial x_1} +
+\frac{\partial u_2}{\partial x_2} +
+\frac{\partial u_3}{\partial x_3}	
+\end{equation*}
+}  
+\mode<handout>{
+\vspace{1cm}
+}
+\item \textbf{Curl: $[\mathbf{a \times b}]_i = \epsilon_{ijk} a_j b_k$} 	
+\mode<beamer>{
+\begin{equation*}
+curl \mathbf{u}: \left[\nabla \times \mathbf{u}\right]_i = \epsilon_{ijk}\frac{\partial u_k}{\partial x_j}
+\end{equation*}
+}  
+\mode<handout>{
+\vspace{1cm}
+} 
 \end{itemize}
 \end{frame}
+
 
 %----------------------------------------------------------------------------------------
 \section{Tensors}
@@ -650,4 +651,87 @@ The stress vector $\mathbf{t}$ represents the vectorial stress on a plane whose 
 	\vspace{2cm}
 }
 \end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Strains}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/strain.png}
+\end{figure}
+
+\mode<beamer>{	
+	\begin{itemize}
+		\item 6 strains: $\varepsilon_{11}, \varepsilon_{22}, \varepsilon_{33}, \gamma_{12}, \gamma_{23}, \gamma_{31}$.
+		\item $\gamma_{21} = -\gamma_{12}, \gamma_{32} = - \gamma_{23}, \gamma_{13} = - \gamma_{31}$
+		\item Compression is positive
+		\item anti-clockwise is positive
+	\end{itemize}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Green's strain tensor}
+If $u_1$ is displacement in $x_1$ direction. Then:
+\mode<beamer>{	
+	\begin{equation*}
+		\varepsilon_{11}
+ 		 = \frac{\partial u_1}{\partial x_1} + \frac{1}{2} \left[\left(\frac{\partial u_1}{\partial x_1}\right)^2 + \left(\frac{\partial u_2}{\partial x_2}\right)^2 + \left(\frac{\partial u_3}{\partial x_3}\right)^2\right]
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\begin{equation*}
+\varepsilon_{12} = \frac{1}{2}\left\{\frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1} + \frac{1}{2} \left[\left(\frac{\partial u_1}{\partial x_1}\frac{\partial u_1}{\partial x_2}\right) +
+\left(\frac{\partial u_2}{\partial x_1}\frac{\partial u_2}{\partial x_2}\right) + \left(\frac{\partial u_3}{\partial x_1}\frac{\partial u_3}{\partial x_2}\right)\right]\right\}
+\end{equation*}
+
+Engineering shear strain: \mode<beamer>{$\gamma_{12} = 2 \varepsilon{12}$}.
+
+Typically, we assume small displacements + small strains. Therefore the quadratic terms (higher order) can be ignored. Pile driving or progression of slope failure cannot be modeled as a small strain problem!
+\mode<beamer>{	
+	\begin{align*}
+	\varepsilon_{11} &  = \frac{\partial u_1}{\partial x_1} \quad 	\varepsilon_{22} = \frac{\partial u_2}{\partial x_2} \quad \varepsilon_{33} = \frac{\partial u_3}{\partial x_3} \\
+	\varepsilon_{12} = \frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1}  
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Linearization of strain tensor}
+Ignoring higher order terms is called as the linearization of the strain tensor. This assumption allows for two simplifications:
+\mode<beamer>{	
+	\begin{enumerate}
+		\item Calculate strains based on undeformed/original geometry
+		\item Calculate matrix $\mathbf{B}$ based on originl / undeformed element geomtry. ($\mathbf{B}$ is the strain-displacement matrix)
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+Alternative, use natural strain approach:
+\mode<beamer>{	
+	\begin{equation*}
+		\varepsilon_n = \int_{l_{initial}}^{l_{final}} \frac{dl}{l} = -\ln \left(\frac{l_{final}}{l_{initial}}\right) = -\ln \left(1 - \frac{\Delta l}{l_0}\right)  = -\ln \left(1 - \varepsilon_{engg}\right)  
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+For a 1D deformation of a bar
+
+\begin{itemize}
+	\item $l_0 = 5, l_f = 4.9$  \mode<beamer>{$\varepsilon = 0.1/5.0 = 2\% \quad \varepsilon_n = \ln(5/4.9) = 2.02\%$}
+	\item $l_0 = 5, l_f = 4$  \mode<beamer>{$\varepsilon = 1/5.0 = 20\% \quad \varepsilon_n = \ln(5/4) = 22.3\%$}
+\end{itemize}
+As long as strains are small, small strain formulation is very close - OK! (If you have large strains - a correction / alternatives is to update the \textbf{\textit{B}} matrix every iteration to adhust for finite strains).
+\end{frame}
+
 \end{document}
