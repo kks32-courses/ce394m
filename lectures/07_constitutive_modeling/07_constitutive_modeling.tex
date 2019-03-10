@@ -152,6 +152,142 @@ University of Texas at Austin \\
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
+\frametitle{Stress vector on a plane}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figs/stress-vector-plane.png}
+	\caption*{Stress vector on a plane normal to $\mathbf{\hat{n}}$ (Reddy., 2008)}
+\end{figure}
+
+If we denote by $\Delta (\mathbf{f\hat{n}})$ the force on a small area $\mathbf{\hat{n}}$ located at the position $x$, the stress vector can be defined:
+\mode<beamer>{	
+	\begin{equation*}
+		\mathbf{t(\hat{n})} = \lim_{\Delta a \to 0} \frac{\Delta \mathbf{f(\hat{n})}}{\Delta a}
+	\end{equation*}
+Cauchy stress is the true stress, that is, stress in the deformed configuration.
+}
+\mode<handout>{	
+	\vspace{2cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cauchy stress tensor}
+To establish the relationship between $\mathbf{t}$ and $\mathbf{\hat{n}}$ we now set up an infinitesimal
+tetrahedron in Cartesian coordinates:
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figs/stress-tetrahedron.png}
+	%\caption*{Tetrahedral element in Cartesian coordinates (Reddy., 2008)}
+\end{figure}
+If $\mathbf{-t}_1, \mathbf{-t}_2, \mathbf{-t}_3$ and $\mathbf{t}$ denote the stress vectors in the outward directions on the faces of the infinitesimal tetrahedron whose areas are $\Delta a_1, \Delta a_2, \Delta a_3$, and $\Delta a$, respectively. $\Delta v$ is the volume of the tetrahedron, $\rho$ the density, $f$ the body force per unit mass, and $\mathbf{a}$ the acceleration. 
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cauchy stress tensor}
+we have by Newton's second law for the mass inside the tetrahedron:
+\mode<beamer>{	
+	\begin{equation*}
+		\mathbf{t}\Delta a - \mathbf{t}_1 \Delta a_1
+- \mathbf{t}_1 \Delta a_1 - \mathbf{t}_1 \Delta a_1 + \rho \Delta v \mathbf{f} = \rho \Delta v \mathbf{a}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+
+Since the total vector area of a closed surface is zero (gradient theorem):
+\mode<beamer>{	
+	\begin{equation*}
+	\Delta a \mathbf{\hat{n}} - \Delta a_1 \mathbf{\hat{e}}_1 - \Delta a_2 \mathbf{\hat{e}}_2
+	- \Delta a_3 \mathbf{\hat{e}}_3 = \mathbf{0}
+	\end{equation*}
+	\begin{equation*}
+	\Delta a_1 =
+	(\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_1) \Delta a, \quad 
+	\Delta a_2 = (\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_2) \Delta a, \quad 
+	\Delta a_3 = (\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_3) \Delta a. 
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+
+The volume $\Delta v$ can be expressed as: \mode<beamer>{$\Delta v = (\Delta h / 3) \Delta a$}
+where $\Delta h$ is the perpendicular distance from the origin to the slant face.
+\mode<beamer>{	
+	\begin{equation*}
+	\mathbf{t} = 
+	(\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_1) \mathbf{t}_1 +
+	 (\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_2) \mathbf{t}_2 + 
+	 (\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_3) \mathbf{t}_3 + \rho \frac{\Delta h}{3}(\mathbf{a - f})
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cauchy stress tensor}
+In the limit when the tetrahedron shrinks to a point $\Delta h \to 0$:
+	\begin{equation*}
+	\mathbf{t} = 
+(\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_1) \mathbf{t}_1 +
+(\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_2) \mathbf{t}_2 + 
+(\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_3) \mathbf{t}_3 = (\mathbf{\hat{n}}\cdot\mathbf{\hat{e}}_i) \mathbf{t}_i
+\end{equation*}
+where the summation convention is used.
+\mode<beamer>{	
+	\begin{equation*}
+	\mathbf{t} = 
+\mathbf{\hat{n}}\cdot(\mathbf{\hat{e}}_1 \mathbf{t}_1 +
+ \cdot\mathbf{\hat{e}}_2 \mathbf{t}_2 + 
+\mathbf{\hat{e}}_3 \mathbf{t}_3).
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+
+The terms in the parenthesis is the 
+\textit{\textbf{stress tensor}} $\sigma$:
+\begin{equation*}
+	\sigma \equiv \mathbf{\hat{e}}_1 \mathbf{t}_1 +
+\cdot\mathbf{\hat{e}}_2 \mathbf{t}_2 + 
+\mathbf{\hat{e}}_3 \mathbf{t}_3
+\end{equation*}
+The stress tensor is a property of the medium that is independent of the $\mathbf{\hat{n}}$
+\mode<beamer>{	
+	\begin{equation*}
+	\mathbf{t}(\mathbf{\hat{n}}) = 
+\mathbf{\hat{n}}\sigma = \sigma^T \mathbf{\hat{n}}.
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+The stress vector $\mathbf{t}$ represents the vectorial stress on a plane whose normal is $\mathbf{\hat{n}}$. $\sigma$ is the \textit{Cauchy stress tensor} defined to be the \textit{current force per unit deformed area}. In Cartesian component, the Cauchy formula is: $t_i = n_j \sigma_{ji}$.
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cauchy stress tensor}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figs/cauchy-stress.png}
+	\caption*{Wikipedia}
+\end{figure}
+\mode<beamer>{	
+	The Cauchy stress tensor $\sigma$, which takes a directional unit vector $e$ as input and maps it to the stress vector $T(e)$, which is the force (per unit area) exerted by material on the negative side of the plane orthogonal to $e$ against the material on the positive side of the plane, thus expressing a relationship between these two vectors
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
 \frametitle{Cauchy stress vs Piola-Kirchoff stress}
 \begin{figure}[ht]
 	\centering
