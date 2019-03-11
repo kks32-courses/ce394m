@@ -648,22 +648,198 @@ The stress vector $\mathbf{t}$ represents the vectorial stress on a plane whose 
 }
 \end{frame}
 
+\subsection{Descriptions of Motion}
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Strains}
+\frametitle{Descriptions of Motion}
+
+For a given geometry and loading, the body \textit{B} will undergo macroscopic geometric
+changes within the body, which are termed deformation. The geometric changes are
+accompanied by stresses that are induced in the body.
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{figs/strain.png}
+	\includegraphics[width=0.65\textwidth]{figs/deformation-body.png}
 \end{figure}
+\end{frame}
 
-\mode<beamer>{	
-	\begin{itemize}
-		\item 6 strains: $\varepsilon_{11}, \varepsilon_{22}, \varepsilon_{33}, \gamma_{12}, \gamma_{23}, \gamma_{31}$.
-		\item $\gamma_{21} = -\gamma_{12}, \gamma_{32} = - \gamma_{23}, \gamma_{13} = - \gamma_{31}$
-		\item Compression is positive
-		\item anti-clockwise is positive
-	\end{itemize}
+\note{
+	The mathematical description of the deformation of a continuous body follows
+	one of the two approaches: (1) the material description and (2) spatial description.
+	The material description is also known as the Lagrangian description, and the spatial
+	description is known as the Eulerian description.
+	
+	In the material description, the motion of the body is referred to a reference 
+	configuration $k_R$, which is often chosen to be the undeformed configuration, $k_R = k_0$.
+	Thus, in the Lagrangian description, the current coordinates ($x \in k$) are expressed
+	in terms of the reference coordinates ($X \in k_0$).
+
+	In the spatial description, the motion is referred to the current configuration $k$ 
+	occupied by the body $B$, and $\phi$ is described with respect to the current position 
+	($x \in k$) in space, currently occupied by material particle $X$.
 }
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Descriptions of Motion: Displacement field}
+The displacement of the particle X is given: $\mathbf{u = x -X}$.
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/lagrangian.png}
+		\caption*{Lagrangian}
+	\end{figure}
+	\mode<beamer>{$\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, t) - \mathbf{X}$}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.49\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/eulerian.png}
+		\caption*{Eulerian}
+	\end{figure}
+	\mode<beamer>{$\mathbf{u}(\mathbf{x}, t) = \mathbf{x - X}(\mathbf{x}, t)$}
+\end{minipage}	
+\end{frame}
+
+\note{
+For a given geometry and loading, the body \textit{B} will undergo macroscopic geometric
+changes within the body, which are termed deformation. The geometric changes are
+accompanied by stresses that are induced in the body.
+In the Lagrangian description, the displacements are expressed in terms of the 
+material coordinates $X_i$: $\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, t) - \mathbf{X}$.
+}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Displacement field}
+Consider 1D mapping $\mathbf{x} = \mathbf{X}(1 + 0.5t)$ defining the motion of a rod of initial
+length two units. The rod experiences a temperature distribution $T$ given by the
+material description $T = 2\mathbf{X}t^2$ or by the spatial description $T = \mathbf{x}t^2 /(1 + 0.5t)$
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/eulerian-lagrangian.png}
+	\caption*{Material and spatial descriptions of motion (Reddy., 2008)}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Deformation Gradient Tensor}
+
+deformation gradient $F_k$ of $k$ relative to the reference configuration $k_0$, 
+which gives the relationship of a material line $dX$ before deformation to the line $dx$ (consisting of the same material as $dX$) after deformation.
+
+\mode<beamer>{
+	\begin{align*}
+		d\mathbf{x} & = \mathbf{F} \cdot d \mathbf{X} = d \mathbf{X} \cdot \mathbf{F}^T \\
+		\mathbf{F} & = \left(\frac{\partial \mathbf{x}}{\partial \mathbf{X}}\right)^T \\
+		d\mathbf{X} & = \mathbf{F}^{-1} \cdot d\mathbf{x} = d\mathbf{x} \cdot \mathbf{F}^{-T}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{equation*}
+	\left[\mathbf{F}\right] = 
+	\begin{bmatrix}
+		\frac{\partial x_1}{\partial X_1} & \frac{\partial x_1}{\partial X_2} & \frac{\partial x_1}{\partial X_3} \\
+		\frac{\partial x_2}{\partial X_1} & \frac{\partial x_2}{\partial X_2} & \frac{\partial x_2}{\partial X_3} \\		\frac{\partial x_3}{\partial X_1} & \frac{\partial x_3}{\partial X_2} & \frac{\partial x_3}{\partial X_3} \\
+	\end{bmatrix}
+\end{equation*}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Deformation Gradient Tensor}
+
+Isotropic compression/extension:
+\mode<beamer>{
+	\begin{equation*}
+		\left[\mathbf{F}\right] = 
+		\begin{bmatrix}
+			\lambda & 0 & 0 \\
+			0 & \lambda & 0 \\
+			0 & 0 & \lambda \\
+		\end{bmatrix}
+	\end{equation*}
+	Isochoric (constant volume) is a special case where $\lambda = 1$.
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+Simple extension:
+\mode<beamer>{
+	\begin{equation*}
+	\left[\mathbf{F}\right] = 
+	\begin{bmatrix}
+	1 + \alpha & 0 & 0 \\
+	0 & 1 & 0 \\
+	0 & 0 & 1 \\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+
+Simple shear:
+\mode<beamer>{
+	\begin{equation*}
+	\left[\mathbf{F}\right] = 
+	\begin{bmatrix}
+	1 & \gamma & 0 \\
+	0 & 1 & 0 \\
+	0 & 0 & 1 \\
+	\end{bmatrix}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+It is rather difficult to invert the mapping even for this simple nonhomogeneous deformation.
+\end{frame}
+
+\subsection{Strain measures}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cauchy–Green Deformation Tensors}
+
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/green-strain.png}
+	\caption*{Points $P$ and $Q$ separated by a distance $d\mathbf{X}$ in the undeformed configuration $k_0$ take up positions $\bar{P}$ and $\bar{Q}$, respectively, in the deformed configuration $k$, where they are separated by distance $d\mathbf{x}$}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Strain tensors}
+\textbf{Cauchy-Green deformation tensor}
+The distances between points $P$ and $Q$ and points $\bar{P}$ and $\bar{Q}$ are:
+\mode<beamer>{
+	\begin{align*}
+		(dS)^2 & = d\mathbf{X} \cdot d\mathbf{X}, \\
+		(ds)^2 & = d\mathbf{x} \cdot d\mathbf{x} = d\mathbf{X} \cdot (\mathbf{F}^T \cdot \mathbf{F}) d\mathbf{X} \equiv d\mathbf{X} \cdot \mathbf{C} d\mathbf{X}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+The right \textit{Cauchy-Green deformation tensor}: \mode<beamer>{$\mathbf{C} = \mathbf{F}^T \cdot \mathbf{F}$}
+
+\textbf{Green Strain Tensor}
+The change in the squared lengths that occurs as a body deforms from the reference to the current configuration can be expressed relative to the original length as:
+\mode<beamer>{
+	\begin{align*}
+	(ds)^2  - (dS)^2 & = 2 d\mathbf{X} \cdot \mathbf{E} \cdot d\mathbf{X}, \\
+	\mathbf{E} & = \frac{1}{2}(\mathbf{F}^T \cdot \mathbf{F} - \mathbf{I}) = \frac{1}{2}(\mathbf{C} - \mathbf{I})
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+By definition, the Green strain tensor is a symmetric second-order tensor.
 \end{frame}
 
 %----------------------------------------------------------------------------------------
@@ -698,21 +874,6 @@ Typically, we assume small displacements + small strains. Therefore the quadrati
 }
 \end{frame}
 
-\note{
-The mechanical notation for infinitesimal strains:
-\begin{equation*}
-	\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right) = \frac{1}{2}(u_{i,j} + u_{j,i})
-\end{equation*}
-$i$ and $j$ refers to directions. 
-
-Resulting strain definitions
-\begin{align*}
-	\varepsilon_{11} & = \frac{1}{2}\left(\frac{\partial u_1}{\partial x_1} + \frac{\partial u_1}{\partial x_1} \right) = \frac{\partial u_1}{\partial x_1} \\
-	\varepsilon_{22} & = \frac{1}{2}\left(\frac{\partial u_2}{\partial x_2} + \frac{\partial u_2}{\partial x_2} \right) = \frac{\partial u_2}{\partial x_2} \\
-	\varepsilon_{12} & = \frac{1}{2}\left(\frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1} \right)
-\end{align*}
-}
-
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Linearization of strain tensor}
@@ -744,4 +905,45 @@ For a 1D deformation of a bar
 As long as strains are small, small strain formulation is very close - OK! (If you have large strains - a correction / alternatives is to update the \textbf{\textit{B}} matrix every iteration to adhust for finite strains).
 \end{frame}
 
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mechanical notation for infinitesimal strains}
+Ignoring higher order terms is called as the linearization of the strain tensor. This assumption allows for two simplifications:
+	\begin{equation*}
+		\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right) = \frac{1}{2}(u_{i,j} + u_{j,i})
+	\end{equation*}
+$i$ and $j$ refers to directions. 
+
+Resulting strain definitions
+
+\mode<beamer>{	
+\begin{align*}
+\varepsilon_{11} & = \frac{1}{2}\left(\frac{\partial u_1}{\partial x_1} + \frac{\partial u_1}{\partial x_1} \right) = \frac{\partial u_1}{\partial x_1} \\
+\varepsilon_{22} & = \frac{1}{2}\left(\frac{\partial u_2}{\partial x_2} + \frac{\partial u_2}{\partial x_2} \right) = \frac{\partial u_2}{\partial x_2} \\
+\varepsilon_{12} & = \frac{1}{2}\left(\frac{\partial u_1}{\partial x_2} + \frac{\partial u_2}{\partial x_1} \right)
+\end{align*}
+}
+\mode<handout>{
+\vspace{1.5cm}
+}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Strains}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/strain.png}
+\end{figure}
+
+\mode<beamer>{	
+	\begin{itemize}
+		\item 6 strains: $\varepsilon_{11}, \varepsilon_{22}, \varepsilon_{33}, \gamma_{12}, \gamma_{23}, \gamma_{31}$.
+		\item $\gamma_{21} = -\gamma_{12}, \gamma_{32} = - \gamma_{23}, \gamma_{13} = - \gamma_{31}$
+		\item Compression is positive
+		\item anti-clockwise is positive
+	\end{itemize}
+}
+\end{frame}
 \end{document}
