@@ -1,0 +1,112 @@
+%**************************************************************************************
+% License:
+% CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%**************************************************************************************
+
+\documentclass[handout]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+
+% Burnt orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\colorlet{beamer@blendedblue}{burntorange}
+% Pale yellow
+\definecolor{paleyellow}{rgb}{1.0, 1.0, 0.953}
+\setbeamercolor{background canvas}{bg=paleyellow}
+% Secondary and tertiary palett
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=burntorange!80!black}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=burntorange!60!black}
+
+% To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}
+% To replace the footer line in all slides with a simple slide count uncomment this line
+%\setbeamertemplate{footline}[page number]
+
+% To remove the navigation symbols from the bottom of all slides uncomment this line
+%\setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{breqn}
+\usepackage{graphicx} % for figures
+\usepackage{subcaption} % for subplots 
+\usepackage[labelsep=space,tableposition=top]{caption}
+\renewcommand{\figurename}{Fig.} 
+\usepackage{cleveref}
+\usepackage{caption,subcaption}% http://ctan.org/pkg/{caption,subcaption}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{multirow}
+
+% To print 2 slides on a page
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{2 on 1}[border shrink=2mm]
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+% The short title appears at the bottom of every slide, the full title is only on the title page
+\title[CE394M: Linear Elasticity]{CE394M: Linear Elasticity} 
+\author{Krishna Kumar} % name
+\institute[UT Austin] % institution 
+{
+University of Texas at Austin \\
+\medskip
+\textit{
+  \url{krishnak@utexas.edu}} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % title page as the first slide
+\end{frame}
+
+\begin{frame}
+ % Table of contents slide, comment this block out to remove it
+ \frametitle{Overview}
+  %Throughout your presentation, if you choose to use \section{} and \subsection{} 
+  %commands, these %will automatically be printed on this slide as an overview 
+ \tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% slides
+%----------------------------------------------------------------------------------------
+\section{Review of vector calculus}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Isotropic linear elastic stress-strain relations}
+The linear relationship between the stress and strain tensor is a linear one. The stress component
+is a linear combination of the strain tensor:
+\begin{equation*}
+	\begin{split}
+		\sigma_{ij} = C_{ij11}\varepsilon_{11} + C_{ij12}\varepsilon_{12} + C_{ij13}\varepsilon_{13} + \\
+			C_{ij21}\varepsilon_{21} + C_{ij22}\varepsilon_{22} + C_{ij23}\varepsilon_{23} + \\ C_{ij31}\varepsilon_{31} + C_{ij32}\varepsilon_{32} + C_{ij33}\varepsilon_{33}
+	\end{split}
+\end{equation*} 
+The most general form for \textit{linear} stress-strain relations for a \textit{Cauchy elastic}
+material is given by:
+\mode<beamer>{
+	\begin{equation*}
+		\sigma_{ij} = B_{ij} + C_{ijkl} \varepsilon_{kl}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+} 
+	Where $B_{ij}$ is the components of initial stress tensor corresponding to the initial strain free (when all strain components $\varepsilon_{kl} = 0$). $C_{ijkl}$ is the tensor of material \textit{elastic constants}.
+	
+	If it is assumed that the initial strain free state corresponds to an \textit{initial stress free state}, that is $B_{ij} = 0$, the equations reduces to:
+\mode<beamer>{	
+	\begin{equation*}
+		\sigma_{ij} = C_{ijkl} \varepsilon_{kl}
+	\end{equation*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+} 
+\end{frame}
+\end{document}
