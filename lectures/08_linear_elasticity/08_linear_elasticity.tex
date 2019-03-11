@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[handout]{beamer}
+\documentclass[notes]{beamer}
 
 \mode<presentation> {
 
@@ -75,7 +75,7 @@ University of Texas at Austin \\
 %----------------------------------------------------------------------------------------
 % slides
 %----------------------------------------------------------------------------------------
-\section{Review of vector calculus}
+\section{Linear Elasticity}
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Isotropic linear elastic stress-strain relations}
@@ -109,4 +109,181 @@ material is given by:
 	\vspace{1.5cm}
 } 
 \end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Observation on linear elasticity}
+\mode<beamer>{
+	\begin{enumerate}
+		\item $\sigma_{ij} = C_{ijkl} \varepsilon_{kl}$ is a general expression relating stress to strains for a linear solid.
+		\item $C_{ijkl}$ is a 4th order tensor containing 81 terms (we trick using symmetry and reduce order).
+		\item $C_{ijkl}$ material response functions having dimensions $F/L^2$.
+		\item Homogeneous: $C_{ijkl}$ independent of position
+		\item Isotropic: $C_{ijkl}$ independent of frame of reference.
+		\item Because the stress is symmetric: $\sigma_{ij} = \sigma_{ji}$, $C_{ijkl} = C_{jikl}$. Strain is symmetric $\varepsilon_{kl} = \varepsilon_{lk}$ and $C_{ijkl} = C_{ijlk}$. Hence the number of independent variables drop from 81 to 36. 
+		\item Both the stress and the strain tensor have only 6 independent values, therefor write them as vecotrs, then the stiffness tensor can be written as a matrix (compromise I can not rotate tensor).
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress-strain relationship}
+\begin{equation*}
+\begin{bmatrix}
+	\sigma_{11} \\
+	\sigma_{22} \\
+	\sigma_{33} \\
+	\sigma_{12} \\
+	\sigma_{23} \\
+	\sigma_{31} \\
+\end{bmatrix} %
+= %
+\begin{bmatrix}
+	C_{11} & C_{12} & C_{13} & C_{14} &   C_{15} & C_{16}\\
+	C_{21} & C_{22} & C_{23} & C_{24} &   C_{25} & C_{26}\\
+	C_{31} & C_{32} & C_{33} & C_{34} &   C_{35} & C_{36}\\
+	C_{41} & C_{42} & C_{43} & C_{44} &   C_{45} & C_{46}\\
+	C_{51} & C_{52} & C_{53} & C_{54} &   C_{55} & C_{56}\\
+	C_{61} & C_{62} & C_{63} & C_{64} &   C_{65} & C_{66}\\
+\end{bmatrix} %
+\begin{bmatrix}
+\varepsilon_{11} \\
+\varepsilon_{22} \\
+\varepsilon_{33} \\
+\varepsilon_{12} \\
+\varepsilon_{23} \\
+\varepsilon_{31} \\
+\end{bmatrix}
+\end{equation*}
+$C_{ijkl}$ is a tensor of material \textit{elastic constants}. However, the above $[\mathbf{C}]$ is not a tensor anymore. So we can not rotate the matrix to another frame of reference. This relationship is useful for isotropic materials, where $\mathbf{C}$ is independent of the frame of reference. 
+\mode<beamer>{
+	\begin{equation*}
+		\left\{\sigma\right\} = \left[\mathbf{C}\right]\left\{\varepsilon\right\}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+The inverse of the relationship (Compliance matrix): 
+\mode<beamer>{
+	\begin{equation*}
+	\left\{\varepsilon\right\} = \left[\mathbf{D}\right]\left\{\sigma\right\}
+	%
+	\qquad 
+	%
+	 \left[\mathbf{D}\right] = \left[\mathbf{C}\right]^{-1}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Isotropic Linear Elastic Stress-strain relationship}
+The \textit{isotropic tensor} $C_{ijkl}$:
+\begin{equation*}
+C_{ijkl} = \lambda \delta_{ij}\delta_{kl} + \mu (\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}) + \alpha (\delta_{ik}\delta_{jl} - \delta_{il}\delta_{jk})
+\end{equation*}
+Where $\lambda, \mu, \text{ and }, \alpha$ are scalar constants. Since $C_{ijkl}$ must satisfy symmetry, $\alpha = 0$.
+\mode<beamer>{
+	\begin{equation*}
+	C_{ijkl} = \lambda \delta_{ij}\delta_{kl} + \mu (\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+So the stress:
+\mode<beamer>{
+	\begin{align*}
+	\sigma_{ij} & = \lambda \delta_{ij}\delta_{kl}\varepsilon_{kl} + \mu (\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})\varepsilon_{kl}\\
+	\sigma_{ij} & = \lambda \varepsilon_{kk} \delta_{ij} + 2\mu \varepsilon_{ij}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+Hence for an isotropic linear elastic material, there are only two independent material constants, $\lambda$ and $\mu$, which are called \textit{Lame's constants}.
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Hooke's law}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.89\linewidth}
+	Empirical observation:
+	\mode<beamer>{
+		\begin{equation*}
+			\Delta \varepsilon_a = \Delta \sigma_{axial} \cdot \frac{1}{E} \rightarrow \Delta \varepsilon_{11} = \frac{\Delta \sigma_{11}}{E}
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{1.5cm}
+	}
+	Where $E$ is defined as the \textit{Young's modulus}.
+
+	The lateral strains are defined as:
+	\mode<beamer>{
+		\begin{align*}
+			\Delta \varepsilon_{22} & = - \mu \Delta \varepsilon_{11} \\
+			\Delta \varepsilon_{33} & = - \mu \Delta \varepsilon_{11}
+		\end{align*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+
+	Using superposition for principal stresses:
+		\begin{align*}
+			\varepsilon_{11} & = (1/E)\left[\sigma_{11} - \mu \sigma_{22} -\mu \sigma_{33}\right] \\
+			%
+			\varepsilon_{22} & = (1/E)\left[-\mu \sigma_{11} + \sigma_{22} -\mu \sigma_{33}\right] \\
+			%
+			\varepsilon_{33} & = (1/E)\left[-\mu \sigma_{11} - \mu \sigma_{22} + \sigma_{33}\right]
+		\end{align*}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.1\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.6\textwidth]{figs/hookes-law.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Hooke's law}
+
+\begin{equation*}
+	\begin{Bmatrix}
+		\varepsilon_{11}\\
+		\varepsilon_{22}\\
+		\varepsilon_{33}\\
+	\end{Bmatrix} = \frac{1}{E}
+	\begin{bmatrix}
+		1 & -\mu & -\mu \\
+		-\mu & 1 & -\mu \\
+		-\mu & -\mu & 1 \\
+	\end{bmatrix}
+	\begin{Bmatrix}
+		\sigma_{11}\\
+		\sigma_{22}\\
+		\sigma_{33}\\
+	\end{Bmatrix}
+\end{equation*}
+
+It is possible to invert the matrix to obtain the generalized Hooke's law: \mode<beamer>{$[\sigma] = [\mathbf{C}][\varepsilon]$}.
+
+
+\end{frame}
+
+
 \end{document}
