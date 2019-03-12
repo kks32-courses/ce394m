@@ -409,4 +409,38 @@ The test is carried out by applying a uniaxial stress component $\sigma_{11}$ in
 \end{frame}
 
 
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Plane stress v Plane strain}
+For a frame with an axis perpendicular to the plane of interest, $x_3$ or $z$:
+
+\textbf{Plane stress}
+\mode<beamer>{$\sigma_{33} = \sigma_{zz} = \tau_{xz} = \tau_{yz} = 0$.}\mode<handout>{\vspace{1cm}.}
+
+The strain in $z$ is written as:
+\mode<beamer>{	
+	\begin{equation*}
+	\varepsilon_{zz} = \frac{-\nu}{E}(\sigma_{xx} + \sigma_{yy}) = \frac{-\nu}{1-\nu}(\varepsilon_{xx} + \varepsilon_{yy}) 
+	\end{equation*}
+The plane stress are commonly used for thin flat plates loaded in the plane of the plate.
+}  
+\mode<handout>{
+	\vspace{2.5cm}
+}
+
+
+\textbf{Plane strain}
+\mode<beamer>{$\varepsilon_{33} = \varepsilon_{zz} = \gamma_{xz} = \gamma_{yz} = 0$.}\mode<handout>{\vspace{1cm}.}
+
+The stress in $z$ is written as:
+\mode<beamer>{	
+	\begin{equation*}
+	\sigma_{zz} = \nu(\sigma_{xx} + \sigma_{yy})
+	\end{equation*}
+	The plane strains are commonly used for elongated bodies of uniform cross sections subjected to uniform loading along the longitudinal axis (tunnels, dams, retaining walls, soil slopes, etc.).
+}  
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\end{frame}
 \end{document}
