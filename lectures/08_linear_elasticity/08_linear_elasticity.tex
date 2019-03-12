@@ -40,6 +40,7 @@
 \usepackage{caption,subcaption}% http://ctan.org/pkg/{caption,subcaption}
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 \usepackage{multirow}
+\usepackage{tabularx}
 
 % To print 2 slides on a page
 %\usepackage{handoutWithNotes}
@@ -443,4 +444,380 @@ The stress in $z$ is written as:
 	\vspace{2.5cm}
 }
 \end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Elastic solutions}
+\mode<beamer>{	
+	\begin{enumerate}
+		\item \textit{Ease of use} Only two parameters, choose equivalent values representative of stran/stress levels.
+		\item \textit{Disadvantage}: No failure criteria.
+		\item Validate code with chart solutions ("\textit{Exact solutions}")., e.g., Poulos and Davis (1974).
+		\item Useful to get feeling of problem (lo stress levels) not wide distribution of plastic zones.
+	\end{enumerate}
+}  
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Pore-pressure analysis in geotechnical engineering}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/geotechnical-analysis.png}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Drained analysis - Effective stress}
+\begin{enumerate}
+	\item Need to assign initial effective stresses before the analysis.
+	\item Can use any effective stress model: Elastic, Mohr-Coulomb/Drucker Prager and Cam-Clay models.
+	\item If plasticity models are used, need to update the effective stresses at each increment:
+	\mode<beamer>{
+		\begin{equation*}
+			\sigma^\prime(new) = \sigma^\prime(old) + D(\text{soil skeleton}) d\varepsilon
+		\end{equation*}
+	}
+	\mode<handout>{	
+		\vspace{1.5cm}
+	}
+	\item Very common.
+\end{enumerate}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Undrained analysis - Total stress}
+\begin{itemize}
+	\item Excess pore pressure cannot be calculated. 
+	\item Effective stress state of the soil cannot be examined.
+	\item Elastic model is commonly used for deformation
+	\mode<beamer>{
+		\begin{enumerate}
+			\item Use undrained stiffness $E_u$ and strength parameters $s_u$
+			\item Poisson's ratio close to 0.5 with a drained simulation
+			\item Properties can vary with depth. ($K_0$ varies)
+			\item Consolidation analysis has no effect and should not be performed.
+		\end{enumerate}
+	}
+	\mode<handout>{
+		\vspace{2.5cm}
+	}
+	\item Von-Mises model is used for modeling undrained shear strength of clays. ($C_u$ or $s_u$ and undrained friction $\phi_u = 0$)
+	\item Can assign different stiffness and strength at different depths explicity by assigning different model parameters at different depths.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Undrained analysis - Effective vs Total stress}
+\mode<beamer>{
+	\begin{itemize}
+		\item Effective stress: $E^\prime$ and $\nu^\prime$.
+		\item Total stress: $E_u$ and $\nu_u$
+		\item No volume change:
+			\begin{equation*}
+				\nu_u = 0.5; (K_u = E_u/(1-2\nu_u)/3 = E_u / 0 = \infty)
+			\end{equation*}
+		\item Pore fluid cannot sustain shear stresses. Soil skeleton carries the shear stresses $\tau (or q)$.
+		\begin{align*}
+			G^\prime = G_u; \quad G^\prime & = E^\prime / (1+\nu^\prime)/2 \quad G_u = E_u /(1+\nu_u)/2\\
+			E^\prime/(1+\nu^\prime)/2 & = E_u /(1+ 0.5)/2\\
+			E_u & = 1.5 E^\prime /(1+\nu^\prime)
+		\end{align*}
+		\item In finite element analysis, $\nu_u = 0.5$ cannot be used. Use $\nu_u = 0.49 \text{ or } 0.495$. But be careful with \textit{mesh locking} problem.
+	\end{itemize}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Undrained analysis - Effective stress}
+\begin{itemize}
+	\item Need to assign initial effective stresses before the analysis.
+	\item Can use any effective stress model, so the stiffness and strength variation with depth can be modeled implicitly with the one set of model parameters.
+	\item The applied load is carried by the soil skeleton and pore water.
+	\item The contribution of the bulk modulus of water needs to be added:
+	\mode<beamer>{
+		\begin{equation*}
+		D = D_{(\text{soil skeleton})} + \frac{1}{n}D_{(water)}, \quad \text{where \textit{n} is the porosity}
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{1cm}
+	}
+	\item Effective stress increment can be computed by:
+	\mode<beamer>{
+		\begin{equation*}
+			d\sigma^\prime = D_{(\text{soil skeleton})} d\varepsilon.
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{1cm}
+	}
+	\item Need to update the effective stresses at each time step.
+\end{itemize}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Effective stress approach or undrained (A)}
+\begin{itemize}
+	\item Effective stiffness and effective strength parameters are used.
+	\item \textit{Pore pressures are generated}, but may be \textbf{inaccurate} depending on the model.
+	\item Undrained shear strength is \textit{not} an input parameter but an outcome of the constitutive model. The resulting shear strength must be checked against known data!
+	\item Consolidation analysis can be performed after the undrained calculation, which \textit{affects the shear strength}!
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Equivalent effective stress approach or undrained (B)}
+\begin{itemize}
+	\item Effective stiffness parameters and \textit{undrained strength parameters }are used.
+	\item \textit{Pore pressures are generated}, but may be hightly \textbf{inaccurate}.
+	\item Undrained shear strength is an input parameter.
+	\item Consolidation analysis should not be performed after the undrained calculation, $s_u$ must be updated, if consolidation is performed anyway!
+\end{itemize}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Methods of undrained analysis for Mohr-Coulomb clay}
+\begin{table}
+	\begin{tabularx}{\textwidth}{XXXXX}
+		\toprule
+		\textbf{undrained analysis}          & \textbf{material type} & \textbf{deformation parameters} & \textbf{strength parameters} & \textbf{initial conditions} \\
+		\midrule
+		\textbf{Total stress}                           & Non-porous / drained   & $E_u, \nu_u$                    & $c_u, \phi_u = 0$            & $K_{0,u}$                   \\
+		\midrule 
+		\textbf{Effective stress} & Undrained (triaxial parameters)             & $E^\prime, \nu^\prime$          & $c^\prime, \phi^\prime$      & $K_0$                       \\
+		\midrule
+		\textbf{Equivalent Effective stress}    & Undrained (strength profile)           & $E^\prime, \nu^\prime$          & $c^\prime, \phi^\prime$      & $K_0$ \\    
+		\bottomrule                 
+	\end{tabularx}
+\end{table}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Consolidation analysis - Effective stress}
+\begin{itemize}
+	\item Use Biot's 3D consolidation theory
+	\item Pore pressure and displacement are computed at each time step.
+	\item Need to use effective stress model
+	\item Need permeability
+	\item Lots of computational time
+	\item More realistic. Undrained, partially drained, drained depending on the loading condition, drainage condition, permeability of soil.
+	\item Stress path followed is correct, which should provide a good strain estimate when plasticity models are used.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Project on FEA of an excavation}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Total stress evaluating varying $K_0$}
+\begin{figure}
+	\includegraphics[width=0.95\textwidth]{figs/excavation-k0.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Undrained analysis using effective stress method}
+\textbf{Effective stress Method A}
+\begin{itemize}
+	\item Define $c^\prime$ and $\phi^\prime$ in terms of the real effective stress parameters, assuming zero dilation.
+	\item $\nu^\prime$ is the effective Poisson ratio
+	\item $E$ and $K_0$ should be `\textit{effective stress}' based.
+\end{itemize}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/su-effective.png}
+	\caption*{Mohr-Coulomb failure criteria: $\tau = c^\prime + \sigma^\prime \tan \phi^\prime$}
+\end{figure}
+	\begin{equation*}
+		s_u = c^\prime \cos \phi^\prime + (1+K_0)/2 \cdot \sin \phi^\prime \cdot \sigma_{v0}^\prime.
+	\end{equation*}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Undrained analysis using equivalent effective stress method}
+\textbf{Effective stress Method B}
+\begin{itemize}
+	\item Define $c^\prime$ and $\phi^\prime$ in terms of the ``\textit{equivalent}'' effective stress parameters, with zero dilation. Parameters are defined based on the strength profile with depth.
+	\item $\nu^\prime$ is the effective Poisson ratio
+	\item $E$ and $K_0$ should be `\textit{effective stress}' based.
+\end{itemize}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/su-total.png}
+	\caption*{Mohr-Coulomb failure criteria: $\tau = c^\prime + \sigma^\prime \tan \phi^\prime$}
+\end{figure}
+\begin{equation*}
+s_u = c^\prime \cos \phi^\prime + (1+K_0)/2 \cdot \sin \phi^\prime \cdot \sigma_{v0}^\prime.
+\end{equation*}
+\end{frame}
+
+%------------------------------------------------
+\section{Slope stability}
+%------------------------------------------------
+\begin{frame}
+\frametitle{2014 Oso landslide}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/oso-mudslide.jpg}
+\end{figure}
+\end{frame}
+
+\note{
+\begin{itemize}
+	\item 22nd March 2014 at 10.37 am
+	\item Volume: approx. 8 million m3
+	\item 43 casualties (deadliest landslide in US)
+	\item 1 neighboured destroyed
+	\item \textbf{Cost unknown} but $>$ USD 150 million + USD 65 million (lawsuit 2017) + indirect costs
+	\item Social tensions (general public \& sc. community)
+	\item Indian Snohomish tribe
+\end{itemize}
+}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Shear failure plane}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+\caption*{At failure, shear stress along the failure surface ($\tau$) reaches the shear strength ($\tau_f$).}
+\end{figure}
+Factor of Safety = \mode<beamer>{Resistance (from soil shear strength)/Driving force (from total
+stress equilibrium (i.e. weight of the soil))}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Dry slope (total stress = effective stress)}
+\mode<beamer>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figs/dry-slope.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+\end{figure}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Saturated slope (total stress = effective stress + pwp)}
+\textbf{Drained conditions} - need to compute the steady state pore pressure field
+and then evaluate ``effective stress‐based'' shear strength to find the overall
+stability (based on total stress equilibrium).
+\mode<beamer>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figs/saturated-slope.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+\end{figure}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Saturated slope (total stress = effective stress + PWP)}
+\textbf{Undrained conditions} ‐ (total stress approach) – Use ``\textit{total‐stress based}''
+shear strength ($s_u$) to find the overall stability (based on total stress
+equilibrium).
+\mode<beamer>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figs/saturated-undrained.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+\end{figure}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Saturated slope (total stress = effective stress + PWP)}
+\textbf{Undrained conditions} ‐ (Effective stress approach‐not common) ‐ need to
+compute the pore pressure (including excess pore pressure) field and then
+evaluate ``\textit{effective stress ‐based}'' shear strength to find the overall stability
+(based on total stress equilibrium).
+\mode<beamer>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figs/undrained-effective-stress.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+\end{figure}
+}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Infinite slopes}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/infinite-slope.png}
+\end{figure}
+Soil fails when (dry): \mode<beamer>{$ \beta = \phi_{\mathrm{mob}}$}
+Soil fails when (submerged): \mode<beamer>{$ \beta = \phi_{\mathrm{mob}}$}
+\mode<beamer>{Slope with steady state seepage (drained): $\tan(\beta) = (1 – \gamma_w /\gamma) \tan(\phi_{\mathrm{mob}})$}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Undrained infinite slope (total stress approach)}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{figs/undrained-infinite-slope.png}
+\end{figure}
+But also the shear stress: \mode<beamer>{$ T =  s_u l$. The slope failure is governed by $s_u$ profile (with depth).}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Infinite slope: Summary}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{figs/infinite-slope.png}
+\end{figure}
+\begin{enumerate}
+\item Factor of Safety = resistance / driving
+\item Dry FoS = $\tan(\phi_{\mathrm{mob}})/\tan(\beta)$
+\item Submerged FoS = $\tan(\phi_{\mathrm{mob}})/\tan(\beta)$
+\item Undrained FoS = $2 s_u / \gamma z \sin(2 \beta)$
+\item Steady state seepage FoS = $(1 - \gamma_w/ \gamma) \tan(\phi_{\mathrm{mob}})/\tan(\beta)$ where the water table is located at the slope surface
+\end{enumerate}
+\end{frame}
+
+
 \end{document}
