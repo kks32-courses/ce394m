@@ -731,10 +731,32 @@ material coordinates $X_i$: $\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, 
 \frametitle{Displacement field}
 Consider 1D mapping $\mathbf{x} = \mathbf{X}(1 + 0.5t)$ defining the motion of a rod of initial
 length two units. The rod experiences a temperature distribution $T$ given by the
-material description $T = 2\mathbf{X}t^2$ or by the spatial description $T = \mathbf{x}t^2 /(1 + 0.5t)$
+material description $T = 2\mathbf{X}t^2$ or by the spatial description $T = 2\mathbf{x}t^2 /(1 + 0.5t)$
 \begin{figure}
 	\includegraphics[width=0.85\textwidth]{figs/eulerian-lagrangian.png}
 	\caption*{Material and spatial descriptions of motion (Reddy., 2008)}
+\end{figure}
+\end{frame}
+
+\note{
+	From the figure, we see that the particle’s material coordinate (label) $X$
+	remains associated with the particle while its spatial position $x$ changes. The
+	temperature at a given time can be found in one of the two ways: for example,
+	at time $t = 3$, the temperature of the particle labeled $X = 2$ is $T = 2 \times 2 \times (3)^2 = 36$;
+	alternatively, the temperature of the same particle which at $t = 3$ is at a spatial position $x = 2(1 + 0.5 \times 3) = 5$ is $T = 2\times5(3)^2 /(1 + 0.5 \times 3) = 36$. The displacement
+	of a material point occupying position $X$ in $k_0$ is:
+	\begin{equation*}
+		\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, t) - \mathbf{X} = X(1 + 0.5t) - X = 0.5Xt.
+	\end{equation*}
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Deformation Gradient Tensor}
+
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/green-strain.png}
+	\caption*{Points $P$ and $Q$ separated by a distance $d\mathbf{X}$ in the undeformed configuration $k_0$ take up positions $\bar{P}$ and $\bar{Q}$, respectively, in the deformed configuration $k$, where they are separated by distance $d\mathbf{x}$}
 \end{figure}
 \end{frame}
 
@@ -923,7 +945,6 @@ As long as strains are small, small strain formulation is very close - OK! (If y
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Mechanical notation for infinitesimal strains}
-Ignoring higher order terms is called as the linearization of the strain tensor. This assumption allows for two simplifications:
 	\begin{equation*}
 		\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right) = \frac{1}{2}(u_{i,j} + u_{j,i})
 	\end{equation*}
