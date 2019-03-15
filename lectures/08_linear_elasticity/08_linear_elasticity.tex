@@ -123,7 +123,7 @@ material is given by:
 		\item Homogeneous: $C_{ijkl}$ independent of position
 		\item Isotropic: $C_{ijkl}$ independent of frame of reference.
 		\item Because the stress is symmetric: $\sigma_{ij} = \sigma_{ji}$, $C_{ijkl} = C_{jikl}$. Strain is symmetric $\varepsilon_{kl} = \varepsilon_{lk}$ and $C_{ijkl} = C_{ijlk}$. Hence the number of independent variables drop from 81 to 36. 
-		\item Both the stress and the strain tensor have only 6 independent values, therefor write them as vecotrs, then the stiffness tensor can be written as a matrix (compromise I can not rotate tensor).
+		\item Both the stress and the strain tensor have only 6 independent values, therefor write them as vectors, then the stiffness tensor can be written as a matrix (compromise I can not rotate tensor).
 	\end{enumerate}
 }
 \mode<handout>{
@@ -287,11 +287,11 @@ It is possible to invert the matrix to obtain the generalized Hooke's law: \mode
 \begin{equation*}
 	\begin{Bmatrix}
 		\sigma_{11}\\
-		\sigma_{11}\\
-		\sigma_{11}\\
-		\sigma_{11}\\
-		\sigma_{11}\\
-		\sigma_{11}\\
+		\sigma_{22}\\
+		\sigma_{33}\\
+		\sigma_{12}\\
+		\sigma_{13}\\
+		\sigma_{23}\\
 	\end{Bmatrix} = \alpha
 	\begin{bmatrix}
 		(1-\mu) & \nu & \nu & 0 & 0 & 0 \\
@@ -358,10 +358,11 @@ The \textit{Bulk modulus, K,}  is defined as the ratio between the \textit{hydro
 \textbf{Simple tension test}
 The only non-zero components of stress: \mode<beamer>{$\sigma_{11} = \sigma$}
 
-The \textit{Young's modulus, K,}  is defined as the ratio between the \textit{hydrostatic pressure p} nd the corresponding volume change $\Delta \varepsilon_v = \varepsilon_{kk}$. 
+The \textit{Young's modulus, E,}  and \textit{Poisson's ratio, $\nu$} as. 
 \mode<beamer>{	
 	\begin{equation*}
-	K = - \frac{p}{\varepsilon_{kk}} = \lambda + \frac{2}{3}\mu
+	E = \frac{\sigma_{11}}{\varepsilon_{11}} \quad
+	\nu = \frac{-\varepsilon_{22}}{\varepsilon_{11}} = \frac{-\varepsilon_{33}}{\varepsilon_{11}}
 	\end{equation*}
 }  
 \mode<handout>{
@@ -396,7 +397,7 @@ The \textit{Shear modulus, $G$ or $\mu$,}  is defined as:
 }
 
 \textbf{Uniaxial strain test}
-The test is carried out by applying a uniaxial stress component $\sigma_{11}$ in the axial direction of a cylindrical sample, whose lateral surface is \textit{restrained} against lateral movement (Oedometer test). Axial strain $\varepsilon_11$ is the only nonvanishing component. The \textit{constrained modulus M} or as PLAXIS calls it $E_{oed}$ is defined as the ratio between $\sigma_{11}$ and $\varepsilon_11$.
+The test is carried out by applying a uniaxial stress component $\sigma_{11}$ in the axial direction of a cylindrical sample, whose lateral surface is \textit{restrained} against lateral movement (Oedometer test). Axial strain $\varepsilon_{11}$ is the only nonvanishing component. The \textit{constrained modulus M} or as PLAXIS calls it $E_{oed}$ is defined as the ratio between $\sigma_{11}$ and $\varepsilon_11$.
 \mode<beamer>{	
 	\begin{align*}
 		\sigma_{11} & = \frac{E}{(1+\nu)(1-2\nu)}\left[(1-\nu)\varepsilon_{11} + \nu\cancelto{0}{\varepsilon_{22}} + \nu\cancelto{0}{\varepsilon_{33}}\right] = \frac{E(1-\nu)\varepsilon_{11}}{(1+\nu)(1-2\nu)} \\
