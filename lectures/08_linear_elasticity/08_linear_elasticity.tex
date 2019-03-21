@@ -566,6 +566,37 @@ The stress in $z$ is written as:
 \end{itemize}
 \end{frame}
 
+\note{
+	\begin{equation*}
+		u = K_w \cdot \varepsilon_{v, water}
+	\end{equation*}
+	
+	Where, $K_w$ is the Bulk modulus of water $\approx 2 \times 10^6 kN/m^2$. 
+	
+	\begin{align*}
+		\varepsilon_{v, water} &= \Delta V_w / V_w \\
+		\varepsilon_{v, soil} &= \Delta V_T / V_T  = \Delta V_w / V_T \quad \text{(assuming solid is incompressible)}\\
+		\frac{\varepsilon_{v, soil}}{\varepsilon_{v, water}}  & = \frac{\Delta V_w / V_T}{\Delta V_w / V_w} = \frac{V_w}{V_T} = n \quad \text{(porosity for s = 100\%)}
+	\end{align*}
+
+	Therefore,
+	
+	\begin{equation*}
+		u = K_w \cdot \frac{\varepsilon_{v, soil}}{n} = (K_w / n) \cdot \varepsilon_{v, soil}
+	\end{equation*}
+}
+
+\note{
+	Consider equivalent $(K_w/n)$ in soil model. Separate total and effective stresses:
+	
+	\begin{align*}
+		\sigma_m & = K_u \cdot \varepsilon_{v, soil} \quad K_u \text{undrained bulk modulus of soil} \\
+		\sigma_m^\prime & = K^\prime \cdot  \varepsilon_{v} \\
+		u & = \sigma_m - \sigma^\prime = (K_u - K^\prime) \cdot  \varepsilon_v\\
+		K_w/n & = K_u - K^\prime
+	\end{align*}
+}
+
 
 %------------------------------------------------
 \begin{frame}
