@@ -167,7 +167,7 @@ University of Texas at Austin \\
 		\item Deviatoric / shear strain: $\varepsilon_\gamma = (\varepsilon_I - \varepsilon_{III})$
 		\item Work increment:
 		\begin{equation*}
-			\Delta W = \sigma_I^\prime \Delta \varepsilon_I + \sigma_{III}^\prime \Delta \varepsilon_{III} = s^\prime \Delta \varepsilon_v + t \Delta \varepsilon_\gamma
+			\delta W = \sigma_I^\prime \delta \varepsilon_I + \sigma_{III}^\prime \delta \varepsilon_{III} = s^\prime \delta \varepsilon_v + t \delta \varepsilon_\gamma
 		\end{equation*}
 		\item $s$ and $t$ are often used to derive parameters for Mohr-Coulomb model because it only considers $\sigma_I$ and $\sigma_{III}$ and not $\sigma_{II}$.
 	\end{enumerate}
@@ -182,7 +182,7 @@ University of Texas at Austin \\
 \begin{figure}
 	\includegraphics[width=\textwidth]{figs/plane-strain-stresses.png}
 \end{figure}
-\end{minipage}	
+\end{minipage}
 \end{frame}
 
 \note{
@@ -206,6 +206,20 @@ University of Texas at Austin \\
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
+\frametitle{Mohr circle to 2D stress components}
+Successive Mohr circles and stress path for constant $\sigma_3$ and increasing $\sigma_1$:
+\mode<beamer>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/mohr-circle-ts.png}
+\end{figure}
+}
+\mode<handout>{
+\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
 \frametitle{Effect of $\sigma_{II}$}
 Bishop (1966) defined \textbf{b-value}: \mode<beamer>{$b = (\sigma_{II} - \sigma_{III}) / (\sigma_I - \sigma_{III})$, where $\sigma_I > \sigma_{II} > \sigma_{III}$. Triaxial compression $b = 0$, triaxial extension $b = 1$. 
 
@@ -213,9 +227,285 @@ Typically $\phi^\prime_{ps} = (1.05 - 1.15)\phi^\prime_{tx}$.
 }
 \begin{figure}
 	\includegraphics[width=0.58\textwidth]{figs/friction-ps-tx.png}
-	\caption*{Ladd et al., (1975)}
+	\caption*{Effect of $\sigma_{II}$ on friction angle (Kulhawy and Mayne, 1990)}
 \end{figure}
 \end{frame}
-\note{$\sigma_{II}$ do have an effect on soil behavior. For example, the friction angle depends on the loading condition: triaxial compression, plane-strain, triaxial extension and others $\dots$.}
+\note{$\sigma_{II}$ do have an effect on soil behavior. For example, the friction angle depends on the loading condition: triaxial compression, plane-strain, triaxial extension and others $\dots$., The effect of $\sigma_{II}$ can be measured using
+true triaxial apparatus or hollow cylinder torsional
+shear apparatus. In general, the peak friction
+angle increases 10 to 15 percent from b = 0 (triaxial
+compression) to b = 0.3 to 0.4 (plane strain), and it
+stays constant or slightly decreases as b reaches 1 (tri-axial extension).
+
+The variation of measured friction angle with
+changes in $\sigma_{II}$ can be attrib-
+uted to the effects of different mean stress and stress
+anisotropy on the dilatancy and particle rearrangement
+contributions to the total strength. For given maximum
+and minimum principal stresses, the TXE
+conditions have the largest mean effective stress,
+whereas the triaxial compression conditions have the
+smallest mean effective stress. The higher confinement
+for triaxial extension and plane strain conditions contributes to the increasing friction angle for these conditions. (Mitchell and Soga., 2005)
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Effect of $\sigma_{II}$ on friction}
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{figs/friction-bvalue.png}
+	\caption*{Chapter 11., Mitchell and Soga, 2005}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Effect of $\sigma_{II}$ on friction}
+	Various models fit the experimental data showing the intermediate stress effect.
+	Lade and Duncan (1975)
+	\begin{equation*}
+		\frac{I_1^3}{I_3} = const
+	\end{equation*}
+	
+	Matsuoka and Nakai (1974)
+	\begin{equation*}
+		\frac{I_1 I_2}{I_3} = const
+	\end{equation*}
+	
+	\begin{align*}
+		I_1 &= \sigma_1 + \sigma_2 + \sigma_3 \\
+		I_2 &= \sigma_1\sigma_2 + \sigma_2 \sigma_3 + \sigma_3 \sigma_1\\
+		I_3 &= \sigma_1\sigma_2\sigma_3
+	\end{align*}
+Matsuoka and Nakai's model gives the same friction angle for compression and extension, whereas Lade and Duncan's model gives the ratio of the TXE friction angle ($\phi_{TXE}^\prime$) to the TXC friction angle ($\phi_{TXC}^\prime$) to be 1.08 at $\phi_{TXC}^\prime = 20^o$ to 1.15 at $\phi_{TXC}^\prime = 40^o$. 
+\end{frame}
+\note{Given the large scatter in the published experimental data, it is not possible to conclude that one model is better than the ohter. 
+}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial stresses and strains: independent components}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\mode<beamer>{
+		\begin{itemize}
+			\item We split the stress system into:
+			\begin{itemize}
+				\item purely volumetric deformation `\textit{p}'
+				\item purely distortional deformation `\textit{q}'
+			\end{itemize}
+			\item Mean stress: 
+			\begin{equation*}
+			p = (\sigma_a + 2\sigma_r) / 3 \quad  p^\prime = p - u
+			\end{equation*}
+			\item Volumetric strain: $\varepsilon_v = (\varepsilon_a + 2 \varepsilon_r)$
+			\item Deviatoric / shear stress (purely distortional deformation):
+			\begin{equation*}
+				q = (\sigma_a - \sigma_r) \quad q^\prime = q
+			\end{equation*}
+			\item Deviatoric / shear strain: $\varepsilon_s = 2/3 (\varepsilon_a - \varepsilon_r)$
+		\end{itemize}
+	}
+	\mode<handout>{
+		\vspace{3cm}
+	}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/triaxial.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial deviatoric strain}
+	\begin{itemize}
+		\item Deviatoric / shear strain: $\varepsilon_s = 2/3 (\varepsilon_a - \varepsilon_r)$
+		\item Why 2/3?:
+		\mode<beamer>{	
+		\item Work equation: $\delta W = p^\prime \delta \varepsilon_v + q^\prime \delta \varepsilon_s$
+		\begin{align*}
+			\delta W & = \sigma_1^\prime \delta \varepsilon_1 + \sigma_2^\prime \Delta \varepsilon_2 + \sigma_3^\prime \Delta \varepsilon_3  = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r\\
+			\delta W & = (1/3 \sigma_a^\prime + 2/3 \sigma_r^\prime)(\varepsilon_a + 2 \varepsilon_r) + (\sigma_a^\prime - \sigma_r^\prime)(2/3)(\varepsilon_a - \varepsilon_r) \\
+			& = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r 
+		\end{align*}
+	}
+	\mode<handout>{
+	\vspace{3cm}
+	}
+	\end{itemize}
+
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial stress - strain relationship}
+Relationship in terms of axial and radial direction:
+\begin{equation}
+	\begin{bmatrix}
+		\varepsilon_a \\
+		\varepsilon_r \\
+	\end{bmatrix}%
+	=%
+	\frac{1}{E}%
+	\begin{bmatrix}
+		1 & - 2\nu\\
+		-\nu & (1-\nu)\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		\sigma_a \\
+		\sigma_r \\
+	\end{bmatrix}
+\end{equation}
+\mode<beamer>{	
+Relationship in terms of `\textit{p}' and `\textit{q}':
+\begin{equation}
+	\begin{bmatrix}
+		p \\
+		q \\
+	\end{bmatrix}%
+	=%
+	\begin{bmatrix}
+	1/3 &  2/3\\
+	1   & -1\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+	\sigma_a \\
+	\sigma_r \\
+	\end{bmatrix}%
+	\quad
+	\text{ invert }
+	\rightarrow
+	\begin{bmatrix}
+		\sigma_a \\
+		\sigma_r \\
+	\end{bmatrix}%	
+	\begin{bmatrix}
+		1   &  2/3\\
+		1   & -1/3\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		p \\
+		q \\
+	\end{bmatrix}%
+\end{equation}
+
+Strain:
+\begin{equation}
+	\begin{bmatrix}
+		\varepsilon_p \\
+		\varepsilon_q \\
+	\end{bmatrix}%
+	=%
+	\begin{bmatrix}
+		1   &  2\\
+		2/3   & -2/3\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		\varepsilon_a \\
+		\varepsilon_r \\
+	\end{bmatrix}%
+\end{equation}
+}
+\mode<handout>{
+	\vspace{5cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr circle to 3D stress components}
+Successive Mohr circles and stress path for constant $\sigma_3$ and increasing $\sigma_1$:
+\mode<beamer>{	
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/mohr-circle-pq.png}
+\end{figure}
+}
+\mode<handout>{
+\vspace{6cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress paths p-q}
+Different stress paths for initially hydrostatic stress conditions:
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/stress-paths-pq.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression}
+TXC with constant back pressure $u_o$ (TSP: Total stress path; ESP: Effective stress path)
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/txc-tsp-esp.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression undrained: loose v dense}
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=0.85\textwidth]{figs/tx-undrained-pwp.png}
+		\caption*{Total and effective stress paths for undrained triaxial test: (a) on soil that wishes to contract as it is sheared, and (b) on soil that wishes to expand as it is sheared.}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression drained: loose}
+\begin{figure}
+	\includegraphics[width=0.55\textwidth]{figs/tx-drained-loose.png}
+	\caption*{Loose Sacramento River sand: (a) principal stress ratio versus
+		axial strain; (b) volumetric strain versus axial strain (Lee, 1965).}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression drained: dense}
+\begin{figure}
+	\includegraphics[width=0.43\textwidth]{figs/tx-drained-dense.png}
+	\caption*{Dense Sacramento River sand: (a) principal stress ratio versus
+		axial strain; (b) volumetric strain versus axial strain (Lee, 1965).}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression drained: loose v dense}
+\begin{figure}
+	\includegraphics[width=0.35\textwidth]{figs/tx-drained-loose-dense.png}
+	\caption*{Triaxial tests on “loose” and “dense” specimens of a typical sand: (a) stress-strain curves; (b) void
+		ratio changes during shear (Hirschfeld, 1963).}
+\end{figure}
+\end{frame}
 
 \end{document}
