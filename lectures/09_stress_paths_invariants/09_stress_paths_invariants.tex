@@ -756,18 +756,80 @@ TXC with constant back pressure $u_o$ (TSP: Total stress path; ESP: Effective st
 \note{
 As deformation progresses,
 \begin{itemize}
-	\item The number of particles in the strong force network
-	decreases.
+	\item The number of particles in the strong force network decreases.
 	\item With fewer particles sharing the increased loads.
-	\item Anisotropic fabric develops, showing the formation of
-	strong force network. Fabric of particles associated with
-	strong forces is different from that associated with weak
+	\item Anisotropic fabric develops, showing the formation of strong force network. Fabric of particles associated with strong forces is different from that associated with weak
 	clusters.
-	\item At critical state, force chain forms and buckles
-	continuously. Likely to buckle when a force chain has 8
-	particles
+	\item At critical state, force chain forms and buckles continuously. Likely to buckle when a force chain has 8 	particles
+\end{itemize}
+}
+
+\section{Stress invariants}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress and strain invariants in 3D}
+\textbf{6 stresses and strains}
+	\begin{itemize}
+		\itemsep1.5em 
+		\item Mean pressure: \mode<beamer>{	$p^\prime = (\sigma_{11}^\prime + \sigma_{22}^\prime + \sigma_{33}^\prime) / 3$}
+		\item Deviator stress: $q = \sqrt{3/2}\sqrt{s_{11}^2 + s_{22}^2 + s_{33}^2+ 2 \tau_{12}^2 + 2 \tau_{23}^2 + 2 \tau_{31}^2} $
+		\item where $s_{11} = \sigma_{11}^\prime - p^\prime, 
+			   s_{22} = \sigma_{22}^\prime - p^\prime, s_{33} = \sigma_{33}^\prime - p^\prime$
+		\item Volumetric strain: \mode<beamer>{ $\varepsilon_v = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33}$}
+		\item Deviatoric strain: $ \varepsilon_s = \sqrt{2/3}\sqrt{e_{11}^2 + e_{22}^2 + e_{33}^2+ \gamma_{12}^2 /2 + \gamma_{23}^2 / 2 + \gamma_{31}^2 / 2} $
+		\item where $e_{11} = \varepsilon_{11} - \varepsilon_v / 3, e_{22} = \varepsilon_{22} - \varepsilon_v / 3, e_{33} = \varepsilon_{33} - \varepsilon_v / 3$
+	 \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress and strain invariants in 3D}
+\textbf{3 Principal stresses and strains}
+\begin{itemize}
+	\itemsep2em 
+	\item Mean pressure: \mode<beamer>{	$p^\prime = (\sigma_{I}^\prime + \sigma_{II}^\prime + \sigma_{III}^\prime) / 3$}
+	
+	\item Deviator stress: $q = \sqrt{1/2}\sqrt{(\sigma_{I}^\prime - \sigma_{II}^\prime)^2 + (\sigma_{II}^\prime - \sigma_{III}^\prime)^2 + (\sigma_{III}^\prime - \sigma_{I}^\prime)^2} $
+	
+	
+	\item Volumetric strain: \mode<beamer>{ $\varepsilon_v = \varepsilon_{I} + \varepsilon_{II} + \varepsilon_{III}$}
+	
+	\item Deviatoric strain: $ \varepsilon_s = \frac{\sqrt{2}}{3}\sqrt{(\varepsilon_{I}^\prime - \varepsilon_{II}^\prime)^2 + (\varepsilon_{II}^\prime - \varepsilon_{III}^\prime)^2 + (\varepsilon_{III}^\prime - \varepsilon_{I}^\prime)^2} $
+
 \end{itemize}
 
+\textbf{In triaxial condition (principal stresses/strains)}
+\mode<beamer>{
+\begin{equation*}
+p^\prime = (\sigma_I + 2 \sigma_{III})/3 \quad %
+q = \sigma_I - \sigma_{III} \quad%
+\varepsilon_v = \varepsilon_I + 2 \varepsilon_{III} \quad%
+\varepsilon_s = 2(\varepsilon_I - \varepsilon_{III})/3
+\end{equation*}
 }
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Missing stress invariants}
+\begin{itemize}
+	\itemsep2em 
+	\item \textbf{General stresses:} \mode<beamer>{$\sigma_{ij}(i, j = 1, 2, 3)\quad \sigma_{11}, \sigma_{22}, \sigma_{33}, \sigma_{12}, \sigma_{13}, \sigma_{23} $}
+	\mode<beamer>{\begin{center}$\Updownarrow$\end{center}}
+	\item \textbf{Principal stresses:}
+	\mode<beamer>{$\sigma_I, \sigma_{II}, \sigma_{III} + 3 angles$}
+\end{itemize}
+\mode<beamer>{\begin{center}$\Downarrow \quad \cancel{\Uparrow} $\end{center}}
+\mode<beamer>{
+	Two stress invariants (mean pressure $p$ or $s$, deviator stress $q$ or $t$). One more stress invariant is needed to go back to 3 principal stresses.\textbf{ Lode angle!}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
 
 \end{document}
