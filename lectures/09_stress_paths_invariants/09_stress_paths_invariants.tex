@@ -176,10 +176,9 @@ University of Texas at Austin \\
 }
 \mode<handout>{
 	\vspace{3cm}
-} 
-
+	\hfill
+}
 \end{minipage}%
-\hfill
 \begin{minipage}[t]{0.35\linewidth}
 \begin{figure}
 	\includegraphics[width=\textwidth]{figs/plane-strain-stresses.png}
@@ -340,7 +339,7 @@ Matsuoka and Nakai's model gives the same friction angle for compression and ext
 		\end{align*}
 	}
 	\mode<handout>{
-	\vspace{3cm}
+	\vspace{5cm}
 	}
 	\end{itemize}
 
@@ -811,11 +810,13 @@ q = \sigma_I - \sigma_{III} \quad%
 	\vspace{2cm}
 }
 \end{frame}
-
+\note{The magnitudes of the components of the stress vector (i.e. $\sigma_{\sigma_{xx}, \sigma_{yy}, \sigma_{zz}, \tau_{xy}, \tau_{xz}, \tau_{yz}}$) depend on the chosen direction of the coordinate axes. The principal stresses ($\sigma_I, \sigma_{II}, and \sigma_{III}$) however, always act on the same
+planes and have the same magnitude, no matter which direction is chosen for the coordinate axes. They are therefore invariant to the choice of axes. Consequently, the state of stress can be fully defined by either specifying the six component values for a fixed direction of the coordinate axis, or by specifying the magnitude of the principal stresses and the directions of the three planes on which these principal stresses act. In either case six independent pieces of information are required.
+}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Missing stress invariants}
+\frametitle{The missing stress invariant}
 \begin{itemize}
 	\itemsep2em 
 	\item \textbf{General stresses:} \mode<beamer>{$\sigma_{ij}(i, j = 1, 2, 3)\quad \sigma_{11}, \sigma_{22}, \sigma_{33}, \sigma_{12}, \sigma_{13}, \sigma_{23} $}
@@ -825,11 +826,97 @@ q = \sigma_I - \sigma_{III} \quad%
 \end{itemize}
 \mode<beamer>{\begin{center}$\Downarrow \quad \cancel{\Uparrow} $\end{center}}
 \mode<beamer>{
-	Two stress invariants (mean pressure $p$ or $s$, deviator stress $q$ or $t$). One more stress invariant is needed to go back to 3 principal stresses.\textbf{ Lode angle!}
+	Two stress invariant (mean pressure $p$ or $s$, deviator stress $q$ or $t$). One more stress invariant is needed to go back to 3 principal stresses: \textbf{Lode angle!}
 }
 \mode<handout>{
 	\vspace{4cm}
 }
 \end{frame}
 
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress invariant}
+Principal stresses (3 components) $\Leftrightarrow$ Invariants (3 components)
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{itemize}
+	\itemsep2em 
+	\item $I_1 =$ \mode<beamer>{$p^\prime = \sigma_{ii}^\prime / 3$}
+	%
+	\item $s_{ij} =$ \mode<beamer>{$\sigma_{ij}^\prime - \delta_{ij}p^\prime$}
+	\item $J_2 =$  \mode<beamer>{$\frac{1}{2}s_{ij}s_{ij}$}
+	\item $J_2 =$  \mode<beamer>{$\frac{1}{2}s_{ij}s_{ij}$}
+	\item $q =$ \mode<beamer>{$\sqrt{3/2} (s_{ij} s_{ij})^{0.5} = \sqrt{3}J_2$}
+\end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/stress-invariant.png}
+\end{figure}
+Lode angle:
+\begin{itemize}
+	\item $\sin 3\theta = \frac{-3\sqrt{3}}{2} \frac{J_3}{J_2^{3/2}}$.
+	\item $\theta = \tan^{-1} \left[\frac{1}{\sqrt{3}}\left(2\frac{(\sigma_2 - \sigma_3)}{(\sigma_1 - \sigma_3)} - 1\right)\right]$
+	\item \mode<beamer>{$TXC = \pi/6 \quad TXE = -\pi/6$}
+	\item \mode<beamer>{$SHR = 0$, when $\sigma_2 = (\sigma_1 + \sigma_3)/2$ (note $SHR\ne PS$)}
+	
+\end{itemize}
+\end{minipage}
+\end{frame}
+
+\note{If one is interested in the overall
+	magnitude of the stress, all three principal stresses would be needed, but not the directions of the planes on which they act. In geotechnical engineering it is often convenient to work with alternative invariant quantities which are combinations of the principal effective stresses.
+}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Triaxial compression}
+\mode<beamer>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/txc.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+\end{figure}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Triaxial extension}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/txe.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+	\end{figure}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Random stress paths}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/stress-paths.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+	\end{figure}
+}
+\end{frame}
 \end{document}
