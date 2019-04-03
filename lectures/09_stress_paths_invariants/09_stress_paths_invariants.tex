@@ -919,4 +919,192 @@ Lode angle:
 	\end{figure}
 }
 \end{frame}
+
+\section{Soil engineering properties}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stiffness: small to large strains}
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/stiffness-strains.png}
+	\caption*{Bender element (GDS)}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stiffness: small to large strains}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/shear-modulus.png}
+\end{figure}
+\mode<beamer>{
+	$E$ or $G$ is a function of:
+	\begin{enumerate}
+		\item confining stress and void ratio (relative density)
+		\item strain level
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stiffness at intermediate strains}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/stiffnes-intermediate-strain.png}
+\end{figure}
+\mode<beamer>{
+	$E_{50} = E $ at 50\% of $()\sigma_1 - \sigma_3)_{peak}$
+	Note: $\phi_{peak 1}^\prime < \phi_{peak 2}^\prime$
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Undrained strength}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/effect-sigma_c.png}
+	\caption*{Triaxial compression test data of homogeneous clay (Ladd \& Foott, 1974)}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Normalized undrained strength}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/su_normalised.png}
+	\caption*{Normalised triaxial compression test data of homogeneous clay (Ladd \& Foott, 1974)}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress History and Normalized Soil Engineering Properties (SHANSEP) (Ladd and Foote, 1974)}
+\mode<beamer>{
+	\begin{align*}
+		(s_u/\sigma_v^\prime) = (s_u/\sigma_v^\prime)_{nc} \times OCR^m \\
+		m = 0.8 (0.65 - 0.9)
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/shansep.png}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{SHANSEP procedure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/shansep-procedure.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+\note{
+	\begin{enumerate}
+		\item obtain a sample of “clayey” soil
+		\item Reconsolidate to 1.5 to 2.0 of insitu effective mean pressure $p^\prime_0$ , or
+		reconsolidate back to the virgin normal compression line
+		\item Rebound to desired OCR
+		\item Perform undrained shearing and find $s_u$ .
+		\item Perform multiple tests at different OCRs.
+		\item Evaluate 	$(s_u/\sigma_v^\prime) = (s_u/\sigma_v^\prime)_{nc} \times OCR^m$
+	\end{enumerate}
+}
+
+\section{Total vs Effective stress }
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/tsp-esp.png}
+	\end{figure}
+	Tresca criteria: $\sigma_1 - \sigma_3 = 2 s_u$
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/footing-tsp-esp.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/footing-tsp-esp-mc.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/footing-tsp-esp-su.png}
+	\end{figure}
+	However, $s_u$ needs to be assigned at different depths even for the same soil.
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\begin{itemize}
+	\item Better! Conduct Total Stress Analysis: $s_u = s_1 - s_3$
+	\begin{itemize}
+		\item But $s_u$ needs to be defined at different locations even if it is the same
+		soil.
+		\item We can do quick undrained (UU) tests to obtain spatial variation of
+		$s_u$. Hence, practical.
+		\item No information on pore pressure, so cannot assess the long-term consolidation deformation behavior.
+	\end{itemize}
+	\item Effective analysis = $(\sigma_1^\prime - \sigma_3^\prime)/(\sigma_1^\prime + \sigma_3^\prime) = \sin \phi^\prime$:
+	\begin{itemize}
+		\item If it is the same soil, can use the same soil properties (such as $\phi^\prime$)
+		and need to conduct CU tests.
+		\item But need to compute the excess pore pressure at different locations.
+		\item This is difficult: only a good effective stress constitutive model that
+		can predict the excess pore pressure correctly can do this.
+		\item If pore pressure profile can be computed, then it can be used to
+		evaluate the subsequent consolidation process.
+	\end{itemize}
+\end{itemize}
+\end{frame}
 \end{document}
