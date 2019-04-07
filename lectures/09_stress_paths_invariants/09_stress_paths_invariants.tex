@@ -250,6 +250,13 @@ smallest mean effective stress. The higher confinement
 for triaxial extension and plane strain conditions contributes to the increasing friction angle for these conditions. (Mitchell and Soga., 2005)
 }
 
+\note{
+
+In TXC major principal stress, $\sigma_1$ acts vertically, compared to triaxial extension mode of loading, where $\sigma_1$ acts horizontally. The effect of the intermediate principal stress is comparatively smaller, and is often assessed using the parameter $b = (\sigma_{II} - \sigma_{III})/(\sigma_I - \sigma_{III})$, which is zero in
+triaxial compression, and one in triaxial extension. In TXE $\sigma_I = \sigma_{II}$ (radial), while $\sigma_{III}$ is the vertical stress.
+
+}
+
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Effect of $\sigma_{II}$ on friction}
@@ -333,8 +340,8 @@ Matsuoka and Nakai's model gives the same friction angle for compression and ext
 		\mode<beamer>{	
 		\item Work equation: $\delta W = p^\prime \delta \varepsilon_v + q^\prime \delta \varepsilon_s$
 		\begin{align*}
-			\delta W & = \sigma_1^\prime \delta \varepsilon_1 + \sigma_2^\prime \Delta \varepsilon_2 + \sigma_3^\prime \Delta \varepsilon_3  = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r\\
-			\delta W & = (1/3 \sigma_a^\prime + 2/3 \sigma_r^\prime)(\varepsilon_a + 2 \varepsilon_r) + (\sigma_a^\prime - \sigma_r^\prime)(2/3)(\varepsilon_a - \varepsilon_r) \\
+			\delta W & = \sigma_1^\prime \delta \varepsilon_1 + \sigma_2^\prime \delta \varepsilon_2 + \sigma_3^\prime \delta \varepsilon_3  = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r\\
+			\delta W & = (1/3 \sigma_a^\prime + 2/3 \sigma_r^\prime)(\delta \varepsilon_a + 2 \delta \varepsilon_r) + (\sigma_a^\prime - \sigma_r^\prime)(2/3)(\delta \varepsilon_a - \delta \varepsilon_r) \\
 			& = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r 
 		\end{align*}
 	}
@@ -508,6 +515,20 @@ Different stress paths for initially hydrostatic stress conditions:
 }
 \end{frame}
 
+\note{
+A mean total stress $p = \frac{\sigma_a + 2 \sigma_r}{3}$ and deviatoric stress $q = \sigma_a - \sigma_r$.
+In triaxial compression the cell pressure is held constant, $\delta \sigma_r = 0$ and axial load is increased. 
+\begin{equation*}
+\delta p = \frac{\delta q}{3}
+\end{equation*}
+
+In triaxial extension, to keep the axial stress constant while changing the cell pressure requires that the ram
+force (or deviatoric stress) and cell pressure must be changed simultaneously. For $\delta \sigma_a = 0, \delta \sigma_r = - \delta q$. The the differential form is:
+
+\begin{equation*}
+\delta p = \frac{2 \delta \sigma_r}{3} = \frac{-2 \delta q}{3}
+\end{equation*}
+}
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Triaxial compression}
@@ -522,6 +543,10 @@ TXC with constant back pressure $u_o$ (TSP: Total stress path; ESP: Effective st
 }
 \end{frame}
 
+\note{
+If drainage can occur freely from the soil sample to atmospheric pressure, then the pore pressure will be zero, 
+and total and effective stresses will be identical. The measurement of volume changes of triaxial samples require the measurement of volume of pore fluid flowing into or out of the sample. If part of this pore fluid is emerging as gas (air), then part of the voume change of the sample will not be observed as a change in the level of liquid in a burette. It is often desirable to ensure that the pore fluid is indeed saturated by subjecting the whole pore fluid system to a pressure, called a \textit{back pressure}, which is held constant at a value of $u_0$ during the test in order to ensure that the gaseous phase remains in solution. Drainage can occur freely, but against this back pressure. In such a test, the total and effective stress paths will be separated by a constant distance $u_0$.
+}
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Triaxial compression undrained: loose v dense}
@@ -998,11 +1023,19 @@ Lode angle:
 	\vspace{2cm}
 }
 \begin{figure}
-	\includegraphics[width=0.6\textwidth]{figs/shansep.png}
+	\includegraphics[width=\textwidth]{figs/shansep.png}
 \end{figure}
 \end{frame}
 
-
+\note{
+	Laboratory tests conducted at the Imperial College using remolded clays (Henkel (1960)
+	and Parry (1960)) and at the Massachusetts Institute of Technology on a wide range of
+	clays, give evidence that clay samples with the same over-consolidation ratio (OCR), but
+	different consolidation stress $\sigma_c^\prime$ and therefore different pre-consolidation stress $\sigma_{p}^\prime$, exhibit very similar strength and stress-strain characteristics when the results are
+	normalized over the consolidation stress $\sigma_c^\prime$.
+	
+	In practice, normalized behaviour is not as perfect as shown, there is discrepancy in the normalized plots caused by different consolidation stresses, soil deposit heterogeneity or even the fact that the conditions from one soil test to another are not identical. However, this discrepancy is reported to be quite small.
+}
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{SHANSEP procedure}
@@ -1034,7 +1067,7 @@ Lode angle:
 \frametitle{TSP v ESP footing: Tresca failure}
 \mode<beamer>{
 	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/tsp-esp.png}
+		\includegraphics[width=0.8\textwidth]{figs/tsp-esp.png}
 	\end{figure}
 	Tresca criteria: $\sigma_1 - \sigma_3 = 2 s_u$
 }
@@ -1074,7 +1107,7 @@ Lode angle:
 \frametitle{TSP v ESP footing: Tresca failure}
 \mode<beamer>{
 	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/footing-tsp-esp-su.png}
+		\includegraphics[width=0.9\textwidth]{figs/footing-tsp-esp-su.png}
 	\end{figure}
 	However, $s_u$ needs to be assigned at different depths even for the same soil.
 }
@@ -1087,7 +1120,7 @@ Lode angle:
 \begin{frame}
 \frametitle{TSP v ESP footing: Tresca failure}
 \begin{itemize}
-	\item Better! Conduct Total Stress Analysis: $s_u = s_1 - s_3$
+	\item Better! Conduct Total Stress Analysis: $s_u = \sigma_1 - \sigma_3$
 	\begin{itemize}
 		\item But $s_u$ needs to be defined at different locations even if it is the same
 		soil.
