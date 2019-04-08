@@ -667,17 +667,90 @@ and total and effective stresses will be identical. The measurement of volume ch
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
+\frametitle{Fabric anisotropy}
+\begin{figure}
+	\includegraphics[width=0.5\textwidth]{figs/fabric-anisotropy.png}
+	\caption*{Fabric anisotropy under different stress conditions}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
 \frametitle{Macroscopically, as soil aggregates...}
 \begin{figure}
 	\includegraphics[width=\textwidth]{figs/macroscopic-friction.png}
 \end{figure}
 \mode<beamer>{	
 	\begin{equation*}
-		\phi = \phi_{crit} + \Delta \phi_{dilatancy}
+		\phi = \phi_{cs} + \Delta \phi_{dilatancy}
 	\end{equation*}
 }
 \mode<handout>{
 	\vspace{6cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Critical state friction angle and density}
+\begin{figure}
+	\includegraphics[width=0.95\textwidth]{figs/sand-friction-angle.png}
+\end{figure}
+\mode<beamer>{
+	\begin{equation*}
+	\phi_{peak} = \phi_{cs} + \Delta \phi (\text{confining stress, initial void ratio})
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Dilation angle $\psi$}
+\begin{figure}
+\includegraphics[width=0.95\textwidth]{figs/sand-dilation.png}
+\end{figure}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Simulate CD or CU test and check the volume change behavior (for
+		CD) and excess pore pressure behavior (for CU)!
+		\item For CU, if the computed undrained shear strength is greater than the
+		actual value, use Undrained (B).
+	\end{enumerate}
+}
+\mode<handout>{
+\vspace{2cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Friction angle (Bolton., 1986)}
+Friction angle
+\mode<beamer>{
+	\begin{align*}
+	\phi_{peak} - \phi_{cs} & = 3I_R \quad \text{for triaxial compression} \\
+	& = 5 I_R \quad \text{for plane strain}
+	\end{align*}
+Relative density index
+	\begin{align*}
+	I_R & = I_D \cdot I_c - 1 \\
+	\text{Relative crushability } I_c & =  \ln \left(\frac{\sigma_c}{p^\prime}\right)\\
+	\sigma_c \text{ for quartz} & = 20 GPa \\
+	\text{Relative density } I_D & = \frac{e_{max} - e}{e_{max} - e_{min}}
+	\end{align*}
+Dilation angle
+	\begin{align*}
+	\psi & \approx 1.25 (\phi_{peak} - \phi_{cs})\\
+	\psi & = 0 \text{ when } \phi_{peak} = \phi_{cs}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
 }
 \end{frame}
 
@@ -752,7 +825,6 @@ and total and effective stresses will be identical. The measurement of volume ch
 	\end{figure}
 \end{minipage}
 \end{frame}
-
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -989,6 +1061,7 @@ Lode angle:
 }
 \end{frame}
 
+\note{$E_{50ref} = (0.70 \pm 0.10)E_{oedref}$}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
