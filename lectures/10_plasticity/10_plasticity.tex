@@ -314,6 +314,58 @@ How the threshold of yielding changes with plastic strain or how the yield funct
 }
 \end{frame}
 
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Drucker's postulate}
+
+Drucker (1952) established that for a stable inelastic material in a closed stress cycle, a positive work must be done. 
+
+\mode<beamer>{
+	\begin{equation*}
+	dW^{plastic} > 0 \rightarrow d\sigma \cdot d\varepsilon^p > 0
+	\end{equation*}
+	This requirement is satisfied if the normality condition is assumed (but is not the only solution). The gradient of the yield surface (i.e., normal to the surface)	
+	\begin{equation*}
+	\vec{Q} = \frac{\partial F}{\partial \sigma} = \vec{P}
+	\end{equation*}
+	It also imposes a constraint that the yield surface must be convex.
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}
+	\includegraphics[width=0.4\textwidth]{figs/constitutive-snap-back.png}
+\end{figure}
+\end{frame}
+
+\note {
+\begin{align*}
+Q &= \frac{\partial F}{\partial \sigma} \\
+P &= \frac{\partial G}{\partial \sigma}
+\end{align*}
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Associated and non-associated plasticity}
+\mode<beamer>{
+	\begin{itemize}
+		\item \textbf{Associated flow rule} - Major principal plastic strain increment ($d\varepsilon_1^p$) is in
+		the direction of the major principal stress ($\sigma_1$), and the axes of the principal
+		strain increment and principal stress coincide, i.e., the yield and plastic functions coincide. This results in a symmetric constitutive matrix $D^p$.
+		\item \textbf{Nonassociated flow rule} - The axes of the principal strain increment and
+		principal stress do not coincide.
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/associated-nonassociated.png}
+\end{figure}
+\end{frame}
+
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Equations of elasto-plasticity: 3. Consistency condition}
@@ -340,40 +392,6 @@ How the threshold of yielding changes with plastic strain or how the yield funct
 	m &= \frac{\partial G}{\partial \sigma}
 	\end{align*}
 }
-
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Drucker's postulate}
-
-Drucker (1952) established that for a stable inelastic material in a closed stress cycle, a positive work must be done. 
-
-\mode<beamer>{
-	\begin{equation*}
-		dW^p > 0 \rightarrow d\sigma \cdot d\varepsilon^p > 0
-	\end{equation*}
-	This requirement is satisfied if the normality condition is assumed (but is not the only solution). The gradient of the yield surface (i.e., normal to the surface)	
-	\begin{equation*}
-		\vec{Q} = \frac{\partial F}{\partial \sigma} = \vec{P}
-	\end{equation*}
-	It also imposes a constraint that the yield surface must be convex.
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-\begin{figure}
-	\includegraphics[width=0.4\textwidth]{figs/yield.png}
-\end{figure}
-\end{frame}
-
-\note {
-\begin{align*}
-Q &= \frac{\partial F}{\partial \sigma} \\
-P &= \frac{\partial G}{\partial \sigma}
-\end{align*}
-}
-
-
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -404,6 +422,68 @@ Linear elastic – softening plastic material  $\textcolor{orange}{H} < 0$
 \begin{figure}
 	\includegraphics[width=0.8\textwidth]{figs/softening-plastic.png}
 \end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Basic concepts of elasto-plasticity}
+The response of the material is:
+\begin{itemize}
+	\item \textbf{elastic}: \mode<beamer>{ as long as the stress state remains \textbf{within} the yield surface.
+		\begin{equation*}
+		F(\sigma, Wp) < 0 \rightarrow d\sigma = D^e \cdot d\varepsilon.
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\item \textbf{elasto-plastic}: \mode<beamer>{ if the stress state is \textbf{on} the yield surface
+	\begin{equation*}
+	F(\sigma, Wp) = 0 \rightarrow d\sigma = D^p \cdot d\varepsilon.
+	\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\end{itemize}
+Note: When the response is elastic, we have no problem! Knowing the strain, we directly can calculate the stress ($d\sigma = D^e \cdot d\varepsilon$).
+
+The difficulty arises when the material response is elasto‐plastic, we need to determine $D^p$!
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity}
+For an elasto-plastic material:
+\begin{itemize}
+	\item Input material: \mode<beamer>{$D^e, \frac{\partial F}{\partial \sigma}, \frac{\partial G}{\partial \sigma}, H$}
+
+	\item Results from FE analysis: \mode<beamer>{$d\varepsilon$}
+	
+	\item unknowns: \mode<beamer>{$\textcolor{blue}{d\varepsilon^p}, \textcolor{green}{d\lambda}, \textcolor{red}{d\sigma}$}
+	
+	\item What we are interested:\mode<beamer>{ $\textcolor{red}{d\sigma}$}
+\end{itemize}
+
+\begin{enumerate}
+	\item Stress-strain: $\textcolor{red}{d\sigma} = D^e \cdot (d\varepsilon - \textcolor{blue}{d\varepsilon^p})$
+	\item Consistency-condition: $dF = \frac{\partial F}{\partial \sigma}^T \cdot \textcolor{red}{d\sigma} - H \textcolor{green}{d\lambda}$
+	\item Flow rule: $\textcolor{blue}{d\varepsilon^p} = \frac{\partial G}{\partial \sigma} \textcolor{green}{d\lambda}$.
+\end{enumerate}
+
+Solution procedure:
+\mode<beamer>{
+\begin{enumerate}
+	\item Eqs 1 and 3 in eq 2 $\rightarrow$ $\textcolor{green}{d\lambda}$
+	\item $\textcolor{green}{d\lambda}$ in Eq 3 $\rightarrow \textcolor{blue}{d\varepsilon^p}$
+	\item $\textcolor{blue}{d\varepsilon^p}$ in Eq 1 $\rightarrow \textcolor{red}{d\sigma}$
+\end{enumerate}
+	}
+\mode<handout>{
+\vspace{2cm}
+}
 \end{frame}
 
 \end{document}
