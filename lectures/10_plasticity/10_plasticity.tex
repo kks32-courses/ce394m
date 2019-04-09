@@ -44,6 +44,14 @@
 \usepackage{siunitx}
 \usepackage{cleveref}
 \usepackage{xcolor}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+	nobeforeafter, math upper, tcbox raise base,
+	enhanced, colframe=blue!30!black,
+	colback=blue!30, boxrule=1pt,
+	#1}
 
 % To print 2 slides on a page
 %\usepackage{handoutWithNotes}
@@ -131,7 +139,7 @@ Constitutive law is the stress-strain relationship: $\sigma = f(\varepsilon) \ri
 \end{frame}
 
 %----------------------------------------------------------------------------------------
-\section{Plasticity}
+\section{Classical plasticity}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -386,13 +394,6 @@ P &= \frac{\partial G}{\partial \sigma}
 \end{figure}
 \end{frame}
 
-\note {
-	\begin{align*}
-	n &= \frac{\partial F}{\partial \sigma} \\
-	m &= \frac{\partial G}{\partial \sigma}
-	\end{align*}
-}
-
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Equations of elasto-plasticity: 3. Consistency condition}
@@ -400,11 +401,11 @@ The consistency condition can be written as:
 	\begin{align*}
 	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \frac{\partial F}{\partial Wp}\cdot dWp & = 0 \\
 	%
-	 & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \frac{\partial F}{\partial Wp}\cdot \frac{\partial Wp}{\partial \varepsilon^p}\cdot d \varepsilon^p & = 0 \\
+	 & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \left(\frac{\partial F}{\partial Wp}\right)\cdot \left(\frac{\partial Wp}{\partial \varepsilon^p}\right)^T\cdot d \varepsilon^p & = 0 \\
 	% 	
-	 & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \textcolor{orange}{\frac{\partial F}{\partial Wp}\frac{\partial Wp}{\partial \varepsilon^p}\cdot\frac{\partial G}{\partial 	\sigma}} d\lambda  & = 0 \\
+	 & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \textcolor{orange}{\left(\frac{\partial F}{\partial Wp}\right)\left(\frac{\partial Wp}{\partial \varepsilon^p}\right)^T\cdot\frac{\partial G}{\partial 	\sigma}} d\lambda  & = 0 \\
 	%
-	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma - \textcolor{orange}{H} d\lambda & = 0.
+	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma \textcolor{orange}{-H} d\lambda & = 0.
 	\end{align*}
 
 	if $\textcolor{orange}{H} > 0$: Hardening, if $\textcolor{orange}{H} = 0$: perfect plasticity, if $\textcolor{orange}{H} < 0$: softening.
@@ -423,6 +424,32 @@ Linear elastic – softening plastic material  $\textcolor{orange}{H} < 0$
 	\includegraphics[width=0.8\textwidth]{figs/softening-plastic.png}
 \end{figure}
 \end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Isotropic v kinematic hardening}
+Two primary types of hardening laws: density and kinematic hardening.
+\begin{figure}
+	\includegraphics[width=0.4\textwidth]{figs/isotropic-kinematic-hardening.png}
+\end{figure}
+\begin{enumerate}
+	\item \textbf{Density hardening}: also referred to as isotropic hardening. $(\sigma_1 - \sigma_3) - 2c(h) = 0$
+	\item \textbf{Kinematic hardening}: typically describing fabric anisotropy. No change in size of yield surface but translating in stress space. $F = (\sigma_1 - \sigma_3) - \alpha(h) - 2c = 0$.
+\end{enumerate}
+\end{frame}
+
+\note{
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/isotropic-hardening.png}
+		\caption*{Isotropic hardening}
+	\end{figure}
+	
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/kinematic-hardening.png}
+		\caption*{Kinematic hardening}
+	\end{figure}
+
+}
 
 
 %----------------------------------------------------------------------------------------
@@ -484,6 +511,95 @@ Solution procedure:
 \mode<handout>{
 \vspace{2cm}
 }
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity}
+Eq 1 and 3 (stress-strain \& flow rule) in Eq 2 (consistency condition) for $\textcolor{green}{d\lambda}$
+\begin{align*}
+	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot \left(d\varepsilon - \frac{\partial G}{\partial \sigma} \textcolor{green}{d\lambda}\right) - H \textcolor{green}{d\lambda} = 0\\
+	\textcolor{green}{d\lambda} & = \frac{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot d\varepsilon}{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \left(\frac{\partial G}{\partial \sigma}\right) + H}
+\end{align*}
+
+\begin{equation*}
+\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \frac{\partial G}{\partial \sigma} + H > 0
+\end{equation*}
+
+$\textcolor{green}{d\lambda}$ in Eq 3 $\rightarrow\textcolor{blue}{d\varepsilon^p}$ 
+
+\begin{equation*}
+\textcolor{blue}{d\varepsilon^p} = \frac{\partial G}{\partial \sigma} d\lambda =  \frac{\partial G}{\partial \sigma} \frac{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot d\varepsilon}{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \left(\frac{\partial G}{\partial \sigma}\right) + H}
+\end{equation*}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity}
+$\textcolor{blue}{d\varepsilon^p}$ in Eq 1 $\rightarrow\textcolor{red}{d\sigma}$
+
+\begin{align*}
+\textcolor{red}{d\sigma} & = D^e \cdot (d\varepsilon - \textcolor{blue}{d\varepsilon^p}) \\
+&= D^e \cdot \left(d\varepsilon -\frac{\partial G}{\partial \sigma} \frac{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot d\varepsilon}{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \left(\frac{\partial G}{\partial \sigma}\right) + H}\right)
+\end{align*}
+
+\begin{empheq}[box=\tcbhighmath]{equation*}
+	d\sigma^\prime = \left[D^e - \frac{D^e\left(\frac{\partial G}{\partial \sigma^\prime}\right)\left(\frac{\partial F}{\partial \sigma^\prime}\right)^T D^e}{-\left(\frac{\partial F}{\partial W_p}\right)\left(\frac{\partial W_p}{ \partial \varepsilon^p}\right)^T\left(\frac{\partial G}{\partial \sigma^\prime}\right) + \left(\frac{\partial F}{\partial \sigma^\prime}\right)^T D^e \left(\frac{\partial G}{\partial \sigma^\prime}\right)}\right] d\varepsilon
+\end{empheq}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Plastic loading v elastic unloading}
+Depending on $\alpha$, we might have three different scenarios:
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/loading.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Plastic loading v elastic unloading}
+Don't confuse \textbf{elastoplastic loading with softenting}...
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/plastic-loading-elastic-unloading.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Problems associated to softening}
+\begin{enumerate}
+	\item The modeling of \textbf{strain softening} (i.e. strength decreases from pick to residual conditions) leads to the localization
+	phenomenon.
+	\item Localization shows up when all deformation is absorbed by one element, while the neighboring elements remain under elastic conditions.
+	\item The solution depends on the element size, hence the localization is a \textbf{mesh dependent numerical problem}.
+	\item \textbf{Solution: }regularization techniques:  non‐local integration, strain softening models dependent on the element size,...
+	\item Be careful: Most of the commercial software do not include regularization techniques.
+\end{enumerate}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Problems associated to softening}
+Don't confuse \textbf{elastoplastic loading with softenting}...
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/localization.png}
+	\caption*{Localization = mesh dependent numerical problem}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{FE workflow}
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/fe-code.png}
+	
+\end{figure}
 \end{frame}
 
 \end{document}
