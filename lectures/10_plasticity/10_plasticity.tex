@@ -322,6 +322,12 @@ How the threshold of yielding changes with plastic strain or how the yield funct
 }
 \end{frame}
 
+\note{This plastic flow rule was based
+	on the observation by de Saint-Venant (1870) that for metals the principal axes of
+	the plastic strain rate coincide with those of the stress. This is the so-called coaxial
+	assumption, which has been the foundation of almost all the plasticity models used
+	in engineering
+}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -348,12 +354,63 @@ Drucker (1952) established that for a stable inelastic material in a closed stre
 \end{frame}
 
 \note {
+The normality rule has been confirmed by many experiments on metals.  However, it is found to be seriously in error for soils and rocks, where, for example, it overestimates plastic volume expansion.
+
+
 \begin{align*}
 Q &= \frac{\partial F}{\partial \sigma} \\
 P &= \frac{\partial G}{\partial \sigma}
 \end{align*}
+
+Drucker’s postulate of a stable material: (1)Positive work is done by the external agency 
+during the application of the loads (2)The net work performed by the external agency over 
+a stress cycle is nonnegative By this definition, it is clear that a strain hardening 
+material is stable (and satisfies Drucker’s postulates). 
+Note that plastic loading of a softening (or perfectly plastic) material results in a non-positive work
 }
 
+\note{
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/drucker-stability-postulate.png}
+\end{figure}
+}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Normality}
+In terms of vectors in principal stress (plastic strain increment) space: $d\sigma \cdot d\varepsilon^p \ge 0$.
+
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/normality-plastic-strain.png}
+\end{figure}
+\end{frame}
+
+\note{
+	
+	Since the dot product of $d\sigma$ and $d\varepsilon_p$ is non-negative, the angle between the vectors $d\sigma - d\varepsilon^p$ (with their starting points coincident) must be less than $90^o$.  This implies that the plastic strain increment vector must be normal to the yield surface since, if it were not, an initial stress state $\sigma^*$ could be found for which the angle was greater than 90 (as with the dotted vectors in Fig.). Thus a consequence of a material satisfying the stability requirements is that the normality rule holds, i.e. the flow rule is associative
+	
+The normality rule has been confirmed by many experiments on metals.  However, it is found to be seriously in error for soils and rocks, where, for example, it overestimates plastic volume expansion.  For these materials, one must use a non-associative flow-rule.
+}
+
+\note{
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/tresca-plastic-strain.png}
+	\end{figure}
+ The plastic strain increment vector and the Tresca criterion in the pi-plane (for the associated flow-rule).
+}
+
+\note{
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/tresca-corner.png}
+	\end{figure}
+When the yield surface has sharp corners, as with the Tresca criterion, it can be shown that the plastic strain increment vector must lie within the cone bounded by the normals on either side of the corner
+}
+
+\note{
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/non-convex-yield.png}
+	\end{figure}
+Using the same arguments, one cannot have a yield surface like the one shown in Fig.  In other words, the yield surface is convex: the entire elastic region lies to one side of the tangent plane to the yield surface
+}
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Associated and non-associated plasticity}
@@ -382,15 +439,12 @@ P &= \frac{\partial G}{\partial \sigma}
 	\begin{equation*}
 		dF = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \frac{\partial F}{\partial Wp}\cdot dWp = 0
 	\end{equation*}
-	Where $D^e$ is the elastic stiffness matrix. $^e$ denotes the elastic part.
-	
-	E.g., strain hardening in tension for steel.
 }
 \mode<handout>{
 	\vspace{2cm}
 }
 \begin{figure}
-	\includegraphics[width=0.6\textwidth]{figs/yield.png}
+	\includegraphics[width=0.75\textwidth]{figs/yield.png}
 \end{figure}
 \end{frame}
 
@@ -467,7 +521,7 @@ The response of the material is:
 	}
 	\item \textbf{elasto-plastic}: \mode<beamer>{ if the stress state is \textbf{on} the yield surface
 	\begin{equation*}
-	F(\sigma, Wp) = 0 \rightarrow d\sigma = D^p \cdot d\varepsilon.
+	F(\sigma, Wp) = 0 \rightarrow d\sigma = D^{ep} \cdot d\varepsilon.
 	\end{equation*}
 	}
 	\mode<handout>{
@@ -572,7 +626,7 @@ Don't confuse \textbf{elastoplastic loading with softenting}...
 \begin{frame}
 \frametitle{Problems associated to softening}
 \begin{enumerate}
-	\item The modeling of \textbf{strain softening} (i.e. strength decreases from pick to residual conditions) leads to the localization
+	\item The modeling of \textbf{strain softening} (i.e. strength decreases from peak to residual conditions) leads to the localization
 	phenomenon.
 	\item Localization shows up when all deformation is absorbed by one element, while the neighboring elements remain under elastic conditions.
 	\item The solution depends on the element size, hence the localization is a \textbf{mesh dependent numerical problem}.
