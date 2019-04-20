@@ -169,4 +169,204 @@ Yield function
 \end{figure}
 \end{frame}
 
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Tresca model}
+
+\mode<beamer>{
+	\begin{enumerate}
+		\item The model is intended to predict the undrained behavior of
+		saturated clay, hence it should predict zero volumetric strains.
+		\item This fact constrains the plastic potential, and an associated flow rule should be considered.
+		\item In general, this is a perfectly plastic model (no hard/soft law)
+		\item Parameters required (3): $s_u, E_u, \nu_u$.
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/tresca-su.png}
+\end{figure}
+\end{frame}
+
+\section{Mohr-Coulomb model}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb model}
+
+\mode<beamer>{
+	Failure criteria: $\tau_f = c^\prime = \sigma^\prime_f \tan \phi^\prime.$
+	
+	\begin{equation*}
+	F(\sigma^\prime, c^\prime, \phi^\prime) = \frac{1}{2}(\sigma_I^\prime - \sigma_{III}^\prime) - \frac{1}{2}(\sigma_I^\prime + \sigma_{III}^\prime) \sin \phi^\prime - c^\prime \cos \phi^\prime = 0.
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/mohr-coulomb.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb model}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/mc-yield.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb: flow rule?}
+Can we consider an associative flow rule?
+\mode<beamer>{
+	Failure criteria: $	F(\sigma^\prime, c^\prime, \phi^\prime) = 	G(\sigma^\prime, c^\prime, \phi^\prime)$
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/mc-flow.png}
+\end{figure}
+\mode<beamer>{
+$\varepsilon^p$ is inclined at an angle of $\phi^\prime$, and indicates negative (tensile) plastic strains. This results in a dilatant volumetric plastic strain $(d\varepsilon^p_{vol})$, in which the angle of dilation $\psi$ is equal to the effective friction angle $(\phi^\prime)$.
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb: Drawbacks (associative)}
+\mode<beamer>{
+	\begin{enumerate}
+		\item The magnitude of the plastic volumetric strains $(d\varepsilon)$ is much larger than that observed in real soils.
+		\item Once the soil yields it will dilate for ever! (note: real soil, which may dilate initially on meeting the failure surface,
+		will often reach a constant volume condition at large strains).
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\textbf{Solutions:}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Adopt a non‐associated flow rule with a more realistic angle of dilation $\psi$
+		\item Allow angle of dilation vary with plastic strain (hardening/softening law) $\psi = f(\varepsilon)$
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb: non-associative model}
+\mode<beamer>{
+	Consider a non-associated model with $\psi = 0$. In which case $d\varepsilon_{vol}^p = 0$.
+	
+	Parameters (5): $c^\prime, \phi^\prime, \psi, E, \nu$.
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/mc-non-associated.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb: Yield and Potential fn}
+\mode<beamer>{
+	Yield fn: $F = \sigma_1^\prime - \sigma_3^\prime N_\phi + 2 c \sqrt{N_\phi} = 0$., where $N_\phi = \frac{1 + \sin\phi^\prime}{1 - \sin\phi^\prime}$
+	
+	Potential fn: $G = \sigma_1^\prime - \sigma_3^\prime N_\psi + constant = 0$., where $N_\psi = \frac{1 + \sin\psi^\prime}{1 - \sin\psi^\prime}$ 
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\begin{figure}
+	\includegraphics[width=0.5\textwidth]{figs/mc-yield-potential.png}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb: plastic strains}
+\mode<beamer>{
+	\begin{align*}
+	d\varepsilon_1^p & = \lambda \frac{\partial G}{\partial \sigma_1} = \lambda \cdot 1 = \lambda \\
+	d\varepsilon_2^p & = \lambda \frac{\partial G}{\partial \sigma_2} = \lambda \cdot 0 = 0 \quad \text{Zero strain increment in 2-dir}\\	
+	d\varepsilon_3^p & = \lambda \frac{\partial G}{\partial \sigma_3} = \lambda \cdot (-N_\psi) = -\lambda N_\psi\\	\end{align*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/plastic-strains.png}
+\end{figure}
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Interpretation of drained TXC}
+	
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+Plastic volumetric strain:
+\mode<beamer>{
+	\begin{align*}
+	d\varepsilon_v^p & = d \varepsilon_1^p + d \varepsilon_2^p + d \varepsilon_3^p = \lambda (1 - N_\psi) \\
+	& = \lambda \frac{2 \sin \psi}{1 - \sin \psi} \\
+	\frac{d\varepsilon_v^p}{d\varepsilon_1^p} & = \frac{\frac{2 \sin \psi}{1 - \sin \psi}}{\lambda} = \frac{2 \sin \psi}{1 - \sin \psi}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2.5cm}
+}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+	Note that $\psi$ changes with plastic
+	strain in real soils
+	\begin{figure}
+		\includegraphics[width=0.6\textwidth]{figs/mc-drained-txc.png}
+	\end{figure}
+\end{minipage}
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/idealized-mc.png}
+	\caption*{Idealized M-C curves}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr-Coulomb: Tension cut-off}
+\mode<beamer>{
+	\begin{enumerate}
+		\item For $c=0$, the standard Mohr‐Coulomb criterion allows for tension.
+		Allowable stress increase with cohesion.
+		\item In reality, soil can sustain none or only very small tensile stresses.
+		\item This behavior is usually included by specifying a tension cut‐off, which is equivalent to include an additional yield surface: $F(\sigma, \sigma_t) = \sigma_i - \sigma_t = 0$.
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/mc-non-associated.png}
+\end{figure}
+\end{frame}
 \end{document}
