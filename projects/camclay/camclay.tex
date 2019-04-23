@@ -1,0 +1,116 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage[left=30mm, right=30mm, top=30mm, bottom=35mm]{geometry}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+\usepackage{url}
+\pagestyle{fancy}
+%-------------------------------------------------------------------------------
+\lhead{\textbf{Spring 2019}}
+\rhead{\textbf{CE394M Advanced Analysis in Geotechnical Engineering}}
+\cfoot{\thepage}
+%-------------------------------------------------------------------------------
+
+\begin{document}
+\begin{centering}
+	\textbf{
+		Project 2: Implemntation of Modified Cam Clay in Python\\
+		Assigned: 24th April 2019\\
+		Due: 10th May 2019\\
+	}
+\end{centering}
+
+\vspace{1em}
+
+Explain in detail the formulation of the Modified Cam-Clay model and derive the D-matrix
+of the model. Simulate two undrained triaxial tests using the following Cam-Clay model
+parameters:
+\begin{align*}
+M &= 0.95\\
+N &= 2.7\\
+\lambda &= 0.16\\
+\kappa &= 0.06\\
+\nu &= 0.2
+\end{align*}
+
+\begin{enumerate}
+	\item Isotopically consolidated undrained compression test of normally consolidated clay.
+	Normally consolidated to 100 kPa and then sheared in undrained conditions. For the undrained shear part of the test:
+	\begin{enumerate}
+		\item Determine the initial void ratio before shearing.
+		\item Plot deviatoric stress $q$ versus axial strain $\varepsilon_a$
+		\item Plot the stress path in $q-p^\prime$ plane and the state path in $e - \ln p^\prime$ plane
+		\item Plot excess pore pressure $u$ versus axial strain
+	\end{enumerate}
+
+	\item Isotopically consolidated undrained compression test of overconsolidated clay.
+	Normally consolidated to 450 kPa isotopically, unloaded isotropically to 100 kPa
+	and then sheared in undrained conditions. For the undrained shear part of the test:
+	\begin{enumerate}
+		\item Determine the initial void ratio before shearing.
+		\item Plot deviatoric stress $q$ versus axial strain $\varepsilon_a$
+		\item Plot the stress path in $q-p^\prime$ plane and the state path in $e - \ln p^\prime$ plane
+		\item Plot excess pore pressure $u$ versus axial strain
+	\end{enumerate}
+	Note:
+	\begin{enumerate}
+		\item 	Using zero volumetic strain condition (undrained), $\varepsilon_r = - \varepsilon_a /2$ 
+		\item Compute $\sigma_1^\prime, \sigma_3^\prime (=\sigma_2^\prime)$ using the D-matrix and then compute $p^\prime$ and $q$
+		\item For the overconsolidated condition, use the elasto-plastic D matrix after the stress
+		state reaches the yield surface. Use the elastic D matrix before yielding.
+	\end{enumerate}
+	\item Discuss how to simulate an isotropically consolidated `drained' triaxial compression test.
+		
+\end{enumerate}
+
+Elasto-plastic relation:
+\begin{equation*}
+d\sigma^\prime = \left[D^e - \frac{D^e\left(\frac{\partial G}{\partial \sigma^\prime}\right)\left(\frac{\partial F}{\partial \sigma^\prime}\right)^T D^e}{-\left(\frac{\partial F}{\partial W_p}\right)\left(\frac{\partial W_p}{ \partial \varepsilon^p}\right)^T\left(\frac{\partial G}{\partial \sigma^\prime}\right) + \left(\frac{\partial F}{\partial \sigma^\prime}\right)^T D^e \left(\frac{\partial G}{\partial \sigma^\prime}\right)}\right] d\varepsilon
+\end{equation*}
+
+Yield function of modified Cam-Clay:
+\begin{equation*}
+F = \frac{q^2}{M^2} - p^\prime p_c + p^2 = 0
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial F}{\partial \sigma^\prime} = \frac{\partial F}{\partial p^\prime}\frac{\partial p^\prime}{\partial \sigma^\prime} + \frac{\partial F}{\partial q}\frac{\partial q}{\partial \sigma^\prime}
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial F}{\partial p^\prime} = 2 p - p_c
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial F}{\partial q} = 2q / M^2
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial F}{\partial \sigma^\prime} = \begin{bmatrix}
+1/3 \\
+1/3 \\
+1/3 \\
+0 \\
+0 \\
+0 \\
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial q}{\partial \sigma^\prime} = (3/2q) \begin{bmatrix}
+\sigma_xx - p \\
+\sigma_yy - p\\
+\sigma_zz - p\\
+2 \sigma_{xy} \\
+2 \sigma_{yz} \\
+2 \sigma_{zx} \\
+\end{bmatrix}
+\end{equation*}
+
+Calculate $(\partial F / \partial p_c)(dp_c/d\varepsilon_v^p)(\partial F/\partial p)$ by differentiating the relevant terms.
+\begin{equation*}
+\frac{\partial p_c}{\partial d\varepsilon_v^p} = \frac{vp_c}{(\lambda - \kappa)}
+\end{equation*}
+\end{document}
+
