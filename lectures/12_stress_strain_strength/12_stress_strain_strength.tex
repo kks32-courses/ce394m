@@ -168,6 +168,15 @@ D-soils:
 	path reaches the critical state
 	line. Then the soil shears at
 	constant $(\tau, \sigma^\prime, v)$ state.
+	
+	VCL: $d\varepsilon_p^e + d\varepsilon_p^p$ Elasto-plastic yielding
+	RCL: $d\varepsilon_p^e$ only elastic
+	
+	Isotropic loading along VCL ($q = 0$) can develop plastic strains: essentially hardening cap.
+	
+	VCL: $N - \lambda \ln p^\prime \quad \eta = 0$
+	RCL: $\Gamma - \lambda \ln p^\prime \quad \eta = M$
+	$N = \Gamma + (\lambda - \kappa)$
 
 }
 
@@ -375,7 +384,7 @@ General yield surface: $\frac{\tau^*}{\sigma^*} = \mu^* = \mu^*_{crit} \ln \left
 \end{figure}
 Plastic compression stress $\sigma_c^\prime$ is taken as the larger of the initial aggregate crushing stress and the historic maximum effective vertical stress. Clay muds are taken to begin with $\sigma_c^\prime = 1$kPa.
 
-Plastic compression (normal compression line): $v = v_lambda - \lambda \ln \sigma^\prime$ for $\sigma^\prime = \sigma^\prime_c$.
+Plastic compression (normal compression line): $v = v_\lambda - \lambda \ln \sigma^\prime$ for $\sigma^\prime = \sigma^\prime_c$.
 
 Elastic swelling and recompression line ($\kappa-$line): $ v = v_c + \kappa (\ln \sigma_c^\prime - \ln \sigma_v^\prime)$. 
 \end{frame}
