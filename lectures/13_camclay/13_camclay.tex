@@ -868,4 +868,215 @@ F(q, p) = q^2 - M^2 p^2 \left(\frac{p_c^\prime}{p^\prime} - 1\right) = 0
 \end{figure}
 \end{frame}
 
+
+%----------------------------------------------------------------------------------------
+\section{Cam-Clay material properties determination}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cam-Clay material properties determination: I}
+\textbf{Test required}
+\begin{enumerate}
+	\item Slow drained or undrained test with pore pressure measurement at different preconsolidation pressure. Test must be taken to very large strains to reach to the critical state.
+	\item Isotropic consolidateion test or incrementental loading consolidation test.
+\end{enumerate}
+
+
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+\textbf{Slope of failure line: $M$}
+\textbf{If $\phi_{cs}$ is assumed to be constant, then $M$ is not constant.
+}
+\begin{itemize}
+	\item In TXC: $M_{TXC} = \frac{6 \sin \phi_{cs}}{3 - \sin \phi_{cs}}$
+	\item In TXE: $M_{TXE} = \frac{6 \sin \phi_{cs}}{3 + \sin \phi_{cs}}$
+	\item In PS: $M_{PS} = 2 \sin \phi_{cs}$ 
+	
+	(assuming $\sigma_2 \approxeq \frac{\sigma_1 + \sigma_3}{2})$
+\end{itemize}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/M-qp.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cam-Clay material properties determination: II}
+\textbf{$\lambda$ and $\kappa$: Compression index and swelling index}
+\begin{enumerate}
+	\item Use isotropic consolidation. Plot in $v-\ln p^\prime$ plane. Measure $\lambda$ \& $\kappa$.
+	\item From odeometer test, plot void ratio $e$ vs $\log \sigma_v^\prime$:
+		\begin{align*}
+			\lambda & = 0.4343 C_c \\
+			\kappa & = 0.4343 (1.4 C_{r/s}) = 0.63 C_{r/s} = (0.2 ~ 0.33) \lambda
+		\end{align*}
+		\begin{enumerate}
+			\item swelling and recompression lines are highly nonlinear in $e-\ln p^\prime$ space.
+			\item  $\kappa$ is usually not less than 0.1$\lambda$ or greater than 0.5$\lambda$.
+			\item $\kappa$is about 0.03 to 0.06 for many medium plasticity clays.
+			\item  modify $\kappa$ to try to fit data. $\lambda$ is usually easier to accurately calculate.
+		\end{enumerate}
+\end{enumerate}
+	
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/mcc-oedometer.png}
+	\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cam-Clay material properties determination: III}
+\textbf{$\Gamma$ or $N$}
+\begin{enumerate}
+	\item Critical state line: $v = \Gamma - \lambda \ln p^\prime$
+	\item Isotropic normally consolidated line: $v = N - \lambda \ln p^\prime$
+	\item Original Cam-Clay: $N = \Gamma + (\lambda - \kappa)$
+	\item Modified Cam-Clay: $N = \Gamma + (\lambda - \kappa) \ln 2$
+\end{enumerate}
+
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/cc-gamma-n.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cam-Clay material properties determination: IV}
+\textbf{Elastic properties: $G$ or $\nu$}
+\begin{enumerate}
+	\item Elastic bulk modulus $K_e = dp^\prime / d\varepsilon_v = vp^prime / \kappa$
+	\item Choosing Poisson's ratio $\nu$ constant gives $G_e$ which varies as $K_e$.
+	\item Typically $\nu= 0.2 - 0.4$.
+\end{enumerate}
+\textbf{Preconsolidation pressure $p_c$}
+\begin{enumerate}
+	\item Estimate OCR
+	\item $\sigma_{v, max} = OCR \sigma_{v, current}$
+	\item $\sigma_{h, max} = K_{0, nc}\sigma_{v, max}$
+	\item $q_{max} = \sigma_{v, max} - \sigma_{h, max}, p_{max} = (1/3) (\sigma_{v, max} + 2 \sigma_{h, max})$
+	\item Define $p_c$:
+	\begin{itemize}
+		\item Cam-Clay: $q_{max} = M p_{max} \ln (p_c/ p_{max})$
+		\item MCC: $q_{max}^2 = M^2 p_{max} (p_c - p_max)$
+	\end{itemize}
+\end{enumerate}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Cam-Clay material properties determination: V}
+\textbf{Cam-clay parameters : Correlation}
+For clayey soils, attempts have been made to obtain the cam-clay parameters from
+index tests, especially plasticity index. It should be remembered that most of the
+soils tested for correlation were remoulded and direct application to natural clays
+requires caution. The users should be fully aware that limitations exist and these
+correlations should be regarded as a first approximation.
+\begin{itemize}
+	\item Atkinson (1993) $\lambda = PI G_s / 460 \quad \Gamma = 1.25 + \lambda \ln 10,000$
+	\item Nakase, Kamei and Kusakabe (1988)- study based on Japanese clays: $\lambda = 0.02 + 0.0045 PI \qquad \kappa = 0.00084 (PI - 4.6) \qquad N = 1.52 + 0.19 PI$
+	\item Nakase et al. (1988) and Frydman (1990) observed that $M$ was independent of PI.
+	Atkinson (1993) finds that $M$ tends to increase with decreasing $PI$. 
+	
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Drawbacks of MCC: Computational problems}
+\begin{itemize}
+	\item In undrained triaxial test on a heavily overconsolidated soil, after the stress point reaches the yield surface (above $M$ line), due to the negative direction of volumetric plastic strain vector, the yield surface contracts.
+	
+	\item This phenomenon is referred to as \textbf{strain softening}.
+
+	\item Even though the constitutive model is perfectly able to model this
+	aspect of mechanical behaviour, strain softening may lead to problems in a finite element analysis: e.g. mesh dependency and problems with convergence.
+	
+	\item That can be overcome with good coding \& algorithms, but many leading codes still struggle and diverge or give erroneous results!
+	
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Drawbacks of MCC: Strength prediction in undrained conditions}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\begin{itemize}
+		\item MCC model assumes Drucker-Prager failure
+		condition, which overestimates undrained 	strength in triaxial extension. 
+		\item Better predictions if Mohr Coulomb failure or Lode angle dependency is introduced
+		\item Real soils are anisotropic and both the shape and size of the yield surface would need to change (see e.g., Wheeler et al. 2003, Can Geotech J for S-Clay1 model)
+	\end{itemize}
+	
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/mcc-drawbacks.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Drawbacks of MCC: K 0 prediction}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\begin{itemize}
+		\item Given MCC assumes an associated flow
+		rule, the model predicts unrealistically high
+		$K_0$ values in normally consolidated range
+		\item This has been fixed e.g. in the Soft Soil
+		model by de-coupling the volumetric yield
+		surface (cap) from the failure line
+		\item Consequently, in the Soft Soil model, M
+		as become a ``\textit{shape}'' coefficient and no 	longer corresponds to the critical state
+		line
+		\item Alternatively, the anisotropic S-CLAY1
+		model also gives good K0 prediction
+		\item Non-associated flow rule is also an option which will help with that issue
+	\end{itemize}
+	
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/mcc-k0.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Advantages and Limitations of Cam-Clay models}
+\textbf{Advantages:}
+\begin{itemize}
+	\item Unified framework of elastic - plastic behaviour, deals with volumetric \& shearing
+	strains, drained \& undrained, prefailure and failure,
+	\item Uses a small number of parameters ($M, \lambda, \kappa, \Gamma, \nu$)
+	\item fairly well established,
+	\item Qualitative prediction of soil behaviour
+	- replicates many behaviour not possible to replicate in e.g. Mohr-Coulomb model.
+\end{itemize}
+\textbf{Limitations:}
+\begin{enumerate}
+	\item Largely elastic for heavily OC clays (and dense sands).
+	\item Soils do not always reach the critical state or necessarily stay there, such as by
+	breakdown in fabric strain softening.
+	\item No anisotropy.
+	\item Stress reversals within elastic domain are purely elastic after initial yielding.
+	\item No creep.
+	\item Model predicts conservative $K_0$ value.
+\end{enumerate}
+\end{frame}
 \end{document}
