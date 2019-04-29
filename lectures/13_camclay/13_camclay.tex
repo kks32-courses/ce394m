@@ -563,6 +563,200 @@ We know:
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
+\frametitle{Deformations under an applied stress path}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{figs/elastic.png}
+	\caption*{$P_{0B}^\prime > P_{0A}^\prime$ Elastic}
+	\end{figure}	
+\end{minipage}	%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/elasto-plastic.png}
+		\caption*{$P_{0B}^\prime < P_{0A}^\prime$ Elasto-plastic}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Hardening law}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/occ-hardening.png}
+	\end{figure}	
+\end{minipage}	%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+	\mode<beamer>{
+	\begin{itemize}
+		\item \textcolor{purple}{$\eta < M \rightarrow d\varepsilon_p^p > 0 \quad dp^\prime > 0$ Yield surface ``\textit{expands}''}
+		\item \textcolor{orange}{$\eta > M \rightarrow d\varepsilon_p^p < 0 \quad  dp^\prime < 0$ Yield surface ``\textit{contracts}''}
+		\item \textcolor{green}{$\eta = M \rightarrow d\varepsilon_p^p = 0 \quad  dp^\prime =0$ Yield surface ``\textit{constant}''}
+	\end{itemize}
+	}
+	\mode<handout>{
+		\vspace{6cm}
+	}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress-strain relation in ($p^\prime, q$) and ($\varepsilon_v, \varepsilon_s$) drained TX}
+\begin{enumerate}
+	\item Give strain and/or stress increments
+	\item Check if the current stress state is inside the yield surface or outside the yield surface $q/p^\prime = M \ln (p_c/p^\prime)$
+	\begin{enumerate}
+		\item If Elastic (stress inside yield surface):
+		\begin{equation*}
+		\begin{bmatrix}
+		d\varepsilon_v \\
+		d\varepsilon_s \\
+		\end{bmatrix} = %
+		%
+		\begin{bmatrix}
+		1/K & 0 \\
+		0 & 1/3G\\
+		\end{bmatrix} %
+		\begin{bmatrix}
+		dp^\prime \\
+		dq\\
+		\end{bmatrix}
+		\end{equation*}
+		\item If Elastic-plastic (stress on the yield surface)
+		\begin{equation*}
+		\begin{bmatrix}
+		d\varepsilon_v \\
+		d\varepsilon_s \\
+		\end{bmatrix} = %
+		%
+		D^{ep}
+		%
+		\begin{bmatrix}
+		dp^\prime \\
+		dq\\
+		\end{bmatrix}
+		\end{equation*}		
+		\begin{equation*}
+		D^{ep} =\left[
+		\begin{bmatrix}
+		1/K & 0 \\
+		0 & 1/3G\\
+		\end{bmatrix} + %
+		%
+		\frac{1}{Mp^\prime}%
+		\frac{(\lambda - \kappa)}{(1+e_0)}%
+		%
+		\begin{bmatrix}
+		M - (q/p^\prime) & 1     \\
+		1 & 1/(M - (q/p^\prime)) \\
+		\end{bmatrix}
+		\right]
+		\end{equation*}
+	\end{enumerate}
+	\item Compute the unknown stress or strain increments and update the stress and strains
+	\item If plastic deformation, update $p_c$ to satisfy Cam-Clay yield surface
+	\item Go back to step 1
+\end{enumerate}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress-strain relation in ($p^\prime, q$) and ($\varepsilon_v, \varepsilon_s$) undrained TX}
+$d\varepsilon_v = d\varepsilon_a + 2 d\varepsilon_r = 0$ (constant volume)
+
+$d\varepsilon_s = (2/3)(d\varepsilon_a - d\varepsilon_r) = (2/3)(d\varepsilon_a - (-0.5 d\varepsilon_a)) = d\varepsilon_a$
+\begin{enumerate}
+\item Give axial strain increment $d\varepsilon_a$ or $dq$
+\item Check if the current stress state is inside the yield surface or outside the yield surface $q/p^\prime = M \ln (p_c/p^\prime)$
+\begin{itemize}
+	\item If Elastic (stress inside yield surface):
+	\begin{equation*}
+	\begin{bmatrix}
+	d\varepsilon_v \\
+	d\varepsilon_s \\
+	\end{bmatrix} = %
+	%
+	\begin{bmatrix}
+	1/K & 0 \\
+	0 & 1/3G\\
+	\end{bmatrix} %
+	\begin{bmatrix}
+	dp^\prime \\
+	dq\\
+	\end{bmatrix}
+	\end{equation*}
+	$d\varepsilon_v =$ from the first equation gives $dp^\prime = 0$. This means that the effective stress path is fixed to go in the vertical direction in $p^\prime - q$ space irrespective of any total stress path. 
+	
+	The second equation gives $d\varepsilon_s$ for a given $dq$ or $dq$ for a $d\varepsilon_s$.
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress-strain relation in ($p^\prime, q$) and ($\varepsilon_v, \varepsilon_s$) undrained TX}		
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item 
+
+\begin{itemize}
+\item If Elastic-plastic (stress on the yield surface)
+\begin{equation*}
+\begin{bmatrix}
+d\varepsilon_v \\
+d\varepsilon_s \\
+\end{bmatrix} = %
+%
+D^{ep}
+%
+\begin{bmatrix}
+dp^\prime \\
+dq\\
+\end{bmatrix}
+\end{equation*}		
+\begin{equation*}
+D^{ep} =\left[
+\begin{bmatrix}
+1/K & 0 \\
+0 & 1/3G\\
+\end{bmatrix} + %
+%
+\frac{1}{Mp^\prime}%
+\frac{(\lambda - \kappa)}{(1+e_0)}%
+%
+\begin{bmatrix}
+M - (q/p^\prime) & 1     \\
+1 & 1/(M - (q/p^\prime)) \\
+\end{bmatrix}
+\right]
+\end{equation*}
+$d\varepsilon_v = 0$ and $d\varepsilon_s = d\varepsilon_a$ give $dp^\prime$ and $dq$ 
+
+or 
+
+$d\varepsilon_v = 0$ and $dq$ gives $d\varepsilon_s(=d\varepsilon_a)$ and $dp^\prime$.
+\end{itemize}
+\item Update the stress and strain. The difference between the total mean pressure $p$ and the effective mean pressure will give the pore pressure.
+\item If plastic deformation, update $p_c$ to satisfy Cam-Clay yield surface.
+\item Go back to step 1
+\end{enumerate}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
 \frametitle{Limitations of original Cam-Clay}
 \mode<beamer>{
 	\begin{enumerate}
@@ -674,149 +868,4 @@ F(q, p) = q^2 - M^2 p^2 \left(\frac{p_c^\prime}{p^\prime} - 1\right) = 0
 \end{figure}
 \end{frame}
 
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Stress-strain relation in ($p^\prime, q$) and ($\varepsilon_v, \varepsilon_s$) drained TX}
-\begin{enumerate}
-	\item Give strain and/or stress increments
-	\item Check if the current stress state is inside the yield surface or outside the yield surface $q/p^\prime = M \ln (p_c/p^\prime)$
-	\begin{enumerate}
-		\item If Elastic (stress inside yield surface):
-			\begin{equation*}
-			\begin{bmatrix}
-				d\varepsilon_v \\
-				d\varepsilon_s \\
-			\end{bmatrix} = %
-			%
-			\begin{bmatrix}
-				1/K & 0 \\
-				0 & 1/3G\\
-			\end{bmatrix} %
-			\begin{bmatrix}
-				dp^\prime \\
-				dq\\
-			\end{bmatrix}
-			\end{equation*}
-		\item If Elastic-plastic (stress on the yield surface)
-			\begin{equation*}
-			\begin{bmatrix}
-				d\varepsilon_v \\
-				d\varepsilon_s \\
-			\end{bmatrix} = %
-			%
-			D^{ep}
-			%
-			\begin{bmatrix}
-				dp^\prime \\
-				dq\\
-			\end{bmatrix}
-			\end{equation*}		
-			\begin{equation*}
-			D^{ep} =\left[
-			\begin{bmatrix}
-				1/K & 0 \\
-				0 & 1/3G\\
-			\end{bmatrix} + %
-			%
-			\frac{1}{Mp^\prime}%
-			\frac{(\lambda - \kappa)}{(1+e_0)}%
-			%
-			\begin{bmatrix}
-				M - (q/p^\prime) & 1     \\
-				1 & 1/(M - (q/p^\prime)) \\
-			\end{bmatrix}
-			\right]
-			\end{equation*}
-	\end{enumerate}
-	\item Compute the unknown stress or strain increments and update the stress and strains
-	\item If plastic deformation, update $p_c$ to satisfy Cam-Clay yield surface
-	\item Go back to step 1
-\end{enumerate}
-\end{frame}
-
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Stress-strain relation in ($p^\prime, q$) and ($\varepsilon_v, \varepsilon_s$) undrained TX}
- $d\varepsilon_v = d\varepsilon_a + 2 d\varepsilon_r = 0$ (constant volume)
-
- $d\varepsilon_s = (2/3)(d\varepsilon_a - d\varepsilon_r) = (2/3)(d\varepsilon_a - (-0.5 d\varepsilon_a)) = d\varepsilon_a$
-\begin{enumerate}
-	\item Give axial strain increment $d\varepsilon_a$ or $dq$
-	\item Check if the current stress state is inside the yield surface or outside the yield surface $q/p^\prime = M \ln (p_c/p^\prime)$
-	\begin{itemize}
-		\item If Elastic (stress inside yield surface):
-		\begin{equation*}
-		\begin{bmatrix}
-			d\varepsilon_v \\
-			d\varepsilon_s \\
-		\end{bmatrix} = %
-		%
-		\begin{bmatrix}
-			1/K & 0 \\
-			0 & 1/3G\\
-		\end{bmatrix} %
-		\begin{bmatrix}
-			dp^\prime \\
-			dq\\
-		\end{bmatrix}
-		\end{equation*}
-		$d\varepsilon_v =$ from the first equation gives $dp^\prime = 0$. This means that the effective stress path is fixed to go in the vertical direction in $p^\prime - q$ space irrespective of any total stress path. 
-		
-		The second equation gives $d\varepsilon_s$ for a given $dq$ or $dq$ for a $d\varepsilon_s$.
-	\end{itemize}
-\end{enumerate}
-\end{frame}
-
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Stress-strain relation in ($p^\prime, q$) and ($\varepsilon_v, \varepsilon_s$) undrained TX}		
-\begin{enumerate}
-	\setcounter{enumi}{3}
-	\item 
-
-	\begin{itemize}
-		\item If Elastic-plastic (stress on the yield surface)
-		\begin{equation*}
-		\begin{bmatrix}
-			d\varepsilon_v \\
-			d\varepsilon_s \\
-		\end{bmatrix} = %
-		%
-		D^{ep}
-		%
-		\begin{bmatrix}
-			dp^\prime \\
-			dq\\
-		\end{bmatrix}
-		\end{equation*}		
-		\begin{equation*}
-		D^{ep} =\left[
-		\begin{bmatrix}
-		1/K & 0 \\
-		0 & 1/3G\\
-		\end{bmatrix} + %
-		%
-		\frac{1}{Mp^\prime}%
-		\frac{(\lambda - \kappa)}{(1+e_0)}%
-		%
-		\begin{bmatrix}
-		M - (q/p^\prime) & 1     \\
-		1 & 1/(M - (q/p^\prime)) \\
-		\end{bmatrix}
-		\right]
-		\end{equation*}
-		$d\varepsilon_v = 0$ and $d\varepsilon_s = d\varepsilon_a$ give $dp^\prime$ and $dq$ 
-		
-		or 
-		
-		$d\varepsilon_v = 0$ and $dq$ gives $d\varepsilon_s(=d\varepsilon_a)$ and $dp^\prime$.
-	\end{itemize}
-	\item Update the stress and strain. The difference between the total mean pressure $p$ and the effective mean pressure will give the pore pressure.
-	\item If plastic deformation, update $p_c$ to satisfy Cam-Clay yield surface.
-	\item Go back to step 1
-\end{enumerate}
-\end{frame}
 \end{document}
