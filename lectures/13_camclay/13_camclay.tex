@@ -401,9 +401,9 @@ Rearranging the terms (divide by $p^\prime d\varepsilon_s^p$):
 	
 	
 	\begin{align*}
-	q/p<M: \quad & \frac{d\varepsilon^p\varepsilon_v}{d\varepsilon^p_q} > 0 \rightarrow \quad d\varepsilon^p\varepsilon_v > 0 \quad \text{Contractive response}\\
-	q/p > M: \quad &	\frac{d\varepsilon^p\varepsilon_v}{d\varepsilon^p_q} > 0 \rightarrow \quad d\varepsilon^p\varepsilon_v < 0 \quad\text{Dilative response} \\
-	q/p = M: \quad & d\varepsilon^p\varepsilon_v  = 0 \quad \text{No volume change}
+	q/p<M: \quad & \frac{d\varepsilon^p_v}{d\varepsilon^p_q} > 0 \rightarrow \quad d\varepsilon^p\varepsilon_v > 0 \quad \text{Contractive response}\\
+	q/p > M: \quad &	\frac{d\varepsilon^p_v}{d\varepsilon^p_q} < 0 \rightarrow \quad d\varepsilon^p_v < 0 \quad\text{Dilative response} \\
+	q/p = M: \quad & d\varepsilon^p_v  = 0 \quad \text{No volume change}
 	\end{align*}
 }
 \mode<handout>{
@@ -412,7 +412,13 @@ Rearranging the terms (divide by $p^\prime d\varepsilon_s^p$):
 \end{frame}
 
 \note{The critical state is defined by an absence of volume change or, in other words, a nil dilatancy
-conditions. Therefore, at critical state, the stress-dilatancy rule yields to the critical state condition $\eta = M$.}
+conditions. Therefore, at critical state, the stress-dilatancy rule yields to the critical state condition $\eta = M$.
+
+	\begin{figure}
+		\includegraphics[width=0.6\textwidth]{figs/qp-dep.png}
+	\end{figure}
+
+}
 
 
 %----------------------------------------------------------------------------------------
@@ -426,7 +432,7 @@ The original idea was very simple. The yield locus must be such that each associ
 \begin{minipage}[t]{0.65\linewidth}
 	\mode<beamer>{
 	\begin{equation*}
-		\frac{\delta \varepsilon_v}{\delta \varepsilon_s} = - \frac{\delta \varepsilon_s}{\delta \varepsilon_v^\prime}
+		\frac{d \varepsilon_v}{d\varepsilon_s} = - \frac{dq}{dp^\prime}
 	\end{equation*}
 	From stress dilation condition:
 	\begin{equation*}
@@ -511,13 +517,13 @@ Yield function:
 		$dv = -\kappa \frac{dp^\prime }{p^\prime}$
 		
 		\begin{equation*}
-		d \varepsilon_v = \frac{-de}{1 + e_0} = \frac{-dv}{v_0} = \frac{\kappa}{v_0}\frac{dp^\prime}{p^\prime}
+		d \varepsilon_v = \frac{-de}{1 + e} = \frac{-dv}{v} = \frac{\kappa}{v}\frac{dp^\prime}{p^\prime}
 		\end{equation*}
 		
 		$K^\prime$ is not constant: $K^\prime = K^\prime (p^\prime)$. Assuming a constant poisson ratio: $\nu$, so $G, K$ vary.
 		
 		\begin{equation*}
-			K = \frac{dp}{d\varepsilon_v} = \frac{v_o p^\prime}{\kappa} = \frac{(1+e_0)p^\prime}{\kappa}
+			K = \frac{dp}{d\varepsilon_v} = \frac{v p^\prime}{\kappa} = \frac{(1+e)p^\prime}{\kappa}
 		\end{equation*}	
 	}
 	\mode<handout>{
