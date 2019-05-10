@@ -903,6 +903,58 @@ F(q, p) = q^2 - M^2 p^2 \left(\frac{p_c^\prime}{p^\prime} - 1\right) = 0
 \end{frame}
 
 \note{
+There appears to be a measure of agreement over the belief that irrecoverable deformation (both volumetric and distortional) of soil can be attributed primarily to grain slip. It occurred to the Writer (Burland) that the work dissipated during grain slip might be related to some generalized measure of total irrecoverable strain which does not differentiate between the components of deformation.
+}
+
+\note{
+Employing Cambridge parameters: $p, q, v$, the increment of work dissipated per unit bulk volume of an isotropic continuum during deformation can be written as:
+\begin{equation*}
+	dW = p^\prime d\varepsilon_p + q d\varepsilon_s
+\end{equation*}
+
+For particular case of wet clay, the basic assumption is it behaves \textit{macroscopically} as a homogenous isotropic continuum. Under isotropic stress $(q = 0)$ there is no distortion $d\varepsilon_s = 0$. So:
+\begin{equation*}
+(dW)_{q = 0} = p^\prime d\varepsilon_p
+\end{equation*}
+
+At CS: $q/p = M$ and $d\varepsilon_p = 0$ so:
+\begin{equation*}
+(dW)_{q = Mp^\prime} = p^\prime M d\varepsilon_s
+\end{equation*}
+
+A general equation would be:
+\begin{equation*}
+dW = p^\prime \sqrt{ d\varepsilon_p^2 + (M d\varepsilon_s)^2}
+\end{equation*}
+}
+
+\note{
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/mcc-ellipse.png}
+	\end{figure}
+}
+
+\note{
+	
+	A convenient way of writing the equation of the ellipse in Fig is:
+	\begin{equation*}
+	\frac{p^\prime}{p_c^\prime} = \frac{M^2}{M^2 + \eta^2}
+	\end{equation*}
+	In differential form:
+	\begin{equation*}
+	\frac{\delta p^\prime}{p^\prime} + \frac{2\eta d\eta}{M^2 + \eta^2} - \frac{dp_c^\prime}{p_c^\prime} = 0
+	\end{equation*}
+
+	Incorporating the particular form in the general framework:
+	\begin{equation*}
+	f = q^2 - M^2 [p^\prime (p_c^\prime - p^\prime)] = 0
+	\end{equation*}
+}
+
+\note{
+	\begin{equation*}
+		\frac{d\varepsilon_v^p}{d\varepsilon_s^p} = \frac{\partial g / \partial p^\prime}{\partial g / \partial q} = \frac{M^2 (2p^\prime - p_c^\prime)}{2q} = \frac{M^2 - \eta^2}{2\eta}
+	\end{equation*}
 	\begin{equation*}
 	\frac{d\varepsilon_v^p}{d\varepsilon_s^p} = \frac{M^2 - \eta^2}{2 \eta}
 	\end{equation*}
