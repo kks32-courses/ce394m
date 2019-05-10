@@ -1031,7 +1031,7 @@ F(q, p) = q^2 - M^2 p^2 \left(\frac{p_c^\prime}{p^\prime} - 1\right) = 0
 \frametitle{Cam-Clay material properties determination: IV}
 \textbf{Elastic properties: $G$ or $\nu$}
 \begin{enumerate}
-	\item Elastic bulk modulus $K_e = dp^\prime / d\varepsilon_v = vp^prime / \kappa$
+	\item Elastic bulk modulus $K_e = dp^\prime / d\varepsilon_v = vp^\prime / \kappa$
 	\item Choosing Poisson's ratio $\nu$ constant gives $G_e$ which varies as $K_e$.
 	\item Typically $\nu= 0.2 - 0.4$.
 \end{enumerate}
@@ -1137,6 +1137,13 @@ correlations should be regarded as a first approximation.
 \end{minipage}	
 \end{frame}
 
+\note{
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/drucker-prager.png}
+		\caption*{Drucker Prager}
+	\end{figure}
+}
+
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Advantages and Limitations of Cam-Clay models}
@@ -1160,4 +1167,18 @@ correlations should be regarded as a first approximation.
 	\item Model predicts conservative $K_0$ value.
 \end{enumerate}
 \end{frame}
+
+\note{
+\begin{itemize}
+	\item Overestimates $K_0$ loading (initial conditions)
+	\item Wet of CS is well described but description of Over-consolidated soils is more difficult - requires Hvorslev correction
+	\item Not used for sands in its current state
+	\item Not very good elastic model
+	\item Real data shows yield surface should be rotated about $K_0$ line not hydrostatic axis (anisotropic stres-history) 
+	\item over predicts significantly elastic region in extension test.
+\end{itemize}
+	\begin{figure}
+		\includegraphics[width=0.4\textwidth]{figs/anisotropy.png}
+	\end{figure}
+}
 \end{document}
