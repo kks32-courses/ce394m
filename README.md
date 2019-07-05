@@ -1,7 +1,7 @@
 # CE394M: Advanced analysis in geotechnical engineering
 > Krishna Kumar, Assistant Professor, UT Austin
 
-[![License](https://img.shields.io/badge/license-CC--By--SA--4.0-brightgreen.svg)](https://raw.githubusercontent.com/kks32-courses/ce394m/master/license.md)
+[![License](https://img.shields.io/badge/license-CC--By--SA--4.0-brightgreen.svg)](https://raw.githubusercontent.com/kks32-courses/ce394m/master/LICENSE.md)
 
 # Jupyter Notebook
 
