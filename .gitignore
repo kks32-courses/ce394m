@@ -317,3 +317,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Check points
+**/.ipynb_checkpoints*
