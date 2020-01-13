@@ -92,6 +92,19 @@ University of Texas at Austin \\
 \subsection{Complexity in Geotechnical modeling}
 %------------------------------------------------
 \begin{frame}
+	\frametitle{Is this model correct?}
+	\begin{figure}
+		\mode<beamer>{
+			\includegraphics[width=0.85\textwidth]{figs/tunnel-halfspace.png}
+		}
+		\mode<handout>{
+			\vspace{5cm}
+		}
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
 \frametitle{Geotechnical modeling of the complex world}
 \begin{figure}
 	\mode<beamer>{
@@ -100,7 +113,7 @@ University of Texas at Austin \\
 	\mode<handout>{
 		\includegraphics[width=0.85\textwidth]{figs/lbs-overview.jpg}
 	}
-	\caption{London Bridge Station, London, UK}
+	\caption*{London Bridge Station, London, UK}
 \end{figure}
 \end{frame}
 
@@ -121,6 +134,14 @@ University of Texas at Austin \\
 	structures and services. It may be necessary to predict any structural 
 	forces induced in these existing structures and/or services.}
 
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Local vs global stability}
+	\begin{figure}
+		\includegraphics[width=0.95\textwidth]{figs/stability.png}
+	\end{figure}
+\end{frame}
 \note{When designing any geotechnical structure, the engineer must ensure that it is
 	stable. Stability can take several forms. Firstly, the structure and support 
 	system must be stable as a whole. There must be no danger of rotational, 
@@ -128,9 +149,6 @@ University of Texas at Austin \\
 	Secondly, \textbf{\textit{overall stability}} must be established. For example, 
 	if a retaining 	structure supports sloping ground, the possibility of the 
 	construction promoting an overall slope failure should be investigated.
-	\begin{figure}
-		\includegraphics[width=0.95\textwidth]{figs/stability.png}
-	\end{figure}
 }
 
 %------------------------------------------------
@@ -223,6 +241,7 @@ University of Texas at Austin \\
 }
 \end{frame}
 
+\section{Geotechnical analysis}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Advanced analysis in geotechnical engineering}
@@ -256,382 +275,6 @@ Analysis:
 	tool to quantify effects once material properties and loading conditions have been
 	set. The design process involves considerably more than analysis.}
 
-\subsection{Classical vs advanced analysis}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Classical vs advanced analysis}
-Classical approach:
-\mode<beamer>{
-	\begin{itemize}
-		\item Failure estimates
-		\begin{itemize}
-			\item rigid perfectly-plastic stress-strain assumptions
-			\item calculate factor of safety (What value do you pick?)
-		\end{itemize}
-		\item Deformation estimates
-		\begin{itemize}
-			\item Elastic analysis
-			\item Use average elastic properties (like what??)
-		\end{itemize}
-	\end{itemize}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-Advanced analysis:
-\mode<beamer>{
-	\begin{itemize}
-		\item Failure and deformation are obtained from the same analysis
-		\item Handle complex geometry
-		\item More difficult to perform, more computational requirements and more info on soil behavior $\sigma - \epsilon$
-		\item Need to know how to do it right!
-	\end{itemize}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-\end{frame}
-
-
-%------------------------------------------------
-\section{Numerical methods for differential equations}
-\subsection{Direct method: Matrix analysis of structures}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures}
-\mode<beamer>{
-	\begin{figure}
-		\includegraphics[width=0.95\textwidth]{figs/matrix-analysis-structures-final.png}
-	\end{figure}
-}
-\mode<handout>{
-	\begin{figure}
-		\includegraphics[width=0.95\textwidth]{figs/matrix-analysis-structures.png}
-	\end{figure}
-}
-
-\begin{itemize}
-	\item What are the known variables? \mode<beamer>{$d_1=0, P_2=0, P_3=F$(constant)}
-	\item What are the unknowns? \mode<beamer>{$P_1, d_2, d_3$}
-	\item What do we know? \mode<beamer>{Force or distortion relations at an element level.}
-\end{itemize}
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures: Equilibrium}
-\mode<handout>{\vspace{1cm}}
-\mode<beamer>{A structure is considered to be in equilibrium if, initially at rest, it remains 
-	at rest when subjected to a system of forces and couples. If a structure is in equilibrium, 
-	then all of its members and joints must also be in equilibrium.}
-\begin{itemize}
-	\item $P_1 = $\mode<beamer>{$-S_1 -S_2$}
-	\item $P_2 = $\mode<beamer>{$S_2 -S_3 - S_4$}
-	\item $P_3 = $\mode<beamer>{$S_1 + S_3 +  S_4$}
-\end{itemize}
-
-\mode<beamer>{
-\begin{equation*}
-\begin{bmatrix}
-P_1 \\
-P_2 \\
-P_3 \\
-\end{bmatrix} = 
-\begin{bmatrix}
--1 & -1 &  0 &  0 \\
- 0 &  1 & -1 & -1 \\
- 1 &  0 &  1 &  1 \\
-\end{bmatrix}
-\begin{bmatrix}
-S_1 \\
-S_2 \\
-S_3 \\
-s_4 \\
-\end{bmatrix}
-\end{equation*}
-
-\begin{equation*}
-\mathbf{P} = \mathbf{A^T} \mathbf{S}
-\end{equation*}
-}
-
-\mode<handout>{
-	\vspace{2cm}
-}
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures: Compatibility}
-\mode<handout>{\vspace{4cm}}
-\mode<beamer>{
-\begin{itemize}
-	\item compatibility relates the deformations of a structure so that its
-	various parts (members, joints, and supports) fit together without any gaps or
-	overlaps. 
-	\item ensure that the deformed shape of the structure is continuous (except at the 
-	locations of any internal hinges or rollers), and is consistent with the support
-	conditions.
-\end{itemize}
-}
-\end{frame}
-
-\note{
-	Deflection profile shown for a hinge is incompatible, because it can't be differentiated 
-	(the slope cannot be evaluated) at the hinge. Hence incompatible.
-	\begin{figure}
-		\includegraphics[width=0.55\textwidth]{figs/incompatible-deflection-profile-hinge.png}
-	\end{figure}
-}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures: Compatibility}
-$v$ = internal spring distortion
-$d$ = nodal displacement
-\begin{itemize}
-	\item $v_1 = $\mode<beamer>{$d_3 - d_1$}
-	\item $v_2 = $\mode<beamer>{$d_2 - d_1$}
-	\item $v_3 = $\mode<beamer>{$d_3 - d_2$}
-	\item $v_4 = $\mode<beamer>{$d_3 - d_2$}
-\end{itemize}
-
-
-\mode<beamer>{
-	\begin{equation*}
-	\begin{bmatrix}
-	v_1 \\
-	v_2 \\
-	v_3 \\
-	v_4 \\
-	\end{bmatrix} = 
-	\begin{bmatrix}
-	-1 &  0 &  1 \\
- 	-1 &  1 &  0 \\
-	 0 & -1 &  1 \\
-	 0 & -1 &  1 \\
-	\end{bmatrix}
-	\begin{bmatrix}
-	d_1 \\
-	d_2 \\
-	d_3 \\
-	\end{bmatrix}
-	\end{equation*}
-	
-	\begin{equation*}
-	\mathbf{v} = \mathbf{A} \mathbf{d}
-	\end{equation*}
-}
-
-\mode<handout>{
-	\vspace{3cm}
-}
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures: Physical condition}
-Force-distance relationship: spring constant
-
-\begin{center}
-	\begin{tabular}{l l l l l}
-		\toprule
-		\textbf{spring \#} & 1 & 2 & 3 & 4 \\
-		\textbf{stiffness ($F.L^{-1}$)} & 3 & 2 & 1 & 2 \\
-		\bottomrule
-	\end{tabular}
-\end{center}
-
-\mode<beamer>{
-	\begin{equation*}
-	\begin{bmatrix}
-	S_1 \\
-	S_2 \\
-	S_3 \\
-	S_4 \\
-	\end{bmatrix} = 
-	\begin{bmatrix}
-	3 & 0 & 0 & 0 \\
-	0 & 2 & 0 & 0 \\
-	0 & 0 & 1 & 0 \\
-	0 & 0 & 0 & 2 \\
-	\end{bmatrix}
-	\begin{bmatrix}
-	v_1 \\
-	v_2 \\
-	v_3 \\
-	v_4 \\
-	\end{bmatrix}
-	\end{equation*}
-	
-	\begin{equation*}
-	\mathbf{s} = \mathbf{D} \mathbf{v}
-	\end{equation*}
-}
-
-\mode<handout>{
-	\vspace{3cm}
-}
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures: Direct Method}
-Combine all the equations:
-$\mathbf{P}$ = \mode<beamer>{$\mathbf{A^TS = A^TDv = A^TDAd = Kd}$}
-
-where $\mathbf{K}$ = \mode<beamer>{$A^T D A $ (Global stiffness matrix)}
-\mode<beamer>{
-\begin{align*} 	
-K & = 
-\begin{bmatrix}
--1 & -1 &  0 &  0 \\
-0 &  1 & -1 & -1 \\
-1 &  0 &  1 &  1 \\
-\end{bmatrix}
-\begin{bmatrix}
-3 & 0 & 0 & 0 \\
-0 & 2 & 0 & 0 \\
-0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 2 \\
-\end{bmatrix}
-\begin{bmatrix}
--1 &  0 &  1 \\
--1 &  1 &  0 \\
-0 & -1 &  1 \\
-0 & -1 &  1 \\
-\end{bmatrix} \notag \\%
-%
-%
- &= 
- \begin{bmatrix}
-  5 & -2 & -3 \\
- -2 &  5 & -3 \\
- -3 & -3 &  6 \\
- \end{bmatrix} \\%
-%
-%
-\begin{bmatrix}
-P_1 \\
-P_2 \\
-P_3 \\
-\end{bmatrix}
-& =
-\begin{bmatrix}
-5 & -2 & -3 \\
--2 &  5 & -3 \\
--3 & -3 &  6 \\
-\end{bmatrix}
-\begin{bmatrix}
-d_1 \\
-d_2 \\
-d_3 \\
-\end{bmatrix}
-\end{align*}
-Apply Boundary conditions $d_1=0$, $P_2=0$ and $P_3=F$ and solve $P_1$, $d_2$ and $d_3$
-}
-
-\mode<handout>{
-	\vspace{6cm}
-}
-\end{frame}
-
-\note{
-	Transpose of a linear mapping of two vectors of the same field (system), makes both 
-	$\mathbf{A}$ and $\mathbf{A}^T$ for forces and displacement relationships to have the 
-	same $\mathbf{A}$ matrix. 
-	$\mathbf{A}$ is used when relating nodal to internal variables, and 
-	$\mathbf{A}^T$ is used for the inverse relation. Note: $\mathbf{A}$ is a non-square matrix 
-	and is not invertible. $\mathbf{A}^T \ne \mathbf{A}^{-1} $
-}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Matrix analysis of structures}
-\begin{figure}
-	\mode<beamer>{
-		\includegraphics[width=0.6\textwidth]{figs/computational-workflow.pdf}
-	}
-	\mode<handout>{
-		\vspace{5cm}
-	}
-\end{figure}
-\end{frame}
-
-\note{\textbf{Stiffness method}: Tensile forces 	
-	produce a total elongation 	(deformation) $\delta$ of the spring. For linear springs, the force $T$ and the displacement $u$ are related by Hooke’s law. where deformation of the spring $\delta$ is given as: $\delta = u(L) - u(0) = u_2 - u_1$. Forces $f_{1x} = -T$ and $f_{2x} = T$.
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/spring-stiffness.png}
-	\end{figure}
-}
-
-\note{
-	We can now derive the spring element
-	stiffness matrix as follows. Rewrite the forces in terms of the nodal displacements:
-	\begin{equation*}
-		T = -f_{1x} = k(u_2 - u_1) \rightarrow f_{1x} = k(u_1 - u_2)
-	\end{equation*}
-	
-	\begin{equation*}
-		T = f_{2x} = k(u_2 - u_1) \rightarrow f_{2x} = k(- u_1 + u_2)
-	\end{equation*}
-	
-	We can write the last two force-displacement relationships in matrix form as:
-	\begin{equation*}
-	\begin{bmatrix}
-		f_{1x}\\
-		f_{2x}\\
-	\end{bmatrix} = 
-	\begin{bmatrix}
-		k & -k \\
-		-k & k\\
-	\end{bmatrix} 
-	\begin{bmatrix}
-		u_{1}\\
-		u_{2}\\
-	\end{bmatrix}	
-	\end{equation*}
-}
-
-
-\note{\textbf{Stiffness method} Force $F = K * a$. Where, $K$ represents force at DOF given unit displacement at DOF. 
-	\begin{equation*}
-	\begin{bmatrix}
-	F_1 \\
-	F_2 \\
-	\end{bmatrix} = %
-	\begin{bmatrix}
-	K_{11} & K_{12} \\
-	K_{21} & K_{22} \\
-	\end{bmatrix}
-	\begin{bmatrix}
-	a_1 \\
-	a_2 \\
-	\end{bmatrix}	
-	\end{equation*}
-	
-	$K_{ij}$ is force at DOF $i$ given unit displacement at DOF $j$ with all other dof held constant.
-	
-	\noindent
-	\fboxsep=0pt
-	\noindent
-	\begin{minipage}[t]{0.68\linewidth}
-		\begin{figure}
-			\includegraphics[width=\textwidth]{figs/stiffness-method.png}
-		\end{figure}
-	\end{minipage}%
-	\hfill%
-	\begin{minipage}[t]{0.28\linewidth}
-		\begin{equation*}
-		K = %
-		\begin{bmatrix}
-		k_a + k_b & -k_b \\
-		-k_b & k_b \\
-		\end{bmatrix}
-		\end{equation*}
-	\end{minipage}	
-}
 
 %------------------------------------------------
 \section{Governing equations in stress-deformation analysis}
@@ -835,12 +478,31 @@ Then: \mode<beamer>{
 \subsection{Compatibility condition}
 %------------------------------------------------
 \begin{frame}
+	\frametitle{Matrix analysis of structures: Compatibility}
+	\mode<handout>{\vspace{4cm}}
+	\mode<beamer>{
+		\begin{itemize}
+			\item compatibility relates the deformations of a structure so that its
+			various parts (members, joints, and supports) fit together without any gaps or
+			overlaps. 
+			\item ensure that the deformed shape of the structure is continuous (except at the 
+			locations of any internal hinges or rollers), and is consistent with the support
+			conditions.
+		\end{itemize}
+	}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
 \frametitle{Governing equations: Compatibility}
  	\begin{figure}
 	\includegraphics[width=\linewidth]{figs/compatibility.png}
 \end{figure}
 \end{frame}
 
+
+%------------------------------------------------
 \begin{frame}
 \frametitle{Governing equations: Displacement - strain relationship}
 Displacement - strain relationship: \mode<beamer>{$\bm\varepsilon = \nabla \mathbf{u}$}
