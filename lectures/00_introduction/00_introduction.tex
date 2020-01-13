@@ -409,6 +409,115 @@ Analysis:
 	tool to quantify effects once material properties and loading conditions have been
 	set. The design process involves considerably more than analysis.}
 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Classical geotechnical analysis: Slope stability}
+	\mode<beamer>{
+		\noindent
+		\fboxsep=0pt
+		\noindent
+		\begin{minipage}[t]{0.6\linewidth}	
+			\textbf{Assumptions}
+			\begin{itemize}
+				\item  \textit{Mode:} Assume failure surface
+				\item \textit{Deformation:} Rigid soil block
+				\item \textit{Slip surface:} Define a failure criteria
+				\item \textit{Compute:} $F_s$ Stability
+			\end{itemize}
+			This is the classical \textbf{limit equilibrium method}.
+		\end{minipage}%
+		\hfill
+		\begin{minipage}[t]{0.4\linewidth}
+			\begin{figure}
+				\includegraphics[width=\textwidth]{figs/limit-equilibrium.png}
+			\end{figure}
+		\end{minipage}	
+	}
+	\mode<handout>{
+		\vspace{5cm}
+	}
+\end{frame}
+\note {Limit equilibrium
+	In this method of analysis an 'arbitrary' failure surface is adopted (assumed) and
+	equilibrium conditions are considered for the failing soil mass, assuming that the
+	failure criterion holds everywhere along the failure surface. The failure surface
+	may be planar, curved or some combination of these. Only the global equilibrium
+	of the `blocks' of soil between the failure surfaces and the boundaries of the
+	problem are considered. The internal stress distribution within the blocks of soil is
+	not considered. Coulomb's wedge analysis and the method of slices are examples
+	of limit equilibrium calculations. \\
+	
+	Only a global equilibrium, rather than the local equilibirium of every point in the soil, is satisified.
+}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Shear failure plane}
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+		\caption*{At failure, shear stress along the failure surface ($\tau$) reaches the shear strength ($\tau_f$).}
+	\end{figure}
+	Factor of Safety = \mode<beamer>{Resistance (from soil shear strength)/Driving force (from total
+		stress equilibrium (i.e. weight of the soil))}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Dry slope (total stress = effective stress)}
+	\mode<beamer>{
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=\textwidth]{figs/dry-slope.png}
+		\end{figure}
+	}
+	\mode<handout>{
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+		\end{figure}
+	}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Saturated slope (total stress = effective stress + pwp)}
+	\textbf{Drained conditions} - need to compute the steady state pore pressure field
+	and then evaluate ``effective stress‐based'' shear strength to find the overall
+	stability (based on total stress equilibrium).
+	\mode<beamer>{
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=\textwidth]{figs/saturated-slope.png}
+		\end{figure}
+	}
+	\mode<handout>{
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+		\end{figure}
+	}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Saturated slope (total stress = effective stress + PWP)}
+	\textbf{Undrained conditions} ‐ (total stress approach) – Use ``\textit{total‐stress based}''
+	shear strength ($s_u$) to find the overall stability (based on total stress
+	equilibrium).
+	\mode<beamer>{
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=\textwidth]{figs/saturated-undrained.png}
+		\end{figure}
+	}
+	\mode<handout>{
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.9\textwidth]{figs/shear-failure-plane.png}
+		\end{figure}
+	}
+\end{frame}
 
 %------------------------------------------------
 \section{Governing equations in stress-deformation analysis}
@@ -714,14 +823,7 @@ Stress - strain relationship: \mode<beamer>{$\bm \sigma = \mathbf{D} \bm\varepsi
 	\sigma_{zx} \\
 	\end{bmatrix} %
 	= %
-	\begin{bmatrix}
-	D_{xxxx} & D_{xxyy} & D_{xxzz} & D_{xxxy} &   D_{xxyz} & D_{xxzx}\\
-	D_{yyxx} & D_{yyyy} & D_{yyzz} & D_{yyxy} & D_{yyyz} & D_{yyzx}\\
-	D_{zzxx} & D_{zzyy} & D_{zzzz} & D_{zzxy} & D_{zzyz} & D_{zzzx}\\
-	D_{xyxx} & D_{xyyy} & D_{xyzz} & D_{xyxy} &   D_{xyyz} & D_{xyzx}\\
-	D_{yzxx} & D_{yzyy} & D_{yzzz} & D_{yzxy} & D_{yzyz} & D_{yzzx}\\
-	D_{zxxx} & D_{zxyy} & D_{zxzz} & D_{zxxy} & D_{zxyz} & D_{zxzx}\\
-	\end{bmatrix} %
+	\mathbf{D (6x6)} %
 	\begin{bmatrix}
 	\varepsilon_{xx} \\
 	\varepsilon_{yy} \\
@@ -760,57 +862,183 @@ Advanced analysis involves:
 }
 \end{frame}
 
-\note{
-	\textbf{Lower and upper bound theorems:} The exact determination of loads involved in the plastic deformation requires simultaneous solution of three sets of conditions:
+\section{Limit analysis}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Limit analysis: Lower and upper bound theorems}
+	The exact determination of loads involved in the plastic deformation requires simultaneous solution of three sets of conditions:
 	\begin{enumerate}
 		\item equations of equilibrium
 		\item equations of compatibility
-		\item appropriate consitutive criteria (yield condition and flow rule)
+		\item appropriate constitutive criteria (yield condition and flow rule)
 	\end{enumerate}
-
-	Exact dertermination is often not easy, may be appropriate for simple shapes, but other cases we may have to use \textit{numerical method}.
-}
-
-\note{
-	\textbf{Lower bound theorem}: Any applied load is less than the actual limiting load, i.e., they will not cause collapse. \\
 	
-	In rigid-plastic continua ther can be no plastic deformation under loads for which a stress distribution can be found that:
+	Exact determination is often not easy, may be appropriate for simple shapes, but other cases we may have to use \textit{numerical method}.
+\end{frame}
+
+\note{Calculations of slope stability are based on plasticity theory, which is held
+	to be applicable to ductile materials such as soils. Strictly, plasticity theory
+	applies only to perfectly plastic materials that adhere to the normality
+	principle, which maximises the work done in plastic deformations.}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Limit analysis: Lower bound theorem}
+	
+	``\textit{If there is a set of external loads \textbf{which are in equilibrium} with a state of
+ stress that nowhere exceeds the failure criterion for the material, \textbf{collapse cannot occur} and the external loads are a lower bound to the true
+	collapse loads}''\\
+	\vspace{1em}
+	
+	Any applied load is less than the actual limiting load, i.e., they will not cause collapse.\\
+	\mode<beamer>{
 	\begin{enumerate}
 		\item satisfies equilibrium everywhere
 		\item balances the externally applied loads, and
-		\item is everywhere within the yield locus.
+		\item every point is within the yield locus.
 	\end{enumerate}
-
 	\textbf{Relax compatibility.}
-}
+	}
+\end{frame}
 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Lower bound solution}
+	We need to determine a set of
+stresses in the ground that are in equilibrium with the external
+loads. Stress state everywhere should be:
+	\mode<beamer>{
+		\centering
+		$\sigma_1 - \sigma_3 = s_u$
+		\begin{figure}
+			\includegraphics[width=0.85\linewidth]{figs/lb-foundation.png}
+		\end{figure}
+	}
+\end{frame}
 
-\note{
-	\textbf{Upper bound theorem}: Apply enough load to acheive the desired change in component shape, e.g., process machinery \\
-	
-	In rigid-plastic continua, plastic deformation must occur for any system of load calculated by equating the external work done by loads to the internal plastic work calcuated from a distribution of strain increments that: 
-	\begin{enumerate}
-		\item satisfies the boundary displacement conditions, and
-		\item do not infringe incompressibility.
-	\end{enumerate}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Limit analysis: Upper bound theorem}
+	``\textit{If there is a set of external loads and a mechanism of plastic collapse such
+that the increment of work done by the external loads in an \textbf{increment of
+	displacement} equals the work done by the internal stresses, \textbf{collapse
+must occur} and the external loads are an upper bound to the true
+collapse loads}''\\
+	\vspace{1em}
+
+	Apply enough load to achieve the desired change in component shape, e.g., process machinery.
+	\mode<beamer>{
+		\begin{enumerate}
+			\item satisfies the boundary displacement conditions, and
+			\item do not infringe incompressibility.
+		\end{enumerate}
 	
 	\textbf{Relax equilibrium}
+	}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Upper bound solution}
+	We need to determine a failure
+mechanism, which is kinematically feasible. The work done is
+equated by the plastic dissipation along the failure (or slip)
+	surfaces.
+	\mode<beamer>{
+		\begin{figure}
+			\includegraphics[width=0.7\linewidth]{figs/ub-foundation.png}
+		\end{figure}
+	}
+\end{frame}
+
+\note{Exact solution is between upper and lower bound.}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Undrained cut: Lower bound solution}
+	Consider the equilibrium of an element of soil adjacent to the bottom of a cut, or
+	crack. Assume that the major principal stress is vertical, and that the soil fails
+	according to Tresca’s criterion at a shear stress $s_u$ (undrained strength).
+	\mode<beamer>{
+		\begin{figure}
+			\includegraphics[width=0.8\linewidth]{figs/lb-vertical-cut.png}
+		\end{figure}
+	
+	The resulting maximum depth of crack, $H_c$, is different in wet and dry conditions.
+	A deeper crack can be kept open if it fills with water.
+	}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Undrained cut: Upper bound solution - wedge mechanism}
+	\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=0.8\linewidth]{figs/ub-cut-1.png}
+	\end{figure}
+	}
+	\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=0.8\linewidth]{figs/ub-cut-1-empty.png}
+	\end{figure}
+    \vspace{2cm}
+	}
+This simple upper bound solution involving a single sliding block gives anormalized cut depth, $N_s = \gamma H_c /s_u = 4$. A more refined upper bound solutioninvolves a circular slip surface, passing through the base of the cut.
+	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Undrained cut: Upper bound solution - slip circle}
+	\begin{figure}
+		\includegraphics[width=0.6\linewidth]{figs/ub-cut-2.png}
+	\end{figure}
+
+	Change in potential energy of block ABC (Need to find the centroid and examine thevertical movement by $\Omega$ = Dissipation = $s_u R (\theta_c - \theta_b) R \Omega$
+	\begin{equation*}
+	N_s = \frac{\gamma H_c}{s_u} = \frac{6 (\theta_c - \theta_b)}{2 \sin^2 \theta_c - \sin \theta_c \sin \theta_b - \sin^2\theta_b}
+	\end{equation*}
+	Optimizing: $\theta_b = 27.4^o$ and $\theta_c=57.5^o$. 
+	$H_c = 3.83 s_u / \gamma$.
+\end{frame}
+
+\note{
+Based on this solution: how far back from the edge of an unstablevertical cut should you stand, to be safe if it fails?
+These upper bounds are far from the lower bound calculated. With numerical methods, the lower bound can be improved,
+and it is now accepted that the true solution is $\gamma H_c /s_u = 3.83$, to two significant figures, where the effective weight ($\gamma^\prime = \gamma - \gamma_w$) should beused if the crack is water-filled.
 }
 
-\note {Limit equilibrium
-	In this method of analysis an 'arbitrary' failure surface is adopted (assumed) and
-	equilibrium conditions are considered for the failing soil mass, assuming that the
-	failure criterion holds everywhere along the failure surface. The failure surface
-	may be planar, curved or some combination of these. Only the global equilibrium
-	of the `blocks' of soil between the failure surfaces and the boundaries of the
-	problem are considered. The internal stress distribution within the blocks of soil is
-	not considered. Coulomb's wedge analysis and the method of slices are examples
-	of limit equilibrium calculations. \\
-	
-	Only a global equilibrium, rather than the local equilibirium of every point in the soil, 
-	is satisified.
-}
-\note{
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Taylor stability chart}
+		\noindent
+	\fboxsep=0pt
+	\noindent
+	\begin{minipage}[t]{0.5\linewidth}
+		For sloped cuts as shown on the right, the critical height at differentslopeangles($i$), different
+		excavation depths ($H$) anddifferent rock depths ($n_d * H$) canbe evaluated using the following
+		generalised formula.
+		\begin{equation*}
+			N_s = \frac{\gamma H_c}{s_u}		
+		\end{equation*}
+		where $N_s$ is the stability number($N_s = 3.8$ for 90 degrees cut).
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.5\linewidth}
+	\begin{figure}
+		\includegraphics[width=0.85\linewidth]{figs/taylor-slope-stability.png}
+	\end{figure}
+
+	\end{minipage}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+ 	\frametitle{Methods of analysis}
+ 	\mode<beamer>{
 	\begin{table}[]
 		\begin{tabular}{llllll}
 			\toprule
@@ -818,16 +1046,36 @@ Advanced analysis involves:
 			\midrule
 			& \rot{\textbf{Equilibrium}} & \rot{\textbf{Compatibility}} &
 			\textbf{Constitutive law} &
-			\rot{\textbf{Force}} & \rot{\textbf{Disp}} \\
+			\rot{\textbf{Force}} & \rot{\textbf{Displacement}} \\
 			\midrule
 			\textbf{Closed form} & $\checkmark$ & $\checkmark$ & Linear elastic & $\checkmark$ & $\checkmark$ \\
 			\textbf{Limit equilibrium} & $\checkmark$ &
 			$\times$ & Rigid with a failure criterion & $\checkmark$ & $\times$ \\
 			\textbf{Lower bound} & $\checkmark$ & $\times$ & Plasticity + flow-rule & $\checkmark$ & $\times$ \\
-			\textbf{Upper bound} & $\times$ & $\checkmark$ & Platicity + flow-rule & $\times$ & $\checkmark$ \\
+			\textbf{Upper bound} & $\times$ & $\checkmark$ & Plasticity + flow-rule & $\times$ & $\checkmark$ \\
 			\textbf{Numerical analysis} & $\checkmark$ & $\checkmark$ & Any & $\checkmark$ & $\checkmark$ \\
 			\bottomrule                        
 		\end{tabular}
 	\end{table}
-}
+	}
+ 	\mode<handout>{
+	\begin{table}[]
+		\begin{tabular}{llllll}
+			\toprule
+			\textbf{Method of analysis} & \multicolumn{5}{c}{\textbf{Solution requirements}} \\
+			\midrule
+			& \rot{\textbf{Equilibrium}} & \rot{\textbf{Compatibility}} &
+			\textbf{Constitutive law} &
+			\rot{\textbf{Force}} & \rot{\textbf{Displacement}} \\
+			\midrule
+			\textbf{Closed form} & & & Linear elastic & &  \\
+			\textbf{Limit equilibrium} & & & Rigid with a failure criterion & & \\
+			\textbf{Lower bound} &  &  & Plasticity + flow-rule &  & \\
+			\textbf{Upper bound} & &  & Plasticity + flow-rule & &  \\
+			\textbf{Numerical analysis} &  &  & Any &  &  \\
+			\bottomrule                        
+		\end{tabular}
+	\end{table}
+	}
+\end{frame}
 \end{document} 
