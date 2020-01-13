@@ -94,12 +94,7 @@ University of Texas at Austin \\
 \begin{frame}
 	\frametitle{Is this model correct?}
 	\begin{figure}
-		\mode<beamer>{
-			\includegraphics[width=0.85\textwidth]{figs/tunnel-halfspace.png}
-		}
-		\mode<handout>{
-			\vspace{5cm}
-		}
+		\includegraphics[width=0.85\textwidth]{figs/tunnel-halfspace.png}
 	\end{figure}
 \end{frame}
 
@@ -721,7 +716,7 @@ Then: \mode<beamer>{
 \subsection{Compatibility condition}
 %------------------------------------------------
 \begin{frame}
-	\frametitle{Matrix analysis of structures: Compatibility}
+	\frametitle{Compatibility}
 	\mode<handout>{\vspace{4cm}}
 	\mode<beamer>{
 		\begin{itemize}
@@ -898,6 +893,8 @@ Advanced analysis involves:
 		\item every point is within the yield locus.
 	\end{enumerate}
 	\textbf{Relax compatibility.}
+	}\mode<handout>{
+	\vspace{5cm}
 	}
 \end{frame}
 
@@ -913,6 +910,8 @@ loads. Stress state everywhere should be:
 		\begin{figure}
 			\includegraphics[width=0.85\linewidth]{figs/lb-foundation.png}
 		\end{figure}
+	}\mode<handout>{
+		\vspace{5cm}
 	}
 \end{frame}
 
@@ -934,7 +933,9 @@ collapse loads}''\\
 		\end{enumerate}
 	
 	\textbf{Relax equilibrium}
-	}
+	}\mode<handout>{
+	\vspace{5cm}
+}
 \end{frame}
 
 %------------------------------------------------
@@ -949,6 +950,9 @@ equated by the plastic dissipation along the failure (or slip)
 			\includegraphics[width=0.7\linewidth]{figs/ub-foundation.png}
 		\end{figure}
 	}
+\mode<handout>{
+	\vspace{5cm}
+}
 \end{frame}
 
 \note{Exact solution is between upper and lower bound.}
@@ -967,6 +971,9 @@ equated by the plastic dissipation along the failure (or slip)
 	The resulting maximum depth of crack, $H_c$, is different in wet and dry conditions.
 	A deeper crack can be kept open if it fills with water.
 	}
+\mode<handout>{
+	\vspace{5cm}
+}
 \end{frame}
 
 
@@ -984,7 +991,9 @@ equated by the plastic dissipation along the failure (or slip)
 	\end{figure}
     \vspace{2cm}
 	}
-This simple upper bound solution involving a single sliding block gives anormalized cut depth, $N_s = \gamma H_c /s_u = 4$. A more refined upper bound solutioninvolves a circular slip surface, passing through the base of the cut.
+This simple upper bound solution involving a single sliding block gives a
+normalized cut depth, $N_s = \gamma H_c /s_u = 4$. A more refined upper bound solution
+involves a circular slip surface, passing through the base of the cut.
 	
 \end{frame}
 
@@ -995,7 +1004,8 @@ This simple upper bound solution involving a single sliding block gives anormal
 		\includegraphics[width=0.6\linewidth]{figs/ub-cut-2.png}
 	\end{figure}
 
-	Change in potential energy of block ABC (Need to find the centroid and examine thevertical movement by $\Omega$ = Dissipation = $s_u R (\theta_c - \theta_b) R \Omega$
+	Change in potential energy of block ABC (Need to find the centroid and examine the
+vertical movement by $\Omega$ = Dissipation = $s_u R (\theta_c - \theta_b) R \Omega$
 	\begin{equation*}
 	N_s = \frac{\gamma H_c}{s_u} = \frac{6 (\theta_c - \theta_b)}{2 \sin^2 \theta_c - \sin \theta_c \sin \theta_b - \sin^2\theta_b}
 	\end{equation*}
@@ -1004,9 +1014,11 @@ This simple upper bound solution involving a single sliding block gives anormal
 \end{frame}
 
 \note{
-Based on this solution: how far back from the edge of an unstablevertical cut should you stand, to be safe if it fails?
+Based on this solution: how far back from the edge of an unstable
+vertical cut should you stand, to be safe if it fails?
 These upper bounds are far from the lower bound calculated. With numerical methods, the lower bound can be improved,
-and it is now accepted that the true solution is $\gamma H_c /s_u = 3.83$, to two significant figures, where the effective weight ($\gamma^\prime = \gamma - \gamma_w$) should beused if the crack is water-filled.
+and it is now accepted that the true solution is $\gamma H_c /s_u = 3.83$, to two significant figures, where the effective weight ($\gamma^\prime = \gamma - \gamma_w$) should be
+used if the crack is water-filled.
 }
 
 
@@ -1017,13 +1029,19 @@ and it is now accepted that the true solution is $\gamma H_c /s_u = 3.83$, to tw
 	\fboxsep=0pt
 	\noindent
 	\begin{minipage}[t]{0.5\linewidth}
-		For sloped cuts as shown on the right, the critical height at differentslopeangles($i$), different
-		excavation depths ($H$) anddifferent rock depths ($n_d * H$) canbe evaluated using the following
+		For sloped cuts as shown on the right, the critical height at different
+slope
+angles
+($i$), different
+		excavation depths ($H$) and
+different rock depths ($n_d * H$) can
+be evaluated using the following
 		generalised formula.
 		\begin{equation*}
 			N_s = \frac{\gamma H_c}{s_u}		
 		\end{equation*}
-		where $N_s$ is the stability number($N_s = 3.8$ for 90 degrees cut).
+		where $N_s$ is the stability number
+($N_s = 3.8$ for 90 degrees cut).
 	\end{minipage}%
 	\hfill
 	\begin{minipage}[t]{0.5\linewidth}
