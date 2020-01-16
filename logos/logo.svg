@@ -15,7 +15,7 @@
    viewBox="0 0 1367.447 502.26384"
    id="svg4227"
    version="1.1"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.4 (unknown)"
    sodipodi:docname="logo.svg">
   <defs
      id="defs4229">
@@ -120,9 +120,9 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:window-width="3840"
-     inkscape:window-height="2031"
+     inkscape:window-height="2032"
      inkscape:window-x="0"
-     inkscape:window-y="55"
+     inkscape:window-y="54"
      inkscape:window-maximized="1"
      inkscape:snap-to-guides="false"
      inkscape:snap-grids="false">
@@ -611,7 +611,7 @@
        r="9.0298471" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:37.5px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:0.9375px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:37.5px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:0.9375px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="-174.97923"
        y="293.2583"
        id="text913"><tspan
@@ -619,11 +619,11 @@
          id="tspan911"
          x="-174.97923"
          y="293.2583"
-         style="font-size:45px;line-height:56.25px;text-align:start;text-anchor:start;stroke-width:0.9375px;fill:#ffffff;stroke:#ffffff;">CE394M: Advanced analysis in geotechnical engineering</tspan><tspan
+         style="font-size:45px;line-height:56.25px;text-align:start;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0.9375px">CE394M: Advanced analysis in geotechnical engineering</tspan><tspan
          sodipodi:role="line"
          x="-174.97923"
          y="349.5083"
-         style="font-size:45px;line-height:56.25px;text-align:start;text-anchor:start;stroke-width:0.9375px;fill:#ffffff;stroke:#ffffff;"
-         id="tspan915">Spring 2019</tspan></text>
+         style="font-size:45px;line-height:56.25px;text-align:start;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0.9375px"
+         id="tspan915">UT Austin</tspan></text>
   </g>
 </svg>

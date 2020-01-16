@@ -3,6 +3,7 @@
 \usepackage[left=30mm, right=30mm, top=30mm, bottom=35mm]{geometry}
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage{booktabs}
 \usepackage{fancyhdr}
 \usepackage{url}
 \pagestyle{fancy}
@@ -16,8 +17,8 @@
 \begin{centering}
 	\textbf{
 		Assignment 1: Stress equilibrium, compatibility and stiffness matrix\\
-		Assigned: 28th January 2019\\
-		Due: 8th February 2019\\
+		Assigned: 27th January 2020\\
+		Due: 7th February 2020\\
 	}
 \end{centering}
 
@@ -68,17 +69,23 @@
 			\end{aligned}$		
 	\end{enumerate}
 	
-	\item Given the one-dimensional steel bar below, which is represented by two elements, 
-	determine the system's global stiffness matrix ($\mathbf{K}$).  The bar has a cross sectional area 
-	($A$) of~\SI{5E-04}{\meter\square} and Young’s modulus ($E$) of \SI{20}{\giga\pascal}. Please note that the deformation of an elastic bar is governed as follows:  $\delta = FL/AE$, where $F$ is the 
-	applied force leading to a displacement of $\delta$.  Also, note that this bar can be characterized in one dimension only with just two degrees of freedom (i.e. displacement at each of the two nodes in the $x$ direction only).
+	\item Using Optum G2 perform limit analyses of a vertical cut in clay with the following properties. Excavate to a vertical depth of $H_c$, where $H_c$ is determined using the stability charts. A preliminary stage involving development of initial stresses of a rectangular domain before excavation is required. Set this phase as the starting phase for both the lower and upper bound analyses. Compare the factor of safety from lower and upper bound solutions. Plot the displacement profiles.
 	
-	\begin{figure}[!h]
-		\centering
-		\includegraphics[width=0.75\textwidth]{figs/cantilever.pdf}
-	\end{figure}
+		\begin{table}[!h]
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+				\textbf{Properties}     & \textbf{Values} \\
+				\midrule
+				cohesion (c) & 30 kPa    \\
+				friction ($\phi$)   & $0^o$   \\
+				unit weight ($\gamma$)   & 20 $kN/m^3$    \\
+				K0             & 0.6  \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
 	
-	Assuming a horizontal force $F_x = $\SI{1}{\kilo\newton} at DOF 3, solve for displacements at all degrees of freedom. You are encouraged to use Jupyter notebooks to solve the linear system of equations.
+	\item Repeat the previous problem using a slope angle of $30^o$, instead of a vertical cut, and the depth to bed rock $n_d * H_c$ as  $H_c$ and $2 * H_c$.
 \end{enumerate}
 
 \end{document}
