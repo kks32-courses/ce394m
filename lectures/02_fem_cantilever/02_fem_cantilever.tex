@@ -3,7 +3,7 @@
 % CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %**************************************************************************************
 
-\documentclass[notes]{beamer}
+\documentclass[handout]{beamer}
 
 \mode<presentation> {
 
@@ -41,8 +41,8 @@
 
 
 % To print 2 slides on a page
-%\usepackage{handoutWithNotes}
-%\pgfpagesuselayout{2 on 1}[border shrink=2mm]
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1}[border shrink=2mm]
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -77,15 +77,6 @@ University of Texas at Austin \\
 % slides
 %----------------------------------------------------------------------------------------
 \section{FEM workflow}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Finite Element Analysis}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=\textwidth]{figs/fem.png}
-\end{figure}
-\end{frame}
-
 %------------------------------------------------
 \begin{frame}
 \frametitle{Finite Element Analysis}
@@ -392,7 +383,7 @@ Global stiffness \textbf{K}:
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Applying boundary conditions: Approach I}
+\frametitle{Applying boundary conditions}
 Consider a global system that has already been assembled by adding the contribution of
 each element:
 \begin{equation*}
@@ -459,81 +450,6 @@ we can zero the first row of the matrix, place a `one' on the diagonal and set $
 	first column and preserve symmetry, but this is not possible for $g \ne 0$.}
 
 
-%------------------------------------------------
-\begin{frame}
-\frametitle{Applying boundary conditions: Approach II}
-Prescribe the displacement at nodes 1 \& 2, all entries in rows one and two in \textbf{K} and \textbf{b} will be equal to zero:
-\mode<beamer>{
-\begin{equation*}
-\begin{bmatrix}
-0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 \\
-0 & K_{32} & K_{33} & K_{34} & 0 \\
-0 & 0 & K_{43} & K_{44} & K_{45} \\
-0 & 0 & 0  &  K_{54} & K_{55}\\
-\end{bmatrix} %
-\begin{bmatrix}
-g_1 \\
-g_2 \\
-a_3 \\
-a_4 \\
-a_5 \\
-\end{bmatrix} =  %
-\begin{bmatrix}
-0 \\
-0 \\
-b_3 \\
-b_4 \\
-b_5 \\
-\end{bmatrix}
-\end{equation*}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-Since the $g$ terms are known, we can take them to the right-hand side of the equation:
-\mode<beamer>{
-	\begin{equation*}
-	\begin{bmatrix}
-		K_{33} & K_{34} & 0 \\
-		K_{43} & K_{44} & K_{45} \\
-		0  &  K_{54} & K_{55} \\
-	\end{bmatrix} %
-	\begin{bmatrix}
-		a_3 \\
-		a_4 \\
-		a_5 \\
-	\end{bmatrix} =  %
-	\begin{bmatrix}
-		b_3 \\
-		b_4 \\
-		b_5 \\
-	\end{bmatrix} - %
-	\begin{bmatrix}
-		0 & K_{32} \\
-		0 & 0 \\
-		0 & 0 \\
-	\end{bmatrix} %
-	\begin{bmatrix}
-		g_1 \\
-		g_2 \\
-	\end{bmatrix}  %
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-\end{frame}
-
-\note{
-The second approach is to eliminate the degrees of freedom where the displacement
-is prescribed. Firstly, recall that wherever a displacement condition is applied, the weight
-function must be equal to zero.
-
-Now we have smaller matrix and any symmetry is preserved. This technique can be
-applied element-wise during assembly of the global matrix and it is used by finite element
-programs aimed at solid and structural mechanics. It is however more complicated to
-program than the first approach.}
 
 %------------------------------------------------
 \begin{frame}
