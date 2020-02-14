@@ -79,71 +79,19 @@ University of Texas at Austin \\
 %------------------------------------------------
 \begin{frame}
 \frametitle{4-noded rectangular element}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.85\textwidth]{figs/four-noded-quadrilateral.png}
-	\caption*{Four-node rectangular element. The nodes are by definition numbered counter-clockwise.}
-\end{figure}
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
-As the element has four nodes, it is necessary to start with a polynomial that has four
-parameters.
-\mode<beamer>{
-	\begin{equation*}
-			T e = \alpha_0^e + \alpha_1^e x + \alpha_2^e y + \alpha_3^e xy
-	\end{equation*}
-	It is possible to express ($\alpha_0^e, \alpha_1^e, \alpha_2^e, \alpha_3^e$) in terms of the nodal values ($T_1^e, T_2^e, T_3^e , T_4^e$). A derivation shape functions is tedious as it is necessary to invert a 4 x 4 matrix.
-	
-	The Shape Functions should be 1 at each node, and 0 otherwise can be used to determine the 4 coefficients.
-}
-\mode<handout>{
-	\vspace{5cm}
-}
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
 An alternative and more elegant approach is to construct the shape functions by the \textbf{tensor
 product method.} This is based on taking products of one-dimensional shape functions.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=\textwidth]{figs/4noded-quad-tensor-product.png}
+	\includegraphics[width=0.8\textwidth]{figs/4noded-quad-tensor-product.png}
 	\caption*{Construction of two dimensional shape functions.}
 \end{figure}
+\begin{equation*}
+N_2^e = N_2^{e,1d}(x) \times N_1^{e,1d}(y)
+\end{equation*}
 
 \end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
-For example, $N_2^e$, which has to have the value one at node 2 and zero at the other nodes,
-is obtained by taking the product of the one-dimensional shape functions $N_2^{e,1d}(x)$ and 
-$N_1^{e,1d}(y)$.
-
-\mode<beamer>{
-	\begin{equation*}
-	N_2^e = N_2^{e,1d}(x) \times N_1^{e,1d}(y)
-	\end{equation*}
-	
-	As visible in the figure above the product $ N_2^{e,1d}(x) \times N_1^{e,1d}(y)$ has the 
-	value one at node 2 and is zero at nodes 1, 3 and 4.
-	
-	\begin{equation*}
-	N_2^e (x, y) = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_4^e}{y_1^e - y_4^e} = -\frac{1}{A^e}(x - x_1^e)(y - y_4^e)
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
-\end{frame}
-
 
 %------------------------------------------------
 \begin{frame}
@@ -427,38 +375,8 @@ The displacement will be approximated as:
 %------------------------------------------------
 \begin{frame}
 \frametitle{Derivatives isoparametric shape functions}
-The gradient of the temperature for the four-node (isoparametric) quadrilateral element is:
+The gradient of displacement for the four-node (isoparametric) quadrilateral element is:
 
-\mode<beamer>{
-	\begin{equation*}
-	\nabla T = \mathbf{B}^{e}\mathbf{a}^e
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{1cm}
-}
-with
-\mode<beamer>{
-	\begin{equation*}
-	\mathbf{B}^e = %
-	\begin{bmatrix}
-	\frac{\partial N_1^{4Q}}{\partial x} &
-	\frac{\partial N_2^{4Q}}{\partial x} &
-	\frac{\partial N_3^{4Q}}{\partial x} &
-	\frac{\partial N_4^{4Q}}{\partial x} \\
-	\frac{\partial N_1^{4Q}}{\partial y} &
-	\frac{\partial N_2^{4Q}}{\partial y} &
-	\frac{\partial N_3^{4Q}}{\partial y} &
-	\frac{\partial N_4^{4Q}}{\partial y} \\	
-	\end{bmatrix}
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-\end{frame}
-
-\note{
 	Strain:	$\epsilon = \mathbf{B}^{e}\mathbf{a}^e$
 	
 	\begin{equation*}
@@ -495,8 +413,8 @@ with
 		u_{4y}^e \\
 	\end{bmatrix}
 	\end{equation*}
-	
-}
+\end{frame}
+
 %------------------------------------------------
 \begin{frame}
 \frametitle{Derivatives isoparametric shape functions}
@@ -578,7 +496,10 @@ The inverse of $\mathbf{J}^e$ is:
 Where $\left|\mathbf{J}^e\right|$ is the determinant of the Jacobian, which represents the ratio of an area element in the physical domain to the corresponding area element in the parent domain.
 \end{frame}
 
-\note{
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Jacobian}
 	The Jacobian can also be thought of as describing the amount of ``stretching'', ``rotating'' or ``transforming'' that a transformation imposes locally. For example, if $(x^\prime, y^\prime) = f(x, y)$ is used to transform an image, the Jacobian $\mathbf{J} f(x, y)$, describes how the image in the neighborhood of $(x, y)$ is transformed.
 	
 	\begin{figure}[ht]
@@ -586,7 +507,7 @@ Where $\left|\mathbf{J}^e\right|$ is the determinant of the Jacobian, which repr
 		\includegraphics[width=0.6\textwidth]{figs/jacobian.png}
 		\caption*{The Jacobian at a point gives the best linear approximation of the distorted parallelogram near that point (in translucent white on the right-side), and the Jacobian determinant gives the ratio of the area of the approximating parallelogram to that of the original square.}
 	\end{figure}
-}
+\end{frame}
 
 %------------------------------------------------
 \begin{frame}
@@ -1117,14 +1038,18 @@ dx dy = \left|\mathbf{J}^e \right| d\xi d\eta
 	Under some circumstances the displacements calculated by the finite element method are orders of magnitude smaller than they should be, and when this happens, the elements are said to be locking. The two most common types of locking are shear and pressure locking. Locking occurs in lower order elements because an elementes kinematics arenet rich enough to represent the correct solution. Shear locking occurs when elements are subjected to bending, and pressure locking occurs when the material is incompressible. Most of the research on reducing locking is devoted to elements with linear shape functions, with the remainder devoted to quadratic elements.
 }
 
-\note{
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Mesh locking}
+
  %https://www.dynasupport.com/tutorial/element-locking/locking-in-a-quadrilateral-element
  \textbf{Volume mesh locking} Conventional FE formulations produce very stiff behavior of an element when modeling nearly incompressible materials. The volume at each integration point is fixed and this condition puts sever constraints on the kinetmatically admissible displacement fields at the nodes. The stiff behaviour is called ``\textbf{mesh locking}''. For soils, incompressible conditions (no volume change) occurs when it is in undrained condition. 
  \begin{figure}[ht]
  	\centering
  	\includegraphics[width=0.8\textwidth]{figs/mesh-locking.png}
  \end{figure}
-}
+\end{frame}
 
 \note{
 	The neutral axis is the line $y = 0$, and cross-sections, which are initially perpendicular to the neutral axis, are deìned by lines of constant $x$. If the element is subjected to applied moments on the left and right edges, the resulting deformation is bilinear. As shown, it is symmetric about $x = 0$:
