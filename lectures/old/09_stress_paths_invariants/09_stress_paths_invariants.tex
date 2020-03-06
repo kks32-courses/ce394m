@@ -1,0 +1,1216 @@
+%**************************************************************************************
+% License:
+% CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%**************************************************************************************
+
+\documentclass[notes]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+
+% Burnt orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\colorlet{beamer@blendedblue}{burntorange}
+% Pale yellow
+\definecolor{paleyellow}{rgb}{1.0, 1.0, 0.953}
+\setbeamercolor{background canvas}{bg=paleyellow}
+% Secondary and tertiary palett
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=burntorange!80!black}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=burntorange!60!black}
+
+% To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}
+% To replace the footer line in all slides with a simple slide count uncomment this line
+%\setbeamertemplate{footline}[page number]
+
+% To remove the navigation symbols from the bottom of all slides uncomment this line
+%\setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{breqn}
+\usepackage{cancel}
+\usepackage{graphicx} % for figures
+\usepackage{subcaption} % for subplots 
+\usepackage[labelsep=space,tableposition=top]{caption}
+\renewcommand{\figurename}{Fig.} 
+\usepackage{cleveref}
+\usepackage{caption,subcaption}% http://ctan.org/pkg/{caption,subcaption}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{cleveref}
+
+% To print 2 slides on a page
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{2 on 1}[border shrink=2mm]
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+% The short title appears at the bottom of every slide, the full title is only on the title page
+\title[CE394M: Stresses - paths \& invariants]{CE394M: Stress paths and invariants} 
+\author{Krishna Kumar} % name
+\institute[UT Austin] % institution 
+{
+University of Texas at Austin \\
+\medskip
+\textit{
+  \url{krishnak@utexas.edu}} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % title page as the first slide
+\end{frame}
+
+\begin{frame}
+ % Table of contents slide, comment this block out to remove it
+ \frametitle{Overview}
+  %Throughout your presentation, if you choose to use \section{} and \subsection{} 
+  %commands, these %will automatically be printed on this slide as an overview 
+ \tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% slides
+%----------------------------------------------------------------------------------------
+\section{Stresses / strains in typical geotechnical lab tests}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stresses / strains}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\textbf{1D consolidation / simple shear}
+	\mode<beamer>{
+		\begin{itemize}
+			\item Zero lateral strain ($\varepsilon_{22} = \varepsilon_{33} = 0$
+			)
+			\item Stresses: $\sigma$ and $\tau$
+			\item Strains: $\varepsilon_{11} = \varepsilon_{v}$ and $\gamma$
+		\end{itemize}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\textbf{2D plane strain}
+	\mode<beamer>{
+		\begin{itemize}
+			\item Zero lateral strain ($\varepsilon_{22} = \gamma_{12} = \gamma_{23} = 0$
+			)
+			\item Stresses: $s$ and $t$
+			\item Strains: $\varepsilon_{v}$ and $\varepsilon_{\gamma}$
+		\end{itemize}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\textbf{3D general (axi-symmetric as a special case)}
+	\mode<beamer>{
+		\begin{itemize}
+			\item Stresses: $p$ and $q$
+			\item Strains: $\varepsilon_{v}$ and $\varepsilon_{s}$
+		\end{itemize}
+	}
+	\mode<handout>{
+		\vspace{1.5cm}
+	}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/stresses.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{1D simple shear}
+\mode<beamer>{
+	\begin{enumerate}
+		\item No lateral strain
+		\item Constant normal effective stress $\sigma_v^\prime$
+		\item Increasing shear strain $\gamma$
+		\item Measure shear resistance $\tau$
+		\item Measure volumetric strain $\varepsilon_v$ or void ratio $e = e_0 - (1 + e_0)\varepsilon_v$
+		\item \textbf{No information for the lateral direction}
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{3cm}
+} 
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/simple-shear.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{2D plane strain / Mohr-Coulomb model}
+\textbf{Stresses and strains: independent components}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Mean stress: $s = (\sigma_{I} + \sigma_{III}) / 2$ and $s^\prime = s - u$
+		\item Volumetric strain: $\varepsilon_v = (\varepsilon_I + \varepsilon_{III})$
+		\item Deviatoric / shear stress: $t = (\sigma_I - \sigma_{III}) / 2$ and $t^\prime = t$.
+		\item Deviatoric / shear strain: $\varepsilon_\gamma = (\varepsilon_I - \varepsilon_{III})$
+		\item Work increment:
+		\begin{equation*}
+			\delta W = \sigma_I^\prime \delta \varepsilon_I + \sigma_{III}^\prime \delta \varepsilon_{III} = s^\prime \delta \varepsilon_v + t \delta \varepsilon_\gamma
+		\end{equation*}
+		\item $s$ and $t$ are often used to derive parameters for Mohr-Coulomb model because it only considers $\sigma_I$ and $\sigma_{III}$ and not $\sigma_{II}$.
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{3cm}
+	\hfill
+}
+\end{minipage}%
+\begin{minipage}[t]{0.35\linewidth}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/plane-strain-stresses.png}
+\end{figure}
+\end{minipage}
+\end{frame}
+
+\note{
+ Principal stresses	$\sigma_I > \sigma_{II} > \sigma_{III}$. This equation holds good and is the definition of $\sigma$ in principal stress notations, i.e., $I > II > III$.
+ 
+ No shear stresses on these planes.
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{2D Mohr circle}
+\mode<beamer>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/mohr-circle.png}
+\end{figure}
+}
+\mode<handout>{
+\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr circle to 2D stress components}
+Successive Mohr circles and stress path for constant $\sigma_3$ and increasing $\sigma_1$:
+\mode<beamer>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/mohr-circle-ts.png}
+\end{figure}
+}
+\mode<handout>{
+\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Effect of $\sigma_{II}$}
+Bishop (1966) defined \textbf{b-value}: \mode<beamer>{$b = (\sigma_{II} - \sigma_{III}) / (\sigma_I - \sigma_{III})$, where $\sigma_I > \sigma_{II} > \sigma_{III}$. Triaxial compression $b = 0$, triaxial extension $b = 1$. 
+
+Typically $\phi^\prime_{ps} = (1.05 - 1.15)\phi^\prime_{tx}$.
+}
+\begin{figure}
+	\includegraphics[width=0.58\textwidth]{figs/friction-ps-tx.png}
+	\caption*{Effect of $\sigma_{II}$ on friction angle (Kulhawy and Mayne, 1990)}
+\end{figure}
+\end{frame}
+\note{$\sigma_{II}$ do have an effect on soil behavior. For example, the friction angle depends on the loading condition: triaxial compression, plane-strain, triaxial extension and others $\dots$., The effect of $\sigma_{II}$ can be measured using
+true triaxial apparatus or hollow cylinder torsional
+shear apparatus. In general, the peak friction
+angle increases 10 to 15 percent from b = 0 (triaxial
+compression) to b = 0.3 to 0.4 (plane strain), and it
+stays constant or slightly decreases as b reaches 1 (tri-axial extension).
+
+The variation of measured friction angle with
+changes in $\sigma_{II}$ can be attrib-
+uted to the effects of different mean stress and stress
+anisotropy on the dilatancy and particle rearrangement
+contributions to the total strength. For given maximum
+and minimum principal stresses, the TXE
+conditions have the largest mean effective stress,
+whereas the triaxial compression conditions have the
+smallest mean effective stress. The higher confinement
+for triaxial extension and plane strain conditions contributes to the increasing friction angle for these conditions. (Mitchell and Soga., 2005)
+}
+
+\note{
+
+In TXC major principal stress, $\sigma_1$ acts vertically, compared to triaxial extension mode of loading, where $\sigma_1$ acts horizontally. The effect of the intermediate principal stress is comparatively smaller, and is often assessed using the parameter $b = (\sigma_{II} - \sigma_{III})/(\sigma_I - \sigma_{III})$, which is zero in
+triaxial compression, and one in triaxial extension. In TXE $\sigma_I = \sigma_{II}$ (radial), while $\sigma_{III}$ is the vertical stress.
+
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Effect of $\sigma_{II}$ on friction}
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{figs/friction-bvalue.png}
+	\caption*{Chapter 11., Mitchell and Soga, 2005}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Effect of $\sigma_{II}$ on friction}
+	Various models fit the experimental data showing the intermediate stress effect.
+	Lade and Duncan (1975)
+	\begin{equation*}
+		\frac{I_1^3}{I_3} = const
+	\end{equation*}
+	
+	Matsuoka and Nakai (1974)
+	\begin{equation*}
+		\frac{I_1 I_2}{I_3} = const
+	\end{equation*}
+	
+	\begin{align*}
+		I_1 &= \sigma_1 + \sigma_2 + \sigma_3 \\
+		I_2 &= \sigma_1\sigma_2 + \sigma_2 \sigma_3 + \sigma_3 \sigma_1\\
+		I_3 &= \sigma_1\sigma_2\sigma_3
+	\end{align*}
+Matsuoka and Nakai's model gives the same friction angle for compression and extension, whereas Lade and Duncan's model gives the ratio of the TXE friction angle ($\phi_{TXE}^\prime$) to the TXC friction angle ($\phi_{TXC}^\prime$) to be 1.08 at $\phi_{TXC}^\prime = 20^o$ to 1.15 at $\phi_{TXC}^\prime = 40^o$. 
+\end{frame}
+\note{Given the large scatter in the published experimental data, it is not possible to conclude that one model is better than the ohter. 
+}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial stresses and strains: independent components}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\mode<beamer>{
+		\begin{itemize}
+			\item We split the stress system into:
+			\begin{itemize}
+				\item purely volumetric deformation `\textit{p}'
+				\item purely distortional deformation `\textit{q}'
+			\end{itemize}
+			\item Mean stress: 
+			\begin{equation*}
+			p = (\sigma_a + 2\sigma_r) / 3 \quad  p^\prime = p - u
+			\end{equation*}
+			\item Volumetric strain: $\varepsilon_v = (\varepsilon_a + 2 \varepsilon_r)$
+			\item Deviatoric / shear stress (purely distortional deformation):
+			\begin{equation*}
+				q = (\sigma_a - \sigma_r) \quad q^\prime = q
+			\end{equation*}
+			\item Deviatoric / shear strain: $\varepsilon_s = 2/3 (\varepsilon_a - \varepsilon_r)$
+		\end{itemize}
+	}
+	\mode<handout>{
+		\vspace{3cm}
+	}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/triaxial.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial deviatoric strain}
+	\begin{itemize}
+		\item Deviatoric / shear strain: $\varepsilon_s = 2/3 (\varepsilon_a - \varepsilon_r)$
+		\item Why 2/3?:
+		\mode<beamer>{	
+		\item Work equation: $\delta W = p^\prime \delta \varepsilon_v + q^\prime \delta \varepsilon_s$
+		\begin{align*}
+			\delta W & = \sigma_1^\prime \delta \varepsilon_1 + \sigma_2^\prime \delta \varepsilon_2 + \sigma_3^\prime \delta \varepsilon_3  = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r\\
+			\delta W & = (1/3 \sigma_a^\prime + 2/3 \sigma_r^\prime)(\delta \varepsilon_a + 2 \delta \varepsilon_r) + (\sigma_a^\prime - \sigma_r^\prime)(2/3)(\delta \varepsilon_a - \delta \varepsilon_r) \\
+			& = \sigma_a^\prime \delta \varepsilon_a + 2 \sigma_r^\prime \delta \varepsilon_r 
+		\end{align*}
+	}
+	\mode<handout>{
+	\vspace{5cm}
+	}
+	\end{itemize}
+
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial stress - strain relationship}
+Relationship in terms of axial and radial direction:
+\begin{equation}
+	\begin{bmatrix}
+		\varepsilon_a \\
+		\varepsilon_r \\
+	\end{bmatrix}%
+	=%
+	\frac{1}{E}%
+	\begin{bmatrix}
+		1 & - 2\nu\\
+		-\nu & (1-\nu)\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		\sigma_a \\
+		\sigma_r \\
+	\end{bmatrix}
+	\label{eq:strain-stress}
+\end{equation}
+Relationship in terms of `\textit{p}' and `\textit{q}':
+\begin{equation}
+	\begin{bmatrix}
+		p \\
+		q \\
+	\end{bmatrix}%
+	=%
+	\begin{bmatrix}
+	1/3 &  2/3\\
+	1   & -1\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+	\sigma_a \\
+	\sigma_r \\
+	\end{bmatrix}%
+	\quad
+	\text{ invert }
+	\rightarrow
+	\begin{bmatrix}
+		\sigma_a \\
+		\sigma_r \\
+	\end{bmatrix}%	
+	\begin{bmatrix}
+		1   &  2/3\\
+		1   & -1/3\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		p \\
+		q \\
+	\end{bmatrix}%
+	\label{eq:pq-strain}
+\end{equation}
+
+Strain:
+\begin{equation}
+	\begin{bmatrix}
+		\varepsilon_p \\
+		\varepsilon_q \\
+	\end{bmatrix}%
+	=%
+	\begin{bmatrix}
+		1   &  2\\
+		2/3   & -2/3\\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		\varepsilon_a \\
+		\varepsilon_r \\
+	\end{bmatrix}%
+	\label{eq:strain-strain}
+\end{equation}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Volume - shear coupling}
+~\Cref{eq:strain-stress} and \cref{eq:pq-strain} in~\cref{eq:strain-strain} to relate $\varepsilon_p, \varepsilon_q$ to $p, q$:
+\begin{equation*}
+	\begin{bmatrix}
+		\varepsilon_p \\
+		\varepsilon_q \\
+	\end{bmatrix}%
+	=%
+	\begin{bmatrix}
+		3(1 - 2 \nu)/E   &  0\\
+		0  & 2(1+\nu)/3E \\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		p \\
+		q \\
+	\end{bmatrix}%
+\end{equation*}
+\mode<beamer>{	
+\begin{equation*}
+	\begin{bmatrix}
+		\varepsilon_p \\
+		\varepsilon_q \\
+	\end{bmatrix}%
+	=%
+	\begin{bmatrix}
+		1/K   &  0\\
+		0  & 1/3G \\
+	\end{bmatrix}%
+	\begin{bmatrix}
+		p \\
+		q \\
+	\end{bmatrix}%
+\end{equation*}
+\begin{enumerate}
+	\item Off-diagonal zeros indicate no coupling between volumetric and distortional effects.
+	\item Applying pure shear cannot induce volume changes - \textbf{not true for soils!}
+	\item Plasticity theory will deal with this.
+\end{enumerate}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Volume shear coupling}
+Usually volume change and shear deformation are decoupled (i.e. bulk modulus and shear modulus), but in soils they are coupled:
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/volume-shear-coupling.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Mohr circle to 3D stress components}
+Successive Mohr circles and stress path for constant $\sigma_3$ and increasing $\sigma_1$:
+\mode<beamer>{	
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/mohr-circle-pq.png}
+\end{figure}
+}
+\mode<handout>{
+\vspace{6cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress paths p-q}
+Different stress paths for initially hydrostatic stress conditions:
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/stress-paths-pq.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note{
+A mean total stress $p = \frac{\sigma_a + 2 \sigma_r}{3}$ and deviatoric stress $q = \sigma_a - \sigma_r$.
+In triaxial compression the cell pressure is held constant, $\delta \sigma_r = 0$ and axial load is increased. 
+\begin{equation*}
+\delta p = \frac{\delta q}{3}
+\end{equation*}
+
+In triaxial extension, to keep the axial stress constant while changing the cell pressure requires that the ram
+force (or deviatoric stress) and cell pressure must be changed simultaneously. For $\delta \sigma_a = 0, \delta \sigma_r = - \delta q$. The the differential form is:
+
+\begin{equation*}
+\delta p = \frac{2 \delta \sigma_r}{3} = \frac{-2 \delta q}{3}
+\end{equation*}
+}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression}
+TXC with constant back pressure $u_o$ (TSP: Total stress path; ESP: Effective stress path)
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/txc-tsp-esp.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+\note{
+If drainage can occur freely from the soil sample to atmospheric pressure, then the pore pressure will be zero, 
+and total and effective stresses will be identical. The measurement of volume changes of triaxial samples require the measurement of volume of pore fluid flowing into or out of the sample. If part of this pore fluid is emerging as gas (air), then part of the voume change of the sample will not be observed as a change in the level of liquid in a burette. It is often desirable to ensure that the pore fluid is indeed saturated by subjecting the whole pore fluid system to a pressure, called a \textit{back pressure}, which is held constant at a value of $u_0$ during the test in order to ensure that the gaseous phase remains in solution. Drainage can occur freely, but against this back pressure. In such a test, the total and effective stress paths will be separated by a constant distance $u_0$.
+}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression undrained: loose v dense}
+\mode<beamer>{	
+	\begin{figure}
+		\includegraphics[width=0.85\textwidth]{figs/tx-undrained-pwp.png}
+		\caption*{Total and effective stress paths for undrained triaxial test: (a) on soil that wishes to contract as it is sheared, and (b) on soil that wishes to expand as it is sheared.}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression drained: loose}
+\begin{figure}
+	\includegraphics[width=0.55\textwidth]{figs/tx-drained-loose.png}
+	\caption*{Loose Sacramento River sand: (a) principal stress ratio versus
+		axial strain; (b) volumetric strain versus axial strain (Lee, 1965).}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression drained: dense}
+\begin{figure}
+	\includegraphics[width=0.43\textwidth]{figs/tx-drained-dense.png}
+	\caption*{Dense Sacramento River sand: (a) principal stress ratio versus
+		axial strain; (b) volumetric strain versus axial strain (Lee, 1965).}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Triaxial compression drained: loose v dense}
+\begin{figure}
+	\includegraphics[width=0.35\textwidth]{figs/tx-drained-loose-dense.png}
+	\caption*{Triaxial tests on “loose” and “dense” specimens of a typical sand: (a) stress-strain curves; (b) void
+		ratio changes during shear (Hirschfeld, 1963).}
+\end{figure}
+\end{frame}
+
+\section{Friction}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Friction: Is this correct?}
+\begin{figure}
+	\includegraphics[width=0.5\textwidth]{figs/friction-sawblade.png}
+	\caption*{$\phi_{ss} = \phi_\mu + \psi_{ss}$}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Discrete Element Method}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\begin{enumerate}
+		\item Particle level interaction based on
+		Newton's equation of motion
+		\item The contact normal force is
+		computed as:
+			\begin{equation*}
+				F_n = %
+				\begin{cases}
+				0, \quad \delta_n > 0\\
+				-k_n \delta_n - \gamma_n \frac{d \delta_n}{dt}, \quad \delta_n < 0
+				\end{cases}
+			\end{equation*}
+		\item The contact tangential force is
+		computed in a similar way, but
+		has a frictional limit.
+			\begin{equation*}
+				F_t \le \mu F_n
+			\end{equation*}
+		\item Solve Newton's second law and
+		the angular momentum equation
+		(including rotational resistance).
+	\end{enumerate}
+	
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/dem.png}
+	\end{figure}
+\end{minipage}	
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Interparticle friction angles}
+	\begin{itemize}
+		\item For Quartz Sands: 26 degrees
+		\item  For Sheet Minerals (muscovite, phlogopite, biotite and chlorite): 7 - 13 degrees
+		\begin{itemize}
+			\item Water acts as a lubricant
+		\end{itemize}
+		\item Clay minerals: Probably 7 - 13 degrees
+		\begin{itemize}
+			\item Similar to reported residual friction angles.
+			\item Sodium Montmorillonite: 4 degrees
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Strong force network vs weak clusters}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/force-network-weak-clusters.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Fabric anisotropy}
+\begin{figure}
+	\includegraphics[width=0.5\textwidth]{figs/fabric-anisotropy.png}
+	\caption*{Fabric anisotropy under different stress conditions}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Macroscopically, as soil aggregates...}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/macroscopic-friction.png}
+\end{figure}
+\mode<beamer>{	
+	\begin{equation*}
+		\phi = \phi_{cs} + \Delta \phi_{dilatancy}
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Critical state friction angle and density}
+\begin{figure}
+	\includegraphics[width=0.95\textwidth]{figs/sand-friction-angle.png}
+\end{figure}
+\mode<beamer>{
+	\begin{equation*}
+	\phi_{peak} = \phi_{cs} + \Delta \phi (\text{confining stress, initial void ratio})
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Dilation angle $\psi$}
+\begin{figure}
+\includegraphics[width=0.95\textwidth]{figs/sand-dilation.png}
+\end{figure}
+\mode<beamer>{
+	\begin{enumerate}
+		\item Simulate CD or CU test and check the volume change behavior (for
+		CD) and excess pore pressure behavior (for CU)!
+		\item For CU, if the computed undrained shear strength is greater than the
+		actual value, use Undrained (B).
+	\end{enumerate}
+}
+\mode<handout>{
+\vspace{2cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Friction angle (Bolton., 1986)}
+Friction angle
+\mode<beamer>{
+	\begin{align*}
+	\phi_{peak} - \phi_{cs} & = 3I_R \quad \text{for triaxial compression} \\
+	& = 5 I_R \quad \text{for plane strain}
+	\end{align*}
+Relative density index
+	\begin{align*}
+	I_R & = I_D \cdot I_c - 1 \\
+	\text{Relative crushability } I_c & =  \ln \left(\frac{\sigma_c}{p^\prime}\right)\\
+	\sigma_c \text{ for quartz} & = 20 GPa \\
+	\text{Relative density } I_D & = \frac{e_{max} - e}{e_{max} - e_{min}}
+	\end{align*}
+Dilation angle
+	\begin{align*}
+	\psi & \approx 1.25 (\phi_{peak} - \phi_{cs})\\
+	\psi & = 0 \text{ when } \phi_{peak} = \phi_{cs}
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Macroscopic friction angle}
+\begin{itemize}
+	\item $\phi_{crit}$ is the angle of friction measured at constant volume of a soil
+	aggregate, and $\Delta \phi$ dilatancy is the extra dilatant contribution to
+	friction angle $\phi$. Typical values are:
+	\item Critical state friction $\phi_{crit}$:
+	\begin{itemize}
+		\item clay: $\ang{22}$
+		\item uniform rounded sand: $\ang{32}$
+		\item well-graded angular sandy gravel: $\ang{38}$
+	\end{itemize}
+	\item peak strength of pre-compressed or uncrushable grains, densely compacted, and:
+	shearing in plane strain $\Delta \phi$:
+	\begin{itemize}
+		\item shearing in plane strain: $\Delta \phi_{max} = \ang{20}$
+		\item shearing in axial symmetry: $\Delta \phi_{max} = \ang{12}$
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Micro to Macroscopic friction angle}
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{figs/macroscopic-interparticle-friction.png}
+	\caption*{Relationship between macroscopic friction angle and interparticle friction angle (no rolling resistance) - Yimisir and Soga (2001)}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Micro to Macroscopic friction angle: Rolling resistance}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/rolling-resistance.png}
+	\caption*{Estrada et al., (2001)}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Interparticle friction angles}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+	\begin{itemize}
+		\item The interparticle friction acts as a kinematic
+		constraint of the strong force network and not as
+		the direct source of macroscopic resistance to
+		shear.
+		\item Increased friction at the contacts increases the
+		stability of the system (development of
+		anisotropic fabric) and reduces the number of
+		contacts required to achieve a stable condition.
+		\item As long as the strong force network can be
+		formed, the magnitude of the interparticle friction
+		becomes of secondary importance.
+	\end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/dem-force-chains-punch.png}
+		\caption*{Muthuswamy and Tordesillas (2006)}
+	\end{figure}
+\end{minipage}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{What is dilation? shear band}
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/dilation.png}
+	\caption*{Iwashita and Oda (2000)}
+\end{figure}
+\end{frame}
+
+\note{Kuhn (1999) reports that their thicknesses
+	are $1.5 D_{50}$ to $2.5D_{50}$ in the early stages of shearing and increase to between $1.5D_{50}$ and $4D_{50}$ as deformation
+	proceeds.}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Fabric evolution at critical state}
+	\begin{figure}
+	\includegraphics[width=\textwidth]{figs/fabric-evolution-cs.png}
+	\caption*{Guo and Zhao (2003)}
+\end{figure}
+\end{frame}
+
+
+\note{
+As deformation progresses,
+\begin{itemize}
+	\item The number of particles in the strong force network decreases.
+	\item With fewer particles sharing the increased loads.
+	\item Anisotropic fabric develops, showing the formation of strong force network. Fabric of particles associated with strong forces is different from that associated with weak
+	clusters.
+	\item At critical state, force chain forms and buckles continuously. Likely to buckle when a force chain has 8 	particles
+\end{itemize}
+}
+
+\section{Stress invariants}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress and strain invariants in 3D}
+\textbf{6 stresses and strains}
+	\begin{itemize}
+		\itemsep1.5em 
+		\item Mean pressure: \mode<beamer>{	$p^\prime = (\sigma_{11}^\prime + \sigma_{22}^\prime + \sigma_{33}^\prime) / 3$}
+		\item Deviator stress: $q = \sqrt{3/2}\sqrt{s_{11}^2 + s_{22}^2 + s_{33}^2+ 2 \tau_{12}^2 + 2 \tau_{23}^2 + 2 \tau_{31}^2} $
+		\item where $s_{11} = \sigma_{11}^\prime - p^\prime, 
+			   s_{22} = \sigma_{22}^\prime - p^\prime, s_{33} = \sigma_{33}^\prime - p^\prime$
+		\item Volumetric strain: \mode<beamer>{ $\varepsilon_v = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33}$}
+		\item Deviatoric strain: $ \varepsilon_s = \sqrt{2/3}\sqrt{e_{11}^2 + e_{22}^2 + e_{33}^2+ \gamma_{12}^2 /2 + \gamma_{23}^2 / 2 + \gamma_{31}^2 / 2} $
+		\item where $e_{11} = \varepsilon_{11} - \varepsilon_v / 3, e_{22} = \varepsilon_{22} - \varepsilon_v / 3, e_{33} = \varepsilon_{33} - \varepsilon_v / 3$
+	 \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress and strain invariants in 3D}
+\textbf{3 Principal stresses and strains}
+\begin{itemize}
+	\itemsep2em 
+	\item Mean pressure: \mode<beamer>{	$p^\prime = (\sigma_{I}^\prime + \sigma_{II}^\prime + \sigma_{III}^\prime) / 3$}
+	
+	\item Deviator stress: $q = \sqrt{1/2}\sqrt{(\sigma_{I}^\prime - \sigma_{II}^\prime)^2 + (\sigma_{II}^\prime - \sigma_{III}^\prime)^2 + (\sigma_{III}^\prime - \sigma_{I}^\prime)^2} $
+	
+	
+	\item Volumetric strain: \mode<beamer>{ $\varepsilon_v = \varepsilon_{I} + \varepsilon_{II} + \varepsilon_{III}$}
+	
+	\item Deviatoric strain: $ \varepsilon_s = \frac{\sqrt{2}}{3}\sqrt{(\varepsilon_{I}^\prime - \varepsilon_{II}^\prime)^2 + (\varepsilon_{II}^\prime - \varepsilon_{III}^\prime)^2 + (\varepsilon_{III}^\prime - \varepsilon_{I}^\prime)^2} $
+
+\end{itemize}
+
+\textbf{In triaxial condition (principal stresses/strains)}
+\mode<beamer>{
+\begin{equation*}
+p^\prime = (\sigma_I + 2 \sigma_{III})/3 \quad %
+q = \sigma_I - \sigma_{III} \quad%
+\varepsilon_v = \varepsilon_I + 2 \varepsilon_{III} \quad%
+\varepsilon_s = 2(\varepsilon_I - \varepsilon_{III})/3
+\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+\note{The magnitudes of the components of the stress vector (i.e. $\sigma_{\sigma_{xx}, \sigma_{yy}, \sigma_{zz}, \tau_{xy}, \tau_{xz}, \tau_{yz}}$) depend on the chosen direction of the coordinate axes. The principal stresses ($\sigma_I, \sigma_{II}, and \sigma_{III}$) however, always act on the same
+planes and have the same magnitude, no matter which direction is chosen for the coordinate axes. They are therefore invariant to the choice of axes. Consequently, the state of stress can be fully defined by either specifying the six component values for a fixed direction of the coordinate axis, or by specifying the magnitude of the principal stresses and the directions of the three planes on which these principal stresses act. In either case six independent pieces of information are required.
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{The missing stress invariant}
+\begin{itemize}
+	\itemsep2em 
+	\item \textbf{General stresses:} \mode<beamer>{$\sigma_{ij}(i, j = 1, 2, 3)\quad \sigma_{11}, \sigma_{22}, \sigma_{33}, \sigma_{12}, \sigma_{13}, \sigma_{23} $}
+	\mode<beamer>{\begin{center}$\Updownarrow$\end{center}}
+	\item \textbf{Principal stresses:}
+	\mode<beamer>{$\sigma_I, \sigma_{II}, \sigma_{III} + 3 angles$}
+\end{itemize}
+\mode<beamer>{\begin{center}$\Downarrow \quad \cancel{\Uparrow} $\end{center}}
+\mode<beamer>{
+	Two stress invariant (mean pressure $p$ or $s$, deviator stress $q$ or $t$). One more stress invariant is needed to go back to 3 principal stresses: \textbf{Lode angle!}
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress invariant}
+Principal stresses (3 components) $\Leftrightarrow$ Invariants (3 components)
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{itemize}
+	\itemsep2em 
+	\item $I_1 =$ \mode<beamer>{$p^\prime = \sigma_{ii}^\prime / 3$}
+	%
+	\item $s_{ij} =$ \mode<beamer>{$\sigma_{ij}^\prime - \delta_{ij}p^\prime$}
+	\item $J_2 =$  \mode<beamer>{$\frac{1}{2}s_{ij}s_{ij}$}
+	\item $J_2 =$  \mode<beamer>{$\frac{1}{2}s_{ij}s_{ij}$}
+	\item $q =$ \mode<beamer>{$\sqrt{3/2} (s_{ij} s_{ij})^{0.5} = \sqrt{3}J_2$}
+\end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/stress-invariant.png}
+\end{figure}
+Lode angle:
+\begin{itemize}
+	\item $\sin 3\theta = \frac{-3\sqrt{3}}{2} \frac{J_3}{J_2^{3/2}}$.
+	\item $\theta = \tan^{-1} \left[\frac{1}{\sqrt{3}}\left(2\frac{(\sigma_2 - \sigma_3)}{(\sigma_1 - \sigma_3)} - 1\right)\right]$
+	\item \mode<beamer>{$TXC = \pi/6 \quad TXE = -\pi/6$}
+	\item \mode<beamer>{$SHR = 0$, when $\sigma_2 = (\sigma_1 + \sigma_3)/2$ (note $SHR\ne PS$)}
+	
+\end{itemize}
+\end{minipage}
+\end{frame}
+
+\note{If one is interested in the overall
+	magnitude of the stress, all three principal stresses would be needed, but not the directions of the planes on which they act. In geotechnical engineering it is often convenient to work with alternative invariant quantities which are combinations of the principal effective stresses.
+}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Triaxial compression}
+\mode<beamer>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/txc.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+\end{figure}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Triaxial extension}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/txe.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+	\end{figure}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Random stress paths}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/stress-paths.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+	\end{figure}
+}
+\end{frame}
+
+\section{Soil engineering properties}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stiffness: small to large strains}
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/stiffness-strains.png}
+	\caption*{Bender element (GDS)}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stiffness: small to large strains}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/shear-modulus.png}
+\end{figure}
+\mode<beamer>{
+	$E$ or $G$ is a function of:
+	\begin{enumerate}
+		\item confining stress and void ratio (relative density)
+		\item strain level
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stiffness at intermediate strains}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/stiffnes-intermediate-strain.png}
+\end{figure}
+\mode<beamer>{
+	$E_{50} = E $ at 50\% of $()\sigma_1 - \sigma_3)_{peak}$
+	Note: $\phi_{peak 1}^\prime < \phi_{peak 2}^\prime$
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+\note{$E_{50ref} = (0.70 \pm 0.10)E_{oedref}$}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Undrained strength}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/effect-sigma_c.png}
+	\caption*{Triaxial compression test data of homogeneous clay (Ladd \& Foott, 1974)}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Normalized undrained strength}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/su_normalised.png}
+	\caption*{Normalised triaxial compression test data of homogeneous clay (Ladd \& Foott, 1974)}
+\end{figure}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Stress History and Normalized Soil Engineering Properties (SHANSEP) (Ladd and Foote, 1974)}
+\mode<beamer>{
+	\begin{align*}
+		(s_u/\sigma_v^\prime) = (s_u/\sigma_v^\prime)_{nc} \times OCR^m \\
+		m = 0.8 (0.65 - 0.9)
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/shansep.png}
+\end{figure}
+\end{frame}
+
+\note{
+	Laboratory tests conducted at the Imperial College using remolded clays (Henkel (1960)
+	and Parry (1960)) and at the Massachusetts Institute of Technology on a wide range of
+	clays, give evidence that clay samples with the same over-consolidation ratio (OCR), but
+	different consolidation stress $\sigma_c^\prime$ and therefore different pre-consolidation stress $\sigma_{p}^\prime$, exhibit very similar strength and stress-strain characteristics when the results are
+	normalized over the consolidation stress $\sigma_c^\prime$.
+	
+	In practice, normalized behaviour is not as perfect as shown, there is discrepancy in the normalized plots caused by different consolidation stresses, soil deposit heterogeneity or even the fact that the conditions from one soil test to another are not identical. However, this discrepancy is reported to be quite small.
+}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{SHANSEP procedure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/shansep-procedure.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+\note{
+	\begin{enumerate}
+		\item obtain a sample of “clayey” soil
+		\item Reconsolidate to 1.5 to 2.0 of insitu effective mean pressure $p^\prime_0$ , or
+		reconsolidate back to the virgin normal compression line
+		\item Rebound to desired OCR
+		\item Perform undrained shearing and find $s_u$ .
+		\item Perform multiple tests at different OCRs.
+		\item Evaluate 	$(s_u/\sigma_v^\prime) = (s_u/\sigma_v^\prime)_{nc} \times OCR^m$
+	\end{enumerate}
+}
+
+\section{Total vs Effective stress }
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/tsp-esp.png}
+	\end{figure}
+	Tresca criteria: $\sigma_1 - \sigma_3 = 2 s_u$
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/footing-tsp-esp.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/footing-tsp-esp-mc.png}
+	\end{figure}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figs/footing-tsp-esp-su.png}
+	\end{figure}
+	However, $s_u$ needs to be assigned at different depths even for the same soil.
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{TSP v ESP footing: Tresca failure}
+\begin{itemize}
+	\item Better! Conduct Total Stress Analysis: $s_u = \sigma_1 - \sigma_3$
+	\begin{itemize}
+		\item But $s_u$ needs to be defined at different locations even if it is the same
+		soil.
+		\item We can do quick undrained (UU) tests to obtain spatial variation of
+		$s_u$. Hence, practical.
+		\item No information on pore pressure, so cannot assess the long-term consolidation deformation behavior.
+	\end{itemize}
+	\item Effective analysis = $(\sigma_1^\prime - \sigma_3^\prime)/(\sigma_1^\prime + \sigma_3^\prime) = \sin \phi^\prime$:
+	\begin{itemize}
+		\item If it is the same soil, can use the same soil properties (such as $\phi^\prime$)
+		and need to conduct CU tests.
+		\item But need to compute the excess pore pressure at different locations.
+		\item This is difficult: only a good effective stress constitutive model that
+		can predict the excess pore pressure correctly can do this.
+		\item If pore pressure profile can be computed, then it can be used to
+		evaluate the subsequent consolidation process.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+\end{document}
