@@ -56,7 +56,7 @@ University of Texas at Austin \\
 \textit{
   \url{krishnak@utexas.edu}} % Your email address
 }
-\date{\today} % Date, can be changed to a custom date
+\date{}%\today} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -64,24 +64,35 @@ University of Texas at Austin \\
 \titlepage % title page as the first slide
 \end{frame}
 
-\begin{frame}
+%\begin{frame}
  % Table of contents slide, comment this block out to remove it
- \frametitle{Overview}
+ %\frametitle{Overview}
  % Throughout your presentation, if you choose to use \section{} and \subsection{} 
  % commands, these %will automatically be printed on this slide as an overview 
- \tableofcontents
-\end{frame}
+ %\tableofcontents
+%\end{frame}
 
 %----------------------------------------------------------------------------------------
 % slides
 %----------------------------------------------------------------------------------------
 
 \section{Error estimates}
+
+\subsection{Errors in FEA}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Errors in FEA}
+	\mode<handout>{
+		\vspace{6cm}
+	}
+\end{frame}
+
 \subsection{A priori estimates}
 
 %------------------------------------------------
 \begin{frame}
 \frametitle{A priori estimates}
+\mode<beamer>{
 	\begin{itemize}
 		\item 	A priori error estimation is the analysis of the errors in a finite element simulation before
 		actually performing an analysis. 
@@ -91,6 +102,9 @@ University of Texas at Austin \\
 		quickly it will converge if the element type is changed or the mesh is refined.
 
 	\end{itemize}
+}	\mode<handout>{
+\vspace{6cm}
+}
 \end{frame}
 
 %------------------------------------------------
@@ -100,16 +114,25 @@ Before considering the error, we need to decide how it should be measured. The q
 is how to measure a function? The answer to this is to use function norms. A common
 norm is known as the $L^2$ norm. For a function on a domain $\Omega$, the $L^2$ norm is defined
 as:
+\mode<beamer>{
 	\begin{equation*}
 	\left\lVert u \right\rVert_0 = \left(\int_\Omega u^2 d\Omega \right)^{1/2}
 	\end{equation*}
+}
+\mode<handout>{
+\vspace{2.5cm}
+}
 This norm provides a measure of ‘how big’ a function is. A measure of the difference
 between two functions $u$ and $v$ is provided by:
+\mode<beamer>{
 	\begin{equation*}
 	\left\lVert u - v \right\rVert_0 = \left(\int_\Omega (u-v)^2 d\Omega \right)^{1/2}
 	\end{equation*}
-	
-It is only possible that $\left\lVert u - v \right\rVert_0  = 0$ if $u = v$.
+	It is only possible that $\left\lVert u - v \right\rVert_0  = 0$ if $u = v$.
+}
+\mode<handout>{
+\vspace{2.5cm}
+}	
 \end{frame}
 
 %------------------------------------------------
@@ -124,10 +147,17 @@ the derivatives. Other norms are the $H^1$ norm:
 We will use function norms to measure the difference between the exact solution and
 the finite element solution. For example, we can define a particular measure of the error
 $e$ as:
+\mode<beamer>{
 	\begin{equation*}
 	\left\lVert u - u_h \right\rVert_0 = \left(\int_\Omega (u-u_h)^2 d\Omega \right)^{1/2}
 	\end{equation*}
-	where $u$ is the exact solution and $u_h$ is the finite element solution.
+ 	where $u$ is the exact solution and $u_h$ is the finite element solution.
+}
+\mode<handout>{
+\vspace{3cm}
+}	
+
+
 \end{frame}
 
 
@@ -138,10 +168,11 @@ Inevitably, the finite element solution is not exact. But how do we know that it
 any relation to the exact solution? If the mesh is refined, will the error reduce? We may
 say intuitively yes, but this is not very satisfactory. This is where a priori analysis helps.
 A priory error estimate:
-
+\mode<beamer>{
 \begin{equation*}
 	\left\lVert u - u_h \right\rVert_s \le C h^\beta \left\lVert u  \right\rVert_{k+1}
 \end{equation*}
+
 
 \begin{itemize}
 	\item $s$ is the norm of interest,
@@ -150,15 +181,20 @@ A priory error estimate:
 	\item $m$ is the highest order derivative appearing in the weak form
 	\item $C$ is an unknown constant that does not depend on $h$ or the exact solution $u$.
 \end{itemize}
+
  What is of key interest is the exponent $\beta$.
+}
+\mode<handout>{
+\vspace{5cm}
+}	
 
 \end{frame}
 
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{Error in the temperature/displacement field}
-For a steady heat conduction or elasticity problem, for the error in the temperature/displacement field:
+\frametitle{Error in the pore pressure/displacement field}
+For a steady flow conduction or elasticity problem, for the error in the pore pressure/displacement field:
 
 \mode<beamer>{
 	\begin{itemize}
@@ -190,7 +226,7 @@ by a factor of eight.
 %------------------------------------------------
 \begin{frame}
 \frametitle{Error in the strain/flux field}
-For a steady heat conduction or elasticity problem, for the error in the strain/flux field we have:
+For a steady flow conduction or elasticity problem, for the error in the strain/flux field we have:
 \mode<beamer>{
 	\begin{itemize}
 		\item $s = 1$
