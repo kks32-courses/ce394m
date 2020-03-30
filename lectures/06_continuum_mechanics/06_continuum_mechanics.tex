@@ -242,6 +242,54 @@ The Cauchy stress tensor $\sigma$, which takes a directional unit vector $e$ as 
 	\url{https://www.physicsforums.com/threads/what-is-tensor-quantity.345535/}
 }
 
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Divergence theorem}
+	
+	The total contact force acting on $V$ is:
+	\mode<beamer>{
+		\begin{equation*}
+		\int_S \mathbf{T} dS = \int_S \sigma^T \hat{n} dS = \int_V \nabla \cdot \sigma^T dV.
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{1.5cm}	
+	}
+	Divergence theorem converts an integral over $S$ into an integral over the volume $V$ enclosed by $S$.
+	\begin{figure}
+		\includegraphics[width=0.5\textwidth]{figs/region-surface-volume.png}
+	\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Equilibrium}
+	
+	If we assume that the body is in static equilibrium, we must set the contact forces and body forces equal. 
+	
+	\mode<beamer>{
+		\begin{equation*}
+		\int_V \nabla \cdot \sigma^T dV = \int_V \mathbf{b} dV
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{1.5cm}	
+	}
+	\begin{align*}
+		\frac{\partial \sigma_{xx}}{\partial x} +%
+		\frac{\partial \sigma_{xy}}{\partial y} +%
+		\frac{\partial \sigma_{xz}}{\partial z} - b_x &= 0 \\
+		%
+		\frac{\partial \sigma_{yx}}{\partial x} +%
+		\frac{\partial \sigma_{yy}}{\partial y} +%
+		\frac{\partial \sigma_{yz}}{\partial z} - b_y &= 0\\
+		%
+		\frac{\partial \sigma_{zx}}{\partial x} +%
+		\frac{\partial \sigma_{zy}}{\partial y} +%
+		\frac{\partial \sigma_{zz}}{\partial z} - b_z &= 0 \\
+	\end{align*}
+\end{frame}
+
 
 \subsection{Descriptions of Motion}
 %----------------------------------------------------------------------------------------
@@ -256,6 +304,49 @@ accompanied by stresses that are induced in the body.
 	\includegraphics[width=0.65\textwidth]{figs/deformation-body.png}
 \end{figure}
 \end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Descriptions of Motion: Displacement field}
+	The displacement of the particle X is given: $\mathbf{u = x -X}$.
+	\noindent
+	\fboxsep=0pt
+	\noindent
+	\begin{minipage}[t]{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=\textwidth]{figs/lagrangian.png}
+			\caption*{Lagrangian}
+		\end{figure}
+		\mode<beamer>{$\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, t) - \mathbf{X}$}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}[t]{0.49\linewidth}
+		\centering
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{figs/eulerian.png}
+			\caption*{Eulerian}
+		\end{figure}
+		\mode<beamer>{$\mathbf{u}(\mathbf{x}, t) = \mathbf{x - X}(\mathbf{x}, t)$}
+	\end{minipage}	
+\end{frame}
+
+
+\note{
+	The mathematical description of the deformation of a continuous body follows
+	one of the two approaches: (1) the material description and (2) spatial description.
+	The material description is also known as the Lagrangian description, and the spatial
+	description is known as the Eulerian description.
+	
+	In the material description, the motion of the body is referred to a reference 
+	configuration $k_R$, which is often chosen to be the undeformed configuration, $k_R = k_0$.
+	Thus, in the Lagrangian description, the current coordinates ($x \in k$) are expressed
+	in terms of the reference coordinates ($X \in k_0$).
+	
+	In the spatial description, the motion is referred to the current configuration $k$ 
+	occupied by the body $B$, and $\phi$ is described with respect to the current position 
+	($x \in k$) in space, currently occupied by material particle $X$.
+}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -350,7 +441,7 @@ It is rather difficult to invert the mapping even for this simple nonhomogeneous
 \subsection{Strain measures}
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Cauchy–Green Deformation Tensors}
+\frametitle{Deformation Tensors}
 
 \begin{figure}
 	\includegraphics[width=0.6\textwidth]{figs/green-strain.png}
@@ -360,37 +451,37 @@ It is rather difficult to invert the mapping even for this simple nonhomogeneous
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Strain tensors}
-\textbf{Cauchy-Green deformation tensor}
-The distances between points $P$ and $Q$ and points $\bar{P}$ and $\bar{Q}$ are:
-\mode<beamer>{
-	\begin{align*}
-		(dS)^2 & = d\mathbf{X} \cdot d\mathbf{X}, \\
-		(ds)^2 & = d\mathbf{x} \cdot d\mathbf{x} = d\mathbf{X} \cdot (\mathbf{F}^T \cdot \mathbf{F}) \cdot d\mathbf{X} \equiv d\mathbf{X} \cdot \mathbf{C} \cdot d\mathbf{X}
-	\end{align*}
-}
-\mode<handout>{
-	\vspace{2cm}
-}
-The right \textit{Cauchy-Green deformation tensor}: \mode<beamer>{$\mathbf{C} = \mathbf{F}^T \cdot \mathbf{F}$}
+\frametitle{Eulerian Strain Tensor}
 
-\textbf{Green Strain Tensor}
 The change in the squared lengths that occurs as a body deforms from the reference to the current configuration can be expressed relative to the original length as:
-\mode<beamer>{
 	\begin{align*}
-	(ds)^2  - (dS)^2 & = 2 d\mathbf{X} \cdot \mathbf{E} \cdot d\mathbf{X}, \\
-	\mathbf{E} & = \frac{1}{2}(\mathbf{F}^T \cdot \mathbf{F} - \mathbf{I}) = \frac{1}{2}(\mathbf{C} - \mathbf{I})
+	(ds)^2  - (dS)^2 & = 2 d\mathbf{x} \cdot \mathbf{e} \cdot d\mathbf{x}, \\
+	\varepsilon & = \frac{1}{2}(\mathbf{I} - \mathbf{F}^T \cdot \mathbf{F}^{-1})
+	\end{align*}
+
+\mode<beamer>{	 
+	\begin{align*}
+	\varepsilon =	\frac{1}{2}[\nabla u + (\nabla u)^T - (\nabla u)\cdot(\nabla u)^T]
 	\end{align*}
 }
 \mode<handout>{
 	\vspace{2cm}
 }
-By definition, the Green strain tensor is a symmetric second-order tensor.
+The Eulerian strain tensor is written as:
+
+\mode<beamer>{	 
+	\begin{align*}
+	\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} + \frac{\partial u_k}{\partial x_i}\frac{\partial u_k}{\partial x_j}\right)
+	\end{align*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
 \end{frame}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Green's strain tensor}
+\frametitle{Eulerian strain tensor}
 If $u_1$ is displacement in $x_1$ direction. Then:
 \mode<beamer>{	
 	\begin{equation*}
@@ -474,22 +565,27 @@ Resulting strain definitions
 
 \end{frame}
 
+
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Strains}
+	\frametitle{Mechanical notation for infinitesimal strains}
+	
+	\begin{align*}
+	\nabla \mathbf{u} = \begin{bmatrix}
+	\frac{\partial u_1}{\partial x_1} & \frac{\partial u_1}{\partial x_2}  & \frac{\partial u_1}{\partial x_3} \\ 
+	\frac{\partial u_2}{\partial x_1} & \frac{\partial u_2}{\partial x_2}  & \frac{\partial u_2}{\partial x_3} \\ 
+	\frac{\partial u_3}{\partial x_1} & \frac{\partial u_3}{\partial x_2}  & \frac{\partial u_3}{\partial x_3} \\ 
+	\end{bmatrix}
+	\end{align*}	
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{figs/strain.png}
-\end{figure}
-
-\mode<beamer>{	
-	\begin{itemize}
-		\item 6 strains: $\varepsilon_{11}, \varepsilon_{22}, \varepsilon_{33}, \gamma_{12}, \gamma_{23}, \gamma_{31}$.
-		\item $\gamma_{21} = -\gamma_{12}, \gamma_{32} = - \gamma_{23}, \gamma_{13} = - \gamma_{31}$
-		\item Compression is positive
-		\item anti-clockwise is positive
-	\end{itemize}
-}
+	\mode<beamer>{
+		Note the use of partial derivatives. Note also that the derivatives of $\mathbf{u}$ will \textit{not} be affected by rigid translations. This suggests $\nabla \mathbf{u}$ as a measure of strain. But rigid rotations will give rise to non-zero derivatives of $u$, so we need to introduce one more refinement. We use the \textit{symmetric part} of $\nabla \mathbf{u}$.
+		
+		\begin{align*}
+		\varepsilon =	\frac{1}{2}[\nabla u + (\nabla u)^T]
+		\end{align*}
+	}
+	
 \end{frame}
 
 %----------------------------------------------------------------------------------------
@@ -934,46 +1030,6 @@ Resulting strain definitions
 \end{frame}
 
 \subsection{Displacement fields}
-%----------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Descriptions of Motion: Displacement field}
-	The displacement of the particle X is given: $\mathbf{u = x -X}$.
-	\noindent
-	\fboxsep=0pt
-	\noindent
-	\begin{minipage}[t]{0.49\linewidth}
-		\begin{figure}
-			\includegraphics[width=\textwidth]{figs/lagrangian.png}
-			\caption*{Lagrangian}
-		\end{figure}
-		\mode<beamer>{$\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, t) - \mathbf{X}$}
-	\end{minipage}%
-	\hfill%
-	\begin{minipage}[t]{0.49\linewidth}
-		\begin{figure}
-			\includegraphics[width=0.8\textwidth]{figs/eulerian.png}
-			\caption*{Eulerian}
-		\end{figure}
-		\mode<beamer>{$\mathbf{u}(\mathbf{x}, t) = \mathbf{x - X}(\mathbf{x}, t)$}
-	\end{minipage}	
-\end{frame}
-
-
-\note{
-	The mathematical description of the deformation of a continuous body follows
-	one of the two approaches: (1) the material description and (2) spatial description.
-	The material description is also known as the Lagrangian description, and the spatial
-	description is known as the Eulerian description.
-	
-	In the material description, the motion of the body is referred to a reference 
-	configuration $k_R$, which is often chosen to be the undeformed configuration, $k_R = k_0$.
-	Thus, in the Lagrangian description, the current coordinates ($x \in k$) are expressed
-	in terms of the reference coordinates ($X \in k_0$).
-	
-	In the spatial description, the motion is referred to the current configuration $k$ 
-	occupied by the body $B$, and $\phi$ is described with respect to the current position 
-	($x \in k$) in space, currently occupied by material particle $X$.
-}
 
 \note{
 	For a given geometry and loading, the body \textit{B} will undergo macroscopic geometric
@@ -1007,5 +1063,24 @@ Resulting strain definitions
 	\mathbf{u}(\mathbf{X}, t) = \mathbf{x}(\mathbf{X}, t) - \mathbf{X} = X(1 + 0.5t) - X = 0.5Xt.
 	\end{equation*}
 }
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Strains}
+	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/strain.png}
+	\end{figure}
+	
+	\mode<beamer>{	
+		\begin{itemize}
+			\item 6 strains: $\varepsilon_{11}, \varepsilon_{22}, \varepsilon_{33}, \gamma_{12}, \gamma_{23}, \gamma_{31}$.
+			\item $\gamma_{21} = -\gamma_{12}, \gamma_{32} = - \gamma_{23}, \gamma_{13} = - \gamma_{31}$
+			\item Compression is positive
+			\item anti-clockwise is positive
+		\end{itemize}
+	}
+\end{frame}
 
 \end{document}
