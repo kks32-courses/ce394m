@@ -1,0 +1,119 @@
+Consider a body B of known geometry, material properties, and loading in a three-
+dimensional Euclidean space
+
+For a given geometry and loading, the body B will undergo macroscopic geometric
+changes within the body, which are termed deformation. 
+
+The geometric changes are accompanied by stresses that are induced in the body. 
+
+If the applied loads are time dependent, the deformation of the body will also be a function of time,
+ that is, the geometry of the body B will change continuously with time. 
+
+If the loads are applied slowly so that the deformation is only dependent on the loads, 
+the body will occupy a continuous sequence of geometric regions. 
+
+The region occuccupied by the continuum at a given time t is termed a configuration and denoted by κ.
+
+Assume that the continuum initially occupies a configuration κ0, in which a particle occupies the position X. The position is referred to using a rectangular Cartesian system (X1 , X2 , X3 ), which are the material coordinates.
+
+
+After the application of the loads, the continuum changes its geometric shape and 
+thus assumes a new configuration κ, called the current or deformed configuration.
+
+The phrase deformation of a continuum refers to relative displacements and changes
+in the geometry experienced by the continuum B under the influence of a force
+system. The displacement of the particle X is given, 
+
+u = x − X.
+
+A frame of reference is chosen, explicitly or implicitly, to describe the defor-
+mation.
+
+The mathematical description of the deformation of a continuous body follows
+one of the two approaches: (1) the material description and (2) spatial description.
+
+In the material description, the motion of the body is referred to a reference con-
+figuration κR, which is often chosen to be the undeformed configuration, κ R = κ 0.
+The material description is also known as the Lagrangian description.
+
+
+In the Lagrangian description, the displacements are expressed in terms of the ma-
+terial coordinates X i
+u(X, t) = x(X, t) − X.
+
+
+In the spatial description, the motion is referred to the current configuration κ oc-
+cupied by the body B , and φ is described with respect to the current position (x ∈ κ)
+in space. φ = φ(x, t), The coordinates (x) are termed the spatial coordinates. The spatial description is known as the Eulerian description. 
+
+Thus, as time changes different values of φ are observed at the same spatial location x, now probably occupied by a different material particle X.
+
+
+in the Eulerian description the displacements are expressed in terms of the spatial coordinates x
+
+u(x, t) = x - X(x,t)
+
+So in the Lagrangian description, the deformation is described by tracking the movement of a particle
+
+While in the Eulerian description, a frame of reference is chosen in the spatial coordinates, and we track
+a stream of particles going through this reference frame. 
+
+Geotechnical problems conventionally use the Lagrangian description, while the Eulerian frame is used in fluid mechanics.
+
+
+
+
+The deformation gradient tensor is useful in describing the deformation of a body. 
+
+The determinant of the the deformation gradient tensor F is the Jacobian of motion J = det F. 
+
+If the Jacobian is unity J = 1, then the deformation is rigid rotation or the current and the reference configurations coincide, which is referred to as constant volume.
+
+In general, the deformation gradient F is a function of the material descriptio X. if F = I identity matrix
+everywhere in the body, then the body is not roated and is undeformed. If the value of deformation gradient F is same 
+everywhere in the body, then it is said to have homogenous motion. 
+
+
+Let's look at some examples. 
+
+Tf a material undergoes a pure compression then it has no shear deformations, and only the diagonal terms are active. 
+
+The deformation gradient tensor  would like :
+
+The deformation is called isochoric, if and only if lambda = 1, 
+
+
+An example of homogenous extension in the X direction would look like this:
+
+Where except for the x-direction, all others have constant volume conditions locally.
+
+In the case of pure shear along a direction, we can write the deformation tensor F as:
+
+Where the det F, the jacobian of motion is still 1, so it means there is no volume change.
+
+
+A nonhomogeneous deformation is one in which the deformation gradient F is a
+function of X.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+Before we answer the question: What is a tensor? Let's look at some simple mathematical entitites.
+
+The most common is the zero-th order entity, which we are all familiar with - they are called scalars, represented by a single number An example of a scalar would be the mass of a particle or object. Scalar quantities which are pwp, temp, density. An example of a scalar field would be the density of the material as a function of position. 
+
+
+The next more complicated of order one is known as a vector. In ordinary three dimensional space, a vector has three components (contains three numbers, or three functions of position).
+
+An example of a vector field is provided by the description of displacement field in space. 
+
+
+Then we have second order entities can be written as a two dimensional array called matrices.. Just as vectors represent physical properties more complex than scalars, so too matrices represent physical properties yet more complex than can be handled by vectors.
+
+Like scalars and vectors, Tensors characterize a physical system. A tensor is often thought of as a generalized matrix - a simple array of numbers - that have a structure (like a matrix) that transform mathematical entities such as scalar, vectors and tensors to a resulting tensor by obeying related transformation rules. 
+
+
+By transformation we mean a tensor creates a multi-linear mapping between one mathematical entity to another obeying certain rules, when the coordinates tranform.
+
+An example of a tensor is the inertia matrix (or tensor) of an object. This is a second order tensor. For three dimensional objects, it is a 3 x 3 = 9 element array that characterizes the behavior of a rotating body. 
+
+The moment of inertia tensor gives us an idea about how the mass is distributed in a rigid body
+
+This is all the info you need to transform the rotations into other systems (angular momentum), and the mathematics of such transformations is extremely elegant in tensor notation. So, in short, a tensor is basically a ”matrix-like” quantity that is independent of any coordinate system, and can be transformed to other mathematical entities.
+
+Tensors could be a 1-D matrix (a vector is actually such a tensor), a 3-D matrix (something
+like a cube of numbers), even a 0-D matrix (a single number). But this description misses the most important
+property of a tensor! They should be able to transform like the stress tensor where we can get the stress vector knowing the orientation of the plane. When the coordinate system (normal vector changes), it transforms the stress vector according to a certain rule. This “dynamical” property of a tensor is the key that distinguishes it from a mere matrix.
