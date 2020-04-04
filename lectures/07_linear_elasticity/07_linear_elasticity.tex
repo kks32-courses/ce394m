@@ -291,10 +291,21 @@ The matrix can also be defined in terms of Lame's constants.
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Isotropic linear elastic}
-	\begin{figure}
-		\includegraphics[width=0.95\textwidth]{figs/isotropic-linear-elastic.png}
-		\caption*{Behavior of isotropic linear elastic material in simple tests: (a) hydrostatic compression test ($\sigma_{11} = \sigma_{22} = \sigma_{33} = p$) and (b) simple tension test (Chen 1994)}
+  \frametitle{Isotropic linear elastic}
+	  \begin{figure}[t!]
+	    \centering
+	    \begin{subfigure}[t]{0.5\textwidth}
+	        \centering
+	        \includegraphics[width=0.95\textwidth]{figs/isotropic-linear-elastic-1.png}
+	        \caption{simple tension test}
+	    \end{subfigure}%
+	    ~ 
+	    \begin{subfigure}[t]{0.5\textwidth}
+	        \centering
+ 	        \includegraphics[width=0.95\textwidth]{figs/isotropic-linear-elastic-3.png}
+			 \caption{uniaxial strain test}
+	    \end{subfigure}
+	    \caption{Behavior of isotropic linear elastic material in simple tests}
 	\end{figure}
 \end{frame}
 
@@ -331,9 +342,20 @@ The \textit{Young's modulus, E,}  and \textit{Poisson's ratio, $\nu$} as.
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Isotropic linear elastic}
-\begin{figure}
-	\includegraphics[width=0.95\textwidth]{figs/isotropic-linear-elastic-1.png}
-	\caption*{Behavior of isotropic linear elastic material in simple tests: (c) pure shear test, and (d) uniaxial strain test (Chen 1994)}
+ \begin{figure}[t!]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.95\textwidth]{figs/isotropic-linear-elastic.png}
+			\caption{hydrostatic compression test ($\sigma_{11} = \sigma_{22} = \sigma_{33} = p$) }
+		\end{subfigure}%
+		~ 
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.95\textwidth]{figs/isotropic-linear-elastic-4.png}
+			\caption{Pure shear test}
+		\end{subfigure}
+		\caption{Behavior of isotropic linear elastic material in simple tests}
 \end{figure}
 \end{frame}
 
@@ -404,25 +426,6 @@ The stress in $z$ is written as:
 }
 \end{frame}
 
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Elastic solution for settlement under foundations}
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/elasticity-foundation.png}
-	\end{figure}
-\end{frame}
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{Elastic solutions}
-	\begin{enumerate}
-		\item \textit{Ease of use} Only two parameters, choose equivalent values representative of stran/stress levels.
-		\item \textit{Disadvantage}: No failure criteria.
-		\item Validate code with chart solutions (``\textit{Exact solutions}")., e.g., Poulos and Davis (1974).
-		\item Useful to get feeling of problem (low stress levels) not wide distribution of plastic zones.
-	\end{enumerate}
-\end{frame}
 
 
 \section{Soil engineering properties}
@@ -516,6 +519,27 @@ The stress in $z$ is written as:
 	
 	In practice, normalized behaviour is not as perfect as shown, there is discrepancy in the normalized plots caused by different consolidation stresses, soil deposit heterogeneity or even the fact that the conditions from one soil test to another are not identical. However, this discrepancy is reported to be quite small.
 }
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Elastic solution for settlement under foundations}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/elasticity-foundation.png}
+	\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Elastic solutions}
+	\begin{enumerate}
+		\item \textit{Ease of use} Only two parameters, choose equivalent values representative of stran/stress levels.
+		\item \textit{Disadvantage}: No failure criteria.
+		\item Validate code with chart solutions (``\textit{Exact solutions}")., e.g., Poulos and Davis (1974).
+		\item Useful to get feeling of problem (low stress levels) not wide distribution of plastic zones.
+	\end{enumerate}
+\end{frame}
+
 
 %------------------------------------------------
 \section{References}
