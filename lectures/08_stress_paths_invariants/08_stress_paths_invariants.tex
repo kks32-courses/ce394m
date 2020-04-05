@@ -68,13 +68,13 @@ University of Texas at Austin \\
 \titlepage % title page as the first slide
 \end{frame}
 
-\begin{frame}
- % Table of contents slide, comment this block out to remove it
- \frametitle{Overview}
-  %Throughout your presentation, if you choose to use \section{} and \subsection{} 
-  %commands, these %will automatically be printed on this slide as an overview 
- \tableofcontents
-\end{frame}
+\AtBeginSection[]
+{
+	\begin{frame}<beamer>
+		\frametitle{Overview}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
 
 %----------------------------------------------------------------------------------------
 % slides
@@ -681,6 +681,7 @@ Lode angle $\bar{\theta} \approx -L$
 \end{figure}
 \end{frame}
 
+\section{Stress paths and Pi-plane}
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{$\pi$ plane: Triaxial compression}
