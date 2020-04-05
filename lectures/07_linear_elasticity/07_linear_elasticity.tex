@@ -312,18 +312,6 @@ The matrix can also be defined in terms of Lame's constants.
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Isotropic linear elastic}
-\textbf{Hydrostatic compression test}
-The non-zero components of stress: \mode<beamer>{$\sigma_{11} = \sigma_{22} = \sigma_{33} = -p = \sigma_{kk}/3$.}
-
-The \textit{Bulk modulus, K,}  is defined as the ratio between the \textit{hydrostatic pressure p} nd the corresponding volume change $\delta \varepsilon_v = \varepsilon_{kk}$. 
-\mode<beamer>{	
-	\begin{equation*}
-		K = - \frac{p}{\varepsilon_{kk}} = \lambda + \frac{2}{3}\mu
-	\end{equation*}
-}  
-\mode<handout>{
-	\vspace{1.5cm}
-} 
 \textbf{Simple tension test}
 The only non-zero components of stress: \mode<beamer>{$\sigma_{11} = \sigma$}
 
@@ -333,6 +321,18 @@ The \textit{Young's modulus, E,}  and \textit{Poisson's ratio, $\nu$} as.
 	E = \frac{\sigma_{11}}{\varepsilon_{11}} \quad
 	\nu = \frac{-\varepsilon_{22}}{\varepsilon_{11}} = \frac{-\varepsilon_{33}}{\varepsilon_{11}}
 	\end{equation*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+}
+
+\textbf{Uniaxial strain test}
+The test is carried out by applying a uniaxial stress component $\sigma_{11}$ in the axial direction of a cylindrical sample, whose lateral surface is \textit{restrained} against lateral movement (Oedometer test). Axial strain $\varepsilon_{11}$ is the only nonvanishing component. The \textit{constrained modulus M} or as PLAXIS calls it $E_{oed}$ is defined as the ratio between $\sigma_{11}$ and $\varepsilon_11$.
+\mode<beamer>{	
+	\begin{align*}
+	\sigma_{11} & = \frac{E}{(1+\nu)(1-2\nu)}\left[(1-\nu)\varepsilon_{11} + \nu\cancelto{0}{\varepsilon_{22}} + \nu\cancelto{0}{\varepsilon_{33}}\right] = \frac{E(1-\nu)\varepsilon_{11}}{(1+\nu)(1-2\nu)} \\
+	M & = E_{oed} = \frac{\sigma_{11}}{\varepsilon_{11}} = \frac{(1 - \nu)E}{(1+\nu)(1-2\nu)} = (\lambda + 2\mu)
+	\end{align*}
 }  
 \mode<handout>{
 	\vspace{1.5cm}
@@ -362,6 +362,19 @@ The \textit{Young's modulus, E,}  and \textit{Poisson's ratio, $\nu$} as.
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Isotropic linear elastic}
+\textbf{Hydrostatic compression test}
+The non-zero components of stress: \mode<beamer>{$\sigma_{11} = \sigma_{22} = \sigma_{33} = -p = \sigma_{kk}/3$.}
+
+The \textit{Bulk modulus, K,}  is defined as the ratio between the \textit{hydrostatic pressure p} nd the corresponding volume change $\delta \varepsilon_v = \varepsilon_{kk}$. 
+\mode<beamer>{	
+	\begin{equation*}
+	K = - \frac{p}{\varepsilon_{kk}} = \lambda + \frac{2}{3}\mu
+	\end{equation*}
+}  
+\mode<handout>{
+	\vspace{1.5cm}
+} 
+
 \textbf{Simple shear test}
 
 The non-zero components of stress: \mode<beamer>{$\sigma_{12} = \sigma_{21} = \tau_{12} = \tau_{21} = \tau$.}
@@ -376,17 +389,7 @@ The \textit{Shear modulus, $G$ or $\mu$,}  is defined as:
 	\vspace{1.5cm}
 }
 
-\textbf{Uniaxial strain test}
-The test is carried out by applying a uniaxial stress component $\sigma_{11}$ in the axial direction of a cylindrical sample, whose lateral surface is \textit{restrained} against lateral movement (Oedometer test). Axial strain $\varepsilon_{11}$ is the only nonvanishing component. The \textit{constrained modulus M} or as PLAXIS calls it $E_{oed}$ is defined as the ratio between $\sigma_{11}$ and $\varepsilon_11$.
-\mode<beamer>{	
-	\begin{align*}
-		\sigma_{11} & = \frac{E}{(1+\nu)(1-2\nu)}\left[(1-\nu)\varepsilon_{11} + \nu\cancelto{0}{\varepsilon_{22}} + \nu\cancelto{0}{\varepsilon_{33}}\right] = \frac{E(1-\nu)\varepsilon_{11}}{(1+\nu)(1-2\nu)} \\
-		M & = E_{oed} = \frac{\sigma_{11}}{\varepsilon_{11}} = \frac{(1 - \nu)E}{(1+\nu)(1-2\nu)} = (\lambda + 2\mu)
-	\end{align*}
-}  
-\mode<handout>{
-	\vspace{1.5cm}
-}
+
 
 \end{frame}
 
