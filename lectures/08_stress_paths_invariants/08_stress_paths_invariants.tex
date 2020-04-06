@@ -486,6 +486,15 @@ Usually volume change and shear deformation are decoupled (i.e. bulk modulus and
 }
 \end{frame}
 
+
+\section{Stress paths and Pi-plane}
+%----------------------------------------------------------------------------------------
+\begin{frame}{Triaxial test}
+ 	\begin{figure}
+		\includegraphics[width=0.45\textwidth]{figs/triaxial.png}
+	\end{figure}
+\end{frame}
+
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Mohr circle to 3D stress components}
@@ -499,7 +508,6 @@ Successive Mohr circles and stress path for constant $\sigma_3$ and increasing $
 \vspace{6cm}
 }
 \end{frame}
-
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -529,6 +537,73 @@ force (or deviatoric stress) and cell pressure must be changed simultaneously. F
 \delta p = \frac{2 \delta \sigma_r}{3} = \frac{-2 \delta q}{3}
 \end{equation*}
 }
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Pi-plane}
+\noindent
+\fboxsep=0pt
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{figure}
+    \includegraphics[width=\textwidth]{figs/pi-plane.png}
+\end{figure}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{figure}
+    \includegraphics[width=\textwidth]{figs/octahedral-stress-profile.png}
+\end{figure}
+\end{minipage}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Triaxial compression}
+\mode<beamer>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/txc.png}
+\end{figure}
+}
+\mode<handout>{
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+\end{figure}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Triaxial extension}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/txe.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+	\end{figure}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{$\pi$ plane: Random stress paths}
+\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/stress-paths.png}
+	\end{figure}
+}
+\mode<handout>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
+	\end{figure}
+}
+\end{frame}
 
 \section{Stress invariants}
 %----------------------------------------------------------------------------------------
@@ -656,6 +731,7 @@ Position of intermediate principal stress: \mode<beamer>{$L = \frac{\sigma_{II} 
 }
 \end{frame}
 
+\note{Smallest angle between the line of pure shear and the projection of the stress tensor on the deviatoric plane}
 
 %----------------------------------------------------------------------------------------
 \begin{frame}
@@ -681,53 +757,7 @@ Lode angle $\bar{\theta} \approx -L$
 \end{figure}
 \end{frame}
 
-\section{Stress paths and Pi-plane}
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{$\pi$ plane: Triaxial compression}
-\mode<beamer>{
-\begin{figure}
-	\includegraphics[width=\textwidth]{figs/txc.png}
-\end{figure}
-}
-\mode<handout>{
-\begin{figure}
-	\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
-\end{figure}
-}
-\end{frame}
 
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{$\pi$ plane: Triaxial extension}
-\mode<beamer>{
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/txe.png}
-	\end{figure}
-}
-\mode<handout>{
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
-	\end{figure}
-}
-\end{frame}
-
-
-%----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{$\pi$ plane: Random stress paths}
-\mode<beamer>{
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/stress-paths.png}
-	\end{figure}
-}
-\mode<handout>{
-	\begin{figure}
-		\includegraphics[width=\textwidth]{figs/octahedral-stresses.png}
-	\end{figure}
-}
-\end{frame}
 
 %---------------------------------------------------------------------------------------
 % REFERENCES
