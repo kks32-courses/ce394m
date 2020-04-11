@@ -126,25 +126,80 @@ Constitutive law is the stress-strain relationship: $\sigma = f(\varepsilon) \ri
 \end{figure}
 \end{frame}
 
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Real soil behavior}
+	\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/real-soil.png}
+	\end{figure}
+	}
+\end{frame}
+
+\note{
+We would like our model to capture
+\begin{enumerate}
+	\item $(\sigma_1 - \sigma_3)_{max}$ increases with increasing $\sigma_3$.
+	\item $E_t$ increases with increasing $\sigma_3$.
+	\item $E_t$ decreases with increasing $\varepsilon_a$.
+	\item $\varepsilon_v$ increasses with increasing $\sigma_3$.
+\end{enumerate}
+Could also consider: soil softening, dilation, rate effects...
+Duncan model captures 1 - 4.
+}
 %----------------------------------------------------------------------------------------
 \begin{frame}
-\frametitle{Nonlinear elasticity}
-\textbf{Hyperbolic model (Duncan and Chang., 1970)}
-\mode<beamer>{
-	\begin{align*}
-	(\sigma_1 - \sigma_3) & = \frac{\varepsilon}{a + b \varepsilon} \\
-	a & = \frac{1}{E_i} \quad b = \frac{1}{(\sigma_1 - \sigma_3)_{ult}}
-	\end{align*}
-
-}
-\mode<handout>{
-	\vspace{2cm}
-}
-\begin{figure}
-	\includegraphics[width=0.8\textwidth]{figs/hyperbolic.png}
-	\caption*{There is no physical meaning to $(\sigma_1 - \sigma_3)_{ult}$. The $(\sigma_1 - \sigma_3)_f$ is determined from the strength criteria $\tau = c + \sigma^\prime \tan \phi^\prime$ (drained) or $\tau = s_u$ (total stress undrained).}
-\end{figure}
+	\frametitle{Nonlinear elasticity}
+	\textbf{Hyperbolic model (Duncan and Chang., 1970)}
+	\mode<beamer>{
+		\begin{align*}
+		(\sigma_1 - \sigma_3) & = \frac{\varepsilon}{a + b \varepsilon} \\
+		a & = \frac{1}{E_i} \quad b = \frac{1}{(\sigma_1 - \sigma_3)_{ult}}
+		\end{align*}
+		
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/hyperbolic.png}
+		\caption*{There is no physical meaning to $(\sigma_1 - \sigma_3)_{ult}$. The $(\sigma_1 - \sigma_3)_f$ is determined from the strength criteria $\tau = c + \sigma^\prime \tan \phi^\prime$ (drained) or $\tau = s_u$ (total stress undrained).}
+	\end{figure}
 \end{frame}
+
+\note{
+$R_f$ is a curve fitting parameter to control $\varepsilon_f$.
+
+$R_f = \frac{(\sigma_1 -  \sigma_3)_{f}}{(\sigma_1 -  \sigma_3)_{ULT}}$
+
+As $R_f \rightarrow 1$ curve is more hyperbolic, more ductile and $\varepsilon_f$ increases. 
+
+Lower $R_f$, more brittle. $\varepsilon_f$ decreases. 
+
+For most soils, $R_f = 0.6 - 0.95$ with a first guess of 0.8.
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Drawbacks of hyperbolic model}
+	\textbf{Positive aspects}
+	\begin{itemize}
+		\item Relatively simple and easy to use
+		\item Well validated \& calibrated
+		\item Based solely on TX testing
+		\item Good for loading conditions (dams)
+	\end{itemize}
+	\textbf{Original short comings}
+	\begin{itemize}
+		\item Not an effective stress model (no treatment of $\Delta u$) - Plaxis can do
+		\item No strain softening (still a problem)
+		\item No dilation - important for dense sand / OC clay (Plaxis can do)
+		\item Empirical model
+		\item Poor performance in excavation problems (where it is linear elastic completely) 
+	\end{itemize}
+\end{frame}
+\note{
+- exceptions: excavations where base-heave is the mode of failure (loading of soil at base).
+}
 
 %----------------------------------------------------------------------------------------
 \section{Classical plasticity}
