@@ -1,0 +1,672 @@
+%**************************************************************************************
+% License:
+% CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%**************************************************************************************
+
+\documentclass[notes]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+
+% Burnt orange
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\colorlet{beamer@blendedblue}{burntorange}
+% Pale yellow
+\definecolor{paleyellow}{rgb}{1.0, 1.0, 0.953}
+\setbeamercolor{background canvas}{bg=paleyellow}
+% Secondary and tertiary palett
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=burntorange!80!black}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=burntorange!60!black}
+
+% To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}
+% To replace the footer line in all slides with a simple slide count uncomment this line
+%\setbeamertemplate{footline}[page number]
+
+% To remove the navigation symbols from the bottom of all slides uncomment this line
+%\setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{breqn}
+%\usepackage{cancel}
+\usepackage{graphicx} % for figures
+\usepackage{subcaption} % for subplots 
+\usepackage[labelsep=space,tableposition=top]{caption}
+\renewcommand{\figurename}{Fig.} 
+\usepackage{cleveref}
+\usepackage{caption,subcaption}% http://ctan.org/pkg/{caption,subcaption}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{cleveref}
+\usepackage{xcolor}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+	nobeforeafter, math upper, tcbox raise base,
+	enhanced, colframe=blue!30!black,
+	colback=blue!30, boxrule=1pt,
+	#1}
+
+% To print 2 slides on a page
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{2 on 1}[border shrink=2mm]
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+% The short title appears at the bottom of every slide, the full title is only on the title page
+\title[CE394M: intro to plasticity]{CE394M: An introduction to plasticity} 
+\author{Krishna Kumar} % name
+\institute[UT Austin] % institution 
+{
+University of Texas at Austin \\
+\medskip
+\textit{
+  \url{krishnak@utexas.edu}} % Your email address
+}
+\date{} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % title page as the first slide
+\end{frame}
+\AtBeginSection[]
+{
+	\begin{frame}<beamer>
+		\frametitle{Overview}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+
+%----------------------------------------------------------------------------------------
+% slides
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{FE workflow}
+	\begin{figure}
+		\includegraphics[width=0.85\textwidth]{figs/fe-code.png}
+		
+	\end{figure}
+\end{frame}
+\section{Constitutive modeling}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Constitutive law}
+\mode<beamer>{
+Constitutive law is the stress-strain relationship: $\sigma = f(\varepsilon) \rightarrow \sigma = \mathbf{D} \cdot \varepsilon$
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{figs/constitutive-law.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Isotropic linear elasticity}
+\mode<beamer>{
+	$\sigma = \mathbf{D^{el}} \cdot \varepsilon$ where $\mathbf{D^{el}}$ is the elastic stiffness matrix.
+}
+\mode<handout>{
+	\vspace{1.5cm}
+}
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/linear-elasticity.png}
+	\caption*{The knowledge of strain alone allows us to obtain the stress value.}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Nonlinear elasticity}
+\textbf{Hyperbolic model (Duncan and Chang., 1970)}
+\mode<beamer>{
+	\begin{align*}
+	(\sigma_1 - \sigma_3) & = \frac{\varepsilon}{a + b \varepsilon} \\
+	a & = \frac{1}{E_i} \quad b = \frac{1}{(\sigma_1 - \sigma_3)_{ult}}
+	\end{align*}
+
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/hyperbolic.png}
+	\caption*{There is no physical meaning to $(\sigma_1 - \sigma_3)_{ult}$. The $(\sigma_1 - \sigma_3)_f$ is determined from the strength criteria $\tau = c + \sigma^\prime \tan \phi^\prime$ (drained) or $\tau = s_u$ (total stress undrained).}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Classical plasticity}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Classical plasticity}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/stress-strain-plasticity.png}
+	\caption*{Specimen 1 at point 0 same as specimen 2 at point D, but yield stress of specimen 2 is greater than the yield stress of specimen 1 due to \textbf{plastic hardening}.}
+\end{figure}
+\end{frame}
+
+\note{
+Uniaxial tension test on metal bar:
+\begin{table}
+	\begin{tabular}{l l}
+		\toprule
+		 O$\rightarrow$A & Linear elastic, reversible \\
+ 		 A$\rightarrow$B & Nonlinear elastic, reversible \\
+ 		 B    & Starts to yield \\
+ 		 B$\rightarrow$C & Nonlinear elasto-plastic, irreversible \\
+ 		 C$\rightarrow$D & Elastic with hysteresis \\
+ 		 C$\rightarrow$F & Nonlinear elasto-plastic, irreversible \\
+ 		 F    & Peak stress at failure \\
+ 		 \bottomrule
+	\end{tabular}
+\end{table}
+	$\varepsilon = \varepsilon^e + \varepsilon^p$, where $e$ is elastic and $p$ is plastic.
+}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Classical plasticity}
+\mode<beamer>{
+	\begin{itemize}
+		\item \textbf{Plastic behavior}: The direction of plastic strains is governed by
+		the current stress state $\sigma$. $d\sigma = f(d\varepsilon) \rightarrow d\sigma = \mathbf{D}^{e} \cdot d\varepsilon$. 
+		\item \textbf{Elastic behavior}: The direction of elastic strains is governed by
+		the stress state increment $\delta \sigma$ direction.
+		\item \textbf{Plastic models}
+		\begin{itemize}
+			\item Rigid - perfectly plastic model - used in static limit equilibrium analysis (no elastic strain and no strain hardening / softening)
+			\item Linear elastic - perfectly plastic model (Drucker-Prager and Mohr Coulomb
+			models)
+			\item Hybrid model (nonlinear elastic with perfectly plastic - Duncan and Chang)
+			\item Work (or strain) hardening plasticity model (Cam-Clay model)
+		\end{itemize}
+	\end{itemize}
+	
+}
+\mode<handout>{
+	\vspace{4cm}
+}
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/classical-plasticity.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Elasto-plastic materials}
+\mode<beamer>{
+Main distinctive feature of elasto-plastic materials:
+``\textit{irreversibility}'' $\rightarrow$ \textbf{Plastic deformation } $\varepsilon^p$	
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/elasto-plastic.png}
+\end{figure}
+\mode<beamer>{
+	\begin{equation*}
+	\varepsilon = \varepsilon^e + \varepsilon^p \quad d\varepsilon = d\varepsilon^e + d\varepsilon^p
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{1cm}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Basic concepts of classical plasticity}
+To formulate an elasto‐plastic constitutive model we need:
+\mode<beamer>{
+	\begin{enumerate}
+		\item \textbf{Elastic stress-strain relationship:} $\sigma = \mathbf{D}^e \varepsilon^e = \mathbf{D}^e (\varepsilon - \varepsilon^p)$. Describe elastic response.
+
+		\item  \textbf{Yield function}: defines the condition for the onset of plastic strain. Depends on the stress state $\sigma$ and state parameters (e.g., in MC they are cohesion and friction angle). $F(\sigma^\prime, Wp) = 0$.
+
+		\item \textbf{Plastic potential ($G(\sigma, Wp) = 0$)} defines the direction of plastic strains. Depends on stress state $\sigma$ and state parameter (for e.g., is dilatancy in MC). Note that the direction of $d\varepsilon^p$ doesn't depend on $d\sigma$ but on the actual stress state $\sigma$. \textbf{Flow rule} $\varepsilon^p = \lambda (dG/d\sigma)$.
+		
+		\item \textbf{Hardening rule / Hardening law (h)} defines how $F$ changes with plastic strains. Yield function $F = f(\text{stress state}, W_p)$, where $W_p$ is a function of plastic strains. Describes the evolution of state parameters depending on the plastic strain $\varepsilon^p$.
+		
+	\end{enumerate}
+}
+\mode<handout>{
+	\vspace{6cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Yield functions}
+defines when plastic strains occur. If the material is
+isotropic, we can use the principal stresses to define the stress state.
+\begin{figure}
+	\includegraphics[width=0.55\textwidth]{figs/octahedral-stress-profile.png}
+	\caption*{Wikipedia}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Yield functions}
+	Yield function $F(\sigma, Wp) = 0$.
+	\begin{figure}
+		\includegraphics[width=0.4\textwidth]{figs/yieldfn.png}
+	\end{figure}
+\mode<beamer>{	
+	\begin{itemize}
+		\item if $F = 0$ under loading: yielding and plastic strains and in unloading: elastic strains.
+		\item if $F < 0$ elastic domain.
+		\item if $F > 0$ impossible.
+	\end{itemize}
+}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Hardening law}
+How the threshold of yielding changes with plastic strain or how the yield function changes with plastic strain.
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/hardening-law.png}
+\end{figure}
+\end{frame}
+
+\subsection{Equations of plasticity}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity: 1. Stress-strain relation}
+\mode<beamer>{
+	Describes the incremental stress-strain relationship. 
+	\begin{equation*}
+	d\sigma = D^e \cdot d\varepsilon^e = D^e \cdot (d\varepsilon - d\varepsilon^p)
+	\end{equation*}
+	Where $D^e$ is the elastic stiffness matrix. $^e$ denotes the elastic part.
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.6\textwidth]{figs/stress-strain.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity: 2. Flow rule}
+\mode<beamer>{
+	\begin{itemize}
+		\item Specifies the direction of plastic strain increments at every yield stress state. It is very important because it controls the ratio of the volumetric and deviatoric components (e.g., dilatancy of the material). 
+		
+		\item States that the plastic strain increments ($d\varepsilon^p$) are normal to the plastic potential surface ($G$). 
+		\begin{equation*}
+		d\varepsilon^p =  d\lambda \cdot \vec{P}
+		\end{equation*}
+		
+		Note: typically $\vec{P}$ is \textbf{not} a  unit vector, so $\vec{P}$ also controls the magnitude of $d \vec{\varepsilon_p}$ (in addition to the direction).
+		
+		\item In many cases, $\vec{P}$ is chosen as the gradient of a function $g$ (if it exists) such that:
+		
+		\begin{equation*}
+		\vec{P} = \frac{\partial G}{\partial \sigma}
+		\end{equation*}
+	\end{itemize}		
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\end{frame}
+
+\note{This plastic flow rule was based
+	on the observation by de Saint-Venant (1870) that for metals the principal axes of
+	the plastic strain rate coincide with those of the stress. This is the so-called coaxial
+	assumption, which has been the foundation of almost all the plasticity models used
+	in engineering
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Drucker's postulate}
+
+Drucker (1952) established that for a stable inelastic material in a closed stress cycle, a positive work must be done. 
+
+\mode<beamer>{
+	\begin{equation*}
+	dW^{plastic} > 0 \rightarrow d\sigma \cdot d\varepsilon^p > 0
+	\end{equation*}
+	This requirement is satisfied if the normality condition is assumed (but is not the only solution). The gradient of the yield surface (i.e., normal to the surface)	
+	\begin{equation*}
+	\vec{Q} = \frac{\partial F}{\partial \sigma} = \vec{P}
+	\end{equation*}
+	It also imposes a constraint that the yield surface must be convex.
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}
+	\includegraphics[width=0.4\textwidth]{figs/constitutive-snap-back.png}
+\end{figure}
+\end{frame}
+
+\note {
+The normality rule has been confirmed by many experiments on metals.  However, it is found to be seriously in error for soils and rocks, where, for example, it overestimates plastic volume expansion.
+
+
+\begin{align*}
+Q &= \frac{\partial F}{\partial \sigma} \\
+P &= \frac{\partial G}{\partial \sigma}
+\end{align*}
+
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Drucker's postulate of a stable material}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/drucker-stability-postulate.png}
+\end{figure}
+\mode<beamer>{
+\begin{enumerate}
+	\item Positive work is done by the external agency during the application of the loads 
+	\item The net work performed by the external agency over 
+	a stress cycle is nonnegative By this definition, it is clear that a strain hardening 
+	material is stable (and satisfies Drucker’s postulates). 
+\end{enumerate}
+Note that plastic loading of a softening (or perfectly plastic) material results in a non-positive work
+}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Normality}
+In terms of vectors in principal stress (plastic strain increment) space: $d\sigma \cdot d\varepsilon^p \ge 0$.
+
+\begin{figure}
+	\includegraphics[width=0.7\textwidth]{figs/normality-plastic-strain.png}
+\end{figure}
+\end{frame}
+
+\note{
+	
+	Since the dot product of $d\sigma$ and $d\varepsilon_p$ is non-negative, the angle between the vectors $d\sigma \& d\varepsilon^p$ (with their starting points coincident) must be less than $90^o$.  This implies that the plastic strain increment vector must be normal to the yield surface since, if it were not, an initial stress state $\sigma^*$ could be found for which the angle was greater than 90 (as with the dotted vectors in Fig.). Thus a consequence of a material satisfying the stability requirements is that the normality rule holds, i.e. the flow rule is associative
+	
+	\textbf{Normality rule}: the plastic strain increment vector is normal to the yield surface.
+	
+	The normality rule has been confirmed by many experiments on metals.  However, it is found to be seriously in error for soils and rocks, where, for example, it overestimates plastic volume expansion.  For these materials, one must use a non-associative flow-rule.
+}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Normality in Tresca condition}
+	\begin{figure}
+		\includegraphics[width=0.65\textwidth]{figs/tresca-plastic-strain.png}
+	\end{figure}
+ The plastic strain increment vector and the Tresca criterion in the pi-plane (for the associated flow-rule).
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Normality in Tresca condition}
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/tresca-corner.png}
+	\end{figure}
+When the yield surface has sharp corners, as with the Tresca criterion, it can be shown that the plastic strain increment vector must lie within the cone bounded by the normals on either side of the corner
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Normality in non-convex surfaces}
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figs/non-convex-yield.png}
+	\end{figure}
+Using the same arguments, one cannot have a yield surface like the one shown in Fig.  In other words, the yield surface is convex: the entire elastic region lies to one side of the tangent plane to the yield surface
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Associated and non-associated plasticity}
+\mode<beamer>{
+	\begin{itemize}
+		\item \textbf{Associated flow rule} - Major principal plastic strain increment ($d\varepsilon_1^p$) is in
+		the direction of the major principal stress ($\sigma_1$), and the axes of the principal
+		strain increment and principal stress coincide, i.e., the yield and plastic functions coincide. This results in a symmetric constitutive matrix $D^p$.
+		\item \textbf{Nonassociated flow rule} - The axes of the principal strain increment and
+		principal stress do not coincide.
+	\end{itemize}
+}
+\mode<handout>{
+	\vspace{3cm}
+}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/associated-nonassociated.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity: 3. Consistency condition}
+\mode<beamer>{
+	States that the elastic limit is defined by the yield surface, enforcing points in plastic condition to \textbf{remain} on the yield surface.
+	\begin{equation*}
+		dF = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \frac{\partial F}{\partial Wp}\cdot dWp = 0
+	\end{equation*}
+}
+\mode<handout>{
+	\vspace{2cm}
+}
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{figs/yield.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity: 3. Consistency condition}
+The consistency condition can be written as:
+	\begin{align*}
+	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \frac{\partial F}{\partial Wp}\cdot dWp & = 0 \\
+	%
+	 & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \left(\frac{\partial F}{\partial Wp}\right)\cdot \left(\frac{\partial Wp}{\partial \varepsilon^p}\right)^T\cdot d \varepsilon^p & = 0 \\
+	% 	
+	 & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma + \textcolor{orange}{\left(\frac{\partial F}{\partial Wp}\right)\left(\frac{\partial Wp}{\partial \varepsilon^p}\right)^T\cdot\frac{\partial G}{\partial 	\sigma}} d\lambda  & = 0 \\
+	%
+	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot d \sigma \textcolor{orange}{-H} d\lambda & = 0.
+	\end{align*}
+
+	if $\textcolor{orange}{H} > 0$: Hardening, if $\textcolor{orange}{H} = 0$: perfect plasticity, if $\textcolor{orange}{H} < 0$: softening.
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Hardening v Softening}
+Linear elastic – hardening plastic material  $\textcolor{orange}{H} > 0$
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/hardening-plastic.png}
+\end{figure}
+Linear elastic – softening plastic material  $\textcolor{orange}{H} < 0$
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figs/softening-plastic.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Isotropic v kinematic hardening}
+Two primary types of hardening laws: density and kinematic hardening.
+\begin{figure}
+	\includegraphics[width=0.4\textwidth]{figs/isotropic-kinematic-hardening.png}
+\end{figure}
+\begin{enumerate}
+	\item \textbf{Density hardening}: also referred to as isotropic hardening. $(\sigma_1 - \sigma_3) - 2c(h) = 0$
+	\item \textbf{Kinematic hardening}: typically describing fabric anisotropy. No change in size of yield surface but translating in stress space. $F = (\sigma_1 - \sigma_3) - \alpha(h) - 2c = 0$.
+\end{enumerate}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}{Isotropic v kinematic hardening}
+	\mode<beamer>{
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/isotropic-hardening.png}
+		\caption*{Isotropic hardening}
+	\end{figure}
+	
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/kinematic-hardening.png}
+		\caption*{Kinematic hardening}
+	\end{figure}
+	}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Basic concepts of elasto-plasticity}
+The response of the material is:
+\begin{itemize}
+	\item \textbf{elastic}: \mode<beamer>{ as long as the stress state remains \textbf{within} the yield surface.
+		\begin{equation*}
+		F(\sigma, Wp) < 0 \rightarrow d\sigma = D^e \cdot d\varepsilon.
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\item \textbf{elasto-plastic}: \mode<beamer>{ if the stress state is \textbf{on} the yield surface
+	\begin{equation*}
+	F(\sigma, Wp) = 0 \rightarrow d\sigma = D^{ep} \cdot d\varepsilon.
+	\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{2cm}
+	}
+	\end{itemize}
+Note: When the response is elastic, we have no problem! Knowing the strain, we directly can calculate the stress ($d\sigma = D^e \cdot d\varepsilon$).
+
+The difficulty arises when the material response is elasto‐plastic, we need to determine $D^p$!
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity}
+For an elasto-plastic material:
+\begin{itemize}
+	\item Input material: \mode<beamer>{$D^e, \frac{\partial F}{\partial \sigma}, \frac{\partial G}{\partial \sigma}, H$}
+
+	\item Results from FE analysis: \mode<beamer>{$d\varepsilon$}
+	
+	\item unknowns: \mode<beamer>{$\textcolor{blue}{d\varepsilon^p}, \textcolor{green}{d\lambda}, \textcolor{red}{d\sigma}$}
+	
+	\item What we are interested:\mode<beamer>{ $\textcolor{red}{d\sigma}$}
+\end{itemize}
+
+\begin{enumerate}
+	\item Stress-strain: $\textcolor{red}{d\sigma} = D^e \cdot (d\varepsilon - \textcolor{blue}{d\varepsilon^p})$
+	\item Consistency-condition: $dF = \frac{\partial F}{\partial \sigma}^T \cdot \textcolor{red}{d\sigma} - H \textcolor{green}{d\lambda}$
+	\item Flow rule: $\textcolor{blue}{d\varepsilon^p} = \frac{\partial G}{\partial \sigma} \textcolor{green}{d\lambda}$.
+\end{enumerate}
+
+Solution procedure:
+\mode<beamer>{
+\begin{enumerate}
+	\item Eqs 1 and 3 in eq 2 $\rightarrow$ $\textcolor{green}{d\lambda}$
+	\item $\textcolor{green}{d\lambda}$ in Eq 3 $\rightarrow \textcolor{blue}{d\varepsilon^p}$
+	\item $\textcolor{blue}{d\varepsilon^p}$ in Eq 1 $\rightarrow \textcolor{red}{d\sigma}$
+\end{enumerate}
+	}
+\mode<handout>{
+\vspace{2cm}
+}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity}
+Eq 1 and 3 (stress-strain \& flow rule) in Eq 2 (consistency condition) for $\textcolor{green}{d\lambda}$
+\begin{align*}
+	dF & = \left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot \left(d\varepsilon - \frac{\partial G}{\partial \sigma} \textcolor{green}{d\lambda}\right) - H \textcolor{green}{d\lambda} = 0\\
+	\textcolor{green}{d\lambda} & = \frac{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot d\varepsilon}{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \left(\frac{\partial G}{\partial \sigma}\right) + H}
+\end{align*}
+
+\begin{equation*}
+\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \frac{\partial G}{\partial \sigma} + H > 0
+\end{equation*}
+
+$\textcolor{green}{d\lambda}$ in Eq 3 $\rightarrow\textcolor{blue}{d\varepsilon^p}$ 
+
+\begin{equation*}
+\textcolor{blue}{d\varepsilon^p} = \frac{\partial G}{\partial \sigma} d\lambda =  \frac{\partial G}{\partial \sigma} \frac{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot d\varepsilon}{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \left(\frac{\partial G}{\partial \sigma}\right) + H}
+\end{equation*}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Equations of elasto-plasticity}
+$\textcolor{blue}{d\varepsilon^p}$ in Eq 1 $\rightarrow\textcolor{red}{d\sigma}$
+
+\begin{align*}
+\textcolor{red}{d\sigma} & = D^e \cdot (d\varepsilon - \textcolor{blue}{d\varepsilon^p}) \\
+&= D^e \cdot \left(d\varepsilon -\frac{\partial G}{\partial \sigma} \frac{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \cdot d\varepsilon}{\left(\frac{\partial F}{\partial \sigma}\right)^T \cdot D^e \left(\frac{\partial G}{\partial \sigma}\right) + H}\right)
+\end{align*}
+
+\begin{empheq}[box=\tcbhighmath]{equation*}
+	d\sigma^\prime = \left[D^e - \frac{D^e\left(\frac{\partial G}{\partial \sigma^\prime}\right)\left(\frac{\partial F}{\partial \sigma^\prime}\right)^T D^e}{-\left(\frac{\partial F}{\partial W_p}\right)\left(\frac{\partial W_p}{ \partial \varepsilon^p}\right)^T\left(\frac{\partial G}{\partial \sigma^\prime}\right) + \left(\frac{\partial F}{\partial \sigma^\prime}\right)^T D^e \left(\frac{\partial G}{\partial \sigma^\prime}\right)}\right] d\varepsilon
+\end{empheq}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Plastic loading v elastic unloading}
+Depending on $\alpha$, we might have three different scenarios:
+\begin{figure}
+	\includegraphics[width=\textwidth]{figs/loading.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Plastic loading v elastic unloading}
+Don't confuse \textbf{elastoplastic loading with softenting}...
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figs/plastic-loading-elastic-unloading.png}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Problems associated to softening}
+\begin{enumerate}
+	\item The modeling of \textbf{strain softening} (i.e. strength decreases from peak to residual conditions) leads to the localization
+	phenomenon.
+	\item Localization shows up when all deformation is absorbed by one element, while the neighboring elements remain under elastic conditions.
+	\item The solution depends on the element size, hence the localization is a \textbf{mesh dependent numerical problem}.
+	\item \textbf{Solution: }regularization techniques:  non‐local integration, strain softening models dependent on the element size,...
+	\item Be careful: Most of the commercial software do not include regularization techniques.
+\end{enumerate}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Problems associated to softening}
+Don't confuse \textbf{elastoplastic loading with softenting}...
+\begin{figure}
+	\includegraphics[width=0.85\textwidth]{figs/localization.png}
+	\caption*{Localization = mesh dependent numerical problem}
+\end{figure}
+\end{frame}
+
+\end{document}
