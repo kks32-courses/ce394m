@@ -1172,6 +1172,28 @@ correlations should be regarded as a first approximation.
 \end{itemize}
 \end{frame}
 
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Critical state parameters: 1D compression}
+	\begin{figure}
+		\includegraphics[width=0.7\textwidth]{figs/1d-compression.png}
+	\end{figure}
+	Plastic compression stress $\sigma_c^\prime$ is taken as the larger of the initial aggregate crushing stress and the historic maximum effective vertical stress. Clay muds are taken to begin with $\sigma_c^\prime = 1$kPa.
+	
+	Plastic compression (normal compression line): $v = v_\lambda - \lambda \ln \sigma^\prime$ for $\sigma^\prime = \sigma^\prime_c$.
+	
+	Elastic swelling and recompression line ($\kappa-$line): $ v = v_c + \kappa (\ln \sigma_c^\prime - \ln \sigma_v^\prime)$. 
+\end{frame}
+\note{
+	Equivalent parameters for log 10 stress scale:
+	
+	Terzaghi’s compression index: $C_c = \lambda \log10 = \lambda \times 2.3026$
+	
+	
+	Terzaghi’s swelling index: $C_s / C_r = \kappa \log 10 = \lambda \times  2.3026$
+}
+
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Drawbacks of MCC: Computational problems}
@@ -1197,7 +1219,7 @@ correlations should be regarded as a first approximation.
 \begin{minipage}[t]{0.65\linewidth}
 	\begin{itemize}
 		\item MCC model assumes Drucker-Prager failure
-		condition, which overestimates undrained 	strength in triaxial extension. 
+		condition, which overestimates undrained strength in triaxial extension. 
 		\item Better predictions if Mohr Coulomb failure or Lode angle dependency is introduced
 		\item Real soils are anisotropic and both the shape and size of the yield surface would need to change (see e.g., Wheeler et al. 2003, Can Geotech J for S-Clay1 model)
 	\end{itemize}
@@ -1242,13 +1264,6 @@ correlations should be regarded as a first approximation.
 \end{minipage}	
 \end{frame}
 
-\note{
-	\begin{figure}
-		\includegraphics[width=0.9\textwidth]{figs/drucker-prager.png}
-		\caption*{Drucker Prager}
-	\end{figure}
-}
-
 %----------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Advantages and Limitations of Cam-Clay models}
@@ -1286,4 +1301,18 @@ correlations should be regarded as a first approximation.
 		\includegraphics[width=0.4\textwidth]{figs/anisotropy.png}
 	\end{figure}
 }
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Critical state concept}
+	Interchangeable parameters for stress at yield and $d\varepsilon^p$.
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figs/cam-clay.png}
+	\end{figure}
+	Plastic work and dissipation: $\sigma^* d \varepsilon^* + \tau^* d\gamma^* = \mu_{crit}^* \sigma^* d \gamma^*$.
+	
+	General yield surface: $\frac{\tau^*}{\sigma^*} = \mu^* = \mu^*_{crit} \ln \left[\frac{\sigma_c^*}{\sigma}\right]$
+\end{frame}
+
 \end{document}
