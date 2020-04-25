@@ -847,14 +847,14 @@ We know:
 \begin{minipage}[t]{0.48\linewidth}
 	\begin{figure}
 	\includegraphics[width=\textwidth]{figs/elastic.png}
-	\caption*{$P_{0B}^\prime > P_{0A}^\prime$ Elastic}
+	\caption*{$P_{0B}^\prime < P_{0A}^\prime$ Elastic}
 	\end{figure}	
 \end{minipage}	%
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
 	\begin{figure}
 		\includegraphics[width=\textwidth]{figs/elasto-plastic.png}
-		\caption*{$P_{0B}^\prime < P_{0A}^\prime$ Elasto-plastic}
+		\caption*{$P_{0B}^\prime > P_{0A}^\prime$ Elasto-plastic}
 	\end{figure}
 \end{minipage}	
 \end{frame}
@@ -1111,17 +1111,17 @@ Employing Cambridge parameters: $p, q, v$, the increment of work dissipated per 
 
 For particular case of wet clay, the basic assumption is it behaves \textit{macroscopically} as a homogenous isotropic continuum. Under isotropic stress $(q = 0)$ there is no distortion $d\varepsilon_s = 0$. So:
 \begin{equation*}
-(dW)_{q = 0} = p^\prime d\varepsilon_p
+(dW)_{q = 0} = p^\prime d\varepsilon_v^p
 \end{equation*}
 
-At CS: $q/p = M$ and $d\varepsilon_p = 0$ so:
+At CS: $q/p = M$ and $d\varepsilon_v^p = 0$ so:
 \begin{equation*}
 (dW)_{q = Mp^\prime} = p^\prime M d\varepsilon_s
 \end{equation*}
 
 A general equation would be:
 \begin{equation*}
-dW = p^\prime \sqrt{ d\varepsilon_p^2 + (M d\varepsilon_s)^2}
+dW = p^\prime \sqrt{ d\varepsilon_v^2 + (M d\varepsilon_s)^2}
 \end{equation*}
 \end{frame}
 
@@ -1153,7 +1153,7 @@ dW = p^\prime \sqrt{ d\varepsilon_p^2 + (M d\varepsilon_s)^2}
 %----------------------------------------------------------------------------
 \begin{frame}{Modified Cam-Clay integration}
 	\begin{equation*}
-		\frac{d\varepsilon_v^p}{d\varepsilon_s^p} = \frac{\partial g / \partial p^\prime}{\partial g / \partial q} = \frac{M^2 (2p^\prime - p_c^\prime)}{2q} = \frac{M^2 - \eta^2}{2\eta}
+		\frac{d\varepsilon_v^p}{d\varepsilon_s^p} = \frac{\partial G / \partial p^\prime}{\partial G / \partial q} = \frac{M^2 (2p^\prime - p_c^\prime)}{2q} = \frac{M^2 - \eta^2}{2\eta}
 	\end{equation*}
 	\begin{equation*}
 	\frac{d\varepsilon_v^p}{d\varepsilon_s^p} = \frac{M^2 - \eta^2}{2 \eta}
