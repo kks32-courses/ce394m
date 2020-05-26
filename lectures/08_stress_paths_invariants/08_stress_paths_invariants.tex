@@ -635,7 +635,7 @@ force (or deviatoric stress) and cell pressure must be changed simultaneously. F
 	
 	\item Volumetric strain: \mode<beamer>{ $\varepsilon_v = \varepsilon_{I} + \varepsilon_{II} + \varepsilon_{III}$}
 	
-	\item Deviatoric strain: $ \varepsilon_s = \frac{\sqrt{2}}{3}\sqrt{(\varepsilon_{I}^\prime - \varepsilon_{II}^\prime)^2 + (\varepsilon_{II}^\prime - \varepsilon_{III}^\prime)^2 + (\varepsilon_{III}^\prime - \varepsilon_{I}^\prime)^2} $
+	\item Deviatoric strain: $ \varepsilon_s = \sqrt{\frac{2}{3}}\sqrt{(\varepsilon_{I}^\prime - \varepsilon_{II}^\prime)^2 + (\varepsilon_{II}^\prime - \varepsilon_{III}^\prime)^2 + (\varepsilon_{III}^\prime - \varepsilon_{I}^\prime)^2} $
 
 \end{itemize}
 
@@ -654,6 +654,15 @@ q = \sigma_I - \sigma_{III} \quad%
 \end{frame}
 \note{The magnitudes of the components of the stress vector (i.e. $\sigma_{\sigma_{xx}, \sigma_{yy}, \sigma_{zz}, \tau_{xy}, \tau_{xz}, \tau_{yz}}$) depend on the chosen direction of the coordinate axes. The principal stresses ($\sigma_I, \sigma_{II}, and \sigma_{III}$) however, always act on the same
 planes and have the same magnitude, no matter which direction is chosen for the coordinate axes. They are therefore invariant to the choice of axes. Consequently, the state of stress can be fully defined by either specifying the six component values for a fixed direction of the coordinate axis, or by specifying the magnitude of the principal stresses and the directions of the three planes on which these principal stresses act. In either case six independent pieces of information are required.
+}
+
+
+\note{
+	Volumetric strain $\varepsilon_v = \varepsilon_{11} + \varepsilon_{22} + \varepsilon_{33}$
+	
+	Deviatoric strain: $\varepsilon_s = \sqrt{2/3}\sqrt{e_{11}^2 + e_{22}^2 + e_{33}^2+ \gamma_{12}^2/2+ \gamma_{23}^2/2 + \gamma_{31}^2/2}$
+	Where
+	$e_{11} = \varepsilon_{11} - \varepsilon_v / 3, e_{22} = \varepsilon_{22} - \varepsilon_v / 3, e_{33} = \varepsilon_{33} - \varepsilon_v / 3$
 }
 
 %----------------------------------------------------------------------------------------
