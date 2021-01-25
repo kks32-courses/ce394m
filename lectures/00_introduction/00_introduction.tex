@@ -223,7 +223,6 @@ University of Texas at Austin \\
 %------------------------------------------------
 \begin{frame}
 \frametitle{Soil behavior}
-\mode<beamer>{
 \begin{itemize}
 	\item nonhomogeneous,
 	\item anisotropic, 
@@ -233,7 +232,6 @@ University of Texas at Austin \\
 	\item Geometry - very complex
 \end{itemize}
 \textbf{Soil Mechanics in practice - largely empirical}
-}
 \end{frame}
 
 
@@ -647,7 +645,7 @@ Cleaning up terms that cancel, and dividing through by \(dx dy\) gives
 %------------------------------------------------
 \begin{frame}
 \frametitle{Equilibrium in 3D}
-\mode<beamer>{
+
 	\begin{align*}
 	\frac{\partial \sigma_{xx}}{\partial x} +%
 	\frac{\partial \sigma_{xy}}{\partial y} +%
@@ -661,10 +659,6 @@ Cleaning up terms that cancel, and dividing through by \(dx dy\) gives
 	\frac{\partial \sigma_{zy}}{\partial y} +%
 	\frac{\partial \sigma_{zz}}{\partial z} + \rho f_z &= \rho a_z \\
 	\end{align*}
-}	
-\mode<handout>{
-\vspace{2.5cm}
-}
 The governing differential equation for equilibrium expresses $\sum \mathbf{F}=m\mathbf{a}$ in terms of derivatives of the stress tensor as:
 \mode<beamer>{
 $\nabla \cdot \bm{\sigma} + \rho \mathbf{f} = \rho \mathbf{a}$
@@ -681,8 +675,8 @@ $\mathbf{a}$ is the acceleration vector.
 \frametitle{Stress equilibrium}
 If the object is in equilibrium, then \mode<beamer>{$\mathbf{a}=0$ and $\sum \mathbf{F}=0$.} 
 
-\mode<beamer>{
-	\begin{align*}
+
+\begin{align*}
 	\frac{\partial \sigma_{xx}}{\partial x} +%
 	\frac{\partial \sigma_{xy}}{\partial y} +%
 	\frac{\partial \sigma_{xz}}{\partial z} + b_x &= 0\\
@@ -695,10 +689,7 @@ If the object is in equilibrium, then \mode<beamer>{$\mathbf{a}=0$ and $\sum \ma
 	\frac{\partial \sigma_{zy}}{\partial y} +%
 	\frac{\partial \sigma_{zz}}{\partial z} + b_z &= 0\\
 	\end{align*}
-}	
-\mode<handout>{
-	\vspace{2.5cm}
-}
+
 Stresses: \mode<beamer>{$\left[\sigma_{xx}, \sigma_{yy}, \sigma_{zz}, \sigma_{xy}, \sigma_{yz}, \sigma_{zx}\right]^T$.}
 
 Equilibrium equation: \mode<beamer>{$\nabla^T \bm{\sigma} + \mathbf{b} = 0$}
