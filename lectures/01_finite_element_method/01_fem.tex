@@ -56,7 +56,7 @@ University of Texas at Austin \\
 \textit{
   \url{krishnak@utexas.edu}} % Your email address
 }
-\date{\today} % Date, can be changed to a custom date
+\date{} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -80,7 +80,6 @@ University of Texas at Austin \\
 %------------------------------------------------
 \begin{frame}
 \frametitle{Numerical analysis of engineering problems}
-\mode<beamer>{
 	\begin{itemize}
 		\item Conceptualize the system
 		\begin{itemize}
@@ -98,11 +97,7 @@ University of Texas at Austin \\
 			\item Settle for approximations (numerical techniques)
 		\end{itemize}
 		\item Interpret the results
-	\end{itemize}	
-}
-\mode<handout>{
-	\vspace{5cm}
-}
+	\end{itemize}
 \includegraphics[width=\textwidth]{figs/numerical-pde-workflow.png}
 \end{frame}
 
@@ -135,11 +130,19 @@ University of Texas at Austin \\
 \end{frame}
 
 
-\note{Galerkin is a different one, a different starting point, he took some trial functions, 
-	functions that he hoped whose combinations could be close the right answer and the problem 
-	then is to find how much of each function goes into the good answer. We are talking about 
-	approximations, not exact solutions, geotechnical engineering involves approximations, and 
-	is quite OK. 100 years later because of the computers it was possible to work with a hundred 
+\note{The reality of partial differential equations is that in most cases it is 
+	not possible to find an analytical solution. This is particularly so for 
+	equations on complicated geometries (as is common in engineering), nonlinear 
+	equations and equations with complicated source terms and boundary conditions.
+	
+	Instead, an approximation of the equations needs to be constructed, typically 
+	based upon different types of discretizations. These discretization methods 
+	approximate the PDEs with numerical model equations, which can be solved using 
+	numerical methods. The solution to the numerical model equations are, in turn, 
+	an approximation of the real solution to the PDEs. The finite element method 
+	(FEM) is used to compute such approximations.}
+
+\note{Galerkin took some trial functions, functions that he hoped whose combinations could be close the right answer and the problem then is to find how much of each function goes into the good answer. We are talking about approximations, not exact solutions, geotechnical engineering involves approximations, and  is quite OK. 100 years later because of the computers it was possible to work with a hundred 
 	thousand functions. Galerkin worked with 2 or 3 trial functions, so he had to make a very 
 	close guess of the solution, but if we have a hundred thousand functions they can be just 
 	maybe little hat functions, just up and down again simple functions and their combinations, 
@@ -159,26 +162,6 @@ University of Texas at Austin \\
 	to e$^x$, if I take two-thousand hat functions how much closer do I get?}
 %------------------------------------------------
 \section{Galerkin methods}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Galerkin:Ritz method}
-\mode<beamer>{
-	\begin{enumerate}
-		\item Define the functional $u$ for which you wish to find stationary points.
-		\item Choose a combination of linearly independent functions that will be used to 
-		approximate the solution. These will be called `basis functions'. The amplitudes of 
-		these functions will be the unknowns that you will determine. The basis functions 
-		must satisfy the Dirichlet (`fixed') boundary conditions.
-		\item Insert the approximate solution into the functional that is now denoted by $u_h$.
-		\item Take the directional derivative of $u_h$ with respect to the unknown amplitudes of the
-		basis functions.
-		\item Determine the amplitudes of the basis functions which yield a stationary point of $u_h$.
-	\end{enumerate}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
-\end{frame}
 
 \note{Numerical methods for partial differential equations are tools for finding approximate
 	solutions and are normally used with the aid of a computer. A number of numerical methods 
@@ -218,19 +201,6 @@ u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
 \end{frame}
 
 
-
-\note{The reality of partial differential equations is that in most cases it is 
-	not possible to find an analytical solution. This is particularly so for 
-	equations on complicated geometries (as is common in engineering), nonlinear 
-	equations and equations with complicated source terms and boundary conditions.
-	
-	Instead, an approximation of the equations needs to be constructed, typically 
-	based upon different types of discretizations. These discretization methods 
-	approximate the PDEs with numerical model equations, which can be solved using 
-	numerical methods. The solution to the numerical model equations are, in turn, 
-	an approximation of the real solution to the PDEs. The finite element method 
-	(FEM) is used to compute such approximations.}
-
 \note{Take, for example, a function $u$ that may be the dependent variable in a PDE 
 	(i.e., temperature, electric potential, pressure, etc.) The function $u$ can be 
 	approximated by a function uh using linear combinations of basis functions 
@@ -259,6 +229,22 @@ u \approx u_h \quad u_h = \sum_{i} u_i \psi_i
 	the problem at hand, other functions may be chosen instead of linear functions.\\
 	
 	\url{https://www.comsol.com/multiphysics/finite-element-method}}
+
+%------------------------------------------------
+\note{
+	\frametitle{Galerkin:Ritz method}
+	\begin{enumerate}
+		\item Define the functional $u$ for which you wish to find stationary points.
+		\item Choose a combination of linearly independent functions that will be used to 
+		approximate the solution. These will be called `basis functions'. The amplitudes of 
+		these functions will be the unknowns that you will determine. The basis functions 
+		must satisfy the Dirichlet (`fixed') boundary conditions.
+		\item Insert the approximate solution into the functional that is now denoted by $u_h$.
+		\item Take the directional derivative of $u_h$ with respect to the unknown amplitudes of the
+		basis functions.
+		\item Determine the amplitudes of the basis functions which yield a stationary point of $u_h$.
+	\end{enumerate}
+}
 
 \section{Strong form}
 
@@ -406,21 +392,21 @@ The task is to find $u$ with $u(0) = 0$ such that this equation is satisfied for
 %------------------------------------------------
 \begin{frame}
 \frametitle{FE formulation of a 1-D bar}
-\mode<beamer>{
 Approximates the PDE by replacing the unknown function (the displacement $u$ 
 of the elastic bar) and the weight function ($v$) by approximate fields $u_h$ and $v_h$. Inserting these fields into the weak equilibrium equation for a bar:
+\mode<beamer>{
 
 	\begin{equation*}
 	\int_0^L \frac{dv_h}{dx} EA \frac{du_h}{dx}\, \mathrm{d}x. = \int_0^L v_h f\, \mathrm{d}x + v_h(L)h.
 	\end{equation*}
+}
+\mode<handout>{
+\vspace{3cm}
+}
 	
 We now allow only a limited number of possibilities for $v_h$ and $u_h$. 
 
 Therefore, it is now unlikely that $u_h$ will be equal to the exact solution.
-}
-\mode<handout>{
-	\vspace{6cm}
-}
 \end{frame}
 
 %------------------------------------------------
@@ -434,14 +420,14 @@ Therefore, it is now unlikely that $u_h$ will be equal to the exact solution.
 	\begin{equation*}
 		u_h(x) = \sum_i^n N_i(x) a_i
 	\end{equation*}
-
-	$x_i$: discrete number of points (known as nodes)\\ 
-    $a_i$: degrees of freedom\\
-    $n$: number of nodes
 }
 \mode<handout>{
-	\vspace{4cm}
+\vspace{2cm}
 }
+
+$x_i$: discrete number of points (known as nodes)\\ 
+$a_i$: degrees of freedom\\
+$n$: number of nodes\\
 The approximate strain field:
 \mode<beamer>{
 	\begin{equation*}
