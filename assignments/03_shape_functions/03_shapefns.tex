@@ -7,7 +7,7 @@
 \usepackage{url}
 \pagestyle{fancy}
 %-------------------------------------------------------------------------------
-\lhead{\textbf{Spring 2019}}
+\lhead{\textbf{UT Austin}}
 \rhead{\textbf{CE394M Advanced Analysis in Geotechnical Engineering}}
 \cfoot{\thepage}
 %-------------------------------------------------------------------------------
@@ -16,8 +16,6 @@
 \begin{centering}
 	\textbf{
 		Assignment 3: Shape functions\\
-		Assigned: 17th February 2020\\
-		Due: 28th February 2020\\
 	}
 \end{centering}
 
@@ -30,8 +28,9 @@
 	\item Using the same shape function notebook plot and comment on the suitability of a 5th and a 10th order polynomial shape functions with equally spaced nodes.
 
 	\item Using hand calculations compute and plot the standard shape function for the element shown in Figure 1a.
-	
-	\item Modify the Jupyter notebook for shape function exercise to compute the shape functions for the elements shown in Figure 1. Compare your result from the  hand calculation with the solution obtained using the Jupyter notebook for Figure 1a. Please try part (1b) with Jupyter notebooks only. Comment on the degree of displacement and strain that can be modeled using these elements:
+
+	\item Modify the Jupyter notebook for shape function exercise to compute the shape functions for the elements shown in Figure 1. Compare your result from the  hand calculation with the solution obtained using the Jupyter notebook for Figure 1a. Please try part (1b) with Jupyter notebooks only. Hint: Use $x_n = np.array([0, 2, 3])$ to define the coordinates. Comment on the degree of displacement and strain that can be modeled using these elements:
+
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=0.5\textwidth]{figs/shapefns.png}

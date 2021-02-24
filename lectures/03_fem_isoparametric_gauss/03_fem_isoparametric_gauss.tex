@@ -75,91 +75,15 @@ University of Texas at Austin \\
 %----------------------------------------------------------------------------------------
 % slides
 %----------------------------------------------------------------------------------------
-\section{Rectangular elements}
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
-An alternative and more elegant approach is to construct the shape functions by the \textbf{tensor
-product method.} This is based on taking products of one-dimensional shape functions.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]{figs/4noded-quad-tensor-product.png}
-	\caption*{Construction of two dimensional shape functions.}
-\end{figure}
-\begin{equation*}
-N_2^e = N_2^{e,1d}(x) \times N_1^{e,1d}(y)
-\end{equation*}
-
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
-
-The four shape functions, also called \textbf{bilinear shape functions}, for the quadrilateral element are:
-\begin{align*}
-	N_1^e (x, y) & = \frac{x - x_2^e}{x_1^e - x_2^e}\frac{y - y_4^e}{y_1^e - y_4^e} = \frac{1}{A^e}(x - x_2^e)(y - y_4^e) \\
-	%
-	N_2^e (x, y) & = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_4^e}{y_1^e - y_4^e} = -\frac{1}{A^e}(x - x_1^e)(y - y_4^e) \\
-	%
-	N_3^e (x, y) & = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_1^e}{y_4^e - y_1^e} = \frac{1}{A^e}(x - x_1^e)(y - y_1^e) \\
-	%
-	N_4^e (x, y) & = \frac{x - x_2^e}{x_1^e - x_2^e}\frac{y - y_1^e}{y_4^e - y_1^e} = -\frac{1}{A^e}(x - x_2^e)(y - y_1^e)\\
-\end{align*}
-
-where $A^e$ is the area of the element.
-
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
-The four shape functions are plotted in the following
-figure:
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=\textwidth]{figs/4noded-sf.png}
-	\caption*{Four shape functions of the rectangular element (on $[0, 2] \times [0, 2]$).}
-\end{figure}
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{4-noded rectangular element}
-If the sf equations are used for interpolating the temperature field over arbitrary quadrilaterals, the scalar field (e.g., temperature) across the element boundaries will be not continuous.
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=\textwidth]{figs/discontinous-rectangle.png}
-	\caption*{Two element mesh with rectangle shape functions. Although the two nodal values on the
-		edge agree, the temperature distribution is still discontinuous.}
-\end{figure}
-\end{frame}
-
-\note{
-	The computed shape functions are suitable for rectangles and could be used with meshes consisting only of rectangles, but they are not suitable for arbitrary quadrilaterals.
-	
-	Therefore, these shape functions are of limited use for practical applications. To obtain
-	the shape functions for arbitrary quadrilaterals we need to visit the idea of isoparametric
-	mapping.
-}
-
 %------------------------------------------------
 \section{Isoparametric elements}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Isoparametric mapping in 1D}
-\mode<beamer>{
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=0.85\textwidth]{figs/1d-isoparametric.png}
-	\end{figure}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/1d-isoparametric.png}
+\end{figure}
 \end{frame}
 \note{Although isoparametric mapping is not particularly useful in one dimension, it is very	helpful for understanding the general approach.
 }
@@ -183,15 +107,10 @@ The coordinate $\xi$ fulfills the relationships:
 
 ``stretch transformation'' of $x(\xi)$: 
 
-\mode<beamer>{
-	\begin{align*}
-		x(\xi) & = x_1^e + \frac{1}{2}(x_2^e - x_1^e)(1+\xi) \\
-			& = \frac{x_1^e + x_2^e}{2} + \frac{x_2^e - x_1^e}{2}\xi
-	\end{align*}
-}
-\mode<handout>{
-	\vspace{1cm}
-}
+\begin{align*}
+	x(\xi) & = x_1^e + \frac{1}{2}(x_2^e - x_1^e)(1+\xi) \\
+		& = \frac{x_1^e + x_2^e}{2} + \frac{x_2^e - x_1^e}{2}\xi
+\end{align*}
 \end{frame}
 
 
@@ -267,10 +186,80 @@ To compute the derivatives which appear in the weak form the chain rule is used:
 }
 \end{frame}
 
-
 %------------------------------------------------
 \section{Isoparametric quadrilateral elements}
 %------------------------------------------------
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{4-noded rectangular element}
+	An alternative and more elegant approach is to construct the shape functions by the \textbf{tensor
+		product method.} This is based on taking products of one-dimensional shape functions.
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figs/4noded-quad-tensor-product.png}
+		\caption*{Construction of two dimensional shape functions.}
+	\end{figure}
+	\begin{equation*}
+		N_2^e = N_2^{e,1d}(x) \times N_1^{e,1d}(y)
+	\end{equation*}
+	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{4-noded rectangular element}
+	
+	The four shape functions, also called \textbf{bilinear shape functions}, for the quadrilateral element are:
+	\begin{align*}
+		N_1^e (x, y) & = \frac{x - x_2^e}{x_1^e - x_2^e}\frac{y - y_4^e}{y_1^e - y_4^e} = \frac{1}{A^e}(x - x_2^e)(y - y_4^e) \\
+		%
+		N_2^e (x, y) & = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_4^e}{y_1^e - y_4^e} = -\frac{1}{A^e}(x - x_1^e)(y - y_4^e) \\
+		%
+		N_3^e (x, y) & = \frac{x - x_1^e}{x_2^e - x_1^e}\frac{y - y_1^e}{y_4^e - y_1^e} = \frac{1}{A^e}(x - x_1^e)(y - y_1^e) \\
+		%
+		N_4^e (x, y) & = \frac{x - x_2^e}{x_1^e - x_2^e}\frac{y - y_1^e}{y_4^e - y_1^e} = -\frac{1}{A^e}(x - x_2^e)(y - y_1^e)\\
+	\end{align*}
+	
+	where $A^e$ is the area of the element.
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{4-noded rectangular element}
+	The four shape functions are plotted in the following
+	figure:
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=\textwidth]{figs/4noded-sf.png}
+		\caption*{Four shape functions of the rectangular element (on $[0, 2] \times [0, 2]$).}
+	\end{figure}
+\end{frame}
+
+
+%------------------------------------------------
+%\begin{frame}
+%\frametitle{4-noded rectangular element}
+%If the sf equations are used for interpolating the temperature field over arbitrary quadrilaterals, the scalar field (e.g., temperature) across the element boundaries will be not continuous.
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[width=\textwidth]{figs/discontinous-rectangle.png}
+%	\caption*{Two element mesh with rectangle shape functions. Although the two nodal values on the
+%		edge agree, the temperature distribution is still discontinuous.}
+%\end{figure}
+%\end{frame}
+
+\note{
+	The computed shape functions are suitable for rectangles and could be used with meshes consisting only of rectangles, but they are not suitable for arbitrary quadrilaterals.
+	
+	Therefore, these shape functions are of limited use for practical applications. To obtain
+	the shape functions for arbitrary quadrilaterals we need to visit the idea of isoparametric
+	mapping.
+}
+
 \begin{frame}
 \frametitle{Isoparametric mapping of a quadrilateral element}
 The idea of isoparametric mapping is used for deriving shape functions for arbitrary quadrilateral elements:
@@ -293,6 +282,10 @@ shape functions are used:
 	x(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)x^e \quad
 	y(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)y^e
 	\end{equation*}
+}
+\mode<handout>{
+\vspace{2cm}
+}
 	where $N^{4Q}(\xi, \eta)$ are the four-node element shape functions in the natural coordinates and $x^e$ and $y^e$ are the vectors of the element coordinates:
 	\begin{equation*}
 	\mathbf{x}^e = 
@@ -312,10 +305,6 @@ shape functions are used:
 	\end{bmatrix}
 	\end{equation*}
 	
-}
-\mode<handout>{
-	\vspace{5cm}
-}
 \end{frame}
 
 %------------------------------------------------
@@ -335,7 +324,7 @@ rectangular element expressed in $\xi$ and $\eta$ coordinates.
 %------------------------------------------------
 \begin{frame}
 \frametitle{Isoparametric shape functions}
-The temperature will be approximated with the same shape functions:
+The pwp will be approximated with the same shape functions:
 
 \mode<beamer>{
 	\begin{equation*}
@@ -345,13 +334,19 @@ The temperature will be approximated with the same shape functions:
 \mode<handout>{
 	\vspace{1cm}
 }
-The element is called \textit{isoparametric} because the temperature approximation and the mapping of the geometry is accomplished with the same shape functions.
+The element is called \textit{isoparametric} because the pwp approximation and the mapping of the geometry is accomplished with the same shapefn.
 
 The displacement will be approximated as:
 \mode<beamer>{
-	\begin{align*}
-	\mathbf{u}^e & = \mathbf{N}^{4Q}(\xi, \eta) \mathbf{a}^e \\
-	& = \begin{bmatrix}
+\begin{equation*}
+	\mathbf{u}^e = \mathbf{N}^{4Q}(\xi, \eta) \mathbf{a}^e 
+\end{equation*}
+}
+\mode<handout>{
+\vspace{1cm}
+}
+\begin{equation*}
+	u = \begin{bmatrix}
 	N_1^{4Q} & 0 & N_2^{4Q} & 0 & N_3^{4Q} & 0 & N_4^{4Q} & 0 \\
 	0 & N_1^{4Q} & 0 & N_2^{4Q} & 0 & N_3^{4Q} & 0 & N_4^{4Q} \\
 	\end{bmatrix}
@@ -365,11 +360,7 @@ The displacement will be approximated as:
 		a_{4x}^e \\
 		a_{4y}^e \\
 	\end{bmatrix}
-	\end{align*}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
+\end{equation*}
 \end{frame}
 
 %------------------------------------------------
@@ -462,8 +453,8 @@ to the natural coordinates.
 \frametitle{Derivatives isoparametric shape functions}
 The derivatives required for the weak form are computed by
 inverting the above expression:
-\mode<beamer>{
-	\begin{equation*}
+
+\begin{equation*}
 	\begin{bmatrix}
 		\frac{\partial N_I^{4Q}}{\partial x} \\
 		\frac{\partial N_I^{4Q}}{\partial y} \\
@@ -474,25 +465,17 @@ inverting the above expression:
 	\frac{\partial N_I^{4Q}}{\partial \xi} \\
 	\frac{\partial N_I^{4Q}}{\partial \eta} \\
 	\end{bmatrix}
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{2.5cm}
-}
+\end{equation*}
 The inverse of $\mathbf{J}^e$ is:
-\mode<beamer>{
-	\begin{equation*}
+
+\begin{equation*}
 	{\mathbf{J}^e}^{-1}
 	= \frac{1}{\left| \mathbf{J}^e\right|}
 	\begin{bmatrix}
 		\frac{\partial y}{\partial \eta} & -\frac{\partial y}{\partial \xi} \\
 		-\frac{\partial x}{\partial \eta} & \frac{\partial x}{\partial \xi} \\
 	\end{bmatrix}
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{2.5cm}
-}
+\end{equation*}
 Where $\left|\mathbf{J}^e\right|$ is the determinant of the Jacobian, which represents the ratio of an area element in the physical domain to the corresponding area element in the parent domain.
 \end{frame}
 
@@ -513,15 +496,10 @@ Where $\left|\mathbf{J}^e\right|$ is the determinant of the Jacobian, which repr
 \begin{frame}
 \frametitle{Derivatives isoparametric shape functions}
 The isoparametric mapping is used to compute the Jacobian:
-\mode<beamer>{
-	\begin{equation*}
+\begin{equation*}
 	x(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)\mathbf{x}^e \quad
 	y(\xi, \eta) = \mathbf{N}^{4Q}(\xi, \eta)\mathbf{y}^e \quad
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
+\end{equation*}
 which leads to:
 \begin{equation*}
 	\mathbf{J}^e = %
@@ -543,22 +521,6 @@ which leads to:
 	\end{bmatrix}
 \end{equation*}
 \end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Higher order quadrilateral element}
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.85\textwidth]{figs/9noded-quadrilateral.png}
-	\caption*{Nine-node ispoarametric quadrilateral in parameter (left) and physical space (right).}
-\end{figure}
-\end{frame}
-\note{
-	Higher order quadrilateral elements provide the ability to model curved edges. The advantage of curved edges is that fewer elements can be used around holes and other curved surfaces than with straight-sided elements. \\
-	
-	The nine-node isoparametric element is constructed as a tensor product of the one-dimensional quadratic shape functions. The $\mathbf{B}_e$ matrix for the nine noded element is computed with the same approach as discussed in the previous section.
-}
 
 \section{Effect of element shape}
 %------------------------------------------------
@@ -653,6 +615,23 @@ that the determinant of the Jacobian is zero or negative close to the non-convex
 }
 
 %------------------------------------------------
+\begin{frame}
+	\frametitle{Higher order quadrilateral element}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.85\textwidth]{figs/9noded-quadrilateral.png}
+		\caption*{Nine-node ispoarametric quadrilateral in parameter (left) and physical space (right).}
+	\end{figure}
+\end{frame}
+\note{
+	Higher order quadrilateral elements provide the ability to model curved edges. The advantage of curved edges is that fewer elements can be used around holes and other curved surfaces than with straight-sided elements. \\
+	
+	The nine-node isoparametric element is constructed as a tensor product of the one-dimensional quadratic shape functions. The $\mathbf{B}_e$ matrix for the nine noded element is computed with the same approach as discussed in the previous section.
+}
+
+
+%------------------------------------------------
 \section{Numerical Integration (Quadrature)}
 %------------------------------------------------
 \begin{frame}
@@ -700,47 +679,28 @@ There are various schemes for approximating the integral using the function valu
 %------------------------------------------------
 \begin{frame}
 \frametitle{Rectangle rule (constant approximation)}
-\mode<beamer>{
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=\textwidth]{figs/rectangle-rule-integration.png}
-	\end{figure}
-}
-\mode<handout>{
-	\vspace{3.5cm}
-}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/rectangle-rule-integration.png}
+\end{figure}
 Integration of $f(x)$ with the rectangle rule between $x = a$ and $x = b$.
-\mode<beamer>{
-	\begin{equation*}
+\begin{equation*}
 	\int_a^b f(x)dx \approx h (f(x_0) + f(x_1)+f(x_2)+\dots+f(x_{N-1}))
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{1cm}
-}
+\end{equation*}
 \end{frame}
 
 %------------------------------------------------
 \begin{frame}
 \frametitle{Trapezoidal rule (linear approximation)}
-\mode<beamer>{
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[width=\textwidth]{figs/trapezoidal-rule-integration.png}
-	\end{figure}
-}
-\mode<handout>{
-	\vspace{3.5cm}
-}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{figs/trapezoidal-rule-integration.png}
+\end{figure}
 Integration of $f(x)$ with the trapezoidal rule between $x = a$ and $x = b$.
-\mode<beamer>{
-	\begin{equation*}
-		\int_a^b f(x)dx \approx \frac{h}{2} (f(x_0) + 2f(x_1)+2f(x_2)+\dots+ 2f(x_{N-1}) + f(x_N))
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{1cm}
-}
+
+\begin{equation*}
+	\int_a^b f(x)dx \approx \frac{h}{2} (f(x_0) + 2f(x_1)+2f(x_2)+\dots+ 2f(x_{N-1}) + f(x_N))
+\end{equation*}
 \end{frame}
 
 %------------------------------------------------
@@ -751,16 +711,11 @@ Integration of $f(x)$ with the trapezoidal rule between $x = a$ and $x = b$.
 	\int_a^b f(x)dx \approx \frac{1}{3} h (f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) +\dots + 4f(x_{N-1}) + f(x_N))
 \end{equation*}
 Notice that all these integration rules can be written in the following form:
-\mode<beamer>{
-	\begin{equation*}
-		\int_a^b f(x)dx \approx \sum_{I=0}^N w_I f(x_I)
-	\end{equation*}
+\begin{equation*}
+	\int_a^b f(x)dx \approx \sum_{I=0}^N w_I f(x_I)
+\end{equation*}
 
 where $w_I$ are the integration weights and $x_I$ are the integration points.
-}
-\mode<handout>{
-	\vspace{2.5cm}
-}
 \end{frame}
 
 %------------------------------------------------
@@ -773,6 +728,10 @@ Gauss integration formulas are always given over the parent domain $[-1, 1]$:
 	\begin{equation*}
 	\int_{-1}^{1} f(\xi)d \xi \approx \sum_{I=1}^N w_I f(\xi_I)
 	\end{equation*}
+}
+\mode<handout>{
+\vspace{2cm}
+}
 	
 	\begin{enumerate}
 		\item a very efficient technique for integrating functions that are (almost)
@@ -783,10 +742,6 @@ Gauss integration formulas are always given over the parent domain $[-1, 1]$:
 		\item Number of integration points is of great importance for practical computations since
 		the fewer the integration points the faster the finite element analysis will be.
 	\end{enumerate}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
 \end{frame}
 
 %------------------------------------------------
@@ -797,15 +752,15 @@ Integration of $f(\xi)$ between $\xi = -1$ and $\xi = 1 $ using two Gauss points
 	\begin{equation*}
 	\int_{-1}^{1} f(\xi)d \xi \approx 1.0f(-\frac{1}{\sqrt(3)}) + 1.0f(\frac{1}{\sqrt(3)})
 	\end{equation*}
+}
+\mode<handout>{
+\vspace{2cm}
+}
 	
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[width=0.85\textwidth]{figs/gauss-integration.png}
 	\end{figure}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
 \end{frame}
 
 %------------------------------------------------
@@ -925,16 +880,11 @@ where $\alpha_1, \alpha_2, \alpha_3$ and $\alpha_4$ are constants. The integral 
 \frametitle{Gauss integration}
 Integration of $f(\xi)$ between $\xi = -1$ and $\xi = 1$ using two Gauss points:
 
-\mode<beamer>{
 \begin{align*}
 	\int_{-1}^{+1}f(\xi) d\xi & = w_1 f(\xi_1) + w_2 f(\xi_2) \\
 	& = w_1(\alpha_1 + \alpha_2 \xi + \alpha_3 \xi^2 + \alpha_4 \xi^3) \\
 	& + w_2(\alpha_1 + \alpha_2 \xi + \alpha_3 \xi^2 + \alpha_4 \xi^3)
 \end{align*}
-}
-\mode<handout>{
-	\vspace{2.5cm}
-}
 Alternatively, the integration can be performed analytically:
 
 \begin{align*}
@@ -948,28 +898,18 @@ Alternatively, the integration can be performed analytically:
 \begin{frame}
 \frametitle{Gauss integration}
 Comparing the coefficients of the constants in equations:
-\mode<beamer>{
-	\begin{align*}
+\begin{align*}
 		w_1 + w_2 & = 2 \\
 		w_1 \xi_1 + w_2 \xi_2 & = 0 \\
 		w_1 \xi_1^2 + w_2 \xi_2^2 & = \frac{2}{3} \\
 		w_1 \xi_1^3 + w_3 \xi_2^2 & = 0
-	\end{align*}
-}
-\mode<handout>{
-	\vspace{3.5cm}
-}
+\end{align*}
 This is a set of four nonlinear equations for determining the values of $w_1$, $w_2$, $\xi_1$ and $\xi_2$. Symmetry considerations require that\mode<beamer>{ $w_1 = w_2$ and $\xi_1 = - \xi_2$:}
 
-\mode<beamer>{
 \begin{align*}
 	w_1 = & w_2 = 1 \\
 	\xi_1 = -\frac{1}{\sqrt{3}} \quad	\mathrm{and}\quad & \xi_2 = \frac{1}{\sqrt{3}}
 \end{align*}
-}
-\mode<handout>{
-	\vspace{2.5cm}
-}
 \end{frame}
 
 

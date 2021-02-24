@@ -775,7 +775,7 @@ form:
 \end{minipage}%
 \hfill%
 \begin{minipage}[t]{0.48\linewidth}
-	$x_1 = -1$, $x_2 = 1$ and $x_3 = 0$:
+	$x_1 = -1$, $x_2 = 0$ and $x_3 = 1$:
 	\begin{align*}
 		N_1 & = \frac{x^2}{2} - \frac{x}{2} \,, \\
 		N_2 & = \frac{x^2}{2} + \frac{x}{2} \,, \\
@@ -819,6 +819,11 @@ form:
 	\end{equation*}
 Inverting,	
 	\begin{equation*}
+			\begin{bmatrix}
+			a_i \\
+			b_i \\
+			c_i \\
+		\end{bmatrix}=
 	\begin{bmatrix}
 		 0   &  1 & 0   \\
         -0.5 &  0 & 0.5 \\
@@ -828,11 +833,6 @@ Inverting,
 		N_i(x_1) \\
 		N_i(x_2) \\
 		N_i(x_3) \\
-	\end{bmatrix} =
-	\begin{bmatrix}
-		a_i \\
-		b_i \\
-		c_i \\
 	\end{bmatrix}
 	\end{equation*}
 For node one, $\left[N_i(x_1) \quad N_i(x_2) \quad N_i(x_3)\right]^T = \left[1 \quad 0 \quad 0 \right]^T$, and for node two $\left[0 \quad 0 \quad 1 \right]^T$, for node three $\left[0 \quad 1 \quad 0 \right]^T$. This leads to

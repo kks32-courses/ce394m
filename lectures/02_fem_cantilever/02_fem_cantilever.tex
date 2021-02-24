@@ -57,7 +57,7 @@ University of Texas at Austin \\
 \textit{
   \url{krishnak@utexas.edu}} % Your email address
 }
-\date{\today} % Date, can be changed to a custom date
+\date{} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -81,7 +81,7 @@ University of Texas at Austin \\
 \begin{frame}
 \frametitle{Finite Element Analysis}
 FEM is a systematic procedure for approximating differential equations. For any problem in any spatial dimension it follows the same steps:
-\mode<beamer>{
+
 \begin{enumerate}
 \item Identify the equation of interest
 \item Cast the equation of interest in a weak form
@@ -90,10 +90,6 @@ FEM is a systematic procedure for approximating differential equations. For any 
 \item Assemble the global matrix and vector and apply boundary conditions
 \item Solve the system of linear equations
 \end{enumerate}
-}
-\mode<handout>{
-\vspace{5cm}
-}
 \end{frame}
 
 %---------------------------------------------------
@@ -291,7 +287,7 @@ Element stiffness $k_e$:
 \frametitle{1D FEM: Global stiffness matrix}
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.4\textwidth]{figs/fem-cantilever-linear.png}
+	\includegraphics[width=0.4\textwidth]{figs/fem-cantilever-linear-bc.png}
 \end{figure}
 Global stiffness \textbf{K}:
 
@@ -324,61 +320,55 @@ Where superscripts in $k_{ij}^e$ denotes element numbering.
 }
 \end{frame}
 
+
+
 %------------------------------------------------
 \begin{frame}
-\frametitle{Boundary conditions}
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.4\textwidth]{figs/fem-cantilever-linear-bc.png}
-\end{figure}
-Global stiffness \textbf{K}:
-
-\mode<beamer>{
-	\begin{align*}
-	\textbf{K} & = %
-	\begin{bmatrix}
-	k_{11}^1 & k_{12}^1 & \textcolor{red}{0} \\
-	k_{21}^1 & k_{22}^1 + \textcolor{blue}{k_{11}^2} & \textcolor{blue}{k_{12}^2} \\
-	\textcolor{red}{0}  & \textcolor{blue}{k_{21}^2} & \textcolor{blue}{k_{22}^2} \\ 
-	\end{bmatrix} \\
-	%
-	\\
-	& = EA %
-	\begin{bmatrix}
-	1 & -1 & 0\\
-	-1 &  1 + \textcolor{blue}{1} & \textcolor{blue}{-1}\\
-	0 & \textcolor{blue}{-1} & \textcolor{blue}{1} \\
-	\end{bmatrix} = EA%
-	\begin{bmatrix}
-	1 & -1 & 0\\
-	-1 &  2 & -1\\
-	0 & -1 & 1 \\
-	\end{bmatrix}
-	\end{align*}
-	Where superscripts in $k_{ij}^e$ denotes element numbering.
-}
-\mode<handout>{
-	\vspace{5cm}
-}
-\end{frame}
-
-\note{
-	\textit{\textbf{Neumann (force) boundary conditions }}appear naturally in the weak form 
-	of the equilibrium equation, and therefore do not require special consideration. 
-	In the context of variational methods, they are sometimes referred to as 
-	`\textit{natural boundary conditions}'. \\
+	\frametitle{Global system of equations}
+	Assemble the global system of equations:
+	\begin{equation*}
+		\mathbf{K} = 
+		\begin{bmatrix}
+			k_{11}^1 & k_{12}^1 & \textcolor{red}{0} \\
+			k_{21}^1 & k_{22}^1 + \textcolor{blue}{k_{11}^2} & \textcolor{blue}{k_{12}^2} \\
+			\textcolor{red}{0}  & \textcolor{blue}{k_{21}^2} & \textcolor{blue}{k_{22}^2} \\ 
+		\end{bmatrix}
+		\begin{bmatrix}
+			a_1 \\
+			a_2 \\
+			a_3 \\
+		\end{bmatrix} = %
+		\begin{bmatrix}
+			b_1 \\
+			b_2 \\
+			b_3 \\
+		\end{bmatrix}
+	\end{equation*}
 	
-	However, \textbf{\textit{Dirichlet (displacement) boundary conditions}} still need to be applied. If we fail to apply proper displacement boundary 
-	conditions, the stiffness matrix will be singular, meaning that there is no unique solution. 
-	In the context of variational methods, displacement boundary conditions are often referred to as `\textit{essential boundary conditions}'.}
-
-\note{
-	There are two approaches that are commonly used to apply displacement boundary
-	conditions. One is to modify terms in the global stiffness matrix and place the displacement 
-	boundary condition in the right-hand side vector, and the other is to eliminate the
-	degrees of freedom associated with a displacement boundary condition from the global
-	system of equations.
-}
+	\mode<beamer>{
+		\begin{equation*}
+			\mathbf{K} = 
+			\begin{bmatrix}
+				1 & -1 &  0  \\
+				-1 &  2 & -1 \\
+				0 & -1 &  1 \\ 
+			\end{bmatrix}
+			\begin{bmatrix}
+				0 \\
+				a_2 \\
+				a_3 \\
+			\end{bmatrix} = %
+			\begin{bmatrix}
+				1/2 \\
+				1 \\
+				1/2 \\
+			\end{bmatrix}
+		\end{equation*}
+	}
+	\mode<handout>{
+		\vspace{3cm}
+	}
+\end{frame}
 
 
 %------------------------------------------------
@@ -411,7 +401,6 @@ each element:
 \end{equation*}
 To apply a displacement of $g$ at node one ($a_1 = g$):
 
-\mode<beamer>{
 we can zero the first row of the matrix, place a `one' on the diagonal and set $b_1 = g$,
 	\begin{equation*}
 	\begin{bmatrix}
@@ -436,11 +425,25 @@ we can zero the first row of the matrix, place a `one' on the diagonal and set $
 		b_5 \\
 	\end{bmatrix}
 	\end{equation*}
-}
-\mode<handout>{
-	\vspace{5cm}
-}
 \end{frame}
+
+\note{
+	\textit{\textbf{Neumann (force) boundary conditions }}appear naturally in the weak form 
+	of the equilibrium equation, and therefore do not require special consideration. 
+	In the context of variational methods, they are sometimes referred to as 
+	`\textit{natural boundary conditions}'. \\
+	
+	However, \textbf{\textit{Dirichlet (displacement) boundary conditions}} still need to be applied. If we fail to apply proper displacement boundary 
+	conditions, the stiffness matrix will be singular, meaning that there is no unique solution. 
+	In the context of variational methods, displacement boundary conditions are often referred to as `\textit{essential boundary conditions}'.}
+
+\note{
+	There are two approaches that are commonly used to apply displacement boundary
+	conditions. One is to modify terms in the global stiffness matrix and place the displacement 
+	boundary condition in the right-hand side vector, and the other is to eliminate the
+	degrees of freedom associated with a displacement boundary condition from the global
+	system of equations.
+}
 
 \note{
 	Multiplying the top row of the matrix by the vector \textbf{\textit{a}}, we can see that solving this system of equations will lead to $a_1 = g$. There is however a significant drawback to
@@ -449,55 +452,6 @@ we can zero the first row of the matrix, place a `one' on the diagonal and set $
 	matrix, which will possibly double the solution time. For $g = 0$ we could also zero the
 	first column and preserve symmetry, but this is not possible for $g \ne 0$.}
 
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Global system of equations}
-Assemble the global system of equations:
-\begin{equation*}
-\mathbf{K} = 
-\begin{bmatrix}
-	k_{11}^1 & k_{12}^1 & \textcolor{red}{0} \\
-	k_{21}^1 & k_{22}^1 + \textcolor{blue}{k_{11}^2} & \textcolor{blue}{k_{12}^2} \\
-	\textcolor{red}{0}  & \textcolor{blue}{k_{21}^2} & \textcolor{blue}{k_{22}^2} \\ 
-\end{bmatrix}
-\begin{bmatrix}
-a_1 \\
-a_2 \\
-a_3 \\
-\end{bmatrix} = %
-\begin{bmatrix}
-b_1 \\
-b_2 \\
-b_3 \\
-\end{bmatrix}
-\end{equation*}
-
-\mode<beamer>{
-	\begin{equation*}
-	\mathbf{K} = 
-	\begin{bmatrix}
-		1 & -1 &  0  \\
-	   -1 &  2 & -1 \\
-		0 & -1 &  1 \\ 
-	\end{bmatrix}
-	\begin{bmatrix}
-		0 \\
-		a_2 \\
-		a_3 \\
-	\end{bmatrix} = %
-	\begin{bmatrix}
-		1/2 \\
-		1 \\
-		1/2 \\
-	\end{bmatrix}
-	\end{equation*}
-}
-\mode<handout>{
-	\vspace{3cm}
-}
-\end{frame}
 
 
 %------------------------------------------------
