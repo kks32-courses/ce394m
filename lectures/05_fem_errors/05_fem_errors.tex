@@ -92,19 +92,15 @@ University of Texas at Austin \\
 %------------------------------------------------
 \begin{frame}
 \frametitle{A priori estimates}
-\mode<beamer>{
-	\begin{itemize}
-		\item 	A priori error estimation is the analysis of the errors in a finite element simulation before
-		actually performing an analysis. 
-		\item It is an abstract concept since it cannot quantify the
-		error in a computed simulation, but analysis can tell something about whether the finite
-		element solution will converge to the exact solution as the mesh is refined, and how
-		quickly it will converge if the element type is changed or the mesh is refined.
+\begin{itemize}
+	\item 	A priori error estimation is the analysis of the errors in a finite element simulation before
+	actually performing an analysis. 
+	\item It is an abstract concept since it cannot quantify the
+	error in a computed simulation, but analysis can tell something about whether the finite
+	element solution will converge to the exact solution as the mesh is refined, and how
+	quickly it will converge if the element type is changed or the mesh is refined.
 
-	\end{itemize}
-}	\mode<handout>{
-\vspace{6cm}
-}
+\end{itemize}
 \end{frame}
 
 %------------------------------------------------
@@ -168,7 +164,6 @@ Inevitably, the finite element solution is not exact. But how do we know that it
 any relation to the exact solution? If the mesh is refined, will the error reduce? We may
 say intuitively yes, but this is not very satisfactory. This is where a priori analysis helps.
 A priory error estimate:
-\mode<beamer>{
 \begin{equation*}
 	\left\lVert u - u_h \right\rVert_s \le C h^\beta \left\lVert u  \right\rVert_{k+1}
 \end{equation*}
@@ -183,10 +178,6 @@ A priory error estimate:
 \end{itemize}
 
  What is of key interest is the exponent $\beta$.
-}
-\mode<handout>{
-\vspace{5cm}
-}	
 
 \end{frame}
 
@@ -264,12 +255,17 @@ If we have an a posterior error estimator for a particular problem, a simulation
 been performed, the error estimated in various part of the domain and the mesh and
 finite element type can be adjusted in order to reduce the error to a prescribed value.
 This is known as \textit{adaptivity}. \\
-
+\mode<beamer>{
 The two obvious strategies are known as:
 	\begin{itemize}
 		\item \textit{h-adaptivity}: this involves modify the mesh.
 		\item \textit{p-adaptivity}: this involves changing the finite element type.
 	\end{itemize}
+}
+\mode<handout>{
+\vspace{3cm}
+}	
+
 \end{frame}
 \note{
 A \textit{posterior error} estimation involves quantification of the error after a simulation has
