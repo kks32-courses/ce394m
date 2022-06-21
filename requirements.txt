@@ -1,7 +1,7 @@
 cycler==0.10.0
 kiwisolver==1.0.1
 matplotlib==3.0.2
-numpy==1.16.1
+numpy==1.22.0
 pyparsing==2.3.1
 python-dateutil==2.7.5
 scipy==1.2.0
